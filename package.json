@@ -1,0 +1,22 @@
+{
+  "name": "coderscamp2021.project.react-node",
+  "version": "1.0.0",
+  "description": "2nd project of CodersCamp2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nefariusek/CodersCamp2021.Project.React-Node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nefariusek/CodersCamp2021.Project.React-Node/issues"
+  },
+  "homepage": "https://github.com/Nefariusek/CodersCamp2021.Project.React-Node#readme",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}

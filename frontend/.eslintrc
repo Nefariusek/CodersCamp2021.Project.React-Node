@@ -1,0 +1,43 @@
+{
+  "plugins": ["simple-import-sort"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended",
+    "react-app",
+    "react-app/jest"
+  ],
+  "env": { "es6": true, "browser": true, "node": true },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true }
+  },
+  "settings": {
+    "react": { "version": "detect" },
+    "jest": { "version": "detect" }
+  },
+  "rules": {
+    "sort-imports": 0,
+    "import/order": 0,
+    "simple-import-sort/imports": 2,
+    "simple-import-sort/exports": 2,
+    "no-unused-vars": [2, { "argsIgnorePattern": "^_" }]
+  },
+  "overrides": [
+    {
+      "files": ["**/?(*.)+(spec|test).js?(x)", "jest.config.js", "setupTests.js"],
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest-dom/recommended",
+        "plugin:testing-library/react",
+        "plugin:jest-formatting/recommended"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": [2, { "devDependencies": true }]
+      }
+    }
+  ]
+}
