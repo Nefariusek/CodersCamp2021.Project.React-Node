@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
+import LoginPage from './views/LoginPage/LoginPage'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LoginPage />
   </React.StrictMode>,
   document.getElementById('root'),
 );
