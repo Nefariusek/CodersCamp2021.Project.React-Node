@@ -1,14 +1,16 @@
 import './sass/styles.scss';
+import 'typeface-roboto';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import App from './views/App/App';
+// import App from './views/App/App';
+import HomePage from './views/HomePage/HomePage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HomePage />
   </React.StrictMode>,
   document.getElementById('root'),
 );
