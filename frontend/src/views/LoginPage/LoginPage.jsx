@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
-import { TextField } from "@mui/material"; 
+import { TextField, Typography } from "@mui/material"; 
 import { useState } from 'react';
+import './LoginPage.scss';
 
 export default function LoginPage () {
 
@@ -17,6 +18,7 @@ export default function LoginPage () {
 
         if (username && password){
             console.log(username, password);
+            alert('Login is successful');
         } else {
             if (!username){
                 setUsernameError(true);
@@ -28,29 +30,31 @@ export default function LoginPage () {
     }
 
     return (
-    <>
-    <h1>AID KIT</h1>
-    <h2>Your medical assistant</h2>
-    <form onSubmit={handleSubmit}>
-    <TextField 
-        id = "username-input"
-        onChange={(e)=>setUsername(e.target.value)}
-        label="USERNAME OR E-MAIL" 
-        variant="outlined"
-        error = {usernameError}
-    />
-    <br/>
-    <TextField 
-        id = "password-input"
-        type = "password"
-        onChange={(e)=>setPassword(e.target.value)}
-        label="PASSWORD" 
-        variant="outlined"
-        error = {passwordError}
-        />
-    <br/>
-    <Button type="submit" variant = "contained" >Log In</Button>
-    </form>
-    </>
+    <div className='login-page'>
+        <div className='login-container'>
+            <Typography variant='h1'>AID KIT</Typography>
+            <Typography variant='h2'>Your medical assistant</Typography>
+            <form className = 'login-form' onSubmit={handleSubmit}>
+            <TextField 
+                id = "username-input"
+                onChange={(e)=>setUsername(e.target.value)}
+                label="USERNAME OR E-MAIL" 
+                variant="outlined"
+                error = {usernameError}
+            />
+            <TextField 
+                id = "password-input"
+                type = "password"
+                onChange={(e)=>setPassword(e.target.value)}
+                label="PASSWORD" 
+                variant="outlined"
+                error = {passwordError}
+                />
+            <Button type="submit" variant = "contained" >Log In</Button>
+            </form>
+            <Button>Create New Account</Button>
+        </div>
+        <img src='./apteczka.png'/>
+    </div>
     );
 }

@@ -1,0 +1,32 @@
+.login-page {
+  display: flex;
+  justify-content: space-around;
+}
+
+.login-container {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-page img {
+  height: 100vh;
+  width: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .login-page img {
+    display: none;
+  }
+}
