@@ -1,30 +1,55 @@
-import Button from '@mui/material/Button';
-import styles from '../../components/Button/Button.module.scss';
+import './CreditsPage.scss';
 
-function CreditsPage() {
+import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+
+import buttonStyles from '../../components/Button/Button.module.scss';
+
+const CreditsPage = () => {
   return (
-    <>
-      <h1>Credits</h1>
-      <Button variant="contained" className={styles.Button}>
-        Szymon
-      </Button>
-      <Button variant="contained" className={styles.Button}>
-        Sylwia
-      </Button>
-      <Button variant="contained" className={styles.Button}>
-        Natalia
-      </Button>
-      <Button variant="contained" className={styles.Button}>
-        Maria
-      </Button>
-      <Button variant="contained" className={styles.Button}>
-        Grzegorz
-      </Button>
-      <Button variant="contained" className={styles.Button}>
-        Ula
-      </Button>
-    </>
+    <div className="creditsPage">
+      <Typography className="header" variant="h2">
+        Meet our team!
+      </Typography>
+      <div className="container">
+        <div className="githubButtons">
+          <Button
+            variant="contained"
+            className={buttonStyles.Button}
+            href="https://github.com/Nefariusek"
+            target="_blank"
+          >
+            Szymon
+          </Button>
+          <Button variant="contained" className={buttonStyles.Button} href="https://github.com/mngweb" target="_blank">
+            Sylwia
+          </Button>
+          <Button
+            variant="contained"
+            className={buttonStyles.Button}
+            href="https://github.com/NataliaCichonska"
+            target="_blank"
+          >
+            Natalia
+          </Button>
+          <Button
+            variant="contained"
+            className={buttonStyles.Button}
+            href="https://github.com/MariaBanaszkiewicz"
+            target="_blank"
+          >
+            Maria
+          </Button>
+          <Button variant="contained" className={buttonStyles.Button} href="https://github.com/GRosza" target="_blank">
+            Grzegorz
+          </Button>
+          <Button variant="contained" className={buttonStyles.Button} href="https://github.com/Urszuja" target="_blank">
+            Ula
+          </Button>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
 export default CreditsPage;
