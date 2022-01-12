@@ -8,6 +8,12 @@ body{
     flex-direction: column;
 }
 
+.daytime{
+position: absolute;
+top: 0px;
+right: 10px;
+}
+
 
 .title h1{
     font-family: 'Roboto Condensed', sans-serif;
@@ -37,5 +43,9 @@ body{
 .aidKit{
     box-sizing: border-box;
     width: 50vh;
-    margin-top: 4rem;   
+}
+
+img.aidKit {
+    margin-top: 100px;
+
 }
