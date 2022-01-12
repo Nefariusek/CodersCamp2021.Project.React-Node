@@ -32,8 +32,8 @@ export default function LoginPage () {
     return (
     <div className='login-page'>
         <div className='login-container'>
-            <Typography variant='h1'>AID KIT</Typography>
-            <Typography variant='h2'>Your medical assistant</Typography>
+            <Typography variant='h1' color = '#023e8a' fontWeight={'bold'}>AID KIT</Typography>
+            <Typography variant='h2' color = '#059ac8' fontWeight={'bold'}>Your medical assistant</Typography>
             <form className = 'login-form' onSubmit={handleSubmit}>
             <TextField 
                 id = "username-input"
@@ -41,6 +41,10 @@ export default function LoginPage () {
                 label="USERNAME OR E-MAIL" 
                 variant="outlined"
                 error = {usernameError}
+                style = {{
+                    width: '80%',
+                    backgroundColor: '#42b6dc',
+                }}
             />
             <TextField 
                 id = "password-input"
@@ -49,10 +53,14 @@ export default function LoginPage () {
                 label="PASSWORD" 
                 variant="outlined"
                 error = {passwordError}
+                style = {{
+                    width: '80%',
+                    backgroundColor: '#42b6dc',
+                }}
                 />
             <Button type="submit" variant = "contained" >Log In</Button>
-            </form>
             <Button>Create New Account</Button>
+            </form>
         </div>
         <img src='./apteczka.png'/>
     </div>
