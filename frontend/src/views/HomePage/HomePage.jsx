@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import React from 'react';
 
 import buttoStyles from '../../components/Button/button.module.scss';
+import Calendar from '../../components/Calendar/Calendar';
 import Clock from '../../components/Clock/Clock';
 import Date from '../../components/Date/Date';
 
@@ -13,7 +14,7 @@ function homePage() {
     <div className="homeContainer">
       <div className="textContetn">
         <div className="title">
-          <h1>@ID kIT</h1>
+          <h1>aID kIT</h1>
           <h2>Your medical assistant</h2>
         </div>
         <ul className="navList">
@@ -38,6 +39,7 @@ function homePage() {
         <div className="daytime">
           <Clock />
           <Date />
+          <Calendar />
         </div>
         <img className="aidKit" alt="aid kit" src="../../../public/apteczka-cutout.png" />
       </div>
