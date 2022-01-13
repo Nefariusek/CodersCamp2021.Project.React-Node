@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
+import SignUpPage from './views/SignUpPage/SignUpPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SignUpPage />
   </React.StrictMode>,
   document.getElementById('root'),
 );
