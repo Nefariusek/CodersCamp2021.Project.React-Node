@@ -86,7 +86,7 @@ const SwitchTrack = styled('span')(
 `,
 );
 
-const Switch = (props) => {
+const ThemeSwitch = (props) => {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
@@ -105,4 +105,4 @@ const Switch = (props) => {
   );
 };
 
-export default Switch;
+export default ThemeSwitch;

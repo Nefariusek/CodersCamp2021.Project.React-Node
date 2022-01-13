@@ -13,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-import Switch from './Switch';
+import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
 const pages = ['Daily Drugs', 'Lexicon', 'Calendar'];
 const LOGO_IMG = { path: '../../../public/logo_color.png', alt: 'logo' };
@@ -88,7 +88,7 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-          <Switch defaultChecked />
+          <ThemeSwitch defaultChecked />
           <IconButton color="inherit" size="large" aria-label="settings button">
             <SettingsIcon />
           </IconButton>
