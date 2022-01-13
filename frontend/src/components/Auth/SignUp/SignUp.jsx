@@ -7,18 +7,76 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
+import React, { useReducer } from 'react';
+
+import { onInputBlur, onInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
+
+const styles = {
+  helper: {
+    color: 'black',
+    fontSize: '.8em',
+  },
+};
+
+const initialFormState = {
+  username: { value: '', visited: false, hasError: true, errorText: '' },
+  email: { value: '', visited: false, hasError: true, errorText: '' },
+  password: { value: '', visited: false, hasError: true, errorText: '' },
+  confirmedPassword: {
+    value: '',
+    visited: false,
+    hasError: true,
+    errorText: '',
+  },
+  isFormValid: false,
+};
+
+const formReducer = (prevState, action) => {
+  const { name, value, visited, hasError, errorText, isFormValid } = action.payload;
+  switch (action.type) {
+    case UPDATE_FORM_STATE:
+      return {
+        ...prevState,
+        [name]: { ...prevState[name], value, visited, hasError, errorText },
+        isFormValid,
+      };
+
+    default:
+      return prevState;
+  }
+};
 
 const SignUp = () => {
+  const [formState, dispatch] = useReducer(formReducer, initialFormState);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Sign up succesfull');
-    const data = new FormData(e.currentTarget);
-    console.log({
-      username: data.get('username'),
-      email: data.get('email'),
-      password: data.get('password'),
-      confirmPassword: data.get('confirm-password'),
-    });
+    let isFormValid = true;
+    for (const name of Object.keys(formState)) {
+      const { value } = formState[name];
+      const { hasError, errorText } = validateInput(name, value, formState);
+      if (hasError) {
+        isFormValid = false;
+      }
+
+      if (name) {
+        dispatch({
+          type: UPDATE_FORM_STATE,
+          payload: {
+            name,
+            value,
+            visited: true,
+            hasError,
+            errorText,
+            isFormValid,
+          },
+        });
+      }
+    }
+
+    if (isFormValid) {
+      alert('Sign up successfull!');
+    }
   };
 
   return (
@@ -46,10 +104,41 @@ const SignUp = () => {
               fullWidth
               autoFocus
               color="secondary"
+              value={formState.username.value}
+              error={formState.username.visited && formState.username.hasError}
+              helperText={formState.username.visited && formState.username.hasError ? formState.username.errorText : ''}
+              FormHelperTextProps={{ style: styles.helper }}
+              InputProps={{
+                style: styles.input,
+              }}
+              onChange={(e) => {
+                onInputChange('username', e.target.value, formState, dispatch);
+              }}
+              onBlur={(e) => {
+                onInputBlur('username', e.target.value, formState, dispatch);
+              }}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField label="EMAIL" name="email" id="email" variant="filled" required fullWidth color="secondary" />
+            <TextField
+              label="EMAIL"
+              id="email"
+              name="email"
+              variant="filled"
+              required
+              fullWidth
+              color="secondary"
+              value={formState.email.value}
+              error={formState.email.visited && formState.email.hasError}
+              helperText={formState.email.visited && formState.email.hasError ? formState.email.errorText : ''}
+              FormHelperTextProps={{ style: styles.helper }}
+              onChange={(e) => {
+                onInputChange('email', e.target.value, formState, dispatch);
+              }}
+              onBlur={(e) => {
+                onInputBlur('email', e.target.value, formState, dispatch);
+              }}
+            />
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -61,18 +150,42 @@ const SignUp = () => {
               required
               fullWidth
               color="secondary"
+              value={formState.password.value}
+              error={formState.password.visited && formState.password.hasError}
+              helperText={formState.password.visited && formState.password.hasError ? formState.password.errorText : ''}
+              FormHelperTextProps={{ style: styles.helper }}
+              onChange={(e) => {
+                onInputChange('password', e.target.value, formState, dispatch);
+              }}
+              onBlur={(e) => {
+                onInputBlur('password', e.target.value, formState, dispatch);
+              }}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               label="CONFIRM PASSWORD"
-              name="confirmPassword"
-              id="confirmPassword"
+              name="confirmedPassword"
+              id="confirmedPassword"
               type="password"
               variant="filled"
               required
               fullWidth
               color="secondary"
+              value={formState.confirmedPassword.value}
+              error={formState.confirmedPassword.visited && formState.confirmedPassword.hasError}
+              helperText={
+                formState.confirmedPassword.visited && formState.confirmedPassword.hasError
+                  ? formState.confirmedPassword.errorText
+                  : ''
+              }
+              FormHelperTextProps={{ style: styles.helper }}
+              onChange={(e) => {
+                onInputChange('confirmedPassword', e.target.value, formState, dispatch);
+              }}
+              onBlur={(e) => {
+                onInputBlur('confirmedPassword', e.target.value, formState, dispatch);
+              }}
             />
           </Grid>
         </Grid>
