@@ -9,6 +9,9 @@ const CreditsPage = () => {
   return (
     <div className="creditsPage">
       <Typography className="header" variant="h2">
+        Second project of Coders Camp 2021
+      </Typography>
+      <Typography className="header" variant="h3">
         Meet our team!
       </Typography>
       <div className="container">
@@ -47,6 +50,7 @@ const CreditsPage = () => {
             Ula
           </Button>
         </div>
+        <img className="creditsPageImg" src="./creditsPills.png" alt="credits page img" />
       </div>
     </div>
   );
