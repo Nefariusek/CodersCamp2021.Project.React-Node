@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import { TextField, Typography } from "@mui/material"; 
 import { useState } from 'react';
 import './LoginPage.scss';
+import buttonStyles from '../../components/Button/Button.module.scss';
 
 export default function LoginPage () {
 
@@ -58,7 +59,7 @@ export default function LoginPage () {
                     backgroundColor: '#42b6dc',
                 }}
                 />
-            <Button type="submit" variant = "contained" >Log In</Button>
+            <Button type="submit" variant = "contained" className={buttonStyles.Button}>Log In</Button>
             <Button>Create New Account</Button>
             </form>
         </div>
