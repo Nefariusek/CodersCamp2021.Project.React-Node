@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
 
-const ButtonsComponent = () => {
+const DevelopersButtons = () => {
   const developers = [
     { href: 'https://github.com/Nefariusek', name: 'Szymon' },
     { href: 'https://github.com/mngweb', name: 'Sylwia' },
@@ -15,19 +15,19 @@ const ButtonsComponent = () => {
     { href: 'https://github.com/GRosza', name: 'Grzegorz' },
   ];
   return (
-    <>
+    <div className="github-buttons">
       {developers.map(({ href, name }) => (
         <Button variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
           {name}
         </Button>
       ))}
-    </>
+    </div>
   );
 };
 
 const CreditsPage = () => {
   return (
-    <div className="creditsPage">
+    <div className="credits-page">
       <Typography className="header-h2" variant="h2">
         Second project of Coders Camp 2021
       </Typography>
@@ -35,10 +35,8 @@ const CreditsPage = () => {
         Meet our team!
       </Typography>
       <div className="credits-page-container">
-        <div className="github-buttons">
-          <ButtonsComponent />
-        </div>
-        <img className="creditsPageImg" src="./creditsPills.png" alt="credits page img" />
+        <DevelopersButtons />
+        <img className="credits-page-image" src="./creditsPills.png" alt="credits page img" />
       </div>
     </div>
   );
