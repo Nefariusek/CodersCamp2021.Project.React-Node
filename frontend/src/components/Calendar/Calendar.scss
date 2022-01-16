@@ -1,49 +1,64 @@
-.css-1xhj18k{
-    background-color: #fcd433;
-
+:root{
+    --main-background:#fcd433;
+    --main-font:#102a71;
+    --selected-day-background:#102a71;
+    --selected-day-font:#fff;
+    --day-font:#102a71;
+    --day-background:#95d4e0;
+    --current-day-font:#102a71;
+    --current-day-background:#95d4e0;
+    
 }
 
-.MuiPickerStaticWrapper-root{
+// main div 
+.css-1snvurg-MuiPickerStaticWrapper-root{
+    border-radius: 45px;
+    border: 4px #102a71 solid;
     margin-right: 2rem;
 }
 
+.css-1xhj18k{
+    background-color: var(--main-background);
+}
+
+// main font
 .PrivatePickersToolbar-root > *, .css-h9p2l5-MuiTypography-root, .css-1dozdou  {
-    color: #102a71 !important;
+    color: var(--main-font) !important;
     font-weight: 900 !important;
 }
 
+// day bubble
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
     font-weight: 900 !important;
-    background-color: #95d4e0!important;
-    color: #102a71!important;
+    background-color: var(--day-background)!important;
+    color: var(--day-font) !important;
 }
+
+// day bubble:hover
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
-    color:#fff!important;
-    background-color:#102a71!important ;
+    color:var(--selected-day-font)!important;
+    background-color: var(--selected-day-background) !important;
 }
 
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover{
-    color:#fff!important;
-    background-color:#102a71!important ;
 
-}
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
-    color:#fff!important;
-    font-weight: 900 !important;
-    background-color:#102a71!important ;
-
-}
-
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected){
-    color:#fff!important;
-    font-weight: 900 !important;
-    background-color:#95d4e0!important ;
-    border: 2px solid #102a71 !important;
-}
-
+// selected day bubble
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-    color:#fff!important;
+    color:var(--selected-day-font)!important;
     font-weight: 900 !important;
-    background-color:#102a71!important ;
+    background-color: var(--selected-day-background) !important;
+}
+
+// selected day bubble:hover
+.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover{
+    color:var(--selected-day-font)!important;
+    background-color: var(--selected-day-background) !important;
+
+}
+// current day bubble
+.css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected){
+    color:var(--current-day-font)!important;
+    font-weight: 900 !important;
+    background-color:var(--current-day-background)!important ;
+    border: 2px solid var(--current-day-font) !important;
 }
 
