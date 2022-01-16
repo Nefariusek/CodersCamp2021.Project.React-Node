@@ -17,13 +17,13 @@ const ButtonsUserHub = () => {
     { buttonLabel: 'SETTINGS' },
   ];
   return (
-    <>
+    <div className="nav-list">
       {mainButtons.map(({ buttonLabel }) => (
         <Button variant="contained" className={buttonStyles.Button}>
           {buttonLabel}
         </Button>
       ))}
-    </>
+    </div>
   );
 };
 
@@ -36,9 +36,7 @@ const HomePage = () => {
             <h1>aID kIT</h1>
             <h2>Your medical assistant</h2>
           </div>
-          <div className="nav-list">
-            <ButtonsUserHub />
-          </div>
+          <ButtonsUserHub />
         </div>
         <div className="aid-kit-container">
           <div className="day-time">
