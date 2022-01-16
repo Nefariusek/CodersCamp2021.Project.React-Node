@@ -7,14 +7,14 @@ import TextField from '@mui/material/TextField';
 import React from 'react';
 
 const Calendar = () => {
-  const [datePickervalue, setDatePickerValue] = React.useState(new Date());
+  const [datePickerValue, setDatePickerValue] = React.useState(new Date());
 
   return (
     <LocalizationProvider className="calendar" dateAdapter={AdapterMoment}>
       <StaticDatePicker
         orientation="landscape"
         openTo="day"
-        value={datePickervalue}
+        value={datePickerValue}
         onChange={(newValue) => {
           setDatePickerValue(newValue);
         }}
