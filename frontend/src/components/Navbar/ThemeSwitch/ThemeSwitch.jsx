@@ -1,8 +1,3 @@
-/*
-npm i -S @mui/base
-npm i -S @mui/system
-npm i -S clsx
-*/
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
