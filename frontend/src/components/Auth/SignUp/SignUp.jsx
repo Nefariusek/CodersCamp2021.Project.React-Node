@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
+import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
 
 import { onInputBlur, onInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
@@ -17,6 +18,14 @@ const styles = {
     fontSize: '.8em',
   },
 };
+
+const useStyles = makeStyles({
+  button: {
+    width: '200px',
+    border: '3px solid black',
+    borderRadius: '45px',
+  },
+});
 
 const initialFormState = {
   username: { value: '', visited: false, hasError: true, errorText: '' },
@@ -47,6 +56,7 @@ const formReducer = (prevState, action) => {
 };
 
 const SignUp = () => {
+  const classes = useStyles();
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
 
   const handleSubmit = (e) => {
@@ -93,7 +103,7 @@ const SignUp = () => {
           marginTop: 5,
         }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mb={3}>
           <Grid item xs={12}>
             <TextField
               label="USERNAME"
@@ -108,9 +118,6 @@ const SignUp = () => {
               error={formState.username.visited && formState.username.hasError}
               helperText={formState.username.visited && formState.username.hasError ? formState.username.errorText : ''}
               FormHelperTextProps={{ style: styles.helper }}
-              InputProps={{
-                style: styles.input,
-              }}
               onChange={(e) => {
                 onInputChange('username', e.target.value, formState, dispatch);
               }}
@@ -189,19 +196,8 @@ const SignUp = () => {
             />
           </Grid>
         </Grid>
-        <Grid container justifyContent="center">
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            sx={{
-              my: 3,
-              width: 1 / 3,
-              border: 3,
-              borderColor: 'black',
-              borderRadius: 15,
-            }}
-          >
+        <Grid container justifyContent="center" mb={2}>
+          <Button type="submit" variant="contained" color="secondary" className={classes.button}>
             Sign Up
           </Button>
         </Grid>

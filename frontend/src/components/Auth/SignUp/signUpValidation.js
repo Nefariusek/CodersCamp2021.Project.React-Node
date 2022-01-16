@@ -1,3 +1,31 @@
+const ErrorMessages = {
+  username: {
+    EMPTY: "Username can't be empty.",
+    MIN: 'Username must have at least 6 characters.',
+    MAX: 'Username can have maximum 16 characters.',
+    ALLOWED_CHARACTERS: 'Invalid username. Use only letters and digits.',
+  },
+  email: {
+    EMPTY: "Email can't be empty.",
+    ALLOWED_FORMAT: 'Invalid email.',
+  },
+  password: {
+    EMPTY: "Password can't be empty.",
+    MIN: 'Password must have at least 8 characters.',
+    MAX: 'Password can have maximum 16 characters.',
+    ALLOWED_CHARACTERS: 'Password must include at least one uppercase letter, number and special character.',
+  },
+  confirmedPassword: {
+    MATCH: "Passwords don't match.",
+  },
+};
+
+const RegExpressions = {
+  EMAIL:
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+  PASSWORD: /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
+};
+
 export const UPDATE_FORM_STATE = 'UPDATE_FORM_STATE';
 
 export const onInputChange = (name, value, formState, dispatch) => {
@@ -48,16 +76,16 @@ export const validateInput = (name, value, formState = {}) => {
     case 'username':
       if (value.trim() === '') {
         hasError = true;
-        errorText = "Username can't be empty";
+        errorText = ErrorMessages.username.EMPTY;
       } else if (value.trim().length < 6) {
         hasError = true;
-        errorText = 'Username must have at least 6 characters';
+        errorText = ErrorMessages.username.MIN;
       } else if (value.trim().length > 16) {
         hasError = true;
-        errorText = 'Username can have maximum 16 characters';
+        errorText = ErrorMessages.username.MAX;
       } else if (!/^[a-zA-Z0-9]+$/.test(value)) {
         hasError = true;
-        errorText = 'Invalid username. Use only letters and digits.';
+        errorText = ErrorMessages.username.ALLOWED_CHARACTERS;
       } else {
         hasError = false;
         errorText = '';
@@ -66,14 +94,10 @@ export const validateInput = (name, value, formState = {}) => {
     case 'email':
       if (value.trim() === '') {
         hasError = true;
-        errorText = "Email can't be empty";
-      } else if (
-        !/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(
-          value,
-        )
-      ) {
+        errorText = ErrorMessages.email.EMPTY;
+      } else if (!RegExpressions.EMAIL.test(value)) {
         hasError = true;
-        errorText = 'Invalid email';
+        errorText = ErrorMessages.email.ALLOWED_FORMAT;
       } else {
         hasError = false;
         errorText = '';
@@ -82,16 +106,16 @@ export const validateInput = (name, value, formState = {}) => {
     case 'password':
       if (value.trim() === '') {
         hasError = true;
-        errorText = "Password can't be empty";
+        errorText = ErrorMessages.password.EMPTY;
       } else if (value.trim().length < 8) {
         hasError = true;
-        errorText = 'Password must have at least 8 characters';
+        errorText = ErrorMessages.password.MIN;
       } else if (value.trim().length > 16) {
         hasError = true;
-        errorText = 'Password can have maximum 16 characters';
-      } else if (!/^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/.test(value)) {
+        errorText = ErrorMessages.password.MAX;
+      } else if (!RegExpressions.PASSWORD.test(value)) {
         hasError = true;
-        errorText = 'Password must include at least one uppercase letter, number and special character';
+        errorText = ErrorMessages.password.ALLOWED_CHARACTERS;
       } else {
         hasError = false;
         errorText = '';
@@ -101,7 +125,7 @@ export const validateInput = (name, value, formState = {}) => {
     case 'confirmedPassword':
       if (value !== formState.password.value) {
         hasError = true;
-        errorText = "Passwords don't match";
+        errorText = ErrorMessages.confirmedPassword.MATCH;
       } else {
         hasError = false;
         errorText = '';

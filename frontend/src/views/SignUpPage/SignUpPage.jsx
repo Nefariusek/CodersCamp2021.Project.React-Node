@@ -12,6 +12,7 @@ import mainImage from '/apteczka.png';
 
 import SignUp from '../../components/Auth/SignUp/SignUp';
 
+const MAIN_TITLE = { title: '@id kIT', subtitle: 'Your Medical Assistant' };
 const MAIN_IMAGE = { pathOrUrl: mainImage, alt: 'aid kit' };
 
 const signupPageTheme = createTheme({
@@ -32,6 +33,10 @@ const signupPageTheme = createTheme({
     background: {
       default: '#48cae4',
     },
+    title: {
+      main: '#023e8a',
+      light: '#059ac8',
+    },
     tonalOffset: 0.1,
   },
 });
@@ -45,11 +50,11 @@ const SignUpPage = () => {
           <Grid item xs={12} md={6}>
             <Stack alignItems="center">
               <Box align="left">
-                <Typography variant="h2" component="h1" color="#023e8a" fontWeight="bold">
-                  @id kIT
+                <Typography variant="h2" component="h1" color="title.main" fontWeight="bold">
+                  {MAIN_TITLE.title}
                 </Typography>
-                <Typography variant="h4" component="h3" color="#059ac8" fontWeight="bold">
-                  Your Medical Assistant
+                <Typography variant="h4" component="h3" color="title.light" fontWeight="bold">
+                  {MAIN_TITLE.subtitle}
                 </Typography>
               </Box>
               <SignUp />
