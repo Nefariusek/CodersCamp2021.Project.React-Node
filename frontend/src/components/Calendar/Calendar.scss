@@ -42,11 +42,12 @@
 
 
 // selected day bubble
-.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
     color:var(--selected-day-font)!important;
     font-weight: 900 !important;
     background-color: var(--selected-day-background) !important;
 }
+
 
 // selected day bubble:hover
 .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover{
@@ -61,4 +62,5 @@
     background-color:var(--current-day-background)!important ;
     border: 2px solid var(--current-day-font) !important;
 }
+
 
