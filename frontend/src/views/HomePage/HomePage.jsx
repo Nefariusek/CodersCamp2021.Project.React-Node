@@ -36,9 +36,9 @@ const HomePage = () => {
             <h1>aID kIT</h1>
             <h2>Your medical assistant</h2>
           </div>
-          <ul className="nav-list">
+          <div className="nav-list">
             <ButtonsUserHub />
-          </ul>
+          </div>
         </div>
         <div className="aid-kit-container">
           <div className="day-time">

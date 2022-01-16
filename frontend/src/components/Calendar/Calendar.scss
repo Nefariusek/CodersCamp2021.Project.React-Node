@@ -42,7 +42,8 @@
 
 
 // selected day bubble
-.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
+.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
     color:var(--selected-day-font)!important;
     font-weight: 900 !important;
     background-color: var(--selected-day-background) !important;
