@@ -4,47 +4,53 @@ import 'typeface-roboto';
 import Button from '@mui/material/Button';
 import React from 'react';
 
-import buttoStyles from '../../components/Button/button.module.scss';
+import buttonStyles from '../../components/Button/button.module.scss';
 import Calendar from '../../components/Calendar/Calendar';
 import Clock from '../../components/Clock/Clock';
-import Date from '../../components/Date/Date';
+import DateDisplay from '../../components/Date/Date';
 
-function homePage() {
+const ButtonsUserHub = () => {
+  const mainButtons = [
+    { buttonLabel: 'DAILY DRUGS' },
+    { buttonLabel: 'CREDITS' },
+    { buttonLabel: 'LEXICON' },
+    { buttonLabel: 'SETTINGS' },
+  ];
   return (
-    <div className="homeContainer">
-      <div className="textContetn">
-        <div className="title">
-          <h1>aID kIT</h1>
-          <h2>Your medical assistant</h2>
+    <>
+      {mainButtons.map(({ buttonLabel }) => (
+        <Button variant="contained" className={buttonStyles.Button}>
+          {buttonLabel}
+        </Button>
+      ))}
+    </>
+  );
+};
+
+const HomePage = () => {
+  return (
+    <div className="user-hub-container">
+      <div className="home-container">
+        <div className="text-container">
+          <div className="title">
+            <h1>aID kIT</h1>
+            <h2>Your medical assistant</h2>
+          </div>
+          <ul className="nav-list">
+            <ButtonsUserHub />
+          </ul>
         </div>
-        <ul className="navList">
-          <Button variant="contained" className={buttoStyles.Button}>
-            DAILY DRUGS
-          </Button>
-          <br />
-          <Button variant="contained" className={buttoStyles.Button}>
-            CREDITS
-          </Button>
-          <br />
-          <Button variant="contained" className={buttoStyles.Button}>
-            LEXICON
-          </Button>
-          <br />
-          <Button variant="contained" className={buttoStyles.Button}>
-            SETTINGS
-          </Button>
-        </ul>
-      </div>
-      <div className="aidKitDiv">
-        <div className="daytime">
-          <Clock />
-          <Date />
-          <Calendar />
+        <div className="aid-kit-container">
+          <div className="day-time">
+            <Clock />
+            <DateDisplay />
+            <Calendar />
+          </div>
+          <img className="aid-kit" alt="aid kit" src="../../../public/apteczka-cutout.png" />
         </div>
-        <img className="aidKit" alt="aid kit" src="../../../public/apteczka-cutout.png" />
       </div>
     </div>
   );
-}
+};
 
-export default homePage;
+export default HomePage;
