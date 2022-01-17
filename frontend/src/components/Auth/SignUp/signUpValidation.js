@@ -28,27 +28,17 @@ const RegExpressions = {
 
 export const UPDATE_FORM_STATE = 'UPDATE_FORM_STATE';
 
-export const onInputChange = (name, value, formState, dispatch) => {
-  const { hasError, errorText } = validateInput(name, value, formState);
-  let isFormValid = true;
-
-  for (const key in formState) {
-    if (key === name && hasError) {
-      isFormValid = false;
-      break;
-    } else if (key !== name && formState[key].hasError) {
-      isFormValid = false;
-      break;
-    }
-  }
-
-  dispatch({
-    type: UPDATE_FORM_STATE,
-    payload: { name, value, visited: false, hasError, errorText, isFormValid },
-  });
+export const handleInputChange = (e, formState, dispatch) => {
+  const { name, value } = e.target;
+  handleInput(name, value, formState, dispatch, false);
 };
 
-export const onInputBlur = (name, value, formState, dispatch) => {
+export const handleInputBlur = (e, formState, dispatch) => {
+  const { name, value } = e.target;
+  handleInput(name, value, formState, dispatch, true);
+};
+
+const handleInput = (name, value, formState, dispatch, visited) => {
   const { hasError, errorText } = validateInput(name, value, formState);
   let isFormValid = true;
 
@@ -64,76 +54,109 @@ export const onInputBlur = (name, value, formState, dispatch) => {
 
   dispatch({
     type: UPDATE_FORM_STATE,
-    payload: { name, value, visited: true, hasError, errorText, isFormValid },
+    payload: { name, value, visited, hasError, errorText, isFormValid },
   });
 };
 
 export const validateInput = (name, value, formState = {}) => {
-  let hasError = false;
-  let errorText = '';
+  let result = {};
 
   switch (name) {
     case 'username':
-      if (value.trim() === '') {
-        hasError = true;
-        errorText = ErrorMessages.username.EMPTY;
-      } else if (value.trim().length < 6) {
-        hasError = true;
-        errorText = ErrorMessages.username.MIN;
-      } else if (value.trim().length > 16) {
-        hasError = true;
-        errorText = ErrorMessages.username.MAX;
-      } else if (!/^[a-zA-Z0-9]+$/.test(value)) {
-        hasError = true;
-        errorText = ErrorMessages.username.ALLOWED_CHARACTERS;
-      } else {
-        hasError = false;
-        errorText = '';
-      }
+      result = validateUsername(value);
       break;
     case 'email':
-      if (value.trim() === '') {
-        hasError = true;
-        errorText = ErrorMessages.email.EMPTY;
-      } else if (!RegExpressions.EMAIL.test(value)) {
-        hasError = true;
-        errorText = ErrorMessages.email.ALLOWED_FORMAT;
-      } else {
-        hasError = false;
-        errorText = '';
-      }
+      result = validateEmail(value);
       break;
     case 'password':
-      if (value.trim() === '') {
-        hasError = true;
-        errorText = ErrorMessages.password.EMPTY;
-      } else if (value.trim().length < 8) {
-        hasError = true;
-        errorText = ErrorMessages.password.MIN;
-      } else if (value.trim().length > 16) {
-        hasError = true;
-        errorText = ErrorMessages.password.MAX;
-      } else if (!RegExpressions.PASSWORD.test(value)) {
-        hasError = true;
-        errorText = ErrorMessages.password.ALLOWED_CHARACTERS;
-      } else {
-        hasError = false;
-        errorText = '';
-      }
+      result = validatePassword(value);
       break;
-
     case 'confirmedPassword':
-      if (value !== formState.password.value) {
-        hasError = true;
-        errorText = ErrorMessages.confirmedPassword.MATCH;
-      } else {
-        hasError = false;
-        errorText = '';
-      }
+      result = validatePasswordsMatching(value, formState.password.value);
       break;
-
     default:
       break;
+  }
+
+  return result;
+};
+
+const validateUsername = (value) => {
+  let hasError = false;
+  let errorText = '';
+
+  if (value.trim() === '') {
+    hasError = true;
+    errorText = ErrorMessages.username.EMPTY;
+  } else if (value.trim().length < 6) {
+    hasError = true;
+    errorText = ErrorMessages.username.MIN;
+  } else if (value.trim().length > 16) {
+    hasError = true;
+    errorText = ErrorMessages.username.MAX;
+  } else if (!/^[a-zA-Z0-9]+$/.test(value)) {
+    hasError = true;
+    errorText = ErrorMessages.username.ALLOWED_CHARACTERS;
+  } else {
+    hasError = false;
+    errorText = '';
+  }
+
+  return { hasError, errorText };
+};
+
+const validateEmail = (value) => {
+  let hasError = false;
+  let errorText = '';
+
+  if (value.trim() === '') {
+    hasError = true;
+    errorText = ErrorMessages.email.EMPTY;
+  } else if (!RegExpressions.EMAIL.test(value)) {
+    hasError = true;
+    errorText = ErrorMessages.email.ALLOWED_FORMAT;
+  } else {
+    hasError = false;
+    errorText = '';
+  }
+
+  return { hasError, errorText };
+};
+
+const validatePassword = (value) => {
+  let hasError = false;
+  let errorText = '';
+
+  if (value.trim() === '') {
+    hasError = true;
+    errorText = ErrorMessages.password.EMPTY;
+  } else if (value.trim().length < 8) {
+    hasError = true;
+    errorText = ErrorMessages.password.MIN;
+  } else if (value.trim().length > 16) {
+    hasError = true;
+    errorText = ErrorMessages.password.MAX;
+  } else if (!RegExpressions.PASSWORD.test(value)) {
+    hasError = true;
+    errorText = ErrorMessages.password.ALLOWED_CHARACTERS;
+  } else {
+    hasError = false;
+    errorText = '';
+  }
+
+  return { hasError, errorText };
+};
+
+const validatePasswordsMatching = (value, value2) => {
+  let hasError = false;
+  let errorText = '';
+
+  if (value !== value2) {
+    hasError = true;
+    errorText = ErrorMessages.confirmedPassword.MATCH;
+  } else {
+    hasError = false;
+    errorText = '';
   }
 
   return { hasError, errorText };

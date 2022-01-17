@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
 
-import { onInputBlur, onInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
+import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
 
 const styles = {
   helper: {
@@ -119,10 +119,10 @@ const SignUp = () => {
               helperText={formState.username.visited && formState.username.hasError ? formState.username.errorText : ''}
               FormHelperTextProps={{ style: styles.helper }}
               onChange={(e) => {
-                onInputChange('username', e.target.value, formState, dispatch);
+                handleInputChange(e, formState, dispatch);
               }}
               onBlur={(e) => {
-                onInputBlur('username', e.target.value, formState, dispatch);
+                handleInputBlur(e, formState, dispatch);
               }}
             />
           </Grid>
@@ -140,10 +140,10 @@ const SignUp = () => {
               helperText={formState.email.visited && formState.email.hasError ? formState.email.errorText : ''}
               FormHelperTextProps={{ style: styles.helper }}
               onChange={(e) => {
-                onInputChange('email', e.target.value, formState, dispatch);
+                handleInputChange(e, formState, dispatch);
               }}
               onBlur={(e) => {
-                onInputBlur('email', e.target.value, formState, dispatch);
+                handleInputBlur(e, formState, dispatch);
               }}
             />
           </Grid>
@@ -162,10 +162,10 @@ const SignUp = () => {
               helperText={formState.password.visited && formState.password.hasError ? formState.password.errorText : ''}
               FormHelperTextProps={{ style: styles.helper }}
               onChange={(e) => {
-                onInputChange('password', e.target.value, formState, dispatch);
+                handleInputChange(e, formState, dispatch);
               }}
               onBlur={(e) => {
-                onInputBlur('password', e.target.value, formState, dispatch);
+                handleInputBlur(e, formState, dispatch);
               }}
             />
           </Grid>
@@ -188,10 +188,10 @@ const SignUp = () => {
               }
               FormHelperTextProps={{ style: styles.helper }}
               onChange={(e) => {
-                onInputChange('confirmedPassword', e.target.value, formState, dispatch);
+                handleInputChange(e, formState, dispatch);
               }}
               onBlur={(e) => {
-                onInputBlur('confirmedPassword', e.target.value, formState, dispatch);
+                handleInputBlur(e, formState, dispatch);
               }}
             />
           </Grid>
