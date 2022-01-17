@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
+import DailyDrugsPage from './views/DailyDrugsPage/DailyDrugsPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DailyDrugsPage />
   </React.StrictMode>,
   document.getElementById('root'),
 );
