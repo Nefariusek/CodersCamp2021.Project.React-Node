@@ -2,6 +2,8 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import AddDrugModal from '../../components/AddDrug/AddDrugModal';
+
 const dailyDrugsPageTheme = createTheme({
   palette: {
     secondary: {
@@ -18,7 +20,7 @@ const DailyDrugsPage = () => {
     <ThemeProvider theme={dailyDrugsPageTheme}>
       <Container align="center">
         <CssBaseline />
-        Text
+        <AddDrugModal />
       </Container>
     </ThemeProvider>
   );
