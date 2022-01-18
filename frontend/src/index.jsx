@@ -5,12 +5,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
+<<<<<<< HEAD
 // import App from './views/App/App';
 import HomePage from './views/HomePage/HomePage';
 
 ReactDOM.render(
   <React.StrictMode>
     <HomePage />
+=======
+import LoginPage from './views/LoginPage/LoginPage';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <LoginPage />
+>>>>>>> origin/develop
   </React.StrictMode>,
   document.getElementById('root'),
 );
