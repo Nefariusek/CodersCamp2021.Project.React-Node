@@ -1,0 +1,34 @@
+.pill {
+  margin-top: 10px !important;
+  padding: 5px;
+  width: 175px !important;
+  border-radius: 45px;
+  color: white;
+  margin: auto;
+  height: 50px;
+  height: 40px;
+  &.blue {
+    background-color: #4483e6;
+  }
+  &.orange {
+    background-color: #e98b26;
+  }
+  &.yellow {
+    background-color: #e6e044;
+  }
+  &.green {
+    background-color: #44e658;
+  }
+  &.red {
+    background-color: #e64444;
+  }
+  &.pink {
+    background-color: #de9de0;
+  }
+  .expiration {
+    font-size: small;
+  }
+  &.hide {
+    font-size: x-large;
+  }
+}
