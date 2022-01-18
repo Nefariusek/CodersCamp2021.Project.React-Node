@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage ",
     "test:ci": "jest --ci --silent --coverage",
-    "format": "prettier --write \"src/**/*.{js,scss,css,md,json}\""
+    "format": "prettier --write \"src/**/*.{jsx,js,scss,css,md,json}\""
   },
   "dependencies": {
     "@emotion/react": "11.7.1",

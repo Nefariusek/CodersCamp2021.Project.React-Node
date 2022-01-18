@@ -3,7 +3,7 @@
   justify-content: space-around;
 }
 
-.login-container {
+.login-page .login-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   align-items: flex-start;
 }
 
-.login-form {
+.login-page .login-container .login-form {
   margin-top: 40px;
   align-self: stretch;
   display: flex;
