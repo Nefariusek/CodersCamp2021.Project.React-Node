@@ -24,8 +24,7 @@
     "simple-import-sort/imports": 2,
     "simple-import-sort/exports": 2,
     "no-unused-vars": [2, { "argsIgnorePattern": "^_" }],
-    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
-    "react/jsx-props-no-spreading": 0
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
   },
   "overrides": [
     {

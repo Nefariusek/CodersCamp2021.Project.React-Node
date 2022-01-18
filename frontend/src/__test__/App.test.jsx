@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 
 import App from '../views/App/App';
 
-test('renders navbar', () => {
+test('renders learn react link', () => {
   render(<App />);
-  const navElement = screen.queryAllByText(/aID kIT/i)[0];
-  expect(navElement).toBeInTheDocument();
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
 });
