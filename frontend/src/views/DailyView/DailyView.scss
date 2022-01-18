@@ -1,14 +1,36 @@
 body{
     background-color: #48CAE4;
 }
-
-.daily-datepicker-container{
-    width: 10%;
-    display: flex;
-    margin-left: 45%;
-}
 .daily-drugs-title{
     color: #102a71;
     font-weight: 900 !important;
+}
 
+.daily-datepicker-container{
+    display: flex;
+    margin-left: 43vw;
+    margin-top: 3vh;
+}
+
+.drug-box{
+    background-color: #FCD433;
+    width: 95vw;
+    height: 60vh;
+    margin: 2.7rem;
+}
+
+.drug-box-compartment{
+    background-color: #B89A22 !important;
+    width: 33%;
+    height: 90%;
+}
+
+.button-add-drug{
+    display: flex;
+    justify-content: center;
+}
+
+.time-of-day {
+    color: #102a71;
+    font-weight: 900 !important;
 }
