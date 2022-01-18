@@ -6,11 +6,12 @@ import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
 // import App from './views/App/App';
-import HomePage from './views/HomePage/HomePage';
+// import HomePage from './views/HomePage/HomePage';
+import DailyView from './views/DailyView/DailyView';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HomePage />
+    <DailyView />
   </React.StrictMode>,
   document.getElementById('root'),
 );
