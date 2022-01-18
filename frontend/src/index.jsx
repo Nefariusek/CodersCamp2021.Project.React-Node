@@ -4,32 +4,50 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+// import HomePage from './views/HomePage/HomePage';
+// import LoginPage from './views/LoginPage/LoginPage';
+// import SignUpPage from './views/SignUpPage/SignUpPage';
+import {
+  PATH_TO_CALENDAR,
+  PATH_TO_CREDITS,
+  PATH_TO_DAILY_DRUGS,
+  PATH_TO_HOMEPAGE,
+  PATH_TO_LEXICON,
+  PATH_TO_LOGIN,
+  PATH_TO_REGISTER,
+  PATH_TO_USERHUB,
+} from './constants/paths';
 import reportWebVitals from './reportWebVitals';
+import App from './views/App/App';
 import CreditsPage from './views/CreditsPage/CreditsPage';
-import HomePage from './views/HomePage/HomePage';
-import LoginPage from './views/LoginPage/LoginPage';
-import SignUpPage from './views/SignUpPage/SignUpPage';
 
-const PATHS = [
-  { url: '/', element: <HomePage /> },
-  { url: '/login', element: <LoginPage /> },
-  { url: '/register', element: <SignUpPage /> },
-  // {url: '/userhub', element: <Userhub/>},
-  // {url: '/dailydrugs', element: <DailyDrugsPage />},
-  // {url: '/calendar', element: <Calendar/>},
-  // {url: '/lexicon', element: <LexiconPage />},
-  { url: '/credits', element: <CreditsPage /> },
+const paths = [
+  { url: PATH_TO_CALENDAR, element: <p>Calendar</p> },
+  { url: PATH_TO_CREDITS, element: <CreditsPage /> },
+  { url: PATH_TO_DAILY_DRUGS, element: <p>Daily drugs</p> },
+  { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },
+  { url: PATH_TO_LOGIN, element: <p>Login</p> },
+  { url: PATH_TO_REGISTER, element: <p>Register</p> },
+  { url: PATH_TO_USERHUB, element: <p>Userhub</p> },
 ];
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        {PATHS.map((path) => (
+        <Route path={PATH_TO_HOMEPAGE} element={<App />} />
+        {paths.map((path) => (
           <Route path={path.url} element={path.element} />
         ))}
-        ;
-        {/*
+        <Route
+          path="/*"
+          element={
+            <main style={{ padding: '1rem' }}>
+              <p>Page not found</p>
+            </main>
+          }
+        />
+        {/* 
           <Route path="/" element={<WelcomePage />}>  
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage />} />
@@ -37,14 +55,6 @@ ReactDOM.render(
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/dailydrugs" element={<DailyDrugsPage />} />
           <Route path="/lexicon" element={<LexiconPage />} /> */}
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: '1rem' }}>
-              <p>Page not found</p>
-            </main>
-          }
-        />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
