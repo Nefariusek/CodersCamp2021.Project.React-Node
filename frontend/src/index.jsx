@@ -2,7 +2,7 @@ import './sass/styles.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 // import HomePage from './views/HomePage/HomePage';
 // import LoginPage from './views/LoginPage/LoginPage';
@@ -43,7 +43,7 @@ ReactDOM.render(
           path="/*"
           element={
             <main style={{ padding: '1rem' }}>
-              <p>Page not found</p>
+              <Link to={PATH_TO_HOMEPAGE}>Page not found. Click here to continue to the home page</Link>
             </main>
           }
         />
