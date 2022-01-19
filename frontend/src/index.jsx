@@ -1,16 +1,14 @@
-import './sass/styles.scss';
+import 'typeface-roboto';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import App from './views/App/App';
-import LoginPage from './views/LoginPage/LoginPage';
-import SignUpPage from './views/SignUpPage/SignUpPage';
+import HomePage from './views/HomePage/HomePage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SignUpPage />
+    <HomePage />
   </React.StrictMode>,
   document.getElementById('root'),
 );
