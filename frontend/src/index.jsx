@@ -4,11 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import LoginPage from './views/LoginPage/LoginPage';
+import CalendarPage from './views/CalendarPage/CalendarPage';
+// import LoginPage from './views/LoginPage/LoginPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginPage />
+    <CalendarPage />
   </React.StrictMode>,
   document.getElementById('root'),
 );
