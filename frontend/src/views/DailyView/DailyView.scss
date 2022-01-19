@@ -1,6 +1,9 @@
 body{
     background-color: #48CAE4;
 }
+
+.daily-view-container{
+
 .daily-drugs-title{
     color: #102a71;
     font-weight: 900 !important;
@@ -8,15 +11,19 @@ body{
 
 .daily-datepicker-container{
     display: flex;
-    margin-left: 43vw;
-    margin-top: 3vh;
+    justify-content: center;
+    margin-top: 5vh;
+}
+.drug-box-container{
+    display: flex;
+    justify-content: center ;
 }
 
 .drug-box{
     background-color: #FCD433;
     width: 95vw;
     height: 60vh;
-    margin: 2.7rem;
+    margin-top: 5vh;
 }
 
 .drug-box-compartment{
@@ -28,9 +35,34 @@ body{
 .button-add-drug{
     display: flex;
     justify-content: center;
+    margin-top: 3vh;
 }
 
 .time-of-day {
     color: #102a71;
-    font-weight: 900 !important;
+    font-weight: 900 ;
 }
+
+.arrow-back{
+font-size: 3rem !important;
+margin-right: 1rem !important;
+margin-top: 0.1rem;
+color: #102a71;
+}
+
+.arrow-forward{
+    font-size: 3rem !important;
+    margin-left: 1rem !important;
+    color: #102a71;
+    margin-top: 0.1rem;
+}
+}
+
+@media (max-width: 830px) {
+    
+    .time-of-day {
+        font-weight: 400 !important;
+        font-size: 0.8rem !important;
+    }
+    
+  }
