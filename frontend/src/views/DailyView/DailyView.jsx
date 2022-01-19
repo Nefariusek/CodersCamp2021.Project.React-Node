@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 
 import buttonStyles from '../../components/Button/button.module.scss';
-import DayPicker from '../../components/DatePicker/DatePicker';
+import DatePicker from '../../components/DatePicker/DatePicker';
 
 const DailyDrugs = () => {
   return (
@@ -16,7 +16,7 @@ const DailyDrugs = () => {
           DAILY DRUGS
         </Typography>
         <div className="daily-datepicker-container">
-          <DayPicker />
+          <DatePicker />
         </div>
         <div className="drug-box-container" />
         <Box className="drug-box" sx={{ display: 'flex', borderRadius: 15 }}>

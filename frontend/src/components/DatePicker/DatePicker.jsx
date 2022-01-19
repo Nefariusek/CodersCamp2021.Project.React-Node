@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import React from 'react';
 
-const DayPicker = () => {
+const DatePicker = () => {
   const [datePickerValue, setDatePickerValue] = React.useState(new Date());
 
   return (
@@ -18,8 +18,8 @@ const DayPicker = () => {
           openTo="day"
           views={['year', 'month', 'day']}
           value={datePickerValue}
-          onChange={(newDatePickerValuen) => {
-            setDatePickerValue(newDatePickerValuen);
+          onChange={(newDatePickerValue) => {
+            setDatePickerValue(newDatePickerValue);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
@@ -28,4 +28,4 @@ const DayPicker = () => {
   );
 };
 
-export default DayPicker;
+export default DatePicker;
