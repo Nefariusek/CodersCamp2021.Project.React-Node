@@ -1,0 +1,49 @@
+.credits-page {
+  padding: 5%;
+
+  .github-buttons {
+    margin-top: 160px;
+    width: 30%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .credits-page-container {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+
+    .credits-page-image {
+      height: 600px;
+    }
+  }
+
+  @media (min-width: 581px) and (max-width: 830px) {
+    .github-buttons {
+      margin-top: 50px;
+    }
+    .credits-page-image {
+      height: 400px;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 580px) {
+    .header-h2 {
+      font-size: 3rem !important;
+    }
+    .header-h3 {
+      font-size: 2.5rem !important;
+    }
+    .github-buttons {
+      margin-top: 50px;
+    }
+    .credits-page-image {
+      display: none;
+    }
+  }
+}

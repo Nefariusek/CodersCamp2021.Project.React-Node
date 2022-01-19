@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
 import DailyDrugsPage from './views/DailyDrugsPage/DailyDrugsPage';
+import LoginPage from './views/LoginPage/LoginPage';
 
 ReactDOM.render(
   <React.StrictMode>
