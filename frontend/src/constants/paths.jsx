@@ -6,6 +6,7 @@ const PATH_TO_LEXICON = '/lexicon';
 const PATH_TO_LOGIN = '/login';
 const PATH_TO_REGISTER = '/register';
 const PATH_TO_USERHUB = '/userhub';
+const PATH_TO_SETTINGS = '/settings';
 
 export {
   PATH_TO_CALENDAR,
@@ -15,5 +16,6 @@ export {
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
   PATH_TO_REGISTER,
+  PATH_TO_SETTINGS,
   PATH_TO_USERHUB,
 };

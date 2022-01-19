@@ -20,7 +20,7 @@ import {
   PATH_TO_HOMEPAGE,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
-  PATH_TO_USERHUB,
+  PATH_TO_SETTINGS,
 } from '../../constants/paths';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
@@ -109,7 +109,7 @@ const Navbar = () => {
   const tools = (
     <>
       <ThemeSwitch defaultChecked />
-      <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_USERHUB}>
+      <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_SETTINGS}>
         <SettingsIcon />
       </IconButton>
       <IconButton color="inherit" size="large" aria-label="login button" component={Link} to={PATH_TO_LOGIN}>
