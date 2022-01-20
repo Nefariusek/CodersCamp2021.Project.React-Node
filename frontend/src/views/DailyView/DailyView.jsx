@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import moment from 'moment';
 import React from 'react';
 
 import buttonStyles from '../../components/Button/button.module.scss';
@@ -17,21 +18,44 @@ import buttonStyles from '../../components/Button/button.module.scss';
 const DatePicker = () => {
   const [datePickerValue, setDatePickerValue] = React.useState(new Date());
 
+  const forward = () => {
+    const today = moment();
+    const tomorrow = moment(today).add(1, 'days');
+    setDatePickerValue(tomorrow);
+    console.log('kasia');
+  };
+  const backward = () => {
+    const today = moment();
+    const yesterday = moment(today).subtract(1, 'days');
+    setDatePickerValue(yesterday);
+    console.log('kasia');
+  };
+
   return (
-    <LocalizationProvider dateAdapter={AdapterMoment}>
-      <Stack spacing={3}>
-        <DesktopDatePicker
-          label="Choose Day"
-          openTo="day"
-          views={['year', 'month', 'day']}
-          value={datePickerValue}
-          onChange={(newDatePickerValue) => {
-            setDatePickerValue(newDatePickerValue);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </Stack>
-    </LocalizationProvider>
+    <>
+      <div onClick={backward}>
+        <ArrowBackIosNewIcon fontSize="large" className="arrow-back" />
+      </div>
+
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        <Stack spacing={3}>
+          <DesktopDatePicker
+            label="Choose Day"
+            openTo="day"
+            views={['year', 'month', 'day']}
+            value={datePickerValue}
+            onChange={(newDatePickerValue) => {
+              setDatePickerValue(newDatePickerValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </Stack>
+      </LocalizationProvider>
+
+      <div onClick={forward}>
+        <ArrowForwardIosIcon fontSize="large" className="arrow-forward" />
+      </div>
+    </>
   );
 };
 
@@ -45,21 +69,7 @@ const DailyDrugs = () => {
       </div>
       <div className="content-container">
         <div className="daily-datepicker-container">
-          <div
-            onClick={() => {
-              onsole.log('click');
-            }}
-          >
-            <ArrowBackIosNewIcon fontSize="large" className="arrow-back" />
-          </div>
           <DatePicker />
-          <div
-            onClick={() => {
-              console.log('click');
-            }}
-          >
-            <ArrowForwardIosIcon fontSize="large" className="arrow-forward" />
-          </div>
         </div>
         <div className="drug-box-container">
           <Box className="drug-box" sx={{ display: 'flex', borderRadius: 15 }}>
