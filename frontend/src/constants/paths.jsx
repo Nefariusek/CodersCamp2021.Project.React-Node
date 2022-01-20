@@ -1,21 +1,9 @@
-const PATH_TO_HOMEPAGE = '/';
-const PATH_TO_CALENDAR = '/calendar';
-const PATH_TO_CREDITS = '/credits';
-const PATH_TO_DAILY_DRUGS = '/daily';
-const PATH_TO_LEXICON = '/lexicon';
-const PATH_TO_LOGIN = '/login';
-const PATH_TO_REGISTER = '/register';
-const PATH_TO_USERHUB = '/userhub';
-const PATH_TO_SETTINGS = '/settings';
-
-export {
-  PATH_TO_CALENDAR,
-  PATH_TO_CREDITS,
-  PATH_TO_DAILY_DRUGS,
-  PATH_TO_HOMEPAGE,
-  PATH_TO_LEXICON,
-  PATH_TO_LOGIN,
-  PATH_TO_REGISTER,
-  PATH_TO_SETTINGS,
-  PATH_TO_USERHUB,
-};
+export const PATH_TO_HOMEPAGE = '/';
+export const PATH_TO_CALENDAR = '/calendar';
+export const PATH_TO_CREDITS = '/credits';
+export const PATH_TO_DAILY_DRUGS = '/daily';
+export const PATH_TO_LEXICON = '/lexicon';
+export const PATH_TO_LOGIN = '/login';
+export const PATH_TO_REGISTER = '/register';
+export const PATH_TO_USERHUB = '/userhub';
+export const PATH_TO_SETTINGS = '/settings';

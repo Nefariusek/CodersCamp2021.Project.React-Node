@@ -5,7 +5,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
-import Navbar from '../../components/Navbar/Navbar';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER } from '../../constants/paths';
 
@@ -18,7 +17,6 @@ const routes = [
 const HomePage = () => {
   return (
     <div className="homepage-page">
-      <Navbar />
       <Typography variant="h2" color="#023e8a" fontWeight="bold">
         {APP_NAME}
       </Typography>

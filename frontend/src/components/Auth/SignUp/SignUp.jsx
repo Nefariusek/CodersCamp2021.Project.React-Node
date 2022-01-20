@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
 
+import { PATH_TO_LOGIN } from '../../../constants/paths';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
 
 const styles = {
@@ -203,7 +204,7 @@ const SignUp = () => {
         </Grid>
         <Grid container justifyContent="center">
           <Grid item>
-            <Link href="/login" variant="body2" color="secondary">
+            <Link href={PATH_TO_LOGIN} variant="body2" color="secondary">
               Already have an account? Sign in
             </Link>
           </Grid>

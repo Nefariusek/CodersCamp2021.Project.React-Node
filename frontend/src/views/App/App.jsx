@@ -2,6 +2,7 @@ import './App.scss';
 
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
+import Navbar from '../../components/Navbar/Navbar';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_CREDITS,
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path={PATH_TO_HOMEPAGE} element={<HomePage />} />
           {paths.map((path) => (

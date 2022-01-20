@@ -4,7 +4,6 @@ import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
-import Navbar from '../../components/Navbar/Navbar';
 
 const DevelopersButtons = () => {
   const developers = [
@@ -29,7 +28,6 @@ const DevelopersButtons = () => {
 const CreditsPage = () => {
   return (
     <div className="credits-page">
-      <Navbar />
       <Typography className="header-h2" variant="h2">
         Second project of Coders Camp 2021
       </Typography>
