@@ -1,45 +1,32 @@
 import './CalendarPage.scss';
 
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import PickersDay from '@mui/lab/PickersDay';
-import StaticDatePicker from '@mui/lab/StaticDatePicker';
-import { TextField } from '@mui/material';
+import { MenuItem, OutlinedInput, Select } from '@mui/material';
 import { useState } from 'react';
 
-const renderDayData = (date, selectedDates, pickersDayProps) => {
-  let someInformation = 'some info';
-  if (date.getDate() % 2 === 0) {
-    someInformation = '';
-  }
-  return (
-    <PickersDay {...pickersDayProps}>
-      <div className="day-informations">
-        <div className="day-number">{date.getDate()}</div>
-        <div>{someInformation}</div>
-      </div>
-    </PickersDay>
-  );
-};
+import MonthlyCalendar from '../../components/Calendar/MonthlyCalendar';
+import WeeklyCalendar from '../../components/Calendar/WeeklyCalendar';
 
 const CalendarPage = () => {
-  const [selectedDate, setSelectedDate] = useState(Date || new Date());
+  const [calendar, setCalendar] = useState(<MonthlyCalendar />);
+
+  const handleChange = (e) => {
+    setCalendar(e.target.value);
+  };
+
   return (
     <div className="calendar-page">
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <StaticDatePicker
-          views={['day']}
-          displayStaticWrapperAs="desktop"
-          label="MonthlyCalendar"
-          value={selectedDate}
-          onChange={(newSelectedDate) => {
-            setSelectedDate(newSelectedDate);
-          }}
-          renderDay={renderDayData}
-          renderInput={(params) => <TextField {...params} />}
-          inputFormat="'Week of' MMM d"
-        />
-      </LocalizationProvider>
+      <Select
+        id="select-calendar"
+        value={calendar}
+        label="Calendar"
+        onChange={handleChange}
+        input={<OutlinedInput label="Name" />}
+      >
+        <MenuItem value={<MonthlyCalendar />}>Month</MenuItem>
+        <MenuItem value={<WeeklyCalendar />}>Week</MenuItem>
+        <MenuItem value={<div>Day</div>}>Day</MenuItem>
+      </Select>
+      {calendar}
     </div>
   );
 };
