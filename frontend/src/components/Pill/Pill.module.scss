@@ -1,29 +1,31 @@
+@import '../../sass/variables.scss';
+
 .pill {
   margin-top: 10px !important;
   padding: 5px;
+  font-size: medium;
   width: 175px !important;
   border-radius: 45px;
   color: white;
   margin: auto;
-  height: 50px;
   height: 40px;
   &.blue {
-    background-color: #4483e6;
+    background-color: $blue;
   }
   &.orange {
-    background-color: #e98b26;
+    background-color: $orange;
   }
   &.yellow {
-    background-color: #e6e044;
+    background-color: $yellow;
   }
   &.green {
-    background-color: #44e658;
+    background-color: $green;
   }
   &.red {
-    background-color: #e64444;
+    background-color: $red;
   }
   &.pink {
-    background-color: #de9de0;
+    background-color: $pink;
   }
   .expiration {
     font-size: small;
