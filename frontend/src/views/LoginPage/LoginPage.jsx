@@ -3,9 +3,12 @@ import './LoginPage.scss';
 import { TextField, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import loginValidation from '../../api/loginValidation';
 import buttonStyles from '../../components/Button/Button.module.scss';
+import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
+import { PATH_TO_REGISTER } from '../../constants/paths';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -22,10 +25,10 @@ const LoginPage = () => {
     <div className="login-page">
       <div className="login-container">
         <Typography variant="h1" color="#023e8a" fontWeight="bold">
-          AID KIT
+          {APP_NAME}
         </Typography>
         <Typography variant="h2" color="#059ac8" fontWeight="bold">
-          Your medical assistant
+          {APP_SUBTITLE}
         </Typography>
         <form className="login-form" onSubmit={handleSubmit}>
           <TextField
@@ -54,7 +57,9 @@ const LoginPage = () => {
           <Button type="submit" variant="contained" className={buttonStyles.Button}>
             Log In
           </Button>
-          <Button>Create New Account</Button>
+          <Button component={Link} to={PATH_TO_REGISTER}>
+            Create New Account
+          </Button>
         </form>
       </div>
       <img src="./apteczka.png" alt="" />
