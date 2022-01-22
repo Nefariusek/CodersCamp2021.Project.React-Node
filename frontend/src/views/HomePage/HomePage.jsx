@@ -1,3 +1,4 @@
+import './HomePage.scss';
 import 'typeface-roboto';
 
 import { Button, Typography } from '@mui/material';
@@ -25,7 +26,6 @@ const ButtonsUserHub = () => {
           {route.label}
         </Button>
       ))}
-      ;
     </div>
   );
 };
