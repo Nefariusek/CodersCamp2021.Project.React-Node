@@ -6,9 +6,11 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React from 'react';
@@ -107,7 +109,7 @@ const Navbar = () => {
   );
 
   const tools = (
-    <>
+    <Stack direction="row" alignItems="center">
       <ThemeSwitch defaultChecked />
       <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_SETTINGS}>
         <SettingsIcon />
@@ -115,11 +117,12 @@ const Navbar = () => {
       <IconButton color="inherit" size="large" aria-label="login button" component={Link} to={PATH_TO_LOGIN}>
         <LogoutIcon />
       </IconButton>
-    </>
+    </Stack>
   );
 
   return (
     <AppBar position="static">
+      <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box>
