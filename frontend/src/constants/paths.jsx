@@ -1,0 +1,9 @@
+export const PATH_TO_HOMEPAGE = '/';
+export const PATH_TO_CALENDAR = '/calendar';
+export const PATH_TO_CREDITS = '/credits';
+export const PATH_TO_DAILY_DRUGS = '/daily';
+export const PATH_TO_LEXICON = '/lexicon';
+export const PATH_TO_LOGIN = '/login';
+export const PATH_TO_REGISTER = '/register';
+export const PATH_TO_USERHUB = '/userhub';
+export const PATH_TO_SETTINGS = '/settings';

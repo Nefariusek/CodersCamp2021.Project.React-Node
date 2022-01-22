@@ -1,26 +1,29 @@
 import './HomePage.scss';
 import 'typeface-roboto';
 
-import Button from '@mui/material/Button';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/button.module.scss';
 import Calendar from '../../components/Calendar/Calendar';
 import Clock from '../../components/Clock/Clock';
 import DateDisplay from '../../components/Date/Date';
+import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
+import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER } from '../../constants/paths';
+
+const routes = [
+  { url: PATH_TO_LOGIN, label: 'login' },
+  { url: PATH_TO_REGISTER, label: 'register' },
+  { url: PATH_TO_CREDITS, label: 'credits' },
+];
 
 const ButtonsUserHub = () => {
-  const mainButtons = [
-    { buttonLabel: 'DAILY DRUGS' },
-    { buttonLabel: 'CREDITS' },
-    { buttonLabel: 'LEXICON' },
-    { buttonLabel: 'SETTINGS' },
-  ];
   return (
     <div className="nav-list">
-      {mainButtons.map(({ buttonLabel }) => (
-        <Button variant="contained" className={buttonStyles.Button}>
-          {buttonLabel}
+      {routes.map((route) => (
+        <Button variant="contained" className={buttonStyles.Button} component={Link} to={route.url}>
+          {route.label}
         </Button>
       ))}
     </div>
@@ -33,8 +36,12 @@ const HomePage = () => {
       <div className="home-container">
         <div className="text-container">
           <div className="title">
-            <h1>aID kIT</h1>
-            <h2>Your medical assistant</h2>
+            <Typography variant="h2" color="#023e8a" fontWeight="bold">
+              {APP_NAME}
+            </Typography>
+            <Typography variant="h4" color="#059ac8" fontWeight="bold">
+              {APP_SUBTITLE}
+            </Typography>
           </div>
           <ButtonsUserHub />
         </div>

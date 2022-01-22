@@ -4,11 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import DailyDrugsPage from './views/DailyDrugsPage/DailyDrugsPage';
+import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <DailyDrugsPage />
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
