@@ -16,7 +16,6 @@ const renderDaysInWeek = (date) => {
   const week = [];
   while (i !== 7) {
     tmpDate.setDate(tmpDate.getDate() + 1);
-    console.log(tmpDate);
     week.push(
       <div className="week-day" key={`day${i}`}>
         <div className="day-informations">
@@ -34,7 +33,11 @@ const renderDaysNames = () => {
   const week = [];
   let i = 0;
   while (i !== 7) {
-    week.push(<div className="day-name">{dayNames[i]}</div>);
+    week.push(
+      <div className="day-name" key={`day-name${i}`}>
+        {dayNames[i]}
+      </div>,
+    );
     i += 1;
   }
   return week;
@@ -44,7 +47,6 @@ const WeeklyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const previousWeek = () => {
-    console.log(selectedDate);
     const newDate = new Date();
     newDate.setMonth(selectedDate.getMonth());
     newDate.setDate(selectedDate.getDate());
@@ -53,7 +55,6 @@ const WeeklyCalendar = () => {
   };
 
   const nextWeek = () => {
-    console.log(selectedDate);
     const newDate = new Date();
     newDate.setMonth(selectedDate.getMonth());
     newDate.setDate(selectedDate.getDate());
@@ -68,7 +69,6 @@ const WeeklyCalendar = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             views={['day']}
-            label="Date"
             value={selectedDate}
             onChange={(newDate) => {
               setSelectedDate(newDate);

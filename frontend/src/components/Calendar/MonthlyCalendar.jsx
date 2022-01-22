@@ -1,3 +1,5 @@
+import './MonthlyCalendar.scss';
+
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import PickersDay from '@mui/lab/PickersDay';
