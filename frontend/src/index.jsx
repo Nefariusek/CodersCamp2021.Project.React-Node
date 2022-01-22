@@ -1,15 +1,14 @@
-import './sass/styles.scss';
+import 'typeface-roboto';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import CalendarPage from './views/CalendarPage/CalendarPage';
-// import LoginPage from './views/LoginPage/LoginPage';
+import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CalendarPage />
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
