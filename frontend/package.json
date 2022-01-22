@@ -21,7 +21,6 @@
     "@date-io/moment": "2.11.0",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
-    "@mui/lab": "5.0.0-alpha.64",
     "@mui/styles": "5.2.3",
     "moment": "2.29.1",
     "@mui/base": "5.0.0-alpha.64",
