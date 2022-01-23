@@ -8,6 +8,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
+import AddDrugForm from './AddDrugForm';
+
 const MAIN_TITLE = 'ADD DRUG';
 
 const addDrugTheme = createTheme({
@@ -101,7 +103,9 @@ const AddDrugModal = () => {
               >
                 {MAIN_TITLE}
               </Typography>
-              <Box id="add-drug-form">Form</Box>
+              <Box id="add-drug-form">
+                <AddDrugForm onClose={handleClose} />
+              </Box>
             </Box>
           </Fade>
         </Modal>
