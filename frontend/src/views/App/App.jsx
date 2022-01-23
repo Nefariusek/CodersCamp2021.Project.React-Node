@@ -1,6 +1,6 @@
 import './App.scss';
 
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import {
@@ -14,7 +14,8 @@ import {
   PATH_TO_SETTINGS,
 } from '../../constants/paths';
 import CreditsPage from '../CreditsPage/CreditsPage';
-import HomePage from '../HomePage/HomePage';
+// import HomePage from '../HomePage/HomePage';
+import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
@@ -29,25 +30,25 @@ const paths = [
 ];
 
 const App = () => {
+  const { pathname } = useLocation();
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path={PATH_TO_HOMEPAGE} element={<HomePage />} />
-          {paths.map((path) => (
-            <Route path={path.url} element={path.element} />
-          ))}
-          <Route
-            path="/*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <Link to={PATH_TO_HOMEPAGE}>Page not found. Click here to continue to the home page</Link>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      {pathname === PATH_TO_HOMEPAGE ? null : <Navbar />}
+      <Routes>
+        <Route path={PATH_TO_HOMEPAGE} element={<LandingPage />} />
+        {paths.map((path) => (
+          <Route key={path.url} path={path.url} element={path.element} />
+        ))}
+        <Route
+          path="/*"
+          element={
+            <main style={{ padding: '1rem' }}>
+              <Link to={PATH_TO_HOMEPAGE}>Page not found. Click here to continue to the home page</Link>
+            </main>
+          }
+        />
+      </Routes>
     </div>
   );
 };
