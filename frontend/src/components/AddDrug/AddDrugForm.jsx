@@ -15,8 +15,10 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
-const DAYTIMES = ['Morning', 'Noon', 'Evening'];
+import { DAYTIMES, validateInput } from './addDrugValidation';
+
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
+
 const initialFormState = {
   drugName: '',
   expirationDate: new Date(),
@@ -59,8 +61,12 @@ const AddDrugForm = (props) => {
 
   const handleAddDrugSubmit = (e) => {
     e.preventDefault();
-    alert('Drug added!');
-    onClose();
+    const isFormValid = Object.values(formErrors).every((error) => error === '');
+
+    if (isFormValid) {
+      alert('Drug added!');
+      onClose();
+    }
   };
 
   const handleInput = (name) => (e) => {
@@ -75,6 +81,13 @@ const AddDrugForm = (props) => {
     setFormValues({
       ...formValues,
       [name]: value,
+    });
+
+    const errorText = validateInput(name, value);
+
+    setFormErrors({
+      ...formErrors,
+      [name]: errorText,
     });
   };
 
