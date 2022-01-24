@@ -1,67 +1,63 @@
-:root{
-    --main-background:#fcd433;
-    --main-font:#102a71;
-    --selected-day-background:#102a71;
-    --selected-day-font:#fff;
-    --day-font:#102a71;
-    --day-background:#95d4e0;
-    --current-day-font:#102a71;
-    --current-day-background:#95d4e0;
-    
+:root {
+  --main-background: #fcd433;
+  --main-font: #102a71;
+  --selected-day-background: #102a71;
+  --selected-day-font: #fff;
+  --day-font: #102a71;
+  --day-background: #95d4e0;
+  --current-day-font: #102a71;
+  --current-day-background: #95d4e0;
 }
 
-// main div 
-.css-1snvurg-MuiPickerStaticWrapper-root{
-    border-radius: 45px;
-    border: 4px #102a71 solid;
-    margin-right: 2rem;
+// main div
+.css-1snvurg-MuiPickerStaticWrapper-root {
+  border-radius: 45px;
+  border: 4px #102a71 solid;
+  margin-right: 2rem;
 }
 
-.css-1xhj18k{
-    background-color: var(--main-background);
+.css-1xhj18k {
+  background-color: var(--main-background);
 }
 
 // main font
-.PrivatePickersToolbar-root > *, .css-h9p2l5-MuiTypography-root, .css-1dozdou  {
-    color: var(--main-font) !important;
-    font-weight: 900 !important;
+.PrivatePickersToolbar-root > *,
+.css-h9p2l5-MuiTypography-root,
+.css-1dozdou {
+  color: var(--main-font) !important;
+  font-weight: 900 !important;
 }
 
 // day bubble
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
-    font-weight: 900 !important;
-    background-color: var(--day-background)!important;
-    color: var(--day-font) !important;
+  font-weight: 900 !important;
+  background-color: var(--day-background) !important;
+  color: var(--day-font) !important;
 }
 
 // day bubble:hover
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
-    color:var(--selected-day-font)!important;
-    background-color: var(--selected-day-background) !important;
+  color: var(--selected-day-font) !important;
+  background-color: var(--selected-day-background) !important;
 }
-
 
 // selected day bubble
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
 .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-    color:var(--selected-day-font)!important;
-    font-weight: 900 !important;
-    background-color: var(--selected-day-background) !important;
+  color: var(--selected-day-font) !important;
+  font-weight: 900 !important;
+  background-color: var(--selected-day-background) !important;
 }
-
 
 // selected day bubble:hover
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover{
-    color:var(--selected-day-font)!important;
-    background-color: var(--selected-day-background) !important;
-
+.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover {
+  color: var(--selected-day-font) !important;
+  background-color: var(--selected-day-background) !important;
 }
 // current day bubble
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected){
-    color:var(--current-day-font)!important;
-    font-weight: 900 !important;
-    background-color:var(--current-day-background)!important ;
-    border: 2px solid var(--current-day-font) !important;
+.css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+  color: var(--current-day-font) !important;
+  font-weight: 900 !important;
+  background-color: var(--current-day-background) !important ;
+  border: 2px solid var(--current-day-font) !important;
 }
-
-
