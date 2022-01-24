@@ -4,21 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-<<<<<<< HEAD
-// import App from './views/App/App';
-// import HomePage from './views/HomePage/HomePage';
-import DailyView from './views/DailyView/DailyView';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <DailyView />
-=======
 import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
->>>>>>> develop
   </React.StrictMode>,
   document.getElementById('root'),
 );
