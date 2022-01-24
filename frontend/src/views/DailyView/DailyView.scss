@@ -9,7 +9,7 @@
 .daily-datepicker-container{
     display: flex;
     justify-content: center;
-    margin-top: 5vh;
+    margin-top: 2vh;
 }
 .drug-box-container{
     display: flex;
@@ -19,8 +19,8 @@
 .drug-box{
     background-color: #FCD433;
     width: 95vw;
-    height: 60vh;
-    margin-top: 5vh;
+    height: 55vh;
+    margin-top: 2vh;
 }
 
 .drug-box-compartment{
@@ -32,7 +32,8 @@
 .button-add-drug{
     display: flex;
     justify-content: center;
-    margin-top: 3vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 .time-of-day {
@@ -41,10 +42,10 @@
 }
 
 .arrow-back{
-font-size: 3rem !important;
-margin-right: 1rem !important;
-margin-top: 0.1rem;
-color: #102a71;
+    font-size: 3rem !important;
+    margin-right: 1rem !important;
+    margin-top: 0.1rem;
+    color: #102a71;
 }
 
 .arrow-back:hover{

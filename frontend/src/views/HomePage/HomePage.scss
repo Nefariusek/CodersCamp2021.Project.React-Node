@@ -1,27 +1,29 @@
 .user-hub-container {
   .nav-list {
-    margin-left: 10%;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-self: flex-start;
   }
 
   .day-time {
-    top: 0px;
-    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .home-container {
     .title h1 {
       font-family: 'Roboto Condensed', sans-serif;
       font-weight: 900;
-      font-size: 8rem;
+      font-size: 6rem;
       margin-bottom: 0;
-      margin-top: 40%;
+      margin-top: 20%;
       color: #102a71;
     }
 
-    .title h2 {
+    .title h4 {
       font-family: 'Roboto', sans-serif;
       font-weight: 900;
       font-size: 2.5rem;
@@ -38,14 +40,18 @@
     justify-content: space-around;
   }
 
-  .aid-kit {
-    box-sizing: border-box;
-    width: 20vh;
+  .text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
   }
 
-  img.aid-kit {
-    margin-top: 60vh;
-    margin-right: 10vh;
-    margin-left: 0;
+  .aid-kit {
+    box-sizing: border-box;
+    width: 19vh;
+    margin-top: 1.5vh;
+    margin-bottom: 2vh;
+    align-self: center;
   }
+
 }
