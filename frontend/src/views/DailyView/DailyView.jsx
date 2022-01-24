@@ -1,63 +1,12 @@
 import './DailyView.scss';
 
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import AdapterMoment from '@mui/lab/AdapterMoment';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import moment from 'moment';
 import React from 'react';
 
 import buttonStyles from '../../components/Button/button.module.scss';
-
-const DatePicker = () => {
-  const [datePickerValue, setDatePickerValue] = React.useState(new Date());
-
-  const forward = () => {
-    const today = moment();
-    const tomorrow = moment(today).add(1, 'days');
-    setDatePickerValue(tomorrow);
-    console.log('kasia');
-  };
-  const backward = () => {
-    const today = moment();
-    const yesterday = moment(today).subtract(1, 'days');
-    setDatePickerValue(yesterday);
-    console.log('kasia');
-  };
-
-  return (
-    <>
-      <div onClick={backward}>
-        <ArrowBackIosNewIcon fontSize="large" className="arrow-back" />
-      </div>
-
-      <LocalizationProvider dateAdapter={AdapterMoment}>
-        <Stack spacing={3}>
-          <DesktopDatePicker
-            label="Choose Day"
-            openTo="day"
-            views={['year', 'month', 'day']}
-            value={datePickerValue}
-            onChange={(newDatePickerValue) => {
-              setDatePickerValue(newDatePickerValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </Stack>
-      </LocalizationProvider>
-
-      <div onClick={forward}>
-        <ArrowForwardIosIcon fontSize="large" className="arrow-forward" />
-      </div>
-    </>
-  );
-};
+import DatePicker from './DatePicker';
 
 const DailyDrugs = () => {
   return (
