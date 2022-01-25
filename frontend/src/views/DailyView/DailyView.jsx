@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
+import Pill from '../../components/Pill/Pill';
 import DatePicker from './DatePicker';
 
 const DailyDrugs = () => {
@@ -26,6 +27,9 @@ const DailyDrugs = () => {
               <Typography align="center" className="time-of-day" variant="h6">
                 MORNING
               </Typography>
+              <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
+              <Pill name="ambrosol" typeOfMedication="syrup" expirationDate="01-12-2021" />
+              <Pill name="clexane" typeOfMedication="injections" expirationDate="01-12-2021" />
             </Box>
 
             <Box className="drug-box-compartment 2" sx={{ borderRadius: 10, margin: 3 }}>
