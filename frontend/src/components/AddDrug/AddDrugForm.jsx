@@ -21,6 +21,7 @@ const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const initialFormState = {
   drugName: '',
+  description: '',
   expirationDate: new Date(),
   daytime: [DAYTIMES[0]],
 };
@@ -122,6 +123,19 @@ const AddDrugForm = (props) => {
               error={!!formErrors.drugName}
               helperText={formErrors.drugName ? formErrors.drugName : ''}
               FormHelperTextProps={{ style: styles.helper }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="DESCRIPTION"
+              name="description"
+              id="description"
+              variant="filled"
+              fullWidth
+              color="secondary"
+              value={formValues.description}
+              onChange={handleInput('description')}
+              onBlur={handleInput('description')}
             />
           </Grid>
           <Grid item xs={12}>

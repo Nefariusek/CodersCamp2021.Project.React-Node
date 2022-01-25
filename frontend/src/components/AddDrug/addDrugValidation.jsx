@@ -21,6 +21,8 @@ export const validateInput = (name, value) => {
     case 'drugName':
       result = validateDrugName(value);
       break;
+    case 'description':
+      break;
     case 'expirationDate':
       result = validateExpirationDate(value);
       break;
