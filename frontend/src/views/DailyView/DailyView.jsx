@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-import buttonStyles from '../../components/Button/button.module.scss';
+import buttonStyles from '../../components/Button/Button.module.scss';
 import DatePicker from './DatePicker';
 
 const DailyDrugs = () => {
