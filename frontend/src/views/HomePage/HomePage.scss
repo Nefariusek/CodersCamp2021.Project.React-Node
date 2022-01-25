@@ -1,27 +1,43 @@
 .user-hub-container {
   .nav-list {
-    margin-left: 10%;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-self: flex-start;
   }
 
-  .day-time {
-    top: 0px;
-    right: 10px;
+
+  .day-time{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-right: 2vw;
+  }
+
+  .calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .home-container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    
     .title h1 {
       font-family: 'Roboto Condensed', sans-serif;
       font-weight: 900;
-      font-size: 8rem;
+      font-size: 6rem;
       margin-bottom: 0;
-      margin-top: 40%;
+      margin-top: 20%;
       color: #102a71;
     }
 
-    .title h2 {
+    .title h4 {
       font-family: 'Roboto', sans-serif;
       font-weight: 900;
       font-size: 2.5rem;
@@ -32,20 +48,50 @@
     }
   }
 
-  .home-container {
+
+  .text-container{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-start
   }
 
   .aid-kit {
     box-sizing: border-box;
     width: 20vh;
+    margin: 3vh 0;
+    align-self: center;
   }
 
-  img.aid-kit {
-    margin-top: 60vh;
-    margin-right: 10vh;
-    margin-left: 0;
-  }
+}
+@media (max-width: 830px) {
+  .user-hub-container{
+    .home-container{
+      display: block !important;
+    }
+
+    .calendar{
+      position: static;
+
+    }
+    .title{
+      display: flex;
+      flex-direction: column;
+      align-items:flex-end !important;
+
+    }
+
+    .title h1 {
+      margin: 0 !important;
+    }
+
+    .title h4 {
+      font-size: 1.5rem !important;
+      width: 80% !important;
+    }
+    .nav-list {
+      margin: 2vh 0 !important;
+      align-self: center !important;
+    }
+
+}
 }
