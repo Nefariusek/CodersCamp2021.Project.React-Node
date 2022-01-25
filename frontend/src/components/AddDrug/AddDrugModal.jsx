@@ -90,6 +90,7 @@ const AddDrugModal = () => {
           BackdropProps={{
             timeout: 500,
           }}
+          sx={{ overflow: 'scroll' }}
         >
           <Fade in={open}>
             <Box sx={modalStyle}>
