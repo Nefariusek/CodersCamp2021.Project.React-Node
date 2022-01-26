@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
+import LoginContext from '../LoginContext/LoginContext';
+
 const PrivatePath = ({ site }) => {
-  const auth = true;
-  return auth ? site : <Navigate to="/login" />;
+  const auth = useContext(LoginContext);
+  return auth.loginStatus ? site : <Navigate to="/login" />;
 };
 
 PrivatePath.propTypes = {

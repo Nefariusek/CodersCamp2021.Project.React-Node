@@ -22,7 +22,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
-  { url: PATH_TO_CALENDAR, element: <PrivatePath site={<div>Calendar</div>} /> },
+  { url: PATH_TO_CALENDAR, element: <PrivatePath site={<CalendarPage />} /> },
   { url: PATH_TO_CREDITS, element: <CreditsPage /> },
   { url: PATH_TO_DAILY_DRUGS, element: <PrivatePath site={<div>DailyDrugs</div>} /> },
   { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },

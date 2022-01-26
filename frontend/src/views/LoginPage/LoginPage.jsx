@@ -2,11 +2,12 @@ import './LoginPage.scss';
 
 import { TextField, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import loginValidation from '../../api/loginValidation';
 import buttonStyles from '../../components/Button/Button.module.scss';
+import LoginContext from '../../components/LoginContext/LoginContext';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_REGISTER } from '../../constants/paths';
 
@@ -16,9 +17,11 @@ const LoginPage = () => {
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
+  const auth = useContext(LoginContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginValidation(username, password, setUsernameError, setPasswordError);
+    loginValidation(username, password, setUsernameError, setPasswordError, auth.setLoginStatus);
   };
 
   return (
