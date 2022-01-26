@@ -29,7 +29,7 @@ const paths = [
   { url: PATH_TO_SETTINGS, element: <p>Settings</p> },
 ];
 
-const aidkitPageTheme = createTheme({
+const aidkitTheme = createTheme({
   palette: {
     primary: {
       main: '#48cae4',
@@ -97,7 +97,7 @@ const aidkitPageTheme = createTheme({
 
 const App = () => {
   return (
-    <ThemeProvider theme={aidkitPageTheme}>
+    <ThemeProvider theme={aidkitTheme}>
       <div className="App">
         <BrowserRouter>
           <Navbar />
