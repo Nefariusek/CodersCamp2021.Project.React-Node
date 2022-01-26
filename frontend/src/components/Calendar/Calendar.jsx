@@ -10,17 +10,19 @@ const Calendar = () => {
   const [datePickerValue, setDatePickerValue] = React.useState(new Date());
 
   return (
-    <LocalizationProvider className="calendar" dateAdapter={AdapterMoment}>
-      <StaticDatePicker
-        orientation="landscape"
-        openTo="day"
-        value={datePickerValue}
-        onChange={(newValue) => {
-          setDatePickerValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
+    <div className="calendar">
+      <LocalizationProvider className="calendar" dateAdapter={AdapterMoment}>
+        <StaticDatePicker
+          orientation="landscape"
+          openTo="day"
+          value={datePickerValue}
+          onChange={(newValue) => {
+            setDatePickerValue(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+    </div>
   );
 };
 

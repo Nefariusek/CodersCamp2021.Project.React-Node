@@ -10,18 +10,18 @@
 }
 
 // main div
-.css-1dry7rq-MuiPickerStaticWrapper-root {
+.calendar .css-1dry7rq-MuiPickerStaticWrapper-root {
   border-radius: 45px;
   border: 4px #102a71 solid;
   margin-right: 2rem;
 }
 
-// .css-1xhj18k {
+//.calendar .css-1xhj18k {
 //   background-color: var(--main-background);
 // }
 
 // main font
-.PrivatePickersToolbar-root > *,
+.calendar .PrivatePickersToolbar-root > *,
 .css-h9p2l5-MuiTypography-root,
 .css-1dozdou {
   // color: var(--main-font) !important;
@@ -29,20 +29,20 @@
 }
 
 // day bubble
-.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
+.calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
   font-weight: 900 !important;
   // background-color: var(--day-background) !important;
   // color: var(--day-font) !important;
 }
 
 // day bubble:hover
-// .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
+// .calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
 //   color: var(--selected-day-font) !important;
 //   background-color: var(--selected-day-background) !important;
 // }
 
 // selected day bubble
-.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
+.calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
 .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   font-weight: 900 !important;
   // color: var(--selected-day-font) !important;
@@ -50,12 +50,13 @@
 }
 
 // selected day bubble:hover
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover {
+.calendar .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover {
   // color: var(--selected-day-font) !important;
   // background-color: var(--selected-day-background) !important;
 }
+
 // current day bubble
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+.calendar .css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
   font-weight: 900 !important;
   border: 2px solid var(--current-day-font) !important;
   // color: var(--current-day-font) !important;
