@@ -36,9 +36,14 @@
   width: 90vw;
   display: flex;
   justify-content: space-around;
-  font-size: 5vmin;
+  font-size: 4vmin;
   font-weight: bold;
   color: #023e8a;
+}
+
+.calendar-page .day-names .day-name {
+  width: 10vw;
+  text-align: center;
 }
 
 .calendar-page .week-calendar {

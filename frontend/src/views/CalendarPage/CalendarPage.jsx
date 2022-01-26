@@ -7,24 +7,10 @@ import MonthlyCalendar from '../../components/Calendar/MonthlyCalendar';
 import WeeklyCalendar from '../../components/Calendar/WeeklyCalendar';
 
 const CalendarPage = () => {
-  const [calendar, setCalendar] = useState(<MonthlyCalendar />);
   const [calendarName, setCalendarName] = useState('Month');
 
   const handleChange = (e) => {
     setCalendarName(e.target.value);
-    switch (e.target.value) {
-      case 'Month':
-        setCalendar(<MonthlyCalendar />);
-        break;
-      case 'Week':
-        setCalendar(<WeeklyCalendar />);
-        break;
-      case 'Day':
-        setCalendar(<div>Daily Drugs</div>);
-        break;
-      default:
-        break;
-    }
   };
 
   return (
@@ -43,7 +29,9 @@ const CalendarPage = () => {
           <MenuItem value="Day">Daily Calendar</MenuItem>
         </Select>
       </FormControl>
-      {calendar}
+      {calendarName === 'Month' && <MonthlyCalendar />}
+      {calendarName === 'Week' && <WeeklyCalendar />}
+      {calendarName === 'Day' && <div>Daily Drugs</div>}
     </div>
   );
 };

@@ -28,19 +28,13 @@ const renderDaysInWeek = (date) => {
   return week;
 };
 
-const renderDaysNames = () => {
-  const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  const week = [];
-  let i = 0;
-  while (i !== 7) {
-    week.push(
-      <div className="day-name" key={`day-name${i}`}>
-        {dayNames[i]}
-      </div>,
-    );
-    i += 1;
-  }
-  return week;
+const renderDayNames = () => {
+  const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  return dayNames.map((dayName) => (
+    <div className="day-name" key={`${dayName}`}>
+      {dayName}
+    </div>
+  ));
 };
 
 const WeeklyCalendar = () => {
@@ -78,7 +72,7 @@ const WeeklyCalendar = () => {
         </LocalizationProvider>
         <ArrowForwardIosIcon onClick={nextWeek} fontSize="large" className="arrow-forward" />
       </div>
-      <div className="day-names">{renderDaysNames()}</div>
+      <div className="day-names">{renderDayNames()}</div>
       <div className="week-calendar">{renderDaysInWeek(selectedDate)}</div>
     </div>
   );
