@@ -15,21 +15,30 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage ",
     "test:ci": "jest --ci --silent --coverage",
-    "format": "prettier --write \"src/**/*.{js,scss,css,md,json}\""
+    "format": "prettier --write \"src/**/*.{jsx,js,scss,css,md,json}\""
   },
   "dependencies": {
+    "@date-io/moment": "2.11.0",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
+    "@mui/lab": "5.0.0-alpha.64",
+    "@mui/styles": "5.2.3",
+    "moment": "2.29.1",
+    "@mui/base": "5.0.0-alpha.64",
+    "@mui/icons-material": "5.2.5",
     "@mui/material": "^5.2.7",
+    "@mui/system": "5.2.8",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "prop-types": "15.8.1",
+    "clsx": "1.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-required-if": "1.0.3",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "typeface-roboto": "1.1.13",
     "web-vitals": "^2.1.3"
   },
   "devDependencies": {
