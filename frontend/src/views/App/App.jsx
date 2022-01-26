@@ -1,8 +1,10 @@
 import './App.scss';
 
+import { createContext } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
+import PrivatePath from '../../components/PrivatePath/PrivatePath';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_CREDITS,
@@ -19,9 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
-  { url: PATH_TO_CALENDAR, element: <p>Calendar</p> },
+  { url: PATH_TO_CALENDAR, element: <PrivatePath site={<div>Calendar</div>} /> },
   { url: PATH_TO_CREDITS, element: <CreditsPage /> },
-  { url: PATH_TO_DAILY_DRUGS, element: <p>Daily drugs</p> },
+  { url: PATH_TO_DAILY_DRUGS, element: <PrivatePath site={<div>DailyDrugs</div>} /> },
   { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },
   { url: PATH_TO_LOGIN, element: <LoginPage /> },
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
