@@ -15,6 +15,7 @@ import {
   PATH_TO_REGISTER,
   PATH_TO_SETTINGS,
 } from '../../constants/paths';
+import CalendarPage from '../CalendarPage/CalendarPage';
 import CreditsPage from '../CreditsPage/CreditsPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
