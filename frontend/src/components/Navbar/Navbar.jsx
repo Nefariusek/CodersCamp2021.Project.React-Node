@@ -84,7 +84,7 @@ const Navbar = () => {
         }}
       >
         {pages.map((page) => (
-          <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+          <MenuItem key={page.name} onClick={handleCloseNavMenu} component={Link} to={page.path}>
             <Typography textAlign="center">{page.name}</Typography>
           </MenuItem>
         ))}
@@ -100,7 +100,7 @@ const Navbar = () => {
           onClick={handleCloseNavMenu}
           component={Link}
           to={page.path}
-          sx={{ my: 2, color: 'white', display: 'block' }}
+          sx={{ my: 2, color: 'inherit', display: 'block' }}
         >
           {page.name}
         </Button>
@@ -136,7 +136,13 @@ const Navbar = () => {
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>{dropdownMenu}</Box>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, textDecoration: 'none' }}>{brand}</Box>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, color: 'inherit', textDecoration: 'none' }}
+            component={Link}
+            to={PATH_TO_HOMEPAGE}
+          >
+            {brand}
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>{simpleMenu}</Box>
           {tools}
         </Toolbar>
