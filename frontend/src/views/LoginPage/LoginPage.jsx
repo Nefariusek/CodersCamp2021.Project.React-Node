@@ -35,7 +35,7 @@ const LoginPage = () => {
             id="username-input"
             onChange={(e) => setUsername(e.target.value)}
             label="USERNAME OR E-MAIL"
-            variant="outlined"
+            variant="filled"
             color="secondary"
             error={usernameError}
             style={{
@@ -48,7 +48,7 @@ const LoginPage = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             label="PASSWORD"
-            variant="outlined"
+            variant="filled"
             color="secondary"
             error={passwordError}
             style={{

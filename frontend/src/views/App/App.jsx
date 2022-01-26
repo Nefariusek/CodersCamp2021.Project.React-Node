@@ -60,10 +60,6 @@ const aidkitPageTheme = createTheme({
     datetime: {
       mainFont: '#102a71',
       mainBackground: '#fcd433',
-      selectedDayBackground: '#102a71',
-      selectedDayDont: '#fff',
-      // dayFont: '#102a71',  //ok
-      // dayBackground: '#95d4e0',  //ok
       currentDayFont: '#102a71',
       currentDayBackground: '#95d4e0',
     },
@@ -71,98 +67,31 @@ const aidkitPageTheme = createTheme({
   },
 
   components: {
-    // MuiButton: {
-    //   styleOverrides: {
-    //     // Name of the slot
-    //     root: {
-    //       // Some CSS
-    //       fontSize: '1rem',
-    //       color: '#F43F08',
-    //       backgroundColor: '#F43F08',
-    //     },
-    //   },
-    // },
-    // overrides: {
-    MuiPickersBasePicker: {
+    MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {
-          backgroundColor: '#F43F08',
-        },
-        pickerView: {
-          backgroundColor: '#F43F08',
+          backgroundColor: '#fcd433',
+          color: '#102a71',
         },
       },
     },
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          backgroundColor: '#95d4e0' /* OK */,
-          color: '#102a71' /* OK */,
-        },
-        // today: {
-        //   color: '#F43F08',
-        //   fontFamily: '"Do Hyeon", sans-serif',
-        //   backgroundColor: '#F43F08',
-        //   borderRadius: '0px',
-        // },
-        container: {
-          backgroundColor: 'black',
-        },
-        selected: {
-          backgroundColor: '',
-          color: '#F43F08',
-        },
-        dayDisabled: {
-          color: '#F43F08',
-        },
-        current: {
-          color: '#F43F08',
+          backgroundColor: '#95d4e0',
+          color: '#102a71',
+          fontWeight: 900,
+          '&.Mui-selected': {
+            backgroundColor: '#102a71',
+            color: '#fff',
+            '&:hover, &:focus, &.Mui-focusVisible': {
+              backgroundColor: '#102a71',
+              color: '#fff',
+            },
+          },
         },
       },
     },
-
-    //   //MuiStaticDatMuiCalendarPicker
-    //   MuiStaticDatMuiCalendarPicker: {
-    //     switchHeader: {
-    //       backgroundColor: '#F43F08',
-    //       color: '#F43F08',
-    //     },
-    //     iconButton: {
-    //       backgroundColor: 'transparent',
-    //       color: '#F43F08',
-    //     },
-    //     dayLabel: {
-    //       color: '#F43F08', //days in calendar
-    //     },
-    //     transitionContainer: {
-    //       color: '#F43F08',
-    //     },
-    //   },
-    //   MuiPickersBasePicker: {
-    //     pickerView: {
-    //       backgroundColor: '#F43F08',
-    //     },
-    //   },
-    //   MuiPickersDay: {
-    //     day: {
-    //       color: '#F43F08', //days in calendar
-    //     },
-    //     daySelected: {
-    //       backgroundColor: '#F43F08', //calendar circle
-    //       color: #F43F08',
-    //     },
-    //     current: {
-    //       backgroundColor: '#F43F08',
-    //       color: '#F43F08',
-    //     },
-    //   },
-
-    //   MuiDialogActions: {
-    //     root: {
-    //       backgroundColor: '#F43F08',
-    //     },
-    //   },
-    // },
   },
 });
 
