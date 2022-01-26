@@ -24,10 +24,10 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="login-container">
-        <Typography variant="h1" color="#023e8a" fontWeight="bold">
+        <Typography variant="h1" color="title.main" fontWeight="bold">
           {APP_NAME}
         </Typography>
-        <Typography variant="h2" color="#059ac8" fontWeight="bold">
+        <Typography variant="h2" color="title.light" fontWeight="bold">
           {APP_SUBTITLE}
         </Typography>
         <form className="login-form" onSubmit={handleSubmit}>
@@ -36,6 +36,7 @@ const LoginPage = () => {
             onChange={(e) => setUsername(e.target.value)}
             label="USERNAME OR E-MAIL"
             variant="outlined"
+            color="secondary"
             error={usernameError}
             style={{
               width: '80%',
@@ -48,6 +49,7 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
             label="PASSWORD"
             variant="outlined"
+            color="secondary"
             error={passwordError}
             style={{
               width: '80%',
@@ -57,7 +59,7 @@ const LoginPage = () => {
           <Button type="submit" variant="contained" className={buttonStyles.Button}>
             Log In
           </Button>
-          <Button component={Link} to={PATH_TO_REGISTER}>
+          <Button component={Link} to={PATH_TO_REGISTER} color="secondary">
             Create New Account
           </Button>
         </form>

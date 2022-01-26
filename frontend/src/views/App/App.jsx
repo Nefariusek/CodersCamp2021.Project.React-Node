@@ -1,5 +1,6 @@
 import './App.scss';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
@@ -28,27 +29,166 @@ const paths = [
   { url: PATH_TO_SETTINGS, element: <p>Settings</p> },
 ];
 
+const aidkitPageTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#48cae4',
+    },
+    secondary: {
+      main: '#fcd433',
+    },
+    common: {
+      black: '#000',
+      white: '#fff',
+    },
+    label: {
+      main: '1b4c56',
+    },
+    error: {
+      main: '#880e4f',
+    },
+    background: {
+      default: '#48cae4',
+    },
+    title: {
+      main: '#023e8a',
+      light: '#059ac8',
+    },
+    navbar: {
+      main: '#1976d2',
+    },
+    datetime: {
+      mainFont: '#102a71',
+      mainBackground: '#fcd433',
+      selectedDayBackground: '#102a71',
+      selectedDayDont: '#fff',
+      // dayFont: '#102a71',  //ok
+      // dayBackground: '#95d4e0',  //ok
+      currentDayFont: '#102a71',
+      currentDayBackground: '#95d4e0',
+    },
+    tonalOffset: 0.1,
+  },
+
+  components: {
+    // MuiButton: {
+    //   styleOverrides: {
+    //     // Name of the slot
+    //     root: {
+    //       // Some CSS
+    //       fontSize: '1rem',
+    //       color: '#F43F08',
+    //       backgroundColor: '#F43F08',
+    //     },
+    //   },
+    // },
+    // overrides: {
+    MuiPickersBasePicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#F43F08',
+        },
+        pickerView: {
+          backgroundColor: '#F43F08',
+        },
+      },
+    },
+    MuiPickersDay: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#95d4e0' /* OK */,
+          color: '#102a71' /* OK */,
+        },
+        // today: {
+        //   color: '#F43F08',
+        //   fontFamily: '"Do Hyeon", sans-serif',
+        //   backgroundColor: '#F43F08',
+        //   borderRadius: '0px',
+        // },
+        container: {
+          backgroundColor: 'black',
+        },
+        selected: {
+          backgroundColor: '',
+          color: '#F43F08',
+        },
+        dayDisabled: {
+          color: '#F43F08',
+        },
+        current: {
+          color: '#F43F08',
+        },
+      },
+    },
+
+    //   //MuiStaticDatMuiCalendarPicker
+    //   MuiStaticDatMuiCalendarPicker: {
+    //     switchHeader: {
+    //       backgroundColor: '#F43F08',
+    //       color: '#F43F08',
+    //     },
+    //     iconButton: {
+    //       backgroundColor: 'transparent',
+    //       color: '#F43F08',
+    //     },
+    //     dayLabel: {
+    //       color: '#F43F08', //days in calendar
+    //     },
+    //     transitionContainer: {
+    //       color: '#F43F08',
+    //     },
+    //   },
+    //   MuiPickersBasePicker: {
+    //     pickerView: {
+    //       backgroundColor: '#F43F08',
+    //     },
+    //   },
+    //   MuiPickersDay: {
+    //     day: {
+    //       color: '#F43F08', //days in calendar
+    //     },
+    //     daySelected: {
+    //       backgroundColor: '#F43F08', //calendar circle
+    //       color: #F43F08',
+    //     },
+    //     current: {
+    //       backgroundColor: '#F43F08',
+    //       color: '#F43F08',
+    //     },
+    //   },
+
+    //   MuiDialogActions: {
+    //     root: {
+    //       backgroundColor: '#F43F08',
+    //     },
+    //   },
+    // },
+  },
+});
+
 const App = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path={PATH_TO_HOMEPAGE} element={<HomePage />} />
-          {paths.map((path) => (
-            <Route path={path.url} element={path.element} />
-          ))}
-          <Route
-            path="/*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <Link to={PATH_TO_HOMEPAGE}>Page not found. Click here to continue to the home page</Link>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <ThemeProvider theme={aidkitPageTheme}>
+      <div className="App">
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path={PATH_TO_HOMEPAGE} element={<HomePage />} />
+            {paths.map((path) => (
+              <Route path={path.url} element={path.element} />
+            ))}
+            <Route
+              path="/*"
+              element={
+                <main style={{ padding: '1rem' }}>
+                  <Link to={PATH_TO_HOMEPAGE}>Page not found. Click here to continue to the home page</Link>
+                </main>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 };
 
