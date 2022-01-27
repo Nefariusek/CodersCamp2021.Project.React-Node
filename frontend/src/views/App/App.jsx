@@ -15,7 +15,7 @@ import {
 } from '../../constants/paths';
 import CalendarPage from '../CalendarPage/CalendarPage';
 import CreditsPage from '../CreditsPage/CreditsPage';
-import DailyDrugsPage from '../DailyDrugsPage/DailyDrugsPage';
+import DailyView from '../DailyView/DailyView';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
@@ -23,7 +23,7 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 const paths = [
   { url: PATH_TO_CALENDAR, element: <CalendarPage /> },
   { url: PATH_TO_CREDITS, element: <CreditsPage /> },
-  { url: PATH_TO_DAILY_DRUGS, element: <DailyDrugsPage /> },
+  { url: PATH_TO_DAILY_DRUGS, element: <DailyView /> },
   { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },
   { url: PATH_TO_LOGIN, element: <LoginPage /> },
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
