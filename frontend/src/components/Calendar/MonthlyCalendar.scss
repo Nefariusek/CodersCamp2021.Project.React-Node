@@ -1,0 +1,104 @@
+$calendar-height: 100vh;
+$calendar-width: 100vw;
+
+.calendar-page .css-1snvurg-MuiPickerStaticWrapper-root {
+  height: $calendar-height;
+  width: $calendar-width;
+  background-color: #48cae4;
+}
+
+.calendar-page .css-j7qwjs {
+  height: $calendar-height;
+  width: $calendar-width;
+}
+
+.calendar-page .css-epd502 {
+  height: $calendar-height;
+  max-height: 100vh;
+  width: $calendar-width;
+}
+
+.calendar-page .css-169iwlq-MuiCalendarPicker-root {
+  height: $calendar-height;
+  max-height: 100vh;
+  width: $calendar-width;
+}
+
+.calendar-page .css-1wvgxus-MuiCalendarPicker-viewTransitionContainer {
+  height: $calendar-height;
+  max-height: 100vh;
+  width: $calendar-width;
+}
+
+.calendar-page .css-1dozdou {
+  justify-content: center;
+  max-height: 10vh;
+  gap: 10px;
+}
+
+.calendar-page .css-l0iinn {
+  max-height: 10vh;
+  margin-right: 0;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.calendar-page .css-1v994a0 {
+  font-size: 7vmin;
+  color: #023e8a;
+}
+
+.calendar-page .PrivatePickersSlideTransition-root {
+  position: static;
+}
+
+.calendar-page .css-dhopo2 > * {
+  position: static;
+  background-color: #fcd433;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5vmin;
+}
+
+.calendar-page .css-1w13o7u-MuiTypography-root {
+  height: 10vh;
+  width: 10vw;
+  color: #059ac8;
+  font-weight: bold;
+  font-size: 3vmin;
+  margin: 1vmin;
+}
+
+.calendar-page .MuiPickersDay-dayWithMargin {
+  height: 10vh;
+  width: 10vw;
+  border-radius: 2vmin;
+  color: #fff;
+  font-size: 2vmin;
+  background-color: #b89a22;
+  margin: 1vmin;
+}
+
+.calendar-page .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #023e8a !important;
+}
+
+.calendar-page .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #023e8a !important;
+}
+
+.calendar-page .css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+  border: 3px solid #023e8a;
+}
+
+.calendar-page .day-informations {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.calendar-page .day-number {
+  font-size: 3vmin;
+  font-weight: bold;
+}
