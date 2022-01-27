@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import loginValidation from '../../api/loginValidation';
-import buttonStyles from '../../components/Button/Button.module.scss';
+import buttonStyles from '../../components/Button/button.module.scss';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_REGISTER } from '../../constants/paths';
 

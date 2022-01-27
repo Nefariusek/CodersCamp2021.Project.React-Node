@@ -22,7 +22,7 @@ const ButtonsUserHub = () => {
   return (
     <div className="nav-list">
       {routes.map((route) => (
-        <Button variant="contained" className={buttonStyles.Button} component={Link} to={route.url}>
+        <Button variant="contained" className={buttonStyles.Button} component={Link} to={route.url} key={route.url}>
           {route.label}
         </Button>
       ))}

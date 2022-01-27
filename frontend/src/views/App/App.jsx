@@ -10,6 +10,7 @@ import {
   PATH_TO_HOMEPAGE,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
+  PATH_TO_MY_DRUGS,
   PATH_TO_REGISTER,
   PATH_TO_SETTINGS,
 } from '../../constants/paths';
@@ -18,6 +19,7 @@ import CreditsPage from '../CreditsPage/CreditsPage';
 import DailyView from '../DailyView/DailyView';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
+import MyDrugsPage from '../MyDrugsPage/MyDrugsPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
@@ -28,6 +30,7 @@ const paths = [
   { url: PATH_TO_LOGIN, element: <LoginPage /> },
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
   { url: PATH_TO_SETTINGS, element: <p>Settings</p> },
+  { url: PATH_TO_MY_DRUGS, element: <MyDrugsPage /> },
 ];
 
 const App = () => {
@@ -38,7 +41,7 @@ const App = () => {
         <Routes>
           <Route path={PATH_TO_HOMEPAGE} element={<HomePage />} />
           {paths.map((path) => (
-            <Route path={path.url} element={path.element} />
+            <Route key={path.url} path={path.url} element={path.element} />
           ))}
           <Route
             path="/*"

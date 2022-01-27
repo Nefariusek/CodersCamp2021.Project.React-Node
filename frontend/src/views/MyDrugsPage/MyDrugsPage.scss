@@ -1,0 +1,23 @@
+.my-drugs-page {
+  padding: 20px;
+  text-align: center;
+
+  .header-h2 {
+    color: #023e8a;
+  }
+
+  .drugs-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-around;
+
+    .drugs-list {
+      max-width: fit-content;
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
