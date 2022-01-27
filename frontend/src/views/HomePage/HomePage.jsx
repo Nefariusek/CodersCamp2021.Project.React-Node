@@ -40,8 +40,12 @@ const HomePage = () => {
       <div className="home-container">
         <div className="text-container">
           <div className="title">
-            <Typography variant="h1">{APP_NAME}</Typography>
-            <Typography variant="h4">{APP_SUBTITLE}</Typography>
+            <Typography variant="h2" color="title.main" fontWeight="bold">
+              {APP_NAME}
+            </Typography>
+            <Typography variant="h4" color="title.light" fontWeight="bold">
+              {APP_SUBTITLE}
+            </Typography>
           </div>
           <ButtonsUserHub />
         </div>

@@ -10,53 +10,54 @@
 }
 
 // main div
-.calendar .css-1snvurg-MuiPickerStaticWrapper-root {
+.calendar .css-1dry7rq-MuiPickerStaticWrapper-root {
   border-radius: 45px;
   border: 4px #102a71 solid;
 }
 
-.calendar .css-1xhj18k {
-  background-color: var(--main-background);
-}
+//.calendar .css-1xhj18k {
+//   background-color: var(--main-background);
+// }
 
 // main font
 .calendar .PrivatePickersToolbar-root > *,
-.css-h9p2l5-MuiTypography-root,
-.css-1dozdou {
-  color: var(--main-font) !important;
+.calendar .css-h9p2l5-MuiTypography-root,
+.calendar .css-1dozdou {
+  // color: var(--main-font) !important;
   font-weight: 900 !important;
 }
 
 // day bubble
 .calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
   font-weight: 900 !important;
-  background-color: var(--day-background) !important;
-  color: var(--day-font) !important;
+  // background-color: var(--day-background) !important;
+  // color: var(--day-font) !important;
 }
 
 // day bubble:hover
-.calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
-  color: var(--selected-day-font) !important;
-  background-color: var(--selected-day-background) !important;
-}
+// .calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
+//   color: var(--selected-day-font) !important;
+//   background-color: var(--selected-day-background) !important;
+// }
 
 // selected day bubble
 .calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-  color: var(--selected-day-font) !important;
+.calendar .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   font-weight: 900 !important;
-  background-color: var(--selected-day-background) !important;
+  // color: var(--selected-day-font) !important;
+  // background-color: var(--selected-day-background) !important;
 }
 
 // selected day bubble:hover
 .calendar .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover {
-  color: var(--selected-day-font) !important;
-  background-color: var(--selected-day-background) !important;
+  // color: var(--selected-day-font) !important;
+  // background-color: var(--selected-day-background) !important;
 }
+
 // current day bubble
 .calendar .css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
-  color: var(--current-day-font) !important;
   font-weight: 900 !important;
-  background-color: var(--current-day-background) !important ;
   border: 2px solid var(--current-day-font) !important;
+  // color: var(--current-day-font) !important;
+  // background-color: var(--current-day-background) !important ;
 }

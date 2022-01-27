@@ -1,81 +1,77 @@
-
-.daily-view-container{
-
-.daily-drugs-title{
+.daily-view-container {
+  .daily-drugs-title {
     color: #102a71;
     font-weight: 900 !important;
-}
+  }
 
-.daily-datepicker-container{
+  .daily-datepicker-container {
     display: flex;
     justify-content: center;
     margin-top: 2vh;
-}
-.drug-box-container{
+  }
+  .drug-box-container {
     display: flex;
-    justify-content: center ;
-}
+    justify-content: center;
+  }
 
-.drug-box{
-    background-color: #FCD433;
+  .drug-box {
+    background-color: #fcd433;
     width: 95vw;
     height: 55vh;
     margin-top: 2vh;
-}
+  }
 
-.drug-box-compartment{
-    background-color: #B89A22 !important;
+  .drug-box-compartment {
+    background-color: #b89a22 !important;
     width: 33%;
     height: 90%;
-}
+  }
 
-.button-add-drug{
+  .button-add-drug {
     display: flex;
     justify-content: center;
     margin-top: 2vh;
     margin-bottom: 2vh;
-}
+  }
 
-.time-of-day {
+  .time-of-day {
     color: #102a71;
-    font-weight: 900 ;
-}
+    font-weight: 900;
+  }
 
-.arrow-back{
+  .arrow-back {
     font-size: 3rem !important;
     margin-right: 1rem !important;
     margin-top: 0.1rem;
     color: #102a71;
-}
+  }
 
-.arrow-back:hover{
+  .arrow-back:hover {
     font-size: 3rem !important;
     margin-right: 1rem !important;
     margin-top: 0.1rem;
-    color: #FCD433 !important;
+    color: #fcd433 !important;
     cursor: pointer;
-    }
+  }
 
-.arrow-forward{
+  .arrow-forward {
     font-size: 3rem !important;
     margin-left: 1rem !important;
     color: #102a71;
     margin-top: 0.1rem;
-}
-.arrow-forward:hover{
+  }
+  .arrow-forward:hover {
     font-size: 3rem !important;
     margin-left: 1rem !important;
-    color: #FCD433;
+    color: #fcd433;
     margin-top: 0.1rem;
     cursor: pointer;
-    }
+  }
 }
 
 @media (max-width: 830px) {
-    
-    .time-of-day {
-        font-weight: 400 !important;
-        font-size: 0.8rem !important;
-    }
-    
+  .time-of-day {
+    font-weight: 400 !important;
+    font-size: 0.8rem !important;
   }
+}
