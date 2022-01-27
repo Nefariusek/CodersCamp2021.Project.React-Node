@@ -29,7 +29,7 @@ const initialFormState = {
 const styles = {
   helper: {
     color: 'black',
-    fontSize: '.6em',
+    fontSize: '.8em',
   },
 };
 
