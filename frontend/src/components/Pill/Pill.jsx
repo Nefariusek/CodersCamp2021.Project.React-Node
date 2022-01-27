@@ -1,5 +1,6 @@
 import MedicationIcon from '@mui/icons-material/Medication';
 import Tooltip from '@mui/material/Tooltip';
+import PropTypes from 'prop-types';
 
 import pillStyles from './Pill.module.scss';
 
@@ -22,7 +23,7 @@ const iconTypeOfMedication = {
 };
 
 const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) => {
-  console.log(iconTypeOfMedication[typeOfMedication]);
+  // console.log(iconTypeOfMedication[typeOfMedication]);
   if (showExpirationDate) {
     return (
       <Tooltip title={`${name} / ${expirationDate} /${(<MedicationIcon />)}`}>
@@ -43,3 +44,10 @@ const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) =>
 };
 
 export default Pill;
+
+Pill.propTypes = {
+  typeOfMedication: PropTypes.oneOf(['pills', 'syrup', 'inhaler', 'injection', 'drops', 'patches']).isRequired,
+  name: PropTypes.string.isRequired,
+  showExpirationDate: PropTypes.bool.isRequired,
+  expirationDate: PropTypes.string.isRequired,
+};
