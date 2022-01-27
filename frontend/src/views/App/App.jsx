@@ -13,6 +13,7 @@ import {
   PATH_TO_REGISTER,
   PATH_TO_SETTINGS,
 } from '../../constants/paths';
+import CalendarPage from '../CalendarPage/CalendarPage';
 import CreditsPage from '../CreditsPage/CreditsPage';
 import DailyDrugsPage from '../DailyDrugsPage/DailyDrugsPage';
 import HomePage from '../HomePage/HomePage';
@@ -20,7 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
-  { url: PATH_TO_CALENDAR, element: <p>Calendar</p> },
+  { url: PATH_TO_CALENDAR, element: <CalendarPage /> },
   { url: PATH_TO_CREDITS, element: <CreditsPage /> },
   { url: PATH_TO_DAILY_DRUGS, element: <DailyDrugsPage /> },
   { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },
