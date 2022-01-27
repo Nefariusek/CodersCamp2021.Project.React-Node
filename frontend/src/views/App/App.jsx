@@ -1,6 +1,5 @@
 import './App.scss';
 
-import { createContext } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
