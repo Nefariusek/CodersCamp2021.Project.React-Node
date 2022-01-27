@@ -19,10 +19,10 @@ import { Link } from 'react-router-dom';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_DAILY_DRUGS,
-  PATH_TO_HOMEPAGE,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
   PATH_TO_SETTINGS,
+  PATH_TO_USER_HOMEPAGE,
 } from '../../constants/paths';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
@@ -129,7 +129,7 @@ const Navbar = () => {
             <Box
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, textDecoration: 'none' }}
               component={Link}
-              to={PATH_TO_HOMEPAGE}
+              to={PATH_TO_USER_HOMEPAGE}
               color="inherit"
             >
               {brand}
@@ -139,7 +139,7 @@ const Navbar = () => {
           <Box
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, color: 'inherit', textDecoration: 'none' }}
             component={Link}
-            to={PATH_TO_HOMEPAGE}
+            to={PATH_TO_USER_HOMEPAGE}
           >
             {brand}
           </Box>

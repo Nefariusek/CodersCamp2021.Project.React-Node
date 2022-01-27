@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/button.module.scss';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
-import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER } from '../../constants/paths';
+import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
 
 const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
 
@@ -41,12 +41,19 @@ const routes = [
 
 const Navigation = () => {
   return (
-    <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
-      {routes.map((route) => (
-        <Button key={route.label} variant="contained" component={Link} to={route.url} className={buttonStyles.Button}>
-          {route.icon} {route.label}
+    <Stack>
+      <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
+        {routes.map((route) => (
+          <Button key={route.label} variant="contained" component={Link} to={route.url} className={buttonStyles.Button}>
+            {route.icon} {route.label}
+          </Button>
+        ))}
+      </Stack>
+      <Box align="center" mt={4}>
+        <Button variant="contained" component={Link} to={PATH_TO_USER_HOMEPAGE} className={buttonStyles.Button}>
+          User Homepage
         </Button>
-      ))}
+      </Box>
     </Stack>
   );
 };
