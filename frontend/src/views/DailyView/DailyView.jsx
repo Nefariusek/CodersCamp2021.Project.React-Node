@@ -28,20 +28,20 @@ const DailyDrugs = () => {
                 MORNING
               </Typography>
               <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
-              <Pill name="ambrosol" typeOfMedication="syrup" expirationDate="01-12-2021" />
-              <Pill name="clexane" typeOfMedication="injections" expirationDate="01-12-2021" />
             </Box>
 
             <Box className="drug-box-compartment 2" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
                 NOON
               </Typography>
+              <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
             </Box>
 
             <Box className="drug-box-compartment 3" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
                 EVENING
               </Typography>
+              <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
             </Box>
           </Box>
         </div>
