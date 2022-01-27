@@ -35,10 +35,11 @@ const paths = [
 
 const App = () => {
   const { pathname } = useLocation();
-
+  const pathsWithoutNavbar = [PATH_TO_LANDINGPAGE, PATH_TO_LOGIN, PATH_TO_REGISTER];
   return (
     <div className="App">
-      {pathname === PATH_TO_LANDINGPAGE ? null : <Navbar />}
+      {pathsWithoutNavbar.indexOf(pathname) >= 0 ? null : <Navbar />}
+
       <Routes>
         <Route path={PATH_TO_LANDINGPAGE} element={<LandingPage />} />
         {paths.map((path) => (
