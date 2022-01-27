@@ -5,23 +5,23 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import { addDays, subDays } from 'date-fns';
 import React from 'react';
 
 const DatePicker = () => {
   const [datePickerValue, setDatePickerValue] = React.useState(new Date());
 
-  const forward = () => {
-    if (datePickerValue < new Date(new Date().setDate(new Date().getDate() + 6))) {
-      setDatePickerValue(() => new Date(new Date().setDate(datePickerValue.getDate() + 1)));
+  const goOneDayForward = () => {
+    if (datePickerValue < addDays(new Date(), 7)) {
+      setDatePickerValue(() => new Date(addDays(datePickerValue, 1)));
     } else {
       alert("You can't go further");
-      setDatePickerValue(() => new Date(new Date().setDate(new Date().getDate() + 7)));
     }
   };
 
-  const backward = () => {
-    if (datePickerValue > new Date(new Date().setDate(new Date().getDate() - 7))) {
-      setDatePickerValue(() => new Date(new Date().setDate(datePickerValue.getDate() - 1)));
+  const goOneDayBackwards = () => {
+    if (datePickerValue > subDays(new Date(), 7)) {
+      setDatePickerValue(() => new Date(subDays(datePickerValue, 1)));
     } else {
       alert("You can't go further");
     }
@@ -29,7 +29,7 @@ const DatePicker = () => {
 
   return (
     <>
-      <div role="button" tabIndex="0" onKeyPress={backward} onClick={backward}>
+      <div role="button" tabIndex="0" onKeyPress={goOneDayBackwards} onClick={goOneDayBackwards}>
         <ArrowBackIosNewIcon fontSize="large" className="arrow-back" />
       </div>
 
@@ -48,7 +48,7 @@ const DatePicker = () => {
         </Stack>
       </LocalizationProvider>
 
-      <div role="button" tabIndex="0" onKeyPress={forward} onClick={forward}>
+      <div role="button" tabIndex="0" onKeyPress={goOneDayForward} onClick={goOneDayForward}>
         <ArrowForwardIosIcon fontSize="large" className="arrow-forward" />
       </div>
     </>
