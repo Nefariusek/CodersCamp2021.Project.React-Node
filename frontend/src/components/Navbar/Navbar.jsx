@@ -24,6 +24,7 @@ import {
   PATH_TO_LOGIN,
   PATH_TO_SETTINGS,
 } from '../../constants/paths';
+import { useThemeUpdate } from '../DarkThemeContext/DarkThemeContext';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
 const pages = [
@@ -34,6 +35,8 @@ const pages = [
 const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
 
 const Navbar = () => {
+  const toggleTheme = useThemeUpdate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -110,7 +113,12 @@ const Navbar = () => {
 
   const tools = (
     <Stack direction="row" alignItems="center">
-      <ThemeSwitch defaultChecked />
+      <ThemeSwitch
+        defaultUnChecked
+        onChange={() => {
+          toggleTheme();
+        }}
+      />
       <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_SETTINGS}>
         <SettingsIcon />
       </IconButton>

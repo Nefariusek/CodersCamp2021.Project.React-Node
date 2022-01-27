@@ -3,12 +3,15 @@ import 'typeface-roboto';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { DarkThemeProvider } from './components/DarkThemeContext/DarkThemeContext';
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DarkThemeProvider>
+      <App />
+    </DarkThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
