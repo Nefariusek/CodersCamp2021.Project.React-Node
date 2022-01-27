@@ -13,7 +13,6 @@
 .calendar .css-1dry7rq-MuiPickerStaticWrapper-root {
   border-radius: 45px;
   border: 4px #102a71 solid;
-  margin-right: 2rem;
 }
 
 //.calendar .css-1xhj18k {
@@ -22,8 +21,8 @@
 
 // main font
 .calendar .PrivatePickersToolbar-root > *,
-.css-h9p2l5-MuiTypography-root,
-.css-1dozdou {
+.calendar .css-h9p2l5-MuiTypography-root,
+.calendar .css-1dozdou {
   // color: var(--main-font) !important;
   font-weight: 900 !important;
 }
@@ -43,7 +42,7 @@
 
 // selected day bubble
 .calendar .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+.calendar .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   font-weight: 900 !important;
   // color: var(--selected-day-font) !important;
   // background-color: var(--selected-day-background) !important;
