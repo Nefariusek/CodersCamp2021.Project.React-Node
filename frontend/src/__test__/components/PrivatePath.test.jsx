@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import LoginContext from '../../components/LoginContext/LoginContext';
 import PrivatePath from '../../components/PrivatePath/PrivatePath';
+import { PATH_TO_LOGIN } from '../../constants/paths';
 
 test('PrivatePath directs authorized users to PrivatePage', () => {
   const history = createBrowserHistory();
@@ -13,7 +14,7 @@ test('PrivatePath directs authorized users to PrivatePage', () => {
     <LoginContext.Provider value={{ loginStatus: true }}>
       <BrowserRouter history={history}>
         <Routes>
-          <Route path="/login" element={<div>LoginPage</div>} />
+          <Route path={PATH_TO_LOGIN} element={<div>LoginPage</div>} />
           <Route path="/private" element={<PrivatePath site={<div>PrivatePage</div>} />} />
         </Routes>
       </BrowserRouter>
@@ -32,7 +33,7 @@ test('PrivatePath redirects unauthorized users to LoginPage', () => {
     <LoginContext.Provider value={{ loginStatus: false }}>
       <BrowserRouter history={history}>
         <Routes>
-          <Route path="/login" element={<div>LoginPage</div>} />
+          <Route path={PATH_TO_LOGIN} element={<div>LoginPage</div>} />
           <Route path="/private" element={<PrivatePath site={<div>PrivatePage</div>} />} />
         </Routes>
       </BrowserRouter>
@@ -40,5 +41,5 @@ test('PrivatePath redirects unauthorized users to LoginPage', () => {
   );
   expect(screen.queryByText('PrivatePage')).not.toBeInTheDocument();
   expect(screen.getByText('LoginPage')).toBeInTheDocument();
-  expect(window.location.pathname).toBe('/login');
+  expect(window.location.pathname).toBe(PATH_TO_LOGIN);
 });
