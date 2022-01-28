@@ -3,7 +3,7 @@ import './CreditsPage.scss';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import buttonStyles from '../../components/Button/Button.module.scss';
+import buttonStyles from '../../components/Button/button.module.scss';
 
 const DevelopersButtons = () => {
   const developers = [

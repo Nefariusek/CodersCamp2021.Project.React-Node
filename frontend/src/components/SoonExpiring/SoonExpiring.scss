@@ -1,0 +1,14 @@
+.soon-expiring {
+  width: 400px;
+  height: 400px;
+  background-color: #fcd433;
+  border: solid 4px #023e8a;
+  border-radius: 50px;
+  padding: 15px;
+  text-align: center;
+
+  &-header {
+    color: #023e8a;
+    font-weight: 700 !important;
+  }
+}
