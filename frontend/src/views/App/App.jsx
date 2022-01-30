@@ -1,8 +1,12 @@
 import './App.scss';
 
+import { ThemeProvider } from '@mui/material/styles';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 
+import { useDarkTheme } from '../../components/DarkThemeContext/DarkThemeContext';
+import { darkTheme, lightTheme } from '../../components/DarkThemeContext/themeStyles';
 import Navbar from '../../components/Navbar/Navbar';
+import PrivatePath from '../../components/PrivatePath/PrivatePath';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_CREDITS,
@@ -23,9 +27,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
-  { url: PATH_TO_CALENDAR, element: <CalendarPage /> },
+  { url: PATH_TO_CALENDAR, element: <PrivatePath site={<CalendarPage />} /> },
   { url: PATH_TO_CREDITS, element: <CreditsPage /> },
-  { url: PATH_TO_DAILY_DRUGS, element: <DailyView /> },
+  { url: PATH_TO_DAILY_DRUGS, element: <PrivatePath site={<DailyView />} /> },
   { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },
   { url: PATH_TO_LOGIN, element: <LoginPage /> },
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
@@ -34,27 +38,33 @@ const paths = [
 ];
 
 const App = () => {
+  const darkMode = useDarkTheme();
+  const currentTheme = darkMode ? darkTheme : lightTheme;
+
   const { pathname } = useLocation();
   const pathsWithoutNavbar = [PATH_TO_LANDINGPAGE, PATH_TO_LOGIN, PATH_TO_REGISTER];
-  return (
-    <div className="App">
-      {pathsWithoutNavbar.indexOf(pathname) >= 0 ? null : <Navbar />}
 
-      <Routes>
-        <Route path={PATH_TO_LANDINGPAGE} element={<LandingPage />} />
-        {paths.map((path) => (
-          <Route key={path.url} path={path.url} element={path.element} />
-        ))}
-        <Route
-          path="/*"
-          element={
-            <main style={{ padding: '1rem' }}>
-              <Link to={PATH_TO_LANDINGPAGE}>Page not found. Click here to continue to the home page</Link>
-            </main>
-          }
-        />
-      </Routes>
-    </div>
+  return (
+    <ThemeProvider theme={currentTheme}>
+      <div className="App">
+        {pathsWithoutNavbar.indexOf(pathname) >= 0 ? null : <Navbar />}
+
+        <Routes>
+          <Route path={PATH_TO_LANDINGPAGE} element={<LandingPage />} />
+          {paths.map((path) => (
+            <Route key={path.url} path={path.url} element={path.element} />
+          ))}
+          <Route
+            path="/*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <Link to={PATH_TO_LANDINGPAGE}>Page not found. Click here to continue to the home page</Link>
+              </main>
+            }
+          />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 };
 

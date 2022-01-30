@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -24,6 +24,8 @@ import {
   PATH_TO_SETTINGS,
   PATH_TO_USER_HOMEPAGE,
 } from '../../constants/paths';
+import { useThemeUpdate } from '../DarkThemeContext/DarkThemeContext';
+import LoginContext from '../LoginContext/LoginContext';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
 const pages = [
@@ -34,10 +36,17 @@ const pages = [
 const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
 
 const Navbar = () => {
+  const toggleTheme = useThemeUpdate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const auth = useContext(LoginContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  const handleLogOut = () => {
+    auth.setLoginStatus(false);
   };
 
   const handleCloseNavMenu = () => {
@@ -47,7 +56,7 @@ const Navbar = () => {
   const brand = (
     <>
       <Avatar alt="logo" src={LOGO_IMG.path} sx={{ width: 50, height: 50 }} />
-      <Typography variant="h6" noWrap component="div" sx={{ ml: 2, mt: 1, mr: 2 }}>
+      <Typography variant="h6" noWrap component="div" sx={{ ml: 2, mt: 1, mr: 2 }} color="white">
         aID kIT
       </Typography>
     </>
@@ -110,18 +119,36 @@ const Navbar = () => {
 
   const tools = (
     <Stack direction="row" alignItems="center">
-      <ThemeSwitch defaultChecked />
+      <ThemeSwitch
+        defaultUnChecked
+        onChange={() => {
+          toggleTheme();
+        }}
+      />
       <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_SETTINGS}>
         <SettingsIcon />
       </IconButton>
-      <IconButton color="inherit" size="large" aria-label="login button" component={Link} to={PATH_TO_LOGIN}>
+      <IconButton
+        color="inherit"
+        size="large"
+        aria-label="login button"
+        component={Link}
+        to={PATH_TO_LOGIN}
+        onClick={handleLogOut}
+      >
         <LogoutIcon />
       </IconButton>
     </Stack>
   );
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      color="navbar"
+      sx={{
+        color: 'white',
+      }}
+    >
       <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -130,7 +157,7 @@ const Navbar = () => {
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, textDecoration: 'none' }}
               component={Link}
               to={PATH_TO_USER_HOMEPAGE}
-              color="inherit"
+              color="secondary"
             >
               {brand}
             </Box>

@@ -4,13 +4,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
+import { DarkThemeProvider } from './components/DarkThemeContext/DarkThemeContext';
+import { LoginProvider } from './components/LoginContext/LoginContext';
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <DarkThemeProvider>
+        <LoginProvider>
+          <App />
+        </LoginProvider>
+      </DarkThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
