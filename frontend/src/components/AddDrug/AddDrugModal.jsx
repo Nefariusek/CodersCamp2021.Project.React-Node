@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 import AddDrugForm from './AddDrugForm';
 
-const MAIN_TITLE = 'ADD DRUG';
+const MAIN_TITLE = 'Add drug';
 
 const modalStyle = {
   position: 'absolute',
@@ -46,7 +46,7 @@ const AddDrugModal = () => {
           borderRadius: 15,
         }}
       >
-        Add drug
+        {MAIN_TITLE}
       </Button>
       <Modal
         open={open}
@@ -70,7 +70,7 @@ const AddDrugModal = () => {
               align="center"
               fontWeight="bold"
             >
-              {MAIN_TITLE}
+              {MAIN_TITLE.toUpperCase()}
             </Typography>
             <Box id="add-drug-form">
               <AddDrugForm onClose={handleClose} />
