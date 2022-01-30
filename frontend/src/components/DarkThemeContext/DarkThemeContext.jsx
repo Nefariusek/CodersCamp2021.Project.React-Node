@@ -11,11 +11,9 @@ export const useThemeUpdate = () => {
   return useContext(ThemeUpdateContext);
 };
 
-// eslint-disable-next-line react/prop-types
 export const DarkThemeProvider = ({ children }) => {
   const [darkTheme, setDarkTheme] = useState(false);
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const toggleTheme = () => {
     setDarkTheme((prevDarkTheme) => !prevDarkTheme);
   };

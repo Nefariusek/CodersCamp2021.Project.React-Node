@@ -35,7 +35,6 @@ const paths = [
 
 const App = () => {
   const darkMode = useDarkTheme();
-  console.log(darkMode);
   const currentTheme = darkMode ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={currentTheme}>
