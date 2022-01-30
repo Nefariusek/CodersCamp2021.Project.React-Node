@@ -1,30 +1,30 @@
 $calendar-height: 100vh;
 $calendar-width: 100vw;
 
-.calendar-page .css-1snvurg-MuiPickerStaticWrapper-root {
+.calendar-page .MuiPickerStaticWrapper-root {
   height: $calendar-height;
   width: $calendar-width;
   background-color: #48cae4;
 }
 
-.calendar-page .css-j7qwjs {
-  height: $calendar-height;
-  width: $calendar-width;
-}
+// .calendar-page .css-j7qwjs {
+//   height: $calendar-height;
+//   width: $calendar-width;
+// }
 
-.calendar-page .css-epd502 {
-  height: $calendar-height;
-  max-height: 100vh;
-  width: $calendar-width;
-}
-
-.calendar-page .css-169iwlq-MuiCalendarPicker-root {
+.calendar-page .MuiPickerStaticWrapper-root > div > div {
   height: $calendar-height;
   max-height: 100vh;
   width: $calendar-width;
 }
 
-.calendar-page .css-1wvgxus-MuiCalendarPicker-viewTransitionContainer {
+.calendar-page .MuiCalendarPicker-root {
+  height: $calendar-height;
+  max-height: 100vh;
+  width: $calendar-width;
+}
+
+.calendar-page .MuiCalendarPicker-viewTransitionContainer {
   height: $calendar-height;
   max-height: 100vh;
   width: $calendar-width;

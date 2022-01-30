@@ -53,7 +53,7 @@ const Navbar = () => {
   const brand = (
     <>
       <Avatar alt="logo" src={LOGO_IMG.path} sx={{ width: 50, height: 50 }} />
-      <Typography variant="h6" noWrap component="div" sx={{ ml: 2, mt: 1, mr: 2 }}>
+      <Typography variant="h6" noWrap component="div" sx={{ ml: 2, mt: 1, mr: 2 }} color="white">
         aID kIT
       </Typography>
     </>
@@ -134,7 +134,13 @@ const Navbar = () => {
   );
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      color="navbar"
+      sx={{
+        color: 'white',
+      }}
+    >
       <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -143,7 +149,7 @@ const Navbar = () => {
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, textDecoration: 'none' }}
               component={Link}
               to={PATH_TO_HOMEPAGE}
-              color="inherit"
+              color="secondary"
             >
               {brand}
             </Box>
