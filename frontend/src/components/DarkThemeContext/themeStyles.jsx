@@ -114,7 +114,7 @@ const darkTheme = createTheme({
       main: DARKTHEME_BASE_COLOR,
     },
     datetime: {
-      mainFont: DARKTHEME_PRIMARY_COLOR,
+      mainFont: DARKTHEME_SECONDARY_COLOR,
       mainBackground: LIGHTTHEME_SECONDARY_COLOR,
       currentDayFont: LIGHTTHEME_PRIMARY_COLOR,
       currentDayBackground: LIGHTTHEME_BACKGROUND_COLOR,
@@ -134,7 +134,7 @@ const darkTheme = createTheme({
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          backgroundColor: DARKTHEME_SECONDARY_COLOR,
+          backgroundColor: DARKTHEME_PRIMARY_COLOR,
           color: LIGHTTHEME_PRIMARY_COLOR,
           fontWeight: 900,
           '&.Mui-selected': {
