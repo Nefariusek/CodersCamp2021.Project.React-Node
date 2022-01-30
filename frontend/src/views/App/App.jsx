@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import { useDarkTheme } from '../../components/DarkThemeContext/DarkThemeContext';
-import { lightTheme } from '../../components/DarkThemeContext/themeStyles';
+import { darkTheme, lightTheme } from '../../components/DarkThemeContext/themeStyles';
 import Navbar from '../../components/Navbar/Navbar';
 import {
   PATH_TO_CALENDAR,
@@ -36,7 +36,7 @@ const paths = [
 const App = () => {
   const darkMode = useDarkTheme();
   console.log(darkMode);
-  const currentTheme = lightTheme;
+  const currentTheme = darkMode ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={currentTheme}>
       <div className="App">
