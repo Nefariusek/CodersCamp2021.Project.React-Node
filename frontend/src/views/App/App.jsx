@@ -1,8 +1,10 @@
 import './App.scss';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
+import { useDarkTheme } from '../../components/DarkThemeContext/DarkThemeContext';
+import { darkTheme, lightTheme } from '../../components/DarkThemeContext/themeStyles';
 import Navbar from '../../components/Navbar/Navbar';
 import PrivatePath from '../../components/PrivatePath/PrivatePath';
 import {
@@ -32,75 +34,11 @@ const paths = [
   { url: PATH_TO_SETTINGS, element: <p>Settings</p> },
 ];
 
-const aidkitTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#48cae4',
-    },
-    secondary: {
-      main: '#fcd433',
-    },
-    common: {
-      black: '#000',
-      white: '#fff',
-    },
-    label: {
-      main: '1b4c56',
-    },
-    error: {
-      main: '#880e4f',
-    },
-    background: {
-      default: '#48cae4',
-    },
-    title: {
-      main: '#023e8a',
-      light: '#059ac8',
-    },
-    navbar: {
-      main: '#1976d2',
-    },
-    datetime: {
-      mainFont: '#102a71',
-      mainBackground: '#fcd433',
-      currentDayFont: '#102a71',
-      currentDayBackground: '#95d4e0',
-    },
-    tonalOffset: 0.1,
-  },
-
-  components: {
-    MuiPickerStaticWrapper: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#fcd433',
-          color: '#102a71',
-        },
-      },
-    },
-    MuiPickersDay: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#95d4e0',
-          color: '#102a71',
-          fontWeight: 900,
-          '&.Mui-selected': {
-            backgroundColor: '#102a71',
-            color: '#fff',
-            '&:hover, &:focus, &.Mui-focusVisible': {
-              backgroundColor: '#102a71',
-              color: '#fff',
-            },
-          },
-        },
-      },
-    },
-  },
-});
-
 const App = () => {
+  const darkMode = useDarkTheme();
+  const currentTheme = darkMode ? darkTheme : lightTheme;
   return (
-    <ThemeProvider theme={aidkitTheme}>
+    <ThemeProvider theme={currentTheme}>
       <div className="App">
         <BrowserRouter>
           <Navbar />

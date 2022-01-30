@@ -8,12 +8,15 @@ import React from 'react';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import DatePicker from './DatePicker';
 
+const TITLE = `DAILY DRUGS`;
+const DAYTIMES = [`MORNING`, `NOON`, `EVENING`];
+
 const DailyDrugs = () => {
   return (
     <div className="daily-view-container">
       <div className="title-container">
-        <Typography align="center" className="daily-drugs-title" variant="h2">
-          DAILY DRUGS
+        <Typography align="center" className="daily-drugs-title" variant="h2" color="title.main">
+          {TITLE}
         </Typography>
       </div>
       <div className="content-container">
@@ -24,19 +27,19 @@ const DailyDrugs = () => {
           <Box className="drug-box" sx={{ display: 'flex', borderRadius: 15 }}>
             <Box className="drug-box-compartment 1" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
-                MORNING
+                {DAYTIMES[0]}
               </Typography>
             </Box>
 
             <Box className="drug-box-compartment 2" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
-                NOON
+                {DAYTIMES[1]}
               </Typography>
             </Box>
 
             <Box className="drug-box-compartment 3" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
-                EVENING
+                {DAYTIMES[2]}
               </Typography>
             </Box>
           </Box>
