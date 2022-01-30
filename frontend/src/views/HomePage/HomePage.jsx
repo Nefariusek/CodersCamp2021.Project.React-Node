@@ -49,11 +49,8 @@ const HomePage = () => {
           </div>
           <ButtonsUserHub />
         </div>
-        <div className="aid-kit-container">
-          <div className="calendar">
-            <Calendar />
-            <img className="aid-kit" alt="aid kit" src="../../../public/apteczka-cutout.png" />
-          </div>
+        <div className="calendar">
+          <Calendar />
         </div>
       </div>
     </div>
