@@ -13,4 +13,6 @@ export const DARKTHEME_BASE_COLOR = `#2F3A45`;
 export const DARKTHEME_TITLE_COLOR = `#fcd433`;
 export const DARKTHEME_SUBTITLE_COLOR = `#fff`;
 export const DARKTHEME_NAVBAR_COLOR = `#3a4a59`;
-export const DARKTHEME_SECONDARY_COLOR = `#82A0F4`;
+export const DARKTHEME_PRIMARY_COLOR = `#fcd433`;
+export const DARKTHEME_SECONDARY_COLOR = `#3ca6c8`;
+export const DARKTHEME_ERROR_COLOR = `#cc1a76`;

@@ -2,8 +2,10 @@ import { createTheme } from '@mui/material/styles';
 
 import {
   DARKTHEME_BASE_COLOR,
+  DARKTHEME_ERROR_COLOR,
   DARKTHEME_NAVBAR_COLOR,
-  DARKTHEME_SUBTITLE_COLOR,
+  DARKTHEME_PRIMARY_COLOR,
+  DARKTHEME_SECONDARY_COLOR,
   DARKTHEME_TITLE_COLOR,
   LIGHTTHEME_BACKGROUND_COLOR,
   LIGHTTHEME_BASE_COLOR,
@@ -99,20 +101,20 @@ const darkTheme = createTheme({
       main: LIGHTTHEME_LABEL_COLOR,
     },
     error: {
-      main: LIGHTTHEME_ERROR_COLOR,
+      main: DARKTHEME_ERROR_COLOR,
     },
     background: {
-      default: DARKTHEME_BASE_COLOR,
+      default: DARKTHEME_NAVBAR_COLOR,
     },
     title: {
       main: DARKTHEME_TITLE_COLOR,
       light: LIGHTTHEME_SUBTITLE_COLOR,
     },
     navbar: {
-      main: DARKTHEME_NAVBAR_COLOR,
+      main: DARKTHEME_BASE_COLOR,
     },
     datetime: {
-      mainFont: `#fcd433`,
+      mainFont: DARKTHEME_PRIMARY_COLOR,
       mainBackground: LIGHTTHEME_SECONDARY_COLOR,
       currentDayFont: LIGHTTHEME_PRIMARY_COLOR,
       currentDayBackground: LIGHTTHEME_BACKGROUND_COLOR,
@@ -132,7 +134,7 @@ const darkTheme = createTheme({
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTTHEME_BACKGROUND_COLOR,
+          backgroundColor: DARKTHEME_SECONDARY_COLOR,
           color: LIGHTTHEME_PRIMARY_COLOR,
           fontWeight: 900,
           '&.Mui-selected': {
