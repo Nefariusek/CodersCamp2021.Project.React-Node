@@ -1,55 +1,55 @@
 import { createTheme } from '@mui/material/styles';
 
 import {
-  DARKMODE_BASE_COLOR,
-  DARKMODE_NAVBAR_COLOR,
-  DARKMODE_SUBTITLE_COLOR,
-  DARKMODE_TITLE_COLOR,
-  LIGHTMODE_BACKGROUND_COLOR,
-  LIGHTMODE_BASE_COLOR,
-  LIGHTMODE_ERROR_COLOR,
-  LIGHTMODE_LABEL_COLOR,
-  LIGHTMODE_NAVBAR_COLOR,
-  LIGHTMODE_PRIMARY_COLOR,
-  LIGHTMODE_SECONDARY_COLOR,
-  LIGHTMODE_SUBTITLE_COLOR,
-  LIGHTMODE_TEXT_COLOR,
-  LIGHTMODE_TITLE_COLOR,
+  DARKTHEME_BASE_COLOR,
+  DARKTHEME_NAVBAR_COLOR,
+  DARKTHEME_SUBTITLE_COLOR,
+  DARKTHEME_TITLE_COLOR,
+  LIGHTTHEME_BACKGROUND_COLOR,
+  LIGHTTHEME_BASE_COLOR,
+  LIGHTTHEME_ERROR_COLOR,
+  LIGHTTHEME_LABEL_COLOR,
+  LIGHTTHEME_NAVBAR_COLOR,
+  LIGHTTHEME_PRIMARY_COLOR,
+  LIGHTTHEME_SECONDARY_COLOR,
+  LIGHTTHEME_SUBTITLE_COLOR,
+  LIGHTTHEME_TEXT_COLOR,
+  LIGHTTHEME_TITLE_COLOR,
 } from '../../constants/colors';
 
 const lightTheme = createTheme({
   palette: {
     primary: {
-      main: LIGHTMODE_BASE_COLOR,
+      main: LIGHTTHEME_BASE_COLOR,
     },
     secondary: {
-      main: LIGHTMODE_SECONDARY_COLOR,
+      main: LIGHTTHEME_SECONDARY_COLOR,
     },
     common: {
       black: '#000',
       white: '#fff',
     },
     label: {
-      main: LIGHTMODE_LABEL_COLOR,
+      main: LIGHTTHEME_LABEL_COLOR,
     },
     error: {
-      main: LIGHTMODE_ERROR_COLOR,
+      main: LIGHTTHEME_ERROR_COLOR,
     },
     background: {
-      default: LIGHTMODE_BASE_COLOR,
+      default: LIGHTTHEME_BASE_COLOR,
     },
     title: {
-      main: LIGHTMODE_TITLE_COLOR,
-      light: LIGHTMODE_SUBTITLE_COLOR,
+      main: LIGHTTHEME_TITLE_COLOR,
+      light: LIGHTTHEME_SUBTITLE_COLOR,
     },
     navbar: {
-      main: LIGHTMODE_NAVBAR_COLOR,
+      main: LIGHTTHEME_NAVBAR_COLOR,
     },
     datetime: {
-      mainFont: LIGHTMODE_PRIMARY_COLOR,
-      mainBackground: LIGHTMODE_SECONDARY_COLOR,
-      currentDayFont: LIGHTMODE_PRIMARY_COLOR,
-      currentDayBackground: LIGHTMODE_BACKGROUND_COLOR,
+      mainFont: LIGHTTHEME_PRIMARY_COLOR,
+      mainBackground: LIGHTTHEME_SECONDARY_COLOR,
+      currentDayFont: LIGHTTHEME_PRIMARY_COLOR,
+      currentDayBackground: LIGHTTHEME_BACKGROUND_COLOR,
     },
     tonalOffset: 0.1,
   },
@@ -58,23 +58,23 @@ const lightTheme = createTheme({
     MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTMODE_SECONDARY_COLOR,
-          color: LIGHTMODE_PRIMARY_COLOR,
+          backgroundColor: LIGHTTHEME_SECONDARY_COLOR,
+          color: LIGHTTHEME_PRIMARY_COLOR,
         },
       },
     },
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTMODE_BACKGROUND_COLOR,
-          color: LIGHTMODE_PRIMARY_COLOR,
+          backgroundColor: LIGHTTHEME_BACKGROUND_COLOR,
+          color: LIGHTTHEME_PRIMARY_COLOR,
           fontWeight: 900,
           '&.Mui-selected': {
-            backgroundColor: LIGHTMODE_PRIMARY_COLOR,
-            color: LIGHTMODE_TEXT_COLOR,
+            backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
+            color: LIGHTTHEME_TEXT_COLOR,
             '&:hover, &:focus, &.Mui-focusVisible': {
-              backgroundColor: LIGHTMODE_PRIMARY_COLOR,
-              color: LIGHTMODE_TEXT_COLOR,
+              backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
+              color: LIGHTTHEME_TEXT_COLOR,
             },
           },
         },
@@ -86,36 +86,36 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: LIGHTMODE_BASE_COLOR,
+      main: DARKTHEME_BASE_COLOR,
     },
     secondary: {
-      main: LIGHTMODE_SECONDARY_COLOR,
+      main: DARKTHEME_TITLE_COLOR,
     },
     common: {
       black: '#000',
       white: '#fff',
     },
     label: {
-      main: LIGHTMODE_LABEL_COLOR,
+      main: LIGHTTHEME_LABEL_COLOR,
     },
     error: {
-      main: LIGHTMODE_ERROR_COLOR,
+      main: LIGHTTHEME_ERROR_COLOR,
     },
     background: {
-      default: LIGHTMODE_BASE_COLOR,
+      default: DARKTHEME_BASE_COLOR,
     },
     title: {
-      main: LIGHTMODE_TITLE_COLOR,
-      light: LIGHTMODE_SUBTITLE_COLOR,
+      main: DARKTHEME_TITLE_COLOR,
+      light: LIGHTTHEME_SUBTITLE_COLOR,
     },
     navbar: {
-      main: DARKMODE_NAVBAR_COLOR,
+      main: DARKTHEME_NAVBAR_COLOR,
     },
     datetime: {
-      mainFont: LIGHTMODE_PRIMARY_COLOR,
-      mainBackground: LIGHTMODE_SECONDARY_COLOR,
-      currentDayFont: LIGHTMODE_PRIMARY_COLOR,
-      currentDayBackground: LIGHTMODE_BACKGROUND_COLOR,
+      mainFont: `#fcd433`,
+      mainBackground: LIGHTTHEME_SECONDARY_COLOR,
+      currentDayFont: LIGHTTHEME_PRIMARY_COLOR,
+      currentDayBackground: LIGHTTHEME_BACKGROUND_COLOR,
     },
     tonalOffset: 0.1,
   },
@@ -124,23 +124,23 @@ const darkTheme = createTheme({
     MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTMODE_SECONDARY_COLOR,
-          color: LIGHTMODE_PRIMARY_COLOR,
+          backgroundColor: LIGHTTHEME_SECONDARY_COLOR,
+          color: LIGHTTHEME_PRIMARY_COLOR,
         },
       },
     },
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTMODE_BACKGROUND_COLOR,
-          color: LIGHTMODE_PRIMARY_COLOR,
+          backgroundColor: LIGHTTHEME_BACKGROUND_COLOR,
+          color: LIGHTTHEME_PRIMARY_COLOR,
           fontWeight: 900,
           '&.Mui-selected': {
-            backgroundColor: LIGHTMODE_PRIMARY_COLOR,
-            color: LIGHTMODE_TEXT_COLOR,
+            backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
+            color: LIGHTTHEME_TEXT_COLOR,
             '&:hover, &:focus, &.Mui-focusVisible': {
-              backgroundColor: LIGHTMODE_PRIMARY_COLOR,
-              color: LIGHTMODE_TEXT_COLOR,
+              backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
+              color: LIGHTTHEME_TEXT_COLOR,
             },
           },
         },
