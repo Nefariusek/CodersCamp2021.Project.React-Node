@@ -3,12 +3,15 @@ import 'typeface-roboto';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { LoginProvider } from './components/LoginContext/LoginContext';
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LoginProvider>
+      <App />
+    </LoginProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
+import PrivatePath from '../../components/PrivatePath/PrivatePath';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_CREDITS,
@@ -22,9 +23,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
-  { url: PATH_TO_CALENDAR, element: <CalendarPage /> },
+  { url: PATH_TO_CALENDAR, element: <PrivatePath site={<CalendarPage />} /> },
   { url: PATH_TO_CREDITS, element: <CreditsPage /> },
-  { url: PATH_TO_DAILY_DRUGS, element: <DailyView /> },
+  { url: PATH_TO_DAILY_DRUGS, element: <PrivatePath site={<DailyView />} /> },
   { url: PATH_TO_LEXICON, element: <p>Lexicon</p> },
   { url: PATH_TO_LOGIN, element: <LoginPage /> },
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
