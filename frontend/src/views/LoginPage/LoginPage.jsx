@@ -43,7 +43,6 @@ const LoginPage = () => {
             error={usernameError}
             style={{
               width: '80%',
-              backgroundColor: '#42b6dc',
             }}
           />
           <TextField
@@ -56,7 +55,6 @@ const LoginPage = () => {
             error={passwordError}
             style={{
               width: '80%',
-              backgroundColor: '#42b6dc',
             }}
           />
           <Button type="submit" variant="contained" className={buttonStyles.Button}>
