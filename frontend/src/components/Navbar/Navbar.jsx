@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -25,6 +25,7 @@ import {
   PATH_TO_SETTINGS,
 } from '../../constants/paths';
 import { useThemeUpdate } from '../DarkThemeContext/DarkThemeContext';
+import LoginContext from '../LoginContext/LoginContext';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
 const pages = [
@@ -38,9 +39,14 @@ const Navbar = () => {
   const toggleTheme = useThemeUpdate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const auth = useContext(LoginContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  const handleLogOut = () => {
+    auth.setLoginStatus(false);
   };
 
   const handleCloseNavMenu = () => {
@@ -122,7 +128,14 @@ const Navbar = () => {
       <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_SETTINGS}>
         <SettingsIcon />
       </IconButton>
-      <IconButton color="inherit" size="large" aria-label="login button" component={Link} to={PATH_TO_LOGIN}>
+      <IconButton
+        color="inherit"
+        size="large"
+        aria-label="login button"
+        component={Link}
+        to={PATH_TO_LOGIN}
+        onClick={handleLogOut}
+      >
         <LogoutIcon />
       </IconButton>
     </Stack>
