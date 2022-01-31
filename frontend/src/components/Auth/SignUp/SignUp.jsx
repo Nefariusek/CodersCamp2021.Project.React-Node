@@ -15,7 +15,6 @@ import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } 
 
 const styles = {
   helper: {
-    color: 'black',
     fontSize: '.8em',
   },
 };

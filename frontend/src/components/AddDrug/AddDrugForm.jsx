@@ -28,7 +28,6 @@ const initialFormState = {
 
 const styles = {
   helper: {
-    color: 'black',
     fontSize: '.8em',
   },
 };
