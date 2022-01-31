@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import startOfWeek from 'date-fns/startOfWeek';
 import { useState } from 'react';
 
@@ -31,9 +31,9 @@ const renderDaysInWeek = (date) => {
 const renderDayNames = () => {
   const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
   return dayNames.map((dayName) => (
-    <div className="day-name" key={`${dayName}`}>
+    <Typography className="day-name" color="title.main" key={`${dayName}`}>
       {dayName}
-    </div>
+    </Typography>
   ));
 };
 

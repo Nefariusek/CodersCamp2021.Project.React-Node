@@ -38,12 +38,12 @@
   justify-content: space-around;
   font-size: 4vmin;
   font-weight: bold;
-  color: #023e8a;
 }
 
 .calendar-page .day-names .day-name {
   width: 10vw;
   text-align: center;
+  height: fit-content;
 }
 
 .calendar-page .week-calendar {
