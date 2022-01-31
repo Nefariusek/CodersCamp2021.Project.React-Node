@@ -7,11 +7,6 @@ $calendar-width: 100vw;
   background-color: #48cae4;
 }
 
-// .calendar-page .css-j7qwjs {
-//   height: $calendar-height;
-//   width: $calendar-width;
-// }
-
 .calendar-page .MuiPickerStaticWrapper-root > div > div {
   height: $calendar-height;
   max-height: 100vh;
@@ -24,26 +19,20 @@ $calendar-width: 100vw;
   width: $calendar-width;
 }
 
-.calendar-page .MuiCalendarPicker-viewTransitionContainer {
-  height: $calendar-height;
-  max-height: 100vh;
-  width: $calendar-width;
-}
-
-.calendar-page .css-1dozdou {
+.calendar-page .MuiCalendarPicker-root > div:first-of-type {
   justify-content: center;
   max-height: 10vh;
   gap: 10px;
 }
 
-.calendar-page .css-l0iinn {
+.calendar-page .MuiCalendarPicker-root > div:first-of-type > div:first-of-type {
   max-height: 10vh;
   margin-right: 0;
   gap: 10px;
   font-weight: bold;
 }
 
-.calendar-page .css-1v994a0 {
+.calendar-page .PrivatePickersFadeTransitionGroup-root > div {
   font-size: 7vmin;
   color: #023e8a;
 }
@@ -52,7 +41,7 @@ $calendar-width: 100vw;
   position: static;
 }
 
-.calendar-page .css-dhopo2 > * {
+.calendar-page .PrivatePickersSlideTransition-root > * {
   position: static;
   background-color: #fcd433;
   width: fit-content;
@@ -61,7 +50,7 @@ $calendar-width: 100vw;
   border-radius: 5vmin;
 }
 
-.calendar-page .css-1w13o7u-MuiTypography-root {
+.calendar-page .MuiTypography-root {
   height: 10vh;
   width: 10vw;
   color: #059ac8;
@@ -80,15 +69,15 @@ $calendar-width: 100vw;
   margin: 1vmin;
 }
 
-.calendar-page .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+.calendar-page .MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   background-color: #023e8a !important;
 }
 
-.calendar-page .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+.calendar-page .MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   background-color: #023e8a !important;
 }
 
-.calendar-page .css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+.calendar-page .MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
   border: 3px solid #023e8a;
 }
 
