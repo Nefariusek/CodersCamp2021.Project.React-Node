@@ -12,7 +12,8 @@
     align-items: flex-end;
     flex-direction: column;
     margin-right: 2vw;
-    margin-bottom: 2vw;
+    margin-bottom: 4vh;
+    margin-top: 1vh;
   }
 
   .calendar {
@@ -57,7 +58,7 @@
     }
 
     .day-time {
-      margin: 0;
+      margin: 0 2vw;
     }
 
     .calendar {
