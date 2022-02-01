@@ -11,7 +11,6 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
@@ -41,7 +40,7 @@ const routes = [
 
 const Navigation = () => {
   return (
-    <Stack>
+    <Stack align="center">
       <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
         {routes.map((route) => (
           <Button key={route.label} variant="contained" component={Link} to={route.url} className={buttonStyles.Button}>
@@ -49,7 +48,7 @@ const Navigation = () => {
           </Button>
         ))}
       </Stack>
-      <Box align="center" mt={4}>
+      <Box mt={4}>
         <Button variant="contained" component={Link} to={PATH_TO_USER_HOMEPAGE} className={buttonStyles.Button}>
           User Homepage
         </Button>
@@ -58,53 +57,38 @@ const Navigation = () => {
   );
 };
 
-const landingPageTheme = createTheme({
-  palette: {
-    background: {
-      default: '#48cae4',
-    },
-    title: {
-      main: '#023e8a',
-      light: '#059ac8',
-    },
-    tonalOffset: 0.1,
-  },
-});
-
 const LandingPage = () => {
   return (
-    <ThemeProvider theme={landingPageTheme}>
-      <Container className="landing-page">
-        <CssBaseline />
-        <Grid container justifyContent="center">
-          <Grid item xs={12} align="center">
-            <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">
-              <Avatar src={LOGO_IMG.path} alt={LOGO_IMG.alt} sx={{ width: 100, height: 100 }} />
-              <Stack alignItems="center">
-                <Box align="left" my={4}>
-                  <Typography variant="h2" component="h1" color="title.main" fontWeight="bold">
-                    {APP_NAME}
-                  </Typography>
-                  <Typography variant="h4" component="h3" color="title.light" fontWeight="bold">
-                    {APP_SUBTITLE}
-                  </Typography>
-                </Box>
-              </Stack>
+    <Container className="landing-page">
+      <CssBaseline />
+      <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '100vh' }}>
+        <Grid item xs={12}>
+          <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">
+            <Avatar src={LOGO_IMG.path} alt={LOGO_IMG.alt} sx={{ width: 100, height: 100 }} />
+            <Stack alignItems="center">
+              <Box align="left" my={{ xs: '1', md: '2' }}>
+                <Typography variant="h2" component="h1" color="title.main" fontWeight="bold">
+                  {APP_NAME}
+                </Typography>
+                <Typography variant="h4" component="h2" color="title.light" fontWeight="bold">
+                  {APP_SUBTITLE}
+                </Typography>
+              </Box>
             </Stack>
+          </Stack>
 
-            <Grid item container xs={12} alignItems="center" justifyContent="center">
-              <Typography color="title.main" fontSize="20px">
-                <ConstructionIcon className="under-construction" />
-                Under construction :)
-              </Typography>
-            </Grid>
-            <Grid item container xs={12} my={3} alignItems="center" justifyContent="center">
-              <Navigation />
-            </Grid>
+          <Grid item container xs={12} alignItems="center" justifyContent="center">
+            <Typography color="title.main" fontSize="20px" my={5}>
+              <ConstructionIcon className="under-construction" />
+              Under construction :)
+            </Typography>
+          </Grid>
+          <Grid item container xs={12} my={3} alignItems="center" justifyContent="center">
+            <Navigation />
           </Grid>
         </Grid>
-      </Container>
-    </ThemeProvider>
+      </Grid>
+    </Container>
   );
 };
 
