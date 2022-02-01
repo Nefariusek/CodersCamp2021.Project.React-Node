@@ -9,6 +9,7 @@ import { Link, Navigate } from 'react-router-dom';
 import loginValidation from '../../api/loginValidation';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import LoginContext from '../../components/LoginContext/LoginContext';
+import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
 
@@ -70,7 +71,7 @@ const LoginPage = () => {
           </Button>
         </form>
       </div>
-      <img src="./apteczka.png" alt="" />
+      <img src={AID_KIT_IMAGE_PATH} alt={AID_KIT_IMAGE_ALT} />
     </div>
   );
 };

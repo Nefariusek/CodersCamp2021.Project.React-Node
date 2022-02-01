@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LOGO_ALT, LOGO_PATH } from '../../constants/images';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_DAILY_DRUGS,
@@ -33,7 +34,7 @@ const pages = [
   { path: PATH_TO_LEXICON, name: 'Lexicon' },
   { path: PATH_TO_CALENDAR, name: 'Calendar' },
 ];
-const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
+const LOGO_IMG = { path: LOGO_PATH, alt: LOGO_ALT };
 
 const Navbar = () => {
   const toggleTheme = useThemeUpdate();

@@ -14,10 +14,11 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
+import { LOGO_ALT, LOGO_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER } from '../../constants/paths';
 
-const logoImg = { path: './logo_color.png', alt: 'logo' };
+const logoImg = { path: LOGO_PATH, alt: LOGO_ALT };
 
 const routes = [
   {
