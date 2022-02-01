@@ -1,6 +1,5 @@
 import './LandingPage.scss';
 
-import ConstructionIcon from '@mui/icons-material/Construction';
 import GroupIcon from '@mui/icons-material/Group';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LoginIcon from '@mui/icons-material/Login';
@@ -14,11 +13,11 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
-import buttonStyles from '../../components/Button/button.module.scss';
+import buttonStyles from '../../components/Button/Button.module.scss';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
-import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
+import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER } from '../../constants/paths';
 
-const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
+const logoImg = { path: './logo_color.png', alt: 'logo' };
 
 const routes = [
   {
@@ -40,19 +39,12 @@ const routes = [
 
 const Navigation = () => {
   return (
-    <Stack align="center">
-      <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
-        {routes.map((route) => (
-          <Button key={route.label} variant="contained" component={Link} to={route.url} className={buttonStyles.Button}>
-            {route.icon} {route.label}
-          </Button>
-        ))}
-      </Stack>
-      <Box mt={4}>
-        <Button variant="contained" component={Link} to={PATH_TO_USER_HOMEPAGE} className={buttonStyles.Button}>
-          User Homepage
+    <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
+      {routes.map((route) => (
+        <Button key={route.label} variant="contained" component={Link} to={route.url} className={buttonStyles.Button}>
+          {route.icon} {route.label}
         </Button>
-      </Box>
+      ))}
     </Stack>
   );
 };
@@ -64,7 +56,7 @@ const LandingPage = () => {
       <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12}>
           <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">
-            <Avatar src={LOGO_IMG.path} alt={LOGO_IMG.alt} sx={{ width: 100, height: 100 }} />
+            <Avatar src={logoImg.path} alt={logoImg.alt} sx={{ width: 100, height: 100 }} />
             <Stack alignItems="center">
               <Box align="left" my={{ xs: '1', md: '2' }}>
                 <Typography variant="h2" component="h1" color="title.main" fontWeight="bold">
@@ -77,12 +69,8 @@ const LandingPage = () => {
             </Stack>
           </Stack>
 
-          <Grid item container xs={12} alignItems="center" justifyContent="center">
-            <Typography color="title.main" fontSize="20px" my={5}>
-              <ConstructionIcon className="under-construction" />
-              Under construction :)
-            </Typography>
-          </Grid>
+          <Grid item container xs={12} alignItems="center" justifyContent="center"></Grid>
+
           <Grid item container xs={12} my={3} alignItems="center" justifyContent="center">
             <Navigation />
           </Grid>
