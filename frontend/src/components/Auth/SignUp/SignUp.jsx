@@ -5,10 +5,10 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
+import { Link } from 'react-router-dom';
 
 import { PATH_TO_LOGIN } from '../../../constants/paths';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
@@ -203,9 +203,18 @@ const SignUp = () => {
         </Grid>
         <Grid container justifyContent="center">
           <Grid item>
-            <Link href={PATH_TO_LOGIN} variant="body2" color="secondary">
+            <Button
+              component={Link}
+              to={PATH_TO_LOGIN}
+              color="secondary"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.target.click();
+              }}
+              align="center"
+            >
               Already have an account? Sign in
-            </Link>
+            </Button>
           </Grid>
         </Grid>
       </Box>
