@@ -2,7 +2,6 @@ import './LoginPage.scss';
 
 import { TextField, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import { useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
@@ -31,7 +30,6 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="login-container">
-        <CssBaseline />
         <Typography variant="h1" color="title.main" fontWeight="bold">
           {APP_NAME}
         </Typography>

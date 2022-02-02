@@ -8,7 +8,6 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -75,7 +74,6 @@ const LandingPage = () => {
   return (
     <ThemeProvider theme={landingPageTheme}>
       <Container className="landing-page">
-        <CssBaseline />
         <Grid container justifyContent="center">
           <Grid item xs={12} align="center">
             <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">

@@ -3,7 +3,6 @@ import './SignUp.scss';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
@@ -91,7 +90,6 @@ const SignUp = () => {
 
   return (
     <Container maxWidth="xs">
-      <CssBaseline />
       <Box
         component="form"
         noValidate
