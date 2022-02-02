@@ -1,5 +1,6 @@
 import './App.scss';
 
+import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -46,6 +47,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={currentTheme}>
+      <CssBaseline />
       <div className="App">
         {pathsWithoutNavbar.indexOf(pathname) >= 0 ? null : <Navbar />}
 

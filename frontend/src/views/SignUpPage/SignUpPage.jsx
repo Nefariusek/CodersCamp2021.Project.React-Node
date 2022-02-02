@@ -2,12 +2,12 @@ import './SignUpPage.scss';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import mainImage from '../../../public/apteczka.png';
+import mainImage from '/apteczka.png';
+
 import SignUp from '../../components/Auth/SignUp/SignUp';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 
@@ -16,7 +16,6 @@ const MAIN_IMAGE = { pathOrUrl: mainImage, alt: 'aid kit' };
 const SignUpPage = () => {
   return (
     <Container className="signup-page">
-      <CssBaseline />
       <Grid container spacing={2} alignItems="center" justifyContent="space-between">
         <Grid item xs={12} md={6}>
           <Stack alignItems="center">
