@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
-import ImageData from '../../components/ImageSlider/ImageData';
+import imageData from '../../components/ImageSlider/imageData';
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import { LOGO_ALT, LOGO_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
@@ -73,7 +73,7 @@ const LandingPage = () => {
           </Stack>
 
           <Grid item container xs={12} alignItems="center" justifyContent="center">
-            <ImageSlider slides={ImageData} delay={4000} />
+            <ImageSlider slides={imageData} delay={4000} />
           </Grid>
 
           <Grid item container xs={12} my={3} alignItems="center" justifyContent="center">

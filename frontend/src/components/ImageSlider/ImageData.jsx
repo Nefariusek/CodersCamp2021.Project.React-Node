@@ -1,6 +1,6 @@
 import { APP_NAME } from '../../constants/labels';
 
-const ImageData = [
+const imageData = [
   {
     imagePathOrUrl: './slide-1.jpg',
     // https://www.pexels.com/photo/addiction-candy-face-portrait-5723610/
@@ -112,7 +112,7 @@ const ImageData = [
     imagePathOrUrl: './slide-13.jpg',
     // https://www.pexels.com/pl-pl/zdjecie/marketing-mezczyzna-kreatywny-biuro-5310566/
     // Zdjęcie autorstwa Malte Luk z Pexels
-    text: 'and even more stuff about your medications',
+    text: 'And even more stuff you will find in this app',
     get alt() {
       return this.text;
     },
@@ -137,4 +137,4 @@ const ImageData = [
   },
 ];
 
-export default ImageData;
+export default imageData;

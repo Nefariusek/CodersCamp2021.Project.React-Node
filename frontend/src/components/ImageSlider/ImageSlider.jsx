@@ -3,7 +3,8 @@ import './ImageSlider.scss';
 import ArrowLeft from '@mui/icons-material/ArrowBackIosNew';
 import ArrowRight from '@mui/icons-material/ArrowForwardIos';
 import Grid from '@mui/material/Grid';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
 
 /**
  * Component creates slider with changing images with texts.
@@ -46,6 +47,11 @@ const ImageSlider = (props) => {
       resetTimeout();
     };
   }, [withAutoPlay, activeIndex, numberOfSlides, paused, delay]);
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => nextSlide(),
+    onSwipedRight: () => prevSlide(),
+  });
 
   if (!Array.isArray(slides) || numberOfSlides <= 0) {
     return null;
@@ -112,7 +118,7 @@ const ImageSlider = (props) => {
         },
       }}
     >
-      <div className="slider">
+      <div className="slider" {...swipeHandlers}>
         {numberOfSlides > 1 && <ArrowLeft className={`slider-arrow-left ${getArrowType()}`} onClick={prevSlide} />}
         {numberOfSlides > 1 && <ArrowRight className={`slider-arrow-right ${getArrowType()}`} onClick={nextSlide} />}
 
