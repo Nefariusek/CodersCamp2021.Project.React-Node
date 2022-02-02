@@ -5,6 +5,16 @@ import ArrowRight from '@mui/icons-material/ArrowForwardIos';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useRef, useState } from 'react';
 
+/**
+ * Component creates slider with changing images with texts.
+ * Component accepts following inputs:
+ * @param {Array.<{imagePathOrUrl: String, text: String}>} slides - array of objects with data about the slides (image url or path and text). If text is empty string there is no background for text.
+ * @param {number} [initialIndex=0] - index of the first image to show
+ * @param {boolean} [withEffect=true] - whether there should be animated hover effect
+ * @param {boolean} [withAutoPlay=true] - whether there should be autoplay
+ * @param {number} [delay=5000] - delay (in miliseconds) in autoplay
+ * @param {string} [arrowType=round] - arrow type: round or square
+ */
 const ImageSlider = (props) => {
   const { slides, initialIndex = 0, withEffect = true, withAutoPlay = true, delay = 5000, arrowType = 'round' } = props;
   const numberOfSlides = Array.isArray(slides) ? slides.length : 0;
