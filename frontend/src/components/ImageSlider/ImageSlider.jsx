@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import React, { useEffect, useRef, useState } from 'react';
 
 const ImageSlider = (props) => {
-  const { slides, initialIndex = 0, withAutoPlay = true, delay = 5000, arrowType = 'round' } = props;
+  const { slides, initialIndex = 0, withEffect = true, withAutoPlay = true, delay = 5000, arrowType = 'round' } = props;
   const numberOfSlides = Array.isArray(slides) ? slides.length : 0;
   const [activeIndex, setActiveIndex] = useState(initialIndex >= 0 && initialIndex < numberOfSlides ? initialIndex : 0);
   const [paused, setPaused] = useState(false);
@@ -58,6 +58,25 @@ const ImageSlider = (props) => {
     }
   };
 
+  const handleEffectOnMouseMove = (event) => {
+    if (withEffect) {
+      activeSlideRef.current.classList.add('slide-effect');
+      const slide = activeSlideRef.current;
+      const r = slide.getBoundingClientRect();
+
+      slide.style.setProperty('--x', event.clientX - (r.left + Math.floor(r.width / 2)));
+      slide.style.setProperty('--y', event.clientY - (r.top + Math.floor(r.height / 2)));
+    }
+  };
+
+  const handleEffectOnMouseLeave = () => {
+    if (withEffect) {
+      activeSlideRef.current.classList.remove('slide-effect');
+      activeSlideRef.current.style.setProperty('--x', 0);
+      activeSlideRef.current.style.setProperty('--y', 0);
+    }
+  };
+
   const handlePauseOnMouseEnter = () => {
     if (withAutoPlay) setPaused(true);
   };
@@ -99,7 +118,14 @@ const ImageSlider = (props) => {
               {index === activeIndex && (
                 <>
                   {slide.text ? <p className="slide-text">{slide.text}</p> : ''}
-                  <img ref={activeSlideRef} src={slide.imagePathOrUrl} alt={slide.alt} className="slide-image" />
+                  <img
+                    ref={activeSlideRef}
+                    src={slide.imagePathOrUrl}
+                    alt={slide.alt}
+                    className="slide-image"
+                    onMouseMove={handleEffectOnMouseMove}
+                    onMouseLeave={handleEffectOnMouseLeave}
+                  />
                 </>
               )}
             </div>

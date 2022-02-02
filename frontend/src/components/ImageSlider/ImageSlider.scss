@@ -116,6 +116,10 @@ $arrow-type: 'round';
     height: 100%;
     width: 100%;
     margin: 0 auto;
+
+    --x: 0;
+    --y: 0;
+    --d: 50;
   }
 
   .slide-text {
@@ -130,5 +134,11 @@ $arrow-type: 'round';
     color: $text-font-color;
     background-color: $text-background-color;
     user-select: none;
+  }
+
+  .slide-effect {
+    &:hover {
+      transform: scale(1.1) translate(calc(var(--x) / var(--d) * 3px), calc(var(--y) / var(--d) * 3px));
+    }
   }
 }
