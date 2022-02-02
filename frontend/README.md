@@ -32,7 +32,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 Graphics designed by:
 
-- ... from <a href="/">...</a>
+- <a href="https://dribbble.com/catalystvibes">Catalyst</a> on <a href="https://dribbble.com/shots/14078370-medicine">Dribble.com</a>
 
 Photos by:
 
