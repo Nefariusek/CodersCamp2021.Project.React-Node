@@ -3,7 +3,7 @@ $bp-medium: 600px;
 $bp-big: 900px;
 $text-background-color: #000;
 $text-font-color: #fff;
-$arrow-background-color: rgb(255, 255, 255, 0.6);
+$arrow-background-color: rgb(252, 212, 51, 1);
 $arrow-color: #000;
 $arrow-type: 'round';
 
@@ -53,7 +53,8 @@ $arrow-type: 'round';
     position: absolute;
     top: 50%;
     z-index: 10;
-    font-size: 2rem;
+    padding: 3px;
+    font-size: 2.2rem;
     color: $arrow-color;
     background-color: $arrow-background-color;
     @include arrow-type($arrow-type);
@@ -70,22 +71,24 @@ $arrow-type: 'round';
   }
 
   .slider-arrow-left {
-    left: -3rem;
+    left: -3.7rem;
+    padding-right: 5px;
 
-    @include bp-max($bp-medium) {
+    @include bp-max($bp-small) {
       & {
-        left: -1.9rem;
+        left: -2rem;
         font-size: 1.6rem;
       }
     }
   }
 
   .slider-arrow-right {
-    right: -3rem;
+    right: -3.7rem;
+    padding-left: 5px;
 
-    @include bp-max($bp-medium) {
+    @include bp-max($bp-small) {
       & {
-        right: -1.9rem;
+        right: -2rem;
         font-size: 1.6rem;
       }
     }
@@ -104,7 +107,7 @@ $arrow-type: 'round';
 
     &.active {
       opacity: 1;
-      transition-duration: 1s;
+      transition-duration: 1.8s;
       transform: scale(1);
     }
   }
