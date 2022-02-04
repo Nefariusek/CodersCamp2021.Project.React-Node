@@ -36,7 +36,6 @@
   width: 90vw;
   display: flex;
   justify-content: space-around;
-  font-size: 4vmin;
   font-weight: bold;
 }
 
@@ -44,6 +43,7 @@
   width: 10vw;
   text-align: center;
   height: fit-content;
+  font-size: 4vmin;
 }
 
 .calendar-page .week-calendar {
@@ -53,7 +53,6 @@
   width: 90vw;
   height: 60vh;
   border-radius: 2vmin;
-  color: #fff;
 }
 
 .calendar-page .week-calendar .week-day {

@@ -2,13 +2,15 @@
 .calendar .MuiPickerStaticWrapper-root {
   border-radius: 45px;
   border: 4px #102a71 solid;
+  background-color: #fcd433;
+  color: #102a71;
 }
-
 
 // main font
 .calendar .PrivatePickersToolbar-root > *,
 .calendar .MuiTypography-root {
   font-weight: 900 !important;
+  color: #102a71;
 }
 
 // day bubble
@@ -16,11 +18,14 @@
   font-weight: 900 !important;
 }
 
+.calendar .MuiPickersDay-dayWithMargin {
+  color: #102a71;
+}
+
 // selected day bubble
 .calendar .MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   font-weight: 900 !important;
 }
-
 
 // current day bubble
 .calendar .MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {

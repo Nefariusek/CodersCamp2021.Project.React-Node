@@ -19,7 +19,9 @@ const renderDaysInWeek = (date) => {
     week.push(
       <div className="week-day" key={`day${i}`}>
         <div className="day-informations">
-          <div className="day-number">{tmpDate.getDate()}</div>
+          <Typography className="day-number" color="datetime.weekDayFont">
+            {tmpDate.getDate()}
+          </Typography>
         </div>
       </div>,
     );
@@ -29,9 +31,9 @@ const renderDaysInWeek = (date) => {
 };
 
 const renderDayNames = () => {
-  const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   return dayNames.map((dayName) => (
-    <Typography className="day-name" color="title.main" key={`${dayName}`}>
+    <Typography className="day-name" color="title.light" fontWeight="bold" key={`${dayName}`}>
       {dayName}
     </Typography>
   ));
