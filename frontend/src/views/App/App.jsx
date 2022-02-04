@@ -15,6 +15,7 @@ import {
   PATH_TO_LANDINGPAGE,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
+  PATH_TO_MY_DRUGS,
   PATH_TO_REGISTER,
   PATH_TO_SETTINGS,
   PATH_TO_USER_HOMEPAGE,
@@ -25,6 +26,7 @@ import DailyView from '../DailyView/DailyView';
 import HomePage from '../HomePage/HomePage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
+import MyDrugsPage from '../MyDrugsPage/MyDrugsPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
@@ -36,6 +38,7 @@ const paths = [
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
   { url: PATH_TO_USER_HOMEPAGE, element: <HomePage /> },
   { url: PATH_TO_SETTINGS, element: <p>Settings</p> },
+  { url: PATH_TO_MY_DRUGS, element: <MyDrugsPage /> },
 ];
 
 const App = () => {

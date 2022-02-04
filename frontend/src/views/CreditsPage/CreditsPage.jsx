@@ -3,7 +3,7 @@ import './CreditsPage.scss';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import buttonStyles from '../../components/Button/Button.module.scss';
+import buttonStyles from '../../components/Button/button.module.scss';
 
 const MAIN_TEXT = 'Second project of Coders Camp 2021';
 const SUBTITLE = 'Meet our team!';
@@ -19,7 +19,7 @@ const DevelopersButtons = () => {
   return (
     <div className="github-buttons">
       {developers.map(({ href, name }) => (
-        <Button variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
+        <Button key={name} variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
           {name}
         </Button>
       ))}

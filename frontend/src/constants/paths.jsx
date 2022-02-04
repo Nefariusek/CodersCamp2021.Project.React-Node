@@ -8,3 +8,4 @@ export const PATH_TO_LOGIN = '/login';
 export const PATH_TO_REGISTER = '/register';
 export const PATH_TO_USERHUB = '/userhub';
 export const PATH_TO_SETTINGS = '/settings';
+export const PATH_TO_MY_DRUGS = '/mydrugs';

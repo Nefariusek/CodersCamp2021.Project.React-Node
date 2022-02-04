@@ -20,6 +20,7 @@ import {
   PATH_TO_DAILY_DRUGS,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
+  PATH_TO_MY_DRUGS,
   PATH_TO_SETTINGS,
   PATH_TO_USER_HOMEPAGE,
 } from '../../constants/paths';
@@ -31,6 +32,7 @@ const pages = [
   { path: PATH_TO_DAILY_DRUGS, name: 'Daily Drugs' },
   { path: PATH_TO_LEXICON, name: 'Lexicon' },
   { path: PATH_TO_CALENDAR, name: 'Calendar' },
+  { path: PATH_TO_MY_DRUGS, name: 'Your drugs' },
 ];
 const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
 
