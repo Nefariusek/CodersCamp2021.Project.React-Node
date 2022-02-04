@@ -1,5 +1,6 @@
 import './Date.scss';
 
+import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
 
 const DateDisplay = () => {
@@ -15,7 +16,11 @@ const DateDisplay = () => {
     setCurrentDate(`${dayOfWeek}/${day}/${month}/${year}`);
   }, []);
 
-  return <div className="date">{currentDate}</div>;
+  return (
+    <Typography variant="h4" className="date" component="div" color="datetime.mainFont">
+      {currentDate}
+    </Typography>
+  );
 };
 
 export default DateDisplay;

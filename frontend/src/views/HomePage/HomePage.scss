@@ -12,6 +12,8 @@
     align-items: flex-end;
     flex-direction: column;
     margin-right: 2vw;
+    margin-bottom: 4vh;
+    margin-top: 1vh;
   }
 
   .calendar {
@@ -25,13 +27,12 @@
     flex-direction: row;
     justify-content: space-around;
 
-    .title h1 {
+    .title h2 {
       font-family: 'Roboto Condensed', sans-serif;
       font-weight: 900;
       font-size: 6rem;
       margin-bottom: 0;
       margin-top: 20%;
-      color: #102a71;
     }
 
     .title h4 {
@@ -40,7 +41,6 @@
       font-size: 2.5rem;
       margin-top: 0;
       letter-spacing: 0.2rem;
-      color: #0096c7;
       width: 100%;
     }
   }
@@ -51,12 +51,6 @@
     align-items: flex-start;
   }
 
-  .aid-kit {
-    box-sizing: border-box;
-    width: 20vh;
-    margin: 3vh 0;
-    align-self: center;
-  }
 }
 @media (max-width: 830px) {
   .user-hub-container {
@@ -64,22 +58,32 @@
       display: block !important;
     }
 
+    .day-time {
+      margin: 0 2vw;
+    }
+
     .calendar {
       position: static;
+      margin-right: 3px;
+
     }
     .title {
       display: flex;
       flex-direction: column;
       align-items: flex-end !important;
+      margin-left: 6vw;
     }
 
-    .title h1 {
-      margin: 0 !important;
+    .title h2 {
+      font-size: 4rem !important;
+      margin-right: 2vw !important;
+      margin-top: 0;
+
     }
 
     .title h4 {
       font-size: 1.5rem !important;
-      width: 80% !important;
+      width: 60% !important;
     }
     .nav-list {
       margin: 2vh 0 !important;

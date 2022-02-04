@@ -1,9 +1,10 @@
-const loginValidation = (username, password, setUsernameError, setPasswordError) => {
+const loginValidation = (username, password, setUsernameError, setPasswordError, setLoginStatus) => {
   setUsernameError(false);
   setPasswordError(false);
+  setLoginStatus(false);
 
   if (username && password) {
-    console.log(username, password);
+    setLoginStatus(true);
     alert('Login is successful');
   } else {
     if (!username) {
