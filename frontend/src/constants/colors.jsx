@@ -6,7 +6,8 @@ export const LIGHTTHEME_PRIMARY_COLOR = '#102a71';
 export const LIGHTTHEME_SECONDARY_COLOR = `#fcd433`;
 export const LIGHTTHEME_BACKGROUND_COLOR = '#95d4e0';
 export const LIGHTTHEME_ERROR_COLOR = '#880e4f';
-export const LIGHTTHEME_LABEL_COLOR = '1b4c56';
+export const LIGHTTHEME_INPUT_BG_COLOR = '#42b6dc';
+export const LIGHTTHEME_LABEL_COLOR = '#1b4c56';
 export const LIGHTTHEME_TEXT_COLOR = '#fff';
 
 export const DARKTHEME_BASE_COLOR = `#2F3A45`;

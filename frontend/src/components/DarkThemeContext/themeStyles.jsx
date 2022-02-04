@@ -10,6 +10,7 @@ import {
   LIGHTTHEME_BACKGROUND_COLOR,
   LIGHTTHEME_BASE_COLOR,
   LIGHTTHEME_ERROR_COLOR,
+  LIGHTTHEME_INPUT_BG_COLOR,
   LIGHTTHEME_LABEL_COLOR,
   LIGHTTHEME_NAVBAR_COLOR,
   LIGHTTHEME_PRIMARY_COLOR,
@@ -57,6 +58,13 @@ const lightTheme = createTheme({
   },
 
   components: {
+    MuiFilledInput: {
+      styleOverrides: {
+        input: {
+          backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
+        },
+      },
+    },
     MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {
@@ -123,6 +131,13 @@ const darkTheme = createTheme({
   },
 
   components: {
+    MuiFilledInput: {
+      styleOverrides: {
+        input: {
+          backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
+        },
+      },
+    },
     MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {

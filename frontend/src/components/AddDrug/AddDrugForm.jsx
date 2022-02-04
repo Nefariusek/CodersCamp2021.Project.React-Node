@@ -4,7 +4,6 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Grid from '@mui/material/Grid';
@@ -28,7 +27,6 @@ const initialFormState = {
 
 const styles = {
   helper: {
-    color: 'black',
     fontSize: '.8em',
   },
 };
@@ -94,7 +92,6 @@ const AddDrugForm = (props) => {
 
   return (
     <Container maxWidth="md">
-      <CssBaseline />
       <Box
         component="form"
         noValidate

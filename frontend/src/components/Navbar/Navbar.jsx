@@ -6,7 +6,6 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -149,7 +148,6 @@ const Navbar = () => {
         color: 'white',
       }}
     >
-      <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box>
