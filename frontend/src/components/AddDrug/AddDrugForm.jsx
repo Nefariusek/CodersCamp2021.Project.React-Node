@@ -61,11 +61,13 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   const handleAddDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
+    const medicationTypes = ['inhaler', 'injections', 'drops'];
+    const typeOfMedication = medicationTypes[Math.floor(Math.random() * medicationTypes.length)];
 
     if (isFormValid) {
       const drug = {
         name: formValues.drugName,
-        type: 'pill',
+        type: typeOfMedication,
         description: formValues.description,
         expirationDate: formValues.expirationDate,
         daytime: formValues.daytime,
