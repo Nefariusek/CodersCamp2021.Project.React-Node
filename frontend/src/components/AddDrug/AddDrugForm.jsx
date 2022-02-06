@@ -66,8 +66,9 @@ const AddDrugForm = ({ onClose, addDrug }) => {
       const drug = {
         name: formValues.drugName,
         type: 'pill',
-        description: formValues.drugDescription,
-        expirationDate: formValues.drugExpirationDate,
+        description: formValues.description,
+        expirationDate: formValues.expirationDate,
+        daytime: formValues.daytime,
       };
       addDrug(drug);
       onClose();

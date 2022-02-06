@@ -39,7 +39,7 @@ const DailyDrugs = () => {
                 <Typography align="center" className="time-of-day" variant="h6">
                   {daytime}
                 </Typography>
-                {drugs.map((drug) =>
+                {drugList.map((drug) =>
                   drug.daytime.map(
                     (dt) =>
                       dt.toUpperCase() === daytime && (
