@@ -22,7 +22,7 @@ const initialFormState = {
   drugName: '',
   description: '',
   expirationDate: new Date(),
-  daytime: [DAYTIMES[0]],
+  daytime: [],
 };
 
 const styles = {
@@ -52,9 +52,9 @@ const dateFormat = {
   dayFirst: 'dd/MM/yyyy',
 };
 
-const AddDrugForm = (props) => {
+const AddDrugForm = ({ onClose, addDrug }) => {
   const classes = useStyles();
-  const { onClose } = props;
+  // const { onClose } = props;
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
@@ -63,7 +63,13 @@ const AddDrugForm = (props) => {
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
     if (isFormValid) {
-      alert('Drug added!');
+      const drug = {
+        name: formValues.drugName,
+        type: 'pill',
+        description: formValues.drugDescription,
+        expirationDate: formValues.drugExpirationDate,
+      };
+      addDrug(drug);
       onClose();
     }
   };
