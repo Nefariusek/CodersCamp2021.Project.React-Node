@@ -4,7 +4,6 @@
   border: 4px #102a71 solid;
 }
 
-
 // main font
 .calendar .PrivatePickersToolbar-root > *,
 .calendar .MuiTypography-root {
@@ -20,7 +19,6 @@
 .calendar .MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   font-weight: 900 !important;
 }
-
 
 // current day bubble
 .calendar .MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
