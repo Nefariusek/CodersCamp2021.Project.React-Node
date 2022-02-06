@@ -4,7 +4,6 @@ $calendar-width: 100vw;
 .calendar-page .MuiPickerStaticWrapper-root {
   height: $calendar-height;
   width: $calendar-width;
-  background-color: #48cae4;
 }
 
 .calendar-page .MuiPickerStaticWrapper-root > div > div {
@@ -34,7 +33,6 @@ $calendar-width: 100vw;
 
 .calendar-page .PrivatePickersFadeTransitionGroup-root > div {
   font-size: 7vmin;
-  color: #023e8a;
 }
 
 .calendar-page .PrivatePickersSlideTransition-root {
@@ -50,7 +48,7 @@ $calendar-width: 100vw;
   border-radius: 5vmin;
 }
 
-.calendar-page .MuiTypography-root {
+.calendar-page .monthly-calendar .MuiTypography-root {
   height: 10vh;
   width: 10vw;
   color: #059ac8;
@@ -63,7 +61,6 @@ $calendar-width: 100vw;
   height: 10vh;
   width: 10vw;
   border-radius: 2vmin;
-  color: #fff;
   font-size: 2vmin;
   background-color: #b89a22;
   margin: 1vmin;
@@ -77,8 +74,8 @@ $calendar-width: 100vw;
   background-color: #023e8a !important;
 }
 
-.calendar-page .MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
-  border: 3px solid #023e8a;
+.calendar-page .MuiPickersDay-today:not(.Mui-selected) {
+  border: 2px solid #023e8a !important;
 }
 
 .calendar-page .day-informations {
