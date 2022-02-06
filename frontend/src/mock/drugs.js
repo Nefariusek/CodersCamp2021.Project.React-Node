@@ -6,7 +6,7 @@ const drugs = [
     description: 'pills for headache',
     quantity: '10',
     photoSource: '/creditsPills.png',
-    daytime: 'morning',
+    daytime: ['morning', 'evening'],
   },
   {
     type: 'syrup',
@@ -15,7 +15,7 @@ const drugs = [
     description: 'syrup for coughing',
     quantity: '4',
     photoSource: '/apteczka.png',
-    daytime: 'noon',
+    daytime: ['noon'],
   },
   {
     type: 'patches',
@@ -24,7 +24,7 @@ const drugs = [
     description: 'best patches after ophthalmic surgery ',
     quantity: '10',
     photoSource: '/creditsPills.png',
-    daytime: 'evening',
+    daytime: ['evening'],
   },
 ];
 

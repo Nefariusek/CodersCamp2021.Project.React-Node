@@ -39,16 +39,18 @@ const DailyDrugs = () => {
                 <Typography align="center" className="time-of-day" variant="h6">
                   {daytime}
                 </Typography>
-                {drugs.map(
-                  (drug) =>
-                    drug.daytime.toUpperCase() === daytime && (
-                      <Pill
-                        typeOfMedication={drug.type}
-                        name={drug.name}
-                        showExpirationDate={false}
-                        expirationDate={drug.expirationDate}
-                      />
-                    ),
+                {drugs.map((drug) =>
+                  drug.daytime.map(
+                    (dt) =>
+                      dt.toUpperCase() === daytime && (
+                        <Pill
+                          typeOfMedication={drug.type}
+                          name={drug.name}
+                          showExpirationDate={false}
+                          expirationDate={drug.expirationDate}
+                        />
+                      ),
+                  ),
                 )}
               </Box>
             ))}
