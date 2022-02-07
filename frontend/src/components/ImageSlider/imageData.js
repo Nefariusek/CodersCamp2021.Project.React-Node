@@ -73,6 +73,11 @@ const SLIDE_15_PATH = './slide-15.jpg';
 // Photo by <a href="https://unsplash.com/@martafilipczyk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marta Filipczyk</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 const SLIDE_15_TEXT = `${APP_NAME} always with you supporting your health!`;
 
+const SLIDE_16_PATH = './slide-16.jpg';
+// https://www.kindpng.com/imgv/ihhiiTi_register-now-clipart-png-transparent-png/
+// Photo by <a href="https://www.kindpng.com/userpngs/18057/">Netherlands</a> on <a href="https://www.kindpng.com/imgv/ihhiiTi_register-now-clipart-png-transparent-png/">KindPNG</a>
+const SLIDE_16_TEXT = '';
+
 const imageData = [
   {
     imagePathOrUrl: SLIDE_1_PATH,
@@ -175,6 +180,13 @@ const imageData = [
   {
     imagePathOrUrl: SLIDE_15_PATH,
     text: SLIDE_15_TEXT,
+    get alt() {
+      return this.text;
+    },
+  },
+  {
+    imagePathOrUrl: SLIDE_16_PATH,
+    text: SLIDE_16_TEXT,
     get alt() {
       return this.text;
     },
