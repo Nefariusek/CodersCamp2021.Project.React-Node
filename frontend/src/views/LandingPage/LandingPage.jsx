@@ -7,7 +7,6 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -55,7 +54,6 @@ const Navigation = () => {
 const LandingPage = () => {
   return (
     <Container className="landing-page">
-      <CssBaseline />
       <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12}>
           <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">

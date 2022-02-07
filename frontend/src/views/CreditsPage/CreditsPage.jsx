@@ -20,7 +20,7 @@ const DevelopersButtons = () => {
   return (
     <div className="github-buttons">
       {developers.map(({ href, name }) => (
-        <Button variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
+        <Button key={name} variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
           {name}
         </Button>
       ))}

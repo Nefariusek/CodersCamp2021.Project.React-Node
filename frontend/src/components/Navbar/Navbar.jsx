@@ -6,7 +6,6 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -22,6 +21,7 @@ import {
   PATH_TO_DAILY_DRUGS,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
+  PATH_TO_MY_DRUGS,
   PATH_TO_SETTINGS,
   PATH_TO_USER_HOMEPAGE,
 } from '../../constants/paths';
@@ -33,6 +33,7 @@ const pages = [
   { path: PATH_TO_DAILY_DRUGS, name: 'Daily Drugs' },
   { path: PATH_TO_LEXICON, name: 'Lexicon' },
   { path: PATH_TO_CALENDAR, name: 'Calendar' },
+  { path: PATH_TO_MY_DRUGS, name: 'Your drugs' },
 ];
 const LOGO_IMG = { path: LOGO_PATH, alt: LOGO_ALT };
 
@@ -150,7 +151,6 @@ const Navbar = () => {
         color: 'white',
       }}
     >
-      <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box>

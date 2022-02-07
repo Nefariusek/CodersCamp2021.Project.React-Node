@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
+import AddDrugModal from '../../components/AddDrug/AddDrugModal';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import DatePicker from './DatePicker';
 
@@ -46,9 +47,7 @@ const DailyDrugs = () => {
         </div>
       </div>
       <div className="button-add-drug">
-        <Button variant="contained" className={buttonStyles.Button}>
-          ADD DRUG
-        </Button>
+        <AddDrugModal />
       </div>
     </div>
   );

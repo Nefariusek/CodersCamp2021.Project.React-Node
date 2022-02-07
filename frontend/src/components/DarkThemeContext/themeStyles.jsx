@@ -53,6 +53,7 @@ const lightTheme = createTheme({
       mainBackground: LIGHTTHEME_SECONDARY_COLOR,
       currentDayFont: LIGHTTHEME_PRIMARY_COLOR,
       currentDayBackground: LIGHTTHEME_BACKGROUND_COLOR,
+      weekDayFont: '#fff',
     },
     tonalOffset: 0.1,
   },
@@ -68,7 +69,7 @@ const lightTheme = createTheme({
     MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTTHEME_SECONDARY_COLOR,
+          backgroundColor: LIGHTTHEME_BASE_COLOR,
           color: LIGHTTHEME_PRIMARY_COLOR,
         },
       },
@@ -77,7 +78,7 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: LIGHTTHEME_BACKGROUND_COLOR,
-          color: LIGHTTHEME_PRIMARY_COLOR,
+          color: '#fff',
           fontWeight: 900,
           '&.Mui-selected': {
             backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
@@ -126,6 +127,7 @@ const darkTheme = createTheme({
       mainBackground: LIGHTTHEME_SECONDARY_COLOR,
       currentDayFont: LIGHTTHEME_PRIMARY_COLOR,
       currentDayBackground: LIGHTTHEME_BACKGROUND_COLOR,
+      weekDayFont: '#000',
     },
     tonalOffset: 0.1,
   },
@@ -141,8 +143,8 @@ const darkTheme = createTheme({
     MuiPickerStaticWrapper: {
       styleOverrides: {
         root: {
-          backgroundColor: LIGHTTHEME_SECONDARY_COLOR,
-          color: LIGHTTHEME_PRIMARY_COLOR,
+          backgroundColor: DARKTHEME_NAVBAR_COLOR,
+          color: DARKTHEME_TITLE_COLOR,
         },
       },
     },
@@ -150,7 +152,7 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: DARKTHEME_PRIMARY_COLOR,
-          color: LIGHTTHEME_PRIMARY_COLOR,
+          color: '#000',
           fontWeight: 900,
           '&.Mui-selected': {
             backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
