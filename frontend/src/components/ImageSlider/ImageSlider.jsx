@@ -17,7 +17,16 @@ import { useSwipeable } from 'react-swipeable';
  * @param {string} [arrowType=round] - arrow type: round or square
  */
 const ImageSlider = (props) => {
-  const { slides, initialIndex = 0, withEffect = true, withAutoPlay = true, delay = 5000, arrowType = 'round' } = props;
+  const {
+    slides,
+    initialIndex = 0,
+    withEffect = true,
+    withAutoPlay = true,
+    delay = 5000,
+    arrowType = 'round',
+    setIsLastSlide,
+  } = props;
+
   const numberOfSlides = Array.isArray(slides) ? slides.length : 0;
   const [activeIndex, setActiveIndex] = useState(initialIndex >= 0 && initialIndex < numberOfSlides ? initialIndex : 0);
   const [paused, setPaused] = useState(false);
@@ -47,6 +56,12 @@ const ImageSlider = (props) => {
       resetTimeout();
     };
   }, [withAutoPlay, activeIndex, numberOfSlides, paused, delay]);
+
+  useEffect(() => {
+    if (typeof setIsLastSlide === 'function') {
+      activeIndex === numberOfSlides - 1 ? setIsLastSlide(true) : setIsLastSlide(false);
+    }
+  }, [activeIndex, numberOfSlides, setIsLastSlide]);
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => nextSlide(),

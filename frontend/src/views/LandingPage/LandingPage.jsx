@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
@@ -39,19 +40,9 @@ const routes = [
   },
 ];
 
-const Navigation = () => {
-  return (
-    <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
-      {routes.map((route) => (
-        <Button key={route.label} variant="contained" component={Link} to={route.url} className={buttonStyles.Button}>
-          {route.icon} {route.label}
-        </Button>
-      ))}
-    </Stack>
-  );
-};
-
 const LandingPage = () => {
+  const [isLastSlide, setIsLastSlide] = useState(false);
+
   return (
     <Container className="landing-page">
       <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '90vh' }}>
@@ -71,11 +62,26 @@ const LandingPage = () => {
           </Stack>
 
           <Grid item container xs={12} alignItems="center" justifyContent="center">
-            <ImageSlider slides={imageData} delay={4000} />
+            <ImageSlider slides={imageData} delay={4000} setIsLastSlide={setIsLastSlide} />
           </Grid>
 
           <Grid item container xs={12} my={3} alignItems="center" justifyContent="center">
-            <Navigation />
+            <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
+              {routes.map((route) => (
+                <Button
+                  key={route.label}
+                  variant="contained"
+                  component={Link}
+                  to={route.url}
+                  sx={{
+                    backgroundColor: route.label === 'Register' && isLastSlide ? 'red !important' : 'inherit',
+                  }}
+                  className={buttonStyles.Button}
+                >
+                  {route.icon} {route.label}
+                </Button>
+              ))}
+            </Stack>
           </Grid>
         </Grid>
       </Grid>
