@@ -22,8 +22,7 @@ export const validateInput = (name, value) => {
     case 'drugName':
       result = validateDrugName(value);
       break;
-    case 'type':
-      result = validateDrugType(value);
+    case 'drugType':
       break;
     case 'quantity':
       break;
@@ -44,11 +43,6 @@ export const validateInput = (name, value) => {
 
 const validateDrugName = (value) => {
   const errorText = value.trim() !== '' ? '' : ErrorMessages.drugName.EMPTY;
-  return errorText;
-};
-
-const validateDrugType = (value) => {
-  const errorText = !(value.length === 0) ? '' : ErrorMessages.type.EMPTY;
   return errorText;
 };
 

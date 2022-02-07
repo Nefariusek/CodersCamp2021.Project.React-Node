@@ -20,7 +20,7 @@ const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const initialFormState = {
   drugName: '',
-  type: [TYPES[0]],
+  drugType: TYPES[0],
   drugQuantity: 0,
   description: '',
   expirationDate: new Date(),
@@ -65,6 +65,7 @@ const AddDrugForm = (props) => {
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
     if (isFormValid) {
+      console.dir(formValues);
       alert('Drug added!');
       onClose();
     }
@@ -127,19 +128,19 @@ const AddDrugForm = (props) => {
 
           <Grid item xs={6}>
             <FormControl required fullWidth>
-              <InputLabel id="type-select-label" className={classes.label} shrink color="label">
+              <InputLabel id="drugtype-select-label" className={classes.label} shrink color="label">
                 TYPE
               </InputLabel>
               <Select
-                labelId="type-select-label"
+                labelId="drugtype-select-label"
                 label="TYPE"
-                name="type"
-                id="type-select"
+                name="drugType"
+                id="drugtype-select"
                 required
                 variant="filled"
-                value={formValues.type}
-                onChange={handleInput('type')}
-                onBlur={handleInput('type')}
+                value={formValues.drugType}
+                onChange={handleInput('drugType')}
+                onBlur={handleInput('drugType')}
               >
                 {TYPES.map((type) => (
                   <MenuItem key={type} value={type}>
