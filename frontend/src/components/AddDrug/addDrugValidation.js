@@ -1,4 +1,5 @@
 export const DAYTIMES = ['Morning', 'Noon', 'Evening'];
+export const TYPES = ['Tablets', 'Capsules', 'Syrups', 'Drops', 'Ointments', 'Inhalers', 'Injections', 'Patches'];
 
 const ErrorMessages = {
   drugName: {
@@ -20,6 +21,10 @@ export const validateInput = (name, value) => {
   switch (name) {
     case 'drugName':
       result = validateDrugName(value);
+      break;
+    case 'drugType':
+      break;
+    case 'quantity':
       break;
     case 'description':
       break;
