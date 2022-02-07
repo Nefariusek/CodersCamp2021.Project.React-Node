@@ -8,6 +8,11 @@ import { useSwipeable } from 'react-swipeable';
 
 /**
  * Component creates slider with changing images with texts.
+ * Slides can switch automatically (optional, with adjustable delay), using arrows or swipe on mobile devices.
+ * Autoplay pauses when you hover the mouse over the slide and resumes when the mouse leaves the slide.
+ * After performing the manual slide change, automatic slide switching resumes.
+ * When you hover the mouse over the slide, the image moving effect (optional) is added.
+ * On the last slide, the possibility of extending its duration and associating it with an additional effect on the page (e.g. call-to-action).
  * Component accepts following inputs:
  * @param {Array.<{imagePathOrUrl: String, text: String}>} slides - array of objects with data about the slides (image url or path and text). If text is an empty string there is no background for text.
  * @param {number} [initialIndex=0] - index of the first image to show
