@@ -65,7 +65,6 @@ const AddDrugForm = (props) => {
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
     if (isFormValid) {
-      console.dir(formValues);
       alert('Drug added!');
       onClose();
     }
