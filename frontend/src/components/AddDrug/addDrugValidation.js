@@ -1,4 +1,5 @@
 export const DAYTIMES = ['Morning', 'Noon', 'Evening'];
+export const TYPES = ['Tablets', 'Capsules', 'Syrups', 'Drops', 'Ointments', 'Inhalers', 'Injections', 'Patches'];
 
 const ErrorMessages = {
   drugName: {
@@ -21,6 +22,11 @@ export const validateInput = (name, value) => {
     case 'drugName':
       result = validateDrugName(value);
       break;
+    case 'type':
+      result = validateDrugType(value);
+      break;
+    case 'quantity':
+      break;
     case 'description':
       break;
     case 'expirationDate':
@@ -38,6 +44,11 @@ export const validateInput = (name, value) => {
 
 const validateDrugName = (value) => {
   const errorText = value.trim() !== '' ? '' : ErrorMessages.drugName.EMPTY;
+  return errorText;
+};
+
+const validateDrugType = (value) => {
+  const errorText = !(value.length === 0) ? '' : ErrorMessages.type.EMPTY;
   return errorText;
 };
 

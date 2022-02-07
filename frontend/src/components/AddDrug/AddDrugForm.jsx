@@ -14,12 +14,14 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
-import { DAYTIMES, validateInput } from './addDrugValidation';
+import { DAYTIMES, TYPES, validateInput } from './addDrugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const initialFormState = {
   drugName: '',
+  type: [TYPES[0]],
+  drugQuantity: 0,
   description: '',
   expirationDate: new Date(),
   daytime: [DAYTIMES[0]],
@@ -100,7 +102,7 @@ const AddDrugForm = (props) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: 5,
+          marginTop: 4,
         }}
       >
         <Grid container spacing={2} mb={5}>
@@ -122,6 +124,50 @@ const AddDrugForm = (props) => {
               FormHelperTextProps={{ style: styles.helper }}
             />
           </Grid>
+
+          <Grid item xs={6}>
+            <FormControl required fullWidth>
+              <InputLabel id="type-select-label" className={classes.label} shrink color="label">
+                TYPE
+              </InputLabel>
+              <Select
+                labelId="type-select-label"
+                label="TYPE"
+                name="type"
+                id="type-select"
+                required
+                variant="filled"
+                value={formValues.type}
+                onChange={handleInput('type')}
+                onBlur={handleInput('type')}
+              >
+                {TYPES.map((type) => (
+                  <MenuItem key={type} value={type}>
+                    {type}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={6}>
+            <TextField
+              label="QUANTITY"
+              name="drugQuantity"
+              id="drugQuantity"
+              type="number"
+              variant="filled"
+              required
+              fullWidth
+              autoFocus
+              color="secondary"
+              value={formValues.drugQuantity}
+              onChange={handleInput('drugQuantity')}
+              onBlur={handleInput('drugQuantity')}
+              InputProps={{ inputProps: { min: 0 } }}
+            />
+          </Grid>
+
           <Grid item xs={12}>
             <TextField
               label="DESCRIPTION"
@@ -135,6 +181,7 @@ const AddDrugForm = (props) => {
               onBlur={handleInput('description')}
             />
           </Grid>
+
           <Grid item xs={12}>
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DatePicker
@@ -162,6 +209,7 @@ const AddDrugForm = (props) => {
               />
             </LocalizationProvider>
           </Grid>
+
           <Grid item xs={12}>
             <FormControl required fullWidth>
               <InputLabel id="daytime-select-label" className={classes.label} shrink color="label">

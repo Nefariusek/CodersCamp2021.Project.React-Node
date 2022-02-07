@@ -23,6 +23,7 @@ const modalStyle = {
   borderRadius: '20px',
   boxShadow: 24,
   p: 4,
+  mt: 3,
 };
 
 const AddDrugModal = () => {
