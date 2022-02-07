@@ -9,12 +9,14 @@ import { useSwipeable } from 'react-swipeable';
 /**
  * Component creates slider with changing images with texts.
  * Component accepts following inputs:
- * @param {Array.<{imagePathOrUrl: String, text: String}>} slides - array of objects with data about the slides (image url or path and text). If text is empty string there is no background for text.
+ * @param {Array.<{imagePathOrUrl: String, text: String}>} slides - array of objects with data about the slides (image url or path and text). If text is an empty string there is no background for text.
  * @param {number} [initialIndex=0] - index of the first image to show
  * @param {boolean} [withEffect=true] - whether there should be animated hover effect
  * @param {boolean} [withAutoPlay=true] - whether there should be autoplay
  * @param {number} [delay=5000] - delay (in miliseconds) in autoplay
  * @param {string} [arrowType=round] - arrow type: round or square
+ * @param {boolean} [lastSlideLonger=true] - whether the last slide should be shown half of the time longer
+ * @param {setIsLastSlide} [callback] - callback that allows to perform an action (e.g. highlight a call-to-action button) in the case of the last slide
  */
 const ImageSlider = (props) => {
   const {
