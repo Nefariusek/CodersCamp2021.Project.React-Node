@@ -25,17 +25,17 @@ const routes = [
   {
     url: PATH_TO_LOGIN,
     label: 'Login',
-    icon: <LoginIcon className="landingpage-icon" />,
+    icon: <LoginIcon className="landing-page-icon" />,
   },
   {
     url: PATH_TO_REGISTER,
     label: 'Register',
-    icon: <HowToRegIcon className="landingpage-icon" />,
+    icon: <HowToRegIcon className="landing-page-icon" />,
   },
   {
     url: PATH_TO_CREDITS,
     label: 'Credits',
-    icon: <GroupIcon className="landingpage-icon" />,
+    icon: <GroupIcon className="landing-page-icon" />,
   },
 ];
 
@@ -54,7 +54,7 @@ const Navigation = () => {
 const LandingPage = () => {
   return (
     <Container className="landing-page">
-      <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '100vh' }}>
+      <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '90vh' }}>
         <Grid item xs={12}>
           <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">
             <Avatar src={logoImg.path} alt={logoImg.alt} sx={{ width: 100, height: 100 }} />
