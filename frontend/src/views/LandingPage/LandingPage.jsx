@@ -73,10 +73,11 @@ const LandingPage = () => {
                   variant="contained"
                   component={Link}
                   to={route.url}
-                  sx={{
-                    backgroundColor: route.label === 'Register' && isLastSlide ? 'red !important' : 'inherit',
-                  }}
-                  className={buttonStyles.Button}
+                  className={
+                    route.label === 'Register' && isLastSlide
+                      ? `${buttonStyles.Button} call-to-action`
+                      : buttonStyles.Button
+                  }
                 >
                   {route.icon} {route.label}
                 </Button>
