@@ -29,5 +29,5 @@ Pill.propTypes = {
   typeOfMedication: PropTypes.oneOf(['pills', 'syrup', 'inhaler', 'injection', 'drops', 'patches']).isRequired,
   name: PropTypes.string.isRequired,
   showExpirationDate: PropTypes.bool.isRequired,
-  expirationDate: PropTypes.string.isRequired,
+  expirationDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
 };

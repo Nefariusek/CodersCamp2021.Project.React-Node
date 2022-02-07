@@ -1,12 +1,10 @@
 import './DailyView.scss';
 
-import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
 import AddDrugModal from '../../components/AddDrug/AddDrugModal';
-import buttonStyles from '../../components/Button/Button.module.scss';
 import Pill from '../../components/Pill/Pill';
 import drugs from '../../mock/drugs';
 import DatePicker from './DatePicker';
@@ -35,7 +33,7 @@ const DailyDrugs = () => {
         <div className="drug-box-container">
           <Box className="drug-box" sx={{ display: 'flex', borderRadius: 15 }}>
             {DAYTIMES.map((daytime) => (
-              <Box className="drug-box-compartment" sx={{ borderRadius: 10, margin: 3 }}>
+              <Box className="drug-box-compartment" key={daytime} sx={{ borderRadius: 10, margin: 3 }}>
                 <Typography align="center" className="time-of-day" variant="h6">
                   {daytime}
                 </Typography>
@@ -44,6 +42,7 @@ const DailyDrugs = () => {
                     (dt) =>
                       dt.toUpperCase() === daytime && (
                         <Pill
+                          key={`${drug.name}_${drug.expirationDate}`}
                           typeOfMedication={drug.type}
                           name={drug.name}
                           showExpirationDate={false}
