@@ -24,6 +24,7 @@ const ImageSlider = (props) => {
     withAutoPlay = true,
     delay = 5000,
     arrowType = 'round',
+    lastSlideLonger = 'true',
     setIsLastSlide,
   } = props;
 
@@ -42,6 +43,7 @@ const ImageSlider = (props) => {
 
   useEffect(() => {
     if (withAutoPlay) {
+      const slideDelay = lastSlideLonger && activeIndex === numberOfSlides - 1 ? delay * 1.5 : delay;
       resetTimeout();
       timerRef.current = setTimeout(
         () => {
@@ -49,13 +51,13 @@ const ImageSlider = (props) => {
             setActiveIndex((prevIndex) => (prevIndex === numberOfSlides - 1 ? 0 : prevIndex + 1));
           }
         },
-        delay > 0 ? delay : 0,
+        slideDelay > 0 ? slideDelay : 0,
       );
     }
     return () => {
       resetTimeout();
     };
-  }, [withAutoPlay, activeIndex, numberOfSlides, paused, delay]);
+  }, [withAutoPlay, activeIndex, numberOfSlides, paused, delay, lastSlideLonger]);
 
   useEffect(() => {
     if (typeof setIsLastSlide === 'function') {
