@@ -1,7 +1,15 @@
 import Medication from '../model/Medication';
 
 const drugs = [
-  new Medication('PILLS', new Date(2023, 0, 1), 'pills', 1, 10, 'pills for headache', '/creditsPills.png'),
+  new Medication(
+    'VERY LONG NAME MEDICATION',
+    new Date(2022, 3, 1),
+    'pills',
+    1,
+    10,
+    'pills for headache',
+    '/creditsPills.png',
+  ),
   new Medication('SYRUP', new Date(2022, 1, 12), 'syrup', 0, 4, 'syrup for sorethroat', '/apteczka.png'),
   new Medication(
     'PATCHES',
