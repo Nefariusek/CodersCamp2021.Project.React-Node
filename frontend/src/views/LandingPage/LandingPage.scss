@@ -1,7 +1,18 @@
-.landingpage-icon {
+.landing-page-icon {
   margin-right: 6px;
 }
 
-.under-construction {
-  margin-right: 6px;
+.landing-page .call-to-action {
+  animation: call-to-action 0.5s ease-in-out infinite alternate;
+
+  @keyframes call-to-action {
+    from {
+      background-color: #fcd433;
+      transform: scale(1);
+    }
+    to {
+      background-color: #ff0000;
+      transform: scale(1.1);
+    }
+  }
 }
