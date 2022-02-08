@@ -1,3 +1,4 @@
+import Tooltip from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
 
 import { MEDICATION_TYPES } from '../../constants/picklistValues';
@@ -15,13 +16,21 @@ const typeToClass = {
 const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) => {
   if (showExpirationDate) {
     return (
-      <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]}`}>
-        {name}
-        <div className={pillStyles.expiration}>Exp. date: {expirationDate}</div>
-      </div>
+      <Tooltip title={`${name} / ${expirationDate}`}>
+        <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]}`}>
+          {name}
+          <div className={pillStyles.expiration}>Exp. date: {expirationDate}</div>
+        </div>
+      </Tooltip>
     );
   }
-  return <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]} ${pillStyles.hide}`}>{name}</div>;
+  return (
+    <Tooltip title={`${name} / ${expirationDate}`}>
+      <div>
+        <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]} ${pillStyles.hide}`}>{name}</div>
+      </div>
+    </Tooltip>
+  );
 };
 
 export default Pill;
