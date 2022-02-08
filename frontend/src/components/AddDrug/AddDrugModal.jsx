@@ -26,7 +26,7 @@ const modalStyle = {
   mt: 3,
 };
 
-const AddDrugModal = () => {
+const AddDrugModal = ({ addDrug }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -72,7 +72,7 @@ const AddDrugModal = () => {
               {MAIN_TITLE.toUpperCase()}
             </Typography>
             <Box id="add-drug-form">
-              <AddDrugForm onClose={handleClose} />
+              <AddDrugForm onClose={handleClose} addDrug={addDrug} />
             </Box>
           </Box>
         </Fade>

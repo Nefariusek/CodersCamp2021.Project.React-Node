@@ -14,17 +14,19 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
-import { DAYTIMES, TYPES, validateInput } from './addDrugValidation';
+import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
+import Medication from '../../model/Medication';
+import { validateInput } from './addDrugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const initialFormState = {
   drugName: '',
-  drugType: TYPES[0],
+  drugType: MEDICATION_TYPES[0],
   drugQuantity: 0,
   description: '',
   expirationDate: new Date(),
-  daytime: [DAYTIMES[0]],
+  daytime: [],
 };
 
 const styles = {
@@ -54,18 +56,29 @@ const dateFormat = {
   dayFirst: 'dd/MM/yyyy',
 };
 
-const AddDrugForm = (props) => {
+const AddDrugForm = ({ onClose, addDrug }) => {
   const classes = useStyles();
-  const { onClose } = props;
+  // const { onClose } = props;
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
   const handleAddDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
-
+    const dosage = Math.floor(Math.random() * 9) + 1; // TODO: change in 2nd part of project
+    const defaultImage = '/apteczka.png'; // TODO: change in 2nd part of project
     if (isFormValid) {
-      alert('Drug added!');
+      const drug = new Medication(
+        formValues.drugName,
+        formValues.expirationDate,
+        formValues.drugType,
+        dosage,
+        formValues.drugQuantity,
+        formValues.description,
+        defaultImage,
+        formValues.daytime,
+      );
+      addDrug(drug);
       onClose();
     }
   };
@@ -141,7 +154,7 @@ const AddDrugForm = (props) => {
                 onChange={handleInput('drugType')}
                 onBlur={handleInput('drugType')}
               >
-                {TYPES.map((type) => (
+                {MEDICATION_TYPES.map((type) => (
                   <MenuItem key={type} value={type}>
                     {type}
                   </MenuItem>
