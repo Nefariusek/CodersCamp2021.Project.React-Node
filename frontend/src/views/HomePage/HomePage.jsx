@@ -9,6 +9,7 @@ import buttonStyles from '../../components/Button/button.module.scss';
 import Calendar from '../../components/Calendar/Calendar';
 import Clock from '../../components/Clock/Clock';
 import DateDisplay from '../../components/Date/Date';
+import SoonExpiringPopUp from '../../components/SoonExpiring/SoonExpiring';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_CREDITS, PATH_TO_LOGIN, PATH_TO_REGISTER } from '../../constants/paths';
 
@@ -22,7 +23,7 @@ const ButtonsUserHub = () => {
   return (
     <div className="nav-list">
       {routes.map((route) => (
-        <Button variant="contained" className={buttonStyles.Button} component={Link} to={route.url}>
+        <Button key={route.url} variant="contained" className={buttonStyles.Button} component={Link} to={route.url}>
           {route.label}
         </Button>
       ))}
@@ -33,6 +34,7 @@ const ButtonsUserHub = () => {
 const HomePage = () => {
   return (
     <div className="user-hub-container">
+      <SoonExpiringPopUp />
       <div className="day-time">
         <Clock />
         <DateDisplay />

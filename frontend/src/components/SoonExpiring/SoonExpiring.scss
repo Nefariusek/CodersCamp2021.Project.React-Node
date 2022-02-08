@@ -4,6 +4,15 @@
   }
 }
 
+.soon-expiring-pop-up {
+  position: absolute;
+  left: 30%;
+  top: 10%;
+  z-index: 99 !important;
+  margin-top: calc(100vh - 85vh - 20px);
+  overflow: auto;
+}
+
 .soon-expiring {
   width: 300px;
   height: fit-content;
@@ -13,9 +22,28 @@
   padding: 15px;
   text-align: center;
 
-  &-header {
+  Button {
     color: #023e8a;
-    font-weight: 700 !important;
+  }
+
+  &-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    Button {
+      min-width: none !important;
+      padding: 0 7px;
+      color: #023e8a;
+      font-weight: 700;
+      font-size: large;
+    }
+
+    &-header {
+      color: #023e8a;
+      font-weight: 700 !important;
+    }
   }
 
   &-drugs-list {
@@ -40,5 +68,16 @@
         display: none;
       }
     }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 580px) {
+  .soon-expiring-pop-up {
+    position: absolute;
+    left: 15%;
+    top: 10%;
+    z-index: 99 !important;
+    margin-top: calc(100vh - 85vh - 20px);
+    overflow: auto;
   }
 }

@@ -12,7 +12,12 @@ const drugs = [
     'patches for bleeding and other small injuries',
     '/creditsPills.png',
   ),
-  new Medication('INHALER', new Date(2022, 4, 1), 'inhaler', 1, 10, 'basic inhaler for asthma', '/creditsPills.png'),
+  new Medication('INHALER', new Date(2022, 2, 1), 'inhaler', 1, 10, 'basic inhaler for asthma', '/creditsPills.png'),
+  new Medication('INJECTIONS', new Date(2022, 7, 12), 'injections', 0, 4, 'syrup for sorethroat', '/apteczka.png'),
+  new Medication('DROPS', new Date(2022, 3, 12), 'drops', 0, 4, 'syrup for sorethroat', '/apteczka.png'),
+  new Medication('DIFFERENT PATCHES', new Date(2022, 4, 12), 'patches', 0, 4, 'syrup for sorethroat', '/apteczka.png'),
+  new Medication('DIFFERENT PILLS', new Date(2022, 1, 22), 'pills', 0, 4, 'syrup for sorethroat', '/apteczka.png'),
+  new Medication('DIFFERENT SYRUP', new Date(2022, 3, 17), 'syrup', 0, 4, 'syrup for sorethroat', '/apteczka.png'),
 ];
 
 export default drugs;
