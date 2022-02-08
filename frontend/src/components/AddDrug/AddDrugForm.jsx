@@ -14,6 +14,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
+import Medication from '../../model/Medication';
 import { DAYTIMES, TYPES, validateInput } from './addDrugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
@@ -63,17 +64,19 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   const handleAddDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
-    const medicationTypes = ['inhaler', 'injections', 'drops'];
-    const typeOfMedication = medicationTypes[Math.floor(Math.random() * medicationTypes.length)];
-
+    const dosage = Math.floor(Math.random() * 9) + 1;
+    const defaultImage = '/apteczka.png';
     if (isFormValid) {
-      const drug = {
-        name: formValues.drugName,
-        type: typeOfMedication,
-        description: formValues.description,
-        expirationDate: formValues.expirationDate,
-        daytime: formValues.daytime,
-      };
+      const drug = new Medication(
+        formValues.drugName,
+        formValues.expirationDate,
+        formValues.drugType,
+        dosage,
+        formValues.drugQuantity,
+        formValues.description,
+        defaultImage,
+        formValues.daytime,
+      );
       addDrug(drug);
       onClose();
     }

@@ -6,7 +6,7 @@ const typeToClass = {
   pills: pillStyles.blue,
   syrup: pillStyles.orange,
   inhaler: pillStyles.yellow,
-  injections: pillStyles.red,
+  injection: pillStyles.red,
   drops: pillStyles.green,
   patches: pillStyles.pink,
 };
