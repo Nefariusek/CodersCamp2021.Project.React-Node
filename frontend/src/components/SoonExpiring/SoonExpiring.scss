@@ -1,6 +1,12 @@
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .soon-expiring {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: fit-content;
   background-color: #fcd433;
   border: solid 4px #023e8a;
   border-radius: 50px;
@@ -10,5 +16,29 @@
   &-header {
     color: #023e8a;
     font-weight: 700 !important;
+  }
+
+  &-drugs-list {
+    .soon-expiring-medication {
+      div {
+        animation: blinker 2s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+        height: fit-content !important;
+      }
+      p {
+        color: #023e8a;
+        font-weight: 700;
+        margin-block-start: 0.5em;
+        margin-block-end: 1.5em;
+      }
+    }
+    .not-soon-expiring-medication {
+      margin-bottom: 30px;
+      div {
+        height: fit-content !important;
+      }
+      p {
+        display: none;
+      }
+    }
   }
 }

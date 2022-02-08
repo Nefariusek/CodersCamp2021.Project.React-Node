@@ -16,7 +16,7 @@ const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) =>
     return (
       <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]}`}>
         {name}
-        <div className={pillStyles.expiration}>Exp. date: {expirationDate}</div>
+        <div className={pillStyles.expiration}>EXP. DATE: {expirationDate}</div>
       </div>
     );
   }
