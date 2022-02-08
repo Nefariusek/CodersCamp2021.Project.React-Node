@@ -14,14 +14,15 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
+import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
-import { DAYTIMES, TYPES, validateInput } from './addDrugValidation';
+import { validateInput } from './addDrugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const initialFormState = {
   drugName: '',
-  drugType: TYPES[0],
+  drugType: MEDICATION_TYPES[0],
   drugQuantity: 0,
   description: '',
   expirationDate: new Date(),
@@ -64,8 +65,8 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   const handleAddDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
-    const dosage = Math.floor(Math.random() * 9) + 1;
-    const defaultImage = '/apteczka.png';
+    const dosage = Math.floor(Math.random() * 9) + 1; // TODO: change in 2nd part of project
+    const defaultImage = '/apteczka.png'; // TODO: change in 2nd part of project
     if (isFormValid) {
       const drug = new Medication(
         formValues.drugName,
@@ -153,7 +154,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 onChange={handleInput('drugType')}
                 onBlur={handleInput('drugType')}
               >
-                {TYPES.map((type) => (
+                {MEDICATION_TYPES.map((type) => (
                   <MenuItem key={type} value={type}>
                     {type}
                   </MenuItem>

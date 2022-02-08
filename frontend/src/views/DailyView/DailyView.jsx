@@ -6,11 +6,11 @@ import React from 'react';
 
 import AddDrugModal from '../../components/AddDrug/AddDrugModal';
 import Pill from '../../components/Pill/Pill';
+import { DAYTIMES } from '../../constants/picklistValues';
 import drugs from '../../mock/drugs';
 import DatePicker from './DatePicker';
 
 const TITLE = `DAILY DRUGS`;
-const DAYTIMES = [`MORNING`, `NOON`, `EVENING`];
 const DailyDrugs = () => {
   const [drugList, setDrugList] = React.useState(drugs);
 
@@ -18,7 +18,6 @@ const DailyDrugs = () => {
     setDrugList([...drugList, drug]);
   };
 
-  console.log(drugList);
   return (
     <div className="daily-view-container">
       <div className="title-container">
@@ -37,20 +36,17 @@ const DailyDrugs = () => {
                 <Typography align="center" className="time-of-day" variant="h6">
                   {daytime}
                 </Typography>
-                {drugList.map((drug) =>
-                  drug.daytime.map(
-                    (dt) =>
-                      dt.toUpperCase() === daytime && (
-                        <Pill
-                          key={`${drug.name}_${drug.expirationDate}`}
-                          typeOfMedication={drug.type}
-                          name={drug.name}
-                          showExpirationDate={false}
-                          expirationDate={drug.expirationDate}
-                        />
-                      ),
-                  ),
-                )}
+                {drugList
+                  .filter((drug) => drug.daytime.includes(daytime))
+                  .map((drug) => (
+                    <Pill
+                      key={`${drug.name}_${drug.expirationDate}`}
+                      typeOfMedication={drug.type}
+                      name={drug.name}
+                      showExpirationDate={false}
+                      expirationDate={drug.expirationDate}
+                    />
+                  ))}
               </Box>
             ))}
           </Box>

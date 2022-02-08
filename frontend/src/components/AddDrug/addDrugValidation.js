@@ -1,6 +1,3 @@
-export const DAYTIMES = ['Morning', 'Noon', 'Evening'];
-export const TYPES = ['pills', 'syrup', 'inhaler', 'injection', 'drops', 'patches'];
-
 const ErrorMessages = {
   drugName: {
     EMPTY: "Drug name can't be empty.",

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+import { MEDICATION_TYPES } from '../../constants/picklistValues';
 import pillStyles from './Pill.module.scss';
 
 const typeToClass = {
@@ -26,7 +27,7 @@ const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) =>
 export default Pill;
 
 Pill.propTypes = {
-  typeOfMedication: PropTypes.oneOf(['pills', 'syrup', 'inhaler', 'injection', 'drops', 'patches']).isRequired,
+  typeOfMedication: PropTypes.oneOf(MEDICATION_TYPES).isRequired,
   name: PropTypes.string.isRequired,
   showExpirationDate: PropTypes.bool.isRequired,
   expirationDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
