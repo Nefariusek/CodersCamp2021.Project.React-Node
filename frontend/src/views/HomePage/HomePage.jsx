@@ -50,7 +50,7 @@ const HomePage = () => {
           </div>
           <ButtonsUserHub />
         </div>
-        <div className="calendar">
+        <div className="calendar-container">
           <Calendar />
         </div>
       </div>
