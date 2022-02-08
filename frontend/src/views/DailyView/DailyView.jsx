@@ -31,21 +31,18 @@ const DailyDrugs = () => {
               <Typography align="center" className="time-of-day" variant="h6">
                 {DAYTIMES[0]}
               </Typography>
-              <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
             </Box>
 
             <Box className="drug-box-compartment 2" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
                 {DAYTIMES[1]}
               </Typography>
-              <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
             </Box>
 
             <Box className="drug-box-compartment 3" sx={{ borderRadius: 10, margin: 3 }}>
               <Typography align="center" className="time-of-day" variant="h6">
                 {DAYTIMES[2]}
               </Typography>
-              <Pill name="paracetamol" typeOfMedication="pills" expirationDate="01-12-2021" showExpirationDate />
             </Box>
           </Box>
         </div>

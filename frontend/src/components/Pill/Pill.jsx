@@ -1,4 +1,3 @@
-import MedicationIcon from '@mui/icons-material/Medication';
 import Tooltip from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
 
@@ -13,20 +12,10 @@ const typeToClass = {
   patches: pillStyles.pink,
 };
 
-const iconTypeOfMedication = {
-  pills: <MedicationIcon />,
-  syrup: pillStyles.orange,
-  inhaler: pillStyles.yellow,
-  injections: pillStyles.red,
-  drops: pillStyles.green,
-  patches: pillStyles.pink,
-};
-
 const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) => {
-  // console.log(iconTypeOfMedication[typeOfMedication]);
   if (showExpirationDate) {
     return (
-      <Tooltip title={`${name} / ${expirationDate} /${(<MedicationIcon />)}`}>
+      <Tooltip title={`${name} / ${expirationDate}`}>
         <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]}`}>
           {name}
           <div className={pillStyles.expiration}>Exp. date: {expirationDate}</div>
