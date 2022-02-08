@@ -16,7 +16,7 @@
     margin-top: 1vh;
   }
 
-  .calendar {
+  .calendar-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -61,7 +61,7 @@
       margin: 0 2vw;
     }
 
-    .calendar {
+    .calendar-container {
       position: static;
       margin-right: 3px;
     }

@@ -68,3 +68,27 @@ Keep tests in the same manner but inside \_\_test\_\_ directory eg.:
 - PascalCase - components, views, classes (eg. MainPage, Medication);
 - camelCase - functions, variables, files not related to ones above (eg. changeMedicationFilter, isSelected);
 - SCREAMING_SNAKE_CASE - constants (eg. PATH_TO_SETTINGS, ACCEPT_BUTTON_LABEL);
+
+## Credits
+
+Graphics designed by:
+
+- <a href="https://dribbble.com/catalystvibes">Catalyst</a> on <a href="https://dribbble.com/shots/14078370-medicine">Dribble.com</a>
+
+Photos by:
+
+- <a href="https://www.pexels.com/photo/addiction-candy-face-portrait-5723610/">cottonbro</a> on <a href="https://www.pexels.com/photo/addiction-candy-face-portrait-5723610/">Pexels</a>
+- <a href="https://unsplash.com/@daniloalvesd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Danilo Alvesd</a> on <a href="https://unsplash.com/s/photos/pills?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://www.pexels.com/photo/20-mg-label-blister-pack-208512/">Pixabay</a> on <a href="https://www.pexels.com/photo/20-mg-label-blister-pack-208512/">Pexels</a>
+- <a href="https://unsplash.com/@nci?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">National Cancer Institute</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://freerangestock.com/photographer/sapiduduk/4815">sapiduduk</a> on <a href="https://freerangestock.com/photographer/sapiduduk/4815">freerangestock.com</a>
+- <a href="https://unsplash.com/@lilartsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">lilartsy</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://unsplash.com/@laurynasm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Laurynas Mereckas</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://unsplash.com/@ksyfffka07?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ksenia Yakovleva</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://www.pexels.com/photo/anonymous-female-with-pills-in-hand-and-bottle-6798730/">Michelle</a> on <a href="https://www.pexels.com/photo/anonymous-female-with-pills-in-hand-and-bottle-6798730/">Pexels</a>
+- <a href="https://unsplash.com/@charissek?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Charisse Kenion</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://www.pexels.com/photo/magnifier-placed-near-green-pills-7788340/">Ivan Babydov</a> on <a href="https://www.pexels.com/photo/magnifier-placed-near-green-pills-7788340/">Pexels</a>
+- <a href="https://www.pexels.com/pl-pl/zdjecie/marketing-mezczyzna-kreatywny-biuro-5310566/">Malte Luk</a> on <a href="https://www.pexels.com/pl-pl/zdjecie/marketing-mezczyzna-kreatywny-biuro-5310566/">Pexels</a>
+- <a href="https://unsplash.com/@lunarts?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Volodymyr Hryshchenko</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://unsplash.com/@martafilipczyk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marta Filipczyk</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- <a href="https://www.kindpng.com/userpngs/18057/">Netherlands</a> on <a href="https://www.kindpng.com/imgv/ihhiiTi_register-now-clipart-png-transparent-png/">KindPNG</a>

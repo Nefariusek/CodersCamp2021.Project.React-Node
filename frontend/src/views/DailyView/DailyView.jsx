@@ -1,19 +1,23 @@
 import './DailyView.scss';
 
-import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
 import AddDrugModal from '../../components/AddDrug/AddDrugModal';
-import buttonStyles from '../../components/Button/Button.module.scss';
 import Pill from '../../components/Pill/Pill';
+import { DAYTIMES } from '../../constants/picklistValues';
+import drugs from '../../mock/drugs';
 import DatePicker from './DatePicker';
 
 const TITLE = `DAILY DRUGS`;
-const DAYTIMES = [`MORNING`, `NOON`, `EVENING`];
-
 const DailyDrugs = () => {
+  const [drugList, setDrugList] = React.useState(drugs);
+
+  const addDrug = (drug) => {
+    setDrugList([...drugList, drug]);
+  };
+
   return (
     <div className="daily-view-container">
       <div className="title-container">
@@ -27,28 +31,29 @@ const DailyDrugs = () => {
         </div>
         <div className="drug-box-container">
           <Box className="drug-box" sx={{ display: 'flex', borderRadius: 15 }}>
-            <Box className="drug-box-compartment 1" sx={{ borderRadius: 10, margin: 3 }}>
-              <Typography align="center" className="time-of-day" variant="h6">
-                {DAYTIMES[0]}
-              </Typography>
-            </Box>
-
-            <Box className="drug-box-compartment 2" sx={{ borderRadius: 10, margin: 3 }}>
-              <Typography align="center" className="time-of-day" variant="h6">
-                {DAYTIMES[1]}
-              </Typography>
-            </Box>
-
-            <Box className="drug-box-compartment 3" sx={{ borderRadius: 10, margin: 3 }}>
-              <Typography align="center" className="time-of-day" variant="h6">
-                {DAYTIMES[2]}
-              </Typography>
-            </Box>
+            {DAYTIMES.map((daytime) => (
+              <Box className="drug-box-compartment" key={daytime} sx={{ borderRadius: 10, margin: 3 }}>
+                <Typography align="center" className="time-of-day" variant="h6">
+                  {daytime}
+                </Typography>
+                {drugList
+                  .filter((drug) => drug.daytime.includes(daytime))
+                  .map((drug) => (
+                    <Pill
+                      key={`${drug.name}_${drug.expirationDate}`}
+                      typeOfMedication={drug.type}
+                      name={drug.name}
+                      showExpirationDate={false}
+                      expirationDate={drug.expirationDate}
+                    />
+                  ))}
+              </Box>
+            ))}
           </Box>
         </div>
       </div>
       <div className="button-add-drug">
-        <AddDrugModal />
+        <AddDrugModal addDrug={addDrug} />
       </div>
     </div>
   );

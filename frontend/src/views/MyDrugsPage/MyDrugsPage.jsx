@@ -4,11 +4,12 @@ import '../../components/Pill/Pill.module.scss';
 import { Button, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-import buttonStyles from '../../components/Button/button.module.scss';
+import buttonStyles from '../../components/Button/Button.module.scss';
+import { AID_KIT_IMAGE_PATH } from '../../constants/images';
 import drugs from '../../mock/drugs';
 
 const initialDescription = 'CHOOSE A DRUG TO SHOW THE DESCRIPTION';
-const initialImageSource = '/apteczka.png';
+const initialImageSource = AID_KIT_IMAGE_PATH;
 
 const MyDrugsPage = () => {
   const [description, setDescription] = useState(initialDescription);
