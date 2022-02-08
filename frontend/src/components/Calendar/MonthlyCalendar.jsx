@@ -26,20 +26,22 @@ const MonthlyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(Date || new Date());
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <StaticDatePicker
-        views={['day']}
-        displayStaticWrapperAs="desktop"
-        label="MonthlyCalendar"
-        value={selectedDate}
-        onChange={(newSelectedDate) => {
-          setSelectedDate(newSelectedDate);
-        }}
-        renderDay={renderDayData}
-        renderInput={(params) => <TextField {...params} />}
-        inputFormat="'Week of' MMM d"
-      />
-    </LocalizationProvider>
+    <div className="monthly-calendar">
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <StaticDatePicker
+          views={['day']}
+          displayStaticWrapperAs="desktop"
+          label="MonthlyCalendar"
+          value={selectedDate}
+          onChange={(newSelectedDate) => {
+            setSelectedDate(newSelectedDate);
+          }}
+          renderDay={renderDayData}
+          renderInput={(params) => <TextField {...params} />}
+          inputFormat="'Week of' MMM d"
+        />
+      </LocalizationProvider>
+    </div>
   );
 };
 

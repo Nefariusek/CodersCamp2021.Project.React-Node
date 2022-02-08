@@ -3,8 +3,10 @@ import './CreditsPage.scss';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import buttonStyles from '../../components/Button/Button.module.scss';
+import buttonStyles from '../../components/Button/button.module.scss';
 
+const MAIN_TEXT = 'Second project of Coders Camp 2021';
+const SUBTITLE = 'Meet our team!';
 const DevelopersButtons = () => {
   const developers = [
     { href: 'https://github.com/Nefariusek', name: 'Szymon' },
@@ -17,23 +19,24 @@ const DevelopersButtons = () => {
   return (
     <div className="github-buttons">
       {developers.map(({ href, name }) => (
-        <Button variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
+        <Button key={name} variant="contained" className={buttonStyles.Button} target="_blank" href={href}>
           {name}
         </Button>
       ))}
     </div>
   );
 };
-
 const CreditsPage = () => {
   return (
     <div className="credits-page">
-      <Typography className="header-h2" variant="h2">
-        Second project of Coders Camp 2021
-      </Typography>
-      <Typography className="header-h3" variant="h3">
-        Meet our team!
-      </Typography>
+      <div className="title">
+        <Typography className="header-h2" variant="h2" color="title.main">
+          {MAIN_TEXT}
+        </Typography>
+        <Typography className="header-h3" variant="h3" color="title.light">
+          {SUBTITLE}
+        </Typography>
+      </div>
       <div className="credits-page-container">
         <DevelopersButtons />
         <img className="credits-page-image" src="./creditsPills.png" alt="credits page img" />
