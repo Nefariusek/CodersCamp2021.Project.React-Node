@@ -6,12 +6,11 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import mainImage from '/apteczka.png';
-
 import SignUp from '../../components/Auth/SignUp/SignUp';
+import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 
-const MAIN_IMAGE = { pathOrUrl: mainImage, alt: 'aid kit' };
+const MAIN_IMAGE = { pathOrUrl: AID_KIT_IMAGE_PATH, alt: AID_KIT_IMAGE_ALT };
 
 const SignUpPage = () => {
   return (
