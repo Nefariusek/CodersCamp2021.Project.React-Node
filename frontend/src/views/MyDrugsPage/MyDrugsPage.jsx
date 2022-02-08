@@ -16,9 +16,11 @@ const MyDrugsPage = () => {
 
   const showDescription = (selectedDrug) => {
     const foundDrug = drugs.find(({ name }) => name.toUpperCase() === selectedDrug.target.innerText);
-    const readyDescription = `NAME: ${foundDrug.name} \n EXPIRATION DATE: ${foundDrug.expirationDate} \n INFO: ${foundDrug.notes} \n QUANTITY: ${foundDrug.quantity}`;
+    const readyDescription = `NAME: ${foundDrug.name} \n EXPIRATION DATE: ${foundDrug.getExpirationDate()} \n INFO: ${
+      foundDrug.description
+    } \n QUANTITY: ${foundDrug.quantity}`;
     setDescription(readyDescription);
-    setPhotoSource(foundDrug.photoSource);
+    setPhotoSource(foundDrug.img);
   };
 
   return (
