@@ -24,7 +24,7 @@ const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) =>
     );
   }
   return (
-    <Tooltip title={`${name} / ${expirationDate} / ${iconTypeOfMedication[typeOfMedication]} `}>
+    <Tooltip title={`${name} / ${expirationDate}`}>
       <div>
         <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]} ${pillStyles.hide}`}>{name}</div>
       </div>
