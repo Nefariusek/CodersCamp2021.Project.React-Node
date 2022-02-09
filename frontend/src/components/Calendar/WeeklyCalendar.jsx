@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import startOfWeek from 'date-fns/startOfWeek';
 import { useState } from 'react';
 
@@ -19,7 +19,9 @@ const renderDaysInWeek = (date) => {
     week.push(
       <div className="week-day" key={`day${i}`}>
         <div className="day-informations">
-          <div className="day-number">{tmpDate.getDate()}</div>
+          <Typography className="day-number" color="datetime.weekDayFont">
+            {tmpDate.getDate()}
+          </Typography>
         </div>
       </div>,
     );
@@ -29,11 +31,11 @@ const renderDaysInWeek = (date) => {
 };
 
 const renderDayNames = () => {
-  const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   return dayNames.map((dayName) => (
-    <div className="day-name" key={`${dayName}`}>
+    <Typography className="day-name" color="title.light" fontWeight="bold" key={`${dayName}`}>
       {dayName}
-    </div>
+    </Typography>
   ));
 };
 

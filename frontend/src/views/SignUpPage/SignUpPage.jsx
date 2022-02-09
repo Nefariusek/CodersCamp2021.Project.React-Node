@@ -2,22 +2,20 @@ import './SignUpPage.scss';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import mainImage from '../../../public/apteczka.png';
 import SignUp from '../../components/Auth/SignUp/SignUp';
+import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 
-const MAIN_IMAGE = { pathOrUrl: mainImage, alt: 'aid kit' };
+const MAIN_IMAGE = { pathOrUrl: AID_KIT_IMAGE_PATH, alt: AID_KIT_IMAGE_ALT };
 
 const SignUpPage = () => {
   return (
     <Container className="signup-page">
-      <CssBaseline />
-      <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+      <Grid container spacing={2} alignItems="center" justifyContent="space-between" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12} md={6}>
           <Stack alignItems="center">
             <Box align="left">
@@ -32,7 +30,7 @@ const SignUpPage = () => {
           </Stack>
         </Grid>
         <Grid item xs={12} md={6} align="center">
-          <img src={MAIN_IMAGE.pathOrUrl} className="main-picture" alt={MAIN_IMAGE.alt} width="80%" />
+          <img src={MAIN_IMAGE.pathOrUrl} alt={MAIN_IMAGE.alt} className="main-picture" width="65%" />
         </Grid>
       </Grid>
     </Container>

@@ -1,0 +1,147 @@
+$bp-small: 480px;
+$bp-medium: 600px;
+$bp-big: 900px;
+$text-background-color: #000;
+$text-font-color: #fff;
+$arrow-background-color: rgb(252, 212, 51, 1);
+$arrow-color: #000;
+$arrow-type: 'round';
+
+@mixin bp-max($point) {
+  @media (max-width: #{$point}) {
+    @content;
+  }
+}
+
+@mixin arrow-type($type) {
+  @if $type == 'round' {
+    border-radius: 50%;
+  } @else {
+    border-radius: 0%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.slider {
+  position: relative;
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  @include bp-max($bp-big) {
+    & {
+      width: 65%;
+    }
+  }
+
+  @include bp-max($bp-medium) {
+    & {
+      width: 75%;
+    }
+  }
+  @include bp-max($bp-small) {
+    & {
+      width: 85%;
+    }
+  }
+
+  .slider-arrow-left,
+  .slider-arrow-right {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    padding: 3px;
+    font-size: 2.2rem;
+    color: $arrow-color;
+    background-color: $arrow-background-color;
+    @include arrow-type($arrow-type);
+    cursor: pointer;
+    user-select: none;
+
+    &.round {
+      border-radius: 50%;
+    }
+
+    &.square {
+      border-radius: 0%;
+    }
+  }
+
+  .slider-arrow-left {
+    left: -3.7rem;
+    padding-right: 5px;
+
+    @include bp-max($bp-small) {
+      & {
+        left: -2rem;
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .slider-arrow-right {
+    right: -3.7rem;
+    padding-left: 5px;
+
+    @include bp-max($bp-small) {
+      & {
+        right: -2rem;
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .slide {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 10px;
+    opacity: 0;
+    box-shadow: 10px 5px 25px black;
+    background-color: #000;
+    line-height: 0;
+    transition-duration: 1s ease;
+    transform: scale(0.8);
+
+    &.active {
+      opacity: 1;
+      transition-duration: 2s;
+      transform: scale(1);
+    }
+  }
+
+  .slide-image {
+    position: relative;
+    bottom: 0;
+    max-height: 300px;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+
+    --x: 0;
+    --y: 0;
+    --d: 50;
+  }
+
+  .slide-text {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    padding: 4px;
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.5;
+    text-align: center;
+    color: $text-font-color;
+    background-color: $text-background-color;
+    user-select: none;
+  }
+
+  .slide-effect {
+    &:hover {
+      transform: scale(1.1) translate(calc(var(--x) / var(--d) * 3px), calc(var(--y) / var(--d) * 3px));
+    }
+  }
+}

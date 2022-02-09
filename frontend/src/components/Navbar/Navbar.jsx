@@ -6,38 +6,49 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LOGO_ALT, LOGO_PATH } from '../../constants/images';
 import {
   PATH_TO_CALENDAR,
   PATH_TO_DAILY_DRUGS,
-  PATH_TO_HOMEPAGE,
   PATH_TO_LEXICON,
   PATH_TO_LOGIN,
+  PATH_TO_MY_DRUGS,
   PATH_TO_SETTINGS,
+  PATH_TO_USER_HOMEPAGE,
 } from '../../constants/paths';
+import { useThemeUpdate } from '../DarkThemeContext/DarkThemeContext';
+import LoginContext from '../LoginContext/LoginContext';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
 const pages = [
   { path: PATH_TO_DAILY_DRUGS, name: 'Daily Drugs' },
   { path: PATH_TO_LEXICON, name: 'Lexicon' },
   { path: PATH_TO_CALENDAR, name: 'Calendar' },
+  { path: PATH_TO_MY_DRUGS, name: 'Your drugs' },
 ];
-const LOGO_IMG = { path: './logo_color.png', alt: 'logo' };
+const LOGO_IMG = { path: LOGO_PATH, alt: LOGO_ALT };
 
 const Navbar = () => {
+  const toggleTheme = useThemeUpdate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const auth = useContext(LoginContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  const handleLogOut = () => {
+    auth.setLoginStatus(false);
   };
 
   const handleCloseNavMenu = () => {
@@ -110,11 +121,23 @@ const Navbar = () => {
 
   const tools = (
     <Stack direction="row" alignItems="center">
-      <ThemeSwitch defaultChecked />
+      <ThemeSwitch
+        defaultUnChecked
+        onChange={() => {
+          toggleTheme();
+        }}
+      />
       <IconButton color="inherit" size="large" aria-label="settings button" component={Link} to={PATH_TO_SETTINGS}>
         <SettingsIcon />
       </IconButton>
-      <IconButton color="inherit" size="large" aria-label="login button" component={Link} to={PATH_TO_LOGIN}>
+      <IconButton
+        color="inherit"
+        size="large"
+        aria-label="login button"
+        component={Link}
+        to={PATH_TO_LOGIN}
+        onClick={handleLogOut}
+      >
         <LogoutIcon />
       </IconButton>
     </Stack>
@@ -128,14 +151,13 @@ const Navbar = () => {
         color: 'white',
       }}
     >
-      <CssBaseline />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box>
             <Box
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, textDecoration: 'none' }}
               component={Link}
-              to={PATH_TO_HOMEPAGE}
+              to={PATH_TO_USER_HOMEPAGE}
               color="secondary"
             >
               {brand}
@@ -145,7 +167,7 @@ const Navbar = () => {
           <Box
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, color: 'inherit', textDecoration: 'none' }}
             component={Link}
-            to={PATH_TO_HOMEPAGE}
+            to={PATH_TO_USER_HOMEPAGE}
           >
             {brand}
           </Box>

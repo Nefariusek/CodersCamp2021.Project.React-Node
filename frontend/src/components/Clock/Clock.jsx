@@ -11,6 +11,9 @@ const Clock = () => {
       const date = new Date();
       setClockState(date.toLocaleTimeString());
     }, 1000);
+    return () => {
+      setClockState();
+    };
   }, []);
 
   return (

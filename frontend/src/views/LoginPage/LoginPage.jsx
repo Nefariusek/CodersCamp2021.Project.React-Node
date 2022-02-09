@@ -2,13 +2,15 @@ import './LoginPage.scss';
 
 import { TextField, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 
 import loginValidation from '../../api/loginValidation';
-import buttonStyles from '../../components/Button/button.module.scss';
+import buttonStyles from '../../components/Button/Button.module.scss';
+import LoginContext from '../../components/LoginContext/LoginContext';
+import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
-import { PATH_TO_REGISTER } from '../../constants/paths';
+import { PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -16,11 +18,16 @@ const LoginPage = () => {
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
+  const auth = useContext(LoginContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginValidation(username, password, setUsernameError, setPasswordError);
+    loginValidation(username, password, setUsernameError, setPasswordError, auth.setLoginStatus);
   };
 
+  if (auth.loginStatus) {
+    return <Navigate to={PATH_TO_USER_HOMEPAGE} />;
+  }
   return (
     <div className="login-page">
       <div className="login-container">
@@ -40,7 +47,6 @@ const LoginPage = () => {
             error={usernameError}
             style={{
               width: '80%',
-              backgroundColor: '#42b6dc',
             }}
           />
           <TextField
@@ -53,7 +59,6 @@ const LoginPage = () => {
             error={passwordError}
             style={{
               width: '80%',
-              backgroundColor: '#42b6dc',
             }}
           />
           <Button type="submit" variant="contained" className={buttonStyles.Button}>
@@ -64,7 +69,7 @@ const LoginPage = () => {
           </Button>
         </form>
       </div>
-      <img src="./apteczka.png" alt="" />
+      <img src={AID_KIT_IMAGE_PATH} alt={AID_KIT_IMAGE_ALT} />
     </div>
   );
 };

@@ -1,5 +1,3 @@
-export const DAYTIMES = ['Morning', 'Noon', 'Evening'];
-
 const ErrorMessages = {
   drugName: {
     EMPTY: "Drug name can't be empty.",
@@ -20,6 +18,10 @@ export const validateInput = (name, value) => {
   switch (name) {
     case 'drugName':
       result = validateDrugName(value);
+      break;
+    case 'drugType':
+      break;
+    case 'drugQuantity':
       break;
     case 'description':
       break;

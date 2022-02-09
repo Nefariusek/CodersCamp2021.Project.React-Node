@@ -2,9 +2,11 @@ import './CalendarPage.scss';
 
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import MonthlyCalendar from '../../components/Calendar/MonthlyCalendar';
 import WeeklyCalendar from '../../components/Calendar/WeeklyCalendar';
+import { PATH_TO_DAILY_DRUGS } from '../../constants/paths';
 
 const CalendarPage = () => {
   const [calendarName, setCalendarName] = useState('Month');
@@ -31,7 +33,7 @@ const CalendarPage = () => {
       </FormControl>
       {calendarName === 'Month' && <MonthlyCalendar />}
       {calendarName === 'Week' && <WeeklyCalendar />}
-      {calendarName === 'Day' && <div>Daily Drugs</div>}
+      {calendarName === 'Day' && <Navigate to={PATH_TO_DAILY_DRUGS} />}
     </div>
   );
 };

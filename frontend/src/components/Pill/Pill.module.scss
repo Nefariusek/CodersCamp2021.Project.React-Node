@@ -1,6 +1,7 @@
 @import '../../sass/variables.scss';
 
 .pill {
+  text-align: center;
   margin-top: 10px !important;
   padding: 5px 15px;
   font-size: medium;
@@ -9,7 +10,7 @@
   border-radius: 45px;
   color: white;
   margin: auto;
-  height: 40px;
+  height: 50px;
   &.blue {
     background-color: $blue;
     border: 2px solid $blue-border;

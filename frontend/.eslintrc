@@ -26,7 +26,9 @@
     "no-unused-vars": [2, { "argsIgnorePattern": "^_" }],
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/jsx-props-no-spreading": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/jsx-no-constructed-context-values": 0,
+    "import/prefer-default-export": 0
   },
   "overrides": [
     {

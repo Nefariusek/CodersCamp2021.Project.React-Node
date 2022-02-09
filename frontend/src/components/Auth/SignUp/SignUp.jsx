@@ -3,19 +3,17 @@ import './SignUp.scss';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { PATH_TO_LOGIN } from '../../../constants/paths';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
 
 const styles = {
   helper: {
-    color: 'black',
     fontSize: '.8em',
   },
 };
@@ -60,6 +58,7 @@ const SignUp = () => {
   const classes = useStyles();
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     let isFormValid = true;
@@ -86,13 +85,13 @@ const SignUp = () => {
     }
 
     if (isFormValid) {
-      alert('Sign up successfull!');
+      alert('Sign up successful!');
+      navigate(PATH_TO_LOGIN, { replace: true });
     }
   };
 
   return (
     <Container maxWidth="xs">
-      <CssBaseline />
       <Box
         component="form"
         noValidate
@@ -204,9 +203,18 @@ const SignUp = () => {
         </Grid>
         <Grid container justifyContent="center">
           <Grid item>
-            <Link href={PATH_TO_LOGIN} variant="body2" color="secondary">
+            <Button
+              component={Link}
+              to={PATH_TO_LOGIN}
+              color="secondary"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.target.click();
+              }}
+              align="center"
+            >
               Already have an account? Sign in
-            </Link>
+            </Button>
           </Grid>
         </Grid>
       </Box>
