@@ -26,7 +26,7 @@ const MyDrugsPage = () => {
 
   return (
     <div className="my-drugs-page">
-      <Typography className="header-h2" variant="h2">
+      <Typography className="header-h2" variant="h2" color="title.main">
         YOUR DRUGS
       </Typography>
       <div className="drugs-container">
@@ -38,10 +38,12 @@ const MyDrugsPage = () => {
           ))}
         </div>
         <div className="drug-description">
-          <Typography className="drug-description-header" variant="h4">
+          <Typography className="drug-description-header" variant="h4" color="title.light">
             DRUG DESCRIPTION
           </Typography>
-          <p className="drug-description-details">{description}</p>
+          <Typography className="drug-description-details" color="text.main">
+            {description}
+          </Typography>
           <img className="drug-description-image" src={photoSource} alt="Medication" width="250" />
         </div>
       </div>

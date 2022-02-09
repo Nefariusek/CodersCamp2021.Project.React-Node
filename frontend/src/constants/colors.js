@@ -8,7 +8,7 @@ export const LIGHTTHEME_BACKGROUND_COLOR = '#95d4e0';
 export const LIGHTTHEME_ERROR_COLOR = '#880e4f';
 export const LIGHTTHEME_INPUT_BG_COLOR = '#42b6dc';
 export const LIGHTTHEME_LABEL_COLOR = '#1b4c56';
-export const LIGHTTHEME_TEXT_COLOR = '#fff';
+export const LIGHTTHEME_TEXT_COLOR = '#023e8a';
 export const LIGHTTHEME_HELPER_COLOR = '#2F3A45';
 
 export const DARKTHEME_BASE_COLOR = `#2F3A45`;
@@ -19,3 +19,4 @@ export const DARKTHEME_SECONDARY_COLOR = `#fcd433`;
 export const DARKTHEME_INPUT_BG_COLOR = '#059ac8';
 export const DARKTHEME_ERROR_COLOR = `#cc1a76`;
 export const DARKTHEME_HELPER_COLOR = '#48cae4';
+export const DARKTHEME_TEXT_COLOR = '#059ac8';
