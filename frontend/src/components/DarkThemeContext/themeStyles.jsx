@@ -4,6 +4,7 @@ import {
   DARKTHEME_BASE_COLOR,
   DARKTHEME_ERROR_COLOR,
   DARKTHEME_HELPER_COLOR,
+  DARKTHEME_INPUT_BG_COLOR,
   DARKTHEME_NAVBAR_COLOR,
   DARKTHEME_PRIMARY_COLOR,
   DARKTHEME_SECONDARY_COLOR,
@@ -151,14 +152,14 @@ const darkTheme = createTheme({
     MuiFilledInput: {
       styleOverrides: {
         input: {
-          backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
+          backgroundColor: DARKTHEME_INPUT_BG_COLOR,
         },
       },
     },
     MuiSelect: {
       styleOverrides: {
         filled: {
-          backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
+          backgroundColor: DARKTHEME_INPUT_BG_COLOR,
         },
       },
     },

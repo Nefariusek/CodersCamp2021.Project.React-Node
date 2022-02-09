@@ -23,8 +23,8 @@ export const validateInput = (name, value) => {
       break;
     case 'drugQuantity':
       break;
-    // case 'drugPackages':
-    //   break;
+    case 'drugPackages':
+      break;
     case 'description':
       break;
     case 'expirationDate':

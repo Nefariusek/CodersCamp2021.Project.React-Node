@@ -31,17 +31,17 @@ import { validateInput } from './addDrugValidation';
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const mappedMedTypes = new Map();
-mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'psc' });
+mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs' });
 mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml' });
 mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml' });
 mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml' });
-mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'psc' });
-mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'psc' });
+mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs' });
+mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs' });
 
 const initialFormState = {
   drugName: '',
   drugType: PILL_MED_TYPE,
-  drugQuantity: '',
+  drugQuantity: mappedMedTypes.get(PILL_MED_TYPE).quantity[0],
   drugPackages: 0,
   description: '',
   expirationDate: new Date(),
@@ -111,22 +111,24 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   const handleInput = (name) => (e) => {
     let value = '';
 
-    if (name === 'expirationDate') {
-      value = e;
-    } else {
-      value = e.target.value;
-    }
     if (name === 'drugType') {
       setFormValues({
         ...formValues,
-        drugQuantity: '',
+        drugType: e.target.value,
+        drugQuantity: mappedMedTypes.get(e.target.value).quantity[0],
+      });
+    } else {
+      if (name === 'expirationDate') {
+        value = e;
+      } else {
+        value = e.target.value;
+      }
+
+      setFormValues({
+        ...formValues,
+        [name]: value,
       });
     }
-
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
 
     const errorText = validateInput(name, value);
 
@@ -196,7 +198,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
 
           <Grid item xs={12} sm={4}>
             <FormControl required fullWidth>
-              <InputLabel id="drug-quantity-select-label" color="label">
+              <InputLabel id="drug-quantity-select-label" className={classes.label} shrink color="label">
                 QUANTITY
               </InputLabel>
               <Select
