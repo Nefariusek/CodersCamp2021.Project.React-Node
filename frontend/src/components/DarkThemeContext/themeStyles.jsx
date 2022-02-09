@@ -8,6 +8,7 @@ import {
   DARKTHEME_NAVBAR_COLOR,
   DARKTHEME_PRIMARY_COLOR,
   DARKTHEME_SECONDARY_COLOR,
+  DARKTHEME_TEXT_COLOR,
   DARKTHEME_TITLE_COLOR,
   LIGHTTHEME_BACKGROUND_COLOR,
   LIGHTTHEME_BASE_COLOR,
@@ -50,6 +51,9 @@ const lightTheme = createTheme({
     title: {
       main: LIGHTTHEME_TITLE_COLOR,
       light: LIGHTTHEME_SUBTITLE_COLOR,
+    },
+    text: {
+      main: LIGHTTHEME_TEXT_COLOR,
     },
     navbar: {
       main: LIGHTTHEME_NAVBAR_COLOR,
@@ -134,6 +138,9 @@ const darkTheme = createTheme({
     title: {
       main: DARKTHEME_TITLE_COLOR,
       light: LIGHTTHEME_SUBTITLE_COLOR,
+    },
+    text: {
+      main: DARKTHEME_TEXT_COLOR,
     },
     navbar: {
       main: DARKTHEME_BASE_COLOR,
