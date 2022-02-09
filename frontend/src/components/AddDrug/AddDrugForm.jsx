@@ -11,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
@@ -33,8 +34,8 @@ const mappedMedTypes = new Map();
 mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'psc' });
 mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml' });
 mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml' });
-mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'psc' });
 mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml' });
+mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'psc' });
 mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'psc' });
 
 const initialFormState = {
@@ -44,12 +45,17 @@ const initialFormState = {
   drugPackages: 0,
   description: '',
   expirationDate: new Date(),
-  daytime: [],
+  daytime: [DAYTIMES[0]],
 };
 
 const styles = {
   helper: {
     fontSize: '.8em',
+    color: 'helper.main',
+  },
+  error: {
+    fontSize: '.8em',
+    color: 'error.main',
   },
 };
 
@@ -76,7 +82,6 @@ const dateFormat = {
 
 const AddDrugForm = ({ onClose, addDrug }) => {
   const classes = useStyles();
-  // const { onClose } = props;
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
@@ -164,7 +169,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <FormControl required fullWidth>
               <InputLabel id="drugtype-select-label" className={classes.label} shrink color="label">
                 TYPE
@@ -189,9 +194,8 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             </FormControl>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <FormControl required fullWidth>
-              {/* <InputLabel id="drug-quantity-select-label" className={classes.label} shrink color="label"> */}
               <InputLabel id="drug-quantity-select-label" color="label">
                 QUANTITY
               </InputLabel>
@@ -215,7 +219,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             </FormControl>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <TextField
               label="PACKAGES"
               name="drugPackages"
@@ -224,46 +228,11 @@ const AddDrugForm = ({ onClose, addDrug }) => {
               variant="filled"
               required
               fullWidth
-              autoFocus
               color="secondary"
               value={formValues.drugPackages}
               onChange={handleInput('drugPackages')}
               onBlur={handleInput('drugPackages')}
               InputProps={{ inputProps: { min: 0 } }}
-            />
-          </Grid>
-
-          {/* 
-          <Grid item xs={6}>
-            <TextField
-              label="QUANTITY"
-              name="drugQuantity"
-              id="drugQuantity"
-              type="number"
-              variant="filled"
-              required
-              fullWidth
-              autoFocus
-              color="secondary"
-              value={formValues.drugQuantity}
-              onChange={handleInput('drugQuantity')}
-              onBlur={handleInput('drugQuantity')}
-              InputProps={{ inputProps: { min: 0 } }}
-            />
-          </Grid>
-*/}
-
-          <Grid item xs={12}>
-            <TextField
-              label="DESCRIPTION"
-              name="description"
-              id="description"
-              variant="filled"
-              fullWidth
-              color="secondary"
-              value={formValues.description}
-              onChange={handleInput('description')}
-              onBlur={handleInput('description')}
             />
           </Grid>
 
@@ -296,6 +265,20 @@ const AddDrugForm = ({ onClose, addDrug }) => {
           </Grid>
 
           <Grid item xs={12}>
+            <TextField
+              label="DESCRIPTION"
+              name="description"
+              id="description"
+              variant="filled"
+              fullWidth
+              color="secondary"
+              value={formValues.description}
+              onChange={handleInput('description')}
+              onBlur={handleInput('description')}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
             <FormControl required fullWidth>
               <InputLabel id="daytime-select-label" className={classes.label} shrink color="label">
                 DAYTIME
@@ -320,7 +303,9 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 ))}
               </Select>
               <FormHelperText style={styles.helper}>
-                {formErrors.daytime ? formErrors.daytime : DAYTIME_HELPER_TEXT}
+                <Typography variant="caption" color={formErrors.daytime ? 'error.main' : 'helper.main'}>
+                  {formErrors.daytime ? formErrors.daytime : DAYTIME_HELPER_TEXT}
+                </Typography>
               </FormHelperText>
             </FormControl>
           </Grid>

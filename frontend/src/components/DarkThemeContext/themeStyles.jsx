@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import {
   DARKTHEME_BASE_COLOR,
   DARKTHEME_ERROR_COLOR,
+  DARKTHEME_HELPER_COLOR,
   DARKTHEME_NAVBAR_COLOR,
   DARKTHEME_PRIMARY_COLOR,
   DARKTHEME_SECONDARY_COLOR,
@@ -10,6 +11,7 @@ import {
   LIGHTTHEME_BACKGROUND_COLOR,
   LIGHTTHEME_BASE_COLOR,
   LIGHTTHEME_ERROR_COLOR,
+  LIGHTTHEME_HELPER_COLOR,
   LIGHTTHEME_INPUT_BG_COLOR,
   LIGHTTHEME_LABEL_COLOR,
   LIGHTTHEME_NAVBAR_COLOR,
@@ -38,6 +40,9 @@ const lightTheme = createTheme({
     error: {
       main: LIGHTTHEME_ERROR_COLOR,
     },
+    helper: {
+      main: LIGHTTHEME_HELPER_COLOR,
+    },
     background: {
       default: LIGHTTHEME_BASE_COLOR,
     },
@@ -62,6 +67,13 @@ const lightTheme = createTheme({
     MuiFilledInput: {
       styleOverrides: {
         input: {
+          backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        filled: {
           backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
         },
       },
@@ -112,6 +124,9 @@ const darkTheme = createTheme({
     error: {
       main: DARKTHEME_ERROR_COLOR,
     },
+    helper: {
+      main: DARKTHEME_HELPER_COLOR,
+    },
     background: {
       default: DARKTHEME_NAVBAR_COLOR,
     },
@@ -136,6 +151,13 @@ const darkTheme = createTheme({
     MuiFilledInput: {
       styleOverrides: {
         input: {
+          backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        filled: {
           backgroundColor: LIGHTTHEME_INPUT_BG_COLOR,
         },
       },
