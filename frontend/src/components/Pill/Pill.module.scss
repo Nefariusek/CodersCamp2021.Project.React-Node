@@ -3,8 +3,9 @@
 .pill {
   text-align: center;
   margin-top: 10px !important;
-  padding: 5px;
+  padding: 5px 15px;
   font-size: medium;
+  min-width: fit-content;
   width: 175px !important;
   border-radius: 45px;
   color: white;
@@ -12,21 +13,28 @@
   height: 50px;
   &.blue {
     background-color: $blue;
+    border: 2px solid $blue-border;
   }
   &.orange {
     background-color: $orange;
+    border: 2px solid $orange-border;
   }
   &.yellow {
     background-color: $yellow;
+    border: 2px solid $yellow-border;
+    color: #023e8a;
   }
   &.green {
     background-color: $green;
+    border: 2px solid $green-border;
   }
   &.red {
     background-color: $red;
+    border: 2px solid $red-border;
   }
   &.pink {
     background-color: $pink;
+    border: 2px solid $pink-border;
   }
   .expiration {
     font-size: small;

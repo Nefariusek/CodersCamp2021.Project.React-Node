@@ -78,13 +78,25 @@ $calendar-width: 100vw;
   border: 2px solid #023e8a !important;
 }
 
-.calendar-page .day-informations {
+.calendar-page .monthly-calendar .day-informations {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
-.calendar-page .day-number {
+.calendar-page .monthly-calendar .day-number {
+  margin-top: 1vmin;
   font-size: 3vmin;
   font-weight: bold;
+}
+
+.calendar-page .monthly-calendar .day-expiring {
+  font-size: 1.5vmin;
+  font-weight: bold;
+  white-space: pre-wrap;
+  margin: 0;
+  max-height: 7vh;
+  width: 10vw;
+  margin-bottom: 1vmin;
+  color: #ff0000;
 }

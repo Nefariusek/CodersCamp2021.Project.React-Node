@@ -5,7 +5,7 @@ export default class Medication {
     this.name = name;
     this.expirationDate = expirationDate;
     this.description = description;
-    this.type = type;
+    this.category = type;
     this.dosage = dosage;
     this.quantity = quantity;
     this.img = imgSource;

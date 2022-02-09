@@ -64,3 +64,26 @@
   margin: 2vmin;
   border-radius: 2vmin;
 }
+
+.calendar-page .week-calendar .day-informations {
+  display: flex;
+  flex-direction: column;
+  gap: 3vmin;
+}
+
+.calendar-page .week-calendar .day-number {
+  font-size: 3vmin;
+  font-weight: bold;
+  text-justify: center;
+  text-align: center;
+}
+
+.calendar-page .week-calendar .day-expiring {
+  font-size: 2.5vmin;
+  text-align: center;
+  font-weight: bold;
+  white-space: pre-wrap;
+  margin: 0;
+  width: 8vw;
+  color: #ff0000;
+}
