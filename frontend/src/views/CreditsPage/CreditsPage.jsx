@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
-import { CREDITS_PILLS_ALT, CREDITS_PILLS_PATH } from '../../constants/images';
+import { PILLS_IMAGE_ALT, PILLS_IMAGE_PATH } from '../../constants/images';
 
 const MAIN_TEXT = 'Second project of Coders Camp 2021';
 const SUBTITLE = 'Meet our team!';
@@ -40,7 +40,7 @@ const CreditsPage = () => {
       </div>
       <div className="credits-page-container">
         <DevelopersButtons />
-        <img className="credits-page-image" src={CREDITS_PILLS_PATH} alt={CREDITS_PILLS_ALT} />
+        <img className="credits-page-image" src={PILLS_IMAGE_PATH} alt={PILLS_IMAGE_ALT} />
       </div>
     </div>
   );

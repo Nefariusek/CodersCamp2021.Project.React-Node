@@ -14,6 +14,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
+import { PILLS_IMAGE_PATH } from '../../constants/images';
 import {
   DROPS_MED_TYPE,
   INHALER_MED_TYPE,
@@ -84,7 +85,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
     const dosage = Math.floor(Math.random() * 9) + 1; // TODO: change in 2nd part of project
-    const defaultImage = '/apteczka.png'; // TODO: change in 2nd part of project
+    const defaultImage = PILLS_IMAGE_PATH; // TODO: change in 2nd part of project
 
     if (isFormValid) {
       const drug = new Medication(
