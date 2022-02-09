@@ -9,26 +9,31 @@ import Pill from '../Pill/Pill';
 drugs.sort((a, b) => (a.daysUntilExpiration() > b.daysUntilExpiration() ? 1 : -1));
 
 const ExpiringDrugs = ({ drugsNumber }) => {
-  const drugsShorten = [...drugs];
-  drugsShorten.length = drugsNumber;
+  const drugsSorted = [...drugs].sort((a, b) => a.daysUntilExpiration() - b.daysUntilExpiration());
   return (
     <div className="soon-expiring-drugs-list">
-      {drugsShorten.map((drug) => (
-        <div
-          key={drug.name}
-          className={drug.daysUntilExpiration() < 30 ? 'soon-expiring-medication' : 'not-soon-expiring-medication'}
-        >
-          <Pill
-            className={drug.daysUntilExpiration() < 30 ? 'soonExpiring' : 'notSoonExpiring'}
-            key={drug.name}
-            typeOfMedication={drug.category}
-            name={drug.name}
-            showExpirationDate
-            expirationDate={drug.getExpirationDate()}
-          />
-          <p>DAYS UNTIL EXPIRATION: {drug.daysUntilExpiration()}</p>
-        </div>
-      ))}
+      {drugsSorted.map((drug, index) => {
+        if (index < drugsNumber && drug.daysUntilExpiration() < 30) {
+          return (
+            <div key={drug.name} className="soon-expiring-medication">
+              <Pill
+                className="soonExpiring"
+                key={drug.name}
+                typeOfMedication={drug.category}
+                name={drug.name}
+                showExpirationDate
+                expirationDate={drug.getExpirationDate()}
+              />
+              {drug.daysUntilExpiration() < 0 ? (
+                <p>EXPIRED</p>
+              ) : (
+                <p>DAYS UNTIL EXPIRATION: {drug.daysUntilExpiration()}</p>
+              )}
+            </div>
+          );
+        }
+        return null;
+      })}
     </div>
   );
 };
