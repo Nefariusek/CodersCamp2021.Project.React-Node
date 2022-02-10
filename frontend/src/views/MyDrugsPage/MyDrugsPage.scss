@@ -3,7 +3,6 @@
   text-align: center;
 
   .header-h2 {
-    color: #023e8a;
     font-weight: 900;
   }
 
@@ -17,12 +16,7 @@
     .drug-description {
       white-space: pre-wrap;
 
-      &-header {
-        color: #059ac8;
-      }
-
       &-details {
-        color: #023e8a;
         font-weight: 600;
       }
     }

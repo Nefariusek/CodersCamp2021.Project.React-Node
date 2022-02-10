@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { PATH_TO_LOGIN } from '../../../constants/paths';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
@@ -58,6 +58,7 @@ const SignUp = () => {
   const classes = useStyles();
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     let isFormValid = true;
@@ -84,7 +85,8 @@ const SignUp = () => {
     }
 
     if (isFormValid) {
-      alert('Sign up successfull!');
+      alert('Sign up successful!');
+      navigate(PATH_TO_LOGIN, { replace: true });
     }
   };
 

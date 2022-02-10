@@ -11,27 +11,51 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
+import { PILLS_IMAGE_PATH } from '../../constants/images';
+import {
+  DROPS_MED_TYPE,
+  INHALER_MED_TYPE,
+  INJECTION_MED_TYPE,
+  PATCHES_MED_TYPE,
+  PILL_MED_TYPE,
+  SYRUP_MED_TYPE,
+} from '../../constants/medTypes';
 import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
 import { validateInput } from './addDrugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
+const mappedMedTypes = new Map();
+mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs' });
+mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml' });
+mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml' });
+mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml' });
+mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs' });
+mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs' });
+
 const initialFormState = {
   drugName: '',
-  drugType: MEDICATION_TYPES[0],
-  drugQuantity: 0,
+  drugType: PILL_MED_TYPE,
+  drugQuantity: mappedMedTypes.get(PILL_MED_TYPE).quantity[0],
+  drugPackages: 0,
   description: '',
   expirationDate: new Date(),
-  daytime: [],
+  daytime: [DAYTIMES[0]],
 };
 
 const styles = {
   helper: {
     fontSize: '.8em',
+    color: 'helper.main',
+  },
+  error: {
+    fontSize: '.8em',
+    color: 'error.main',
   },
 };
 
@@ -58,15 +82,16 @@ const dateFormat = {
 
 const AddDrugForm = ({ onClose, addDrug }) => {
   const classes = useStyles();
-  // const { onClose } = props;
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
   const handleAddDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
+
     const dosage = Math.floor(Math.random() * 9) + 1; // TODO: change in 2nd part of project
-    const defaultImage = '/apteczka.png'; // TODO: change in 2nd part of project
+    const defaultImage = PILLS_IMAGE_PATH; // TODO: change in 2nd part of project
+
     if (isFormValid) {
       const drug = new Medication(
         formValues.drugName,
@@ -86,16 +111,24 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   const handleInput = (name) => (e) => {
     let value = '';
 
-    if (name === 'expirationDate') {
-      value = e;
+    if (name === 'drugType') {
+      setFormValues({
+        ...formValues,
+        drugType: e.target.value,
+        drugQuantity: mappedMedTypes.get(e.target.value).quantity[0],
+      });
     } else {
-      value = e.target.value;
-    }
+      if (name === 'expirationDate') {
+        value = e;
+      } else {
+        value = e.target.value;
+      }
 
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
 
     const errorText = validateInput(name, value);
 
@@ -138,7 +171,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={4}>
             <FormControl required fullWidth>
               <InputLabel id="drugtype-select-label" className={classes.label} shrink color="label">
                 TYPE
@@ -163,35 +196,45 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             </FormControl>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={4}>
+            <FormControl required fullWidth>
+              <InputLabel id="drug-quantity-select-label" className={classes.label} shrink color="label">
+                QUANTITY
+              </InputLabel>
+              <Select
+                labelId="drug-quantity-select-label"
+                label="QUANTITY"
+                name="drugQuantity"
+                id="drug-quantity-select"
+                required
+                variant="filled"
+                value={formValues.drugQuantity}
+                onChange={handleInput('drugQuantity')}
+                onBlur={handleInput('drugQuantity')}
+              >
+                {mappedMedTypes.get(formValues.drugType).quantity.map((q) => (
+                  <MenuItem key={q} value={q}>
+                    {q} {mappedMedTypes.get(formValues.drugType).unit}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={12} sm={4}>
             <TextField
-              label="QUANTITY"
-              name="drugQuantity"
-              id="drugQuantity"
+              label="PACKAGES"
+              name="drugPackages"
+              id="drugPackages"
               type="number"
               variant="filled"
               required
               fullWidth
-              autoFocus
               color="secondary"
-              value={formValues.drugQuantity}
-              onChange={handleInput('drugQuantity')}
-              onBlur={handleInput('drugQuantity')}
+              value={formValues.drugPackages}
+              onChange={handleInput('drugPackages')}
+              onBlur={handleInput('drugPackages')}
               InputProps={{ inputProps: { min: 0 } }}
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <TextField
-              label="DESCRIPTION"
-              name="description"
-              id="description"
-              variant="filled"
-              fullWidth
-              color="secondary"
-              value={formValues.description}
-              onChange={handleInput('description')}
-              onBlur={handleInput('description')}
             />
           </Grid>
 
@@ -224,6 +267,20 @@ const AddDrugForm = ({ onClose, addDrug }) => {
           </Grid>
 
           <Grid item xs={12}>
+            <TextField
+              label="DESCRIPTION"
+              name="description"
+              id="description"
+              variant="filled"
+              fullWidth
+              color="secondary"
+              value={formValues.description}
+              onChange={handleInput('description')}
+              onBlur={handleInput('description')}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
             <FormControl required fullWidth>
               <InputLabel id="daytime-select-label" className={classes.label} shrink color="label">
                 DAYTIME
@@ -248,7 +305,9 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 ))}
               </Select>
               <FormHelperText style={styles.helper}>
-                {formErrors.daytime ? formErrors.daytime : DAYTIME_HELPER_TEXT}
+                <Typography variant="caption" color={formErrors.daytime ? 'error.main' : 'helper.main'}>
+                  {formErrors.daytime ? formErrors.daytime : DAYTIME_HELPER_TEXT}
+                </Typography>
               </FormHelperText>
             </FormControl>
           </Grid>
