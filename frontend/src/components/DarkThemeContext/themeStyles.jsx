@@ -17,6 +17,7 @@ import {
   LIGHTTHEME_INPUT_BG_COLOR,
   LIGHTTHEME_LABEL_COLOR,
   LIGHTTHEME_NAVBAR_COLOR,
+  LIGHTTHEME_PICKERSDAY_COLOR,
   LIGHTTHEME_PRIMARY_COLOR,
   LIGHTTHEME_SECONDARY_COLOR,
   LIGHTTHEME_SUBTITLE_COLOR,
@@ -99,10 +100,10 @@ const lightTheme = createTheme({
           fontWeight: 900,
           '&.Mui-selected': {
             backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
-            color: LIGHTTHEME_TEXT_COLOR,
+            color: LIGHTTHEME_PICKERSDAY_COLOR,
             '&:hover, &:focus, &.Mui-focusVisible': {
               backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
-              color: LIGHTTHEME_TEXT_COLOR,
+              color: LIGHTTHEME_PICKERSDAY_COLOR,
             },
           },
         },
@@ -186,10 +187,10 @@ const darkTheme = createTheme({
           fontWeight: 900,
           '&.Mui-selected': {
             backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
-            color: LIGHTTHEME_TEXT_COLOR,
+            color: LIGHTTHEME_PICKERSDAY_COLOR,
             '&:hover, &:focus, &.Mui-focusVisible': {
               backgroundColor: LIGHTTHEME_PRIMARY_COLOR,
-              color: LIGHTTHEME_TEXT_COLOR,
+              color: LIGHTTHEME_PICKERSDAY_COLOR,
             },
           },
         },
