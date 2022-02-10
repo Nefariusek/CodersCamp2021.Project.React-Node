@@ -38,17 +38,28 @@
     font-weight: 900;
   }
 
+  .MuiFormControl-root.MuiTextField-root {
+    background-color: #fcd433 !important;
+    border: 3px solid #102a71 !important;
+    border-radius: 45px !important;
+    color: #102a71 !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.3vh;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border: 0;
+  }
   .arrow-back {
     font-size: 3rem !important;
     margin-right: 1rem !important;
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
     color: #102a71;
   }
 
   .arrow-back:hover {
     font-size: 3rem !important;
     margin-right: 1rem !important;
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
     color: #fcd433 !important;
     cursor: pointer;
   }
@@ -57,13 +68,13 @@
     font-size: 3rem !important;
     margin-left: 1rem !important;
     color: #102a71;
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
   }
   .arrow-forward:hover {
     font-size: 3rem !important;
     margin-left: 1rem !important;
     color: #fcd433;
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
     cursor: pointer;
   }
 }
