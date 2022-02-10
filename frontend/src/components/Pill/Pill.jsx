@@ -14,10 +14,10 @@ const typeToClass = {
 };
 
 const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) => {
-  const noTimeExpDate = `${expirationDate.getFullYear()}/${expirationDate.getMonth() + 1}/${expirationDate.getDate()}`;
+  // TODO: const noTimeExpDate = `${expirationDate.getFullYear()}/${expirationDate.getMonth() + 1}/${expirationDate.getDate()}`;
   if (showExpirationDate) {
     return (
-      <Tooltip title={`${typeOfMedication} / ${noTimeExpDate}`}>
+      <Tooltip title={`${typeOfMedication} / ${expirationDate}`}>
         <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]}`}>
           {name}
           <div className={pillStyles.expiration}>Exp. date: {expirationDate}</div>
@@ -26,7 +26,7 @@ const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) =>
     );
   }
   return (
-    <Tooltip title={`${typeOfMedication} / ${noTimeExpDate}`}>
+    <Tooltip title={`${typeOfMedication} / ${expirationDate}`}>
       <div>
         <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]} ${pillStyles.hide}`}>{name}</div>
       </div>
