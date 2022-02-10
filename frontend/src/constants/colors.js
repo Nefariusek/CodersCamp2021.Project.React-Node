@@ -10,6 +10,7 @@ export const LIGHTTHEME_INPUT_BG_COLOR = '#42b6dc';
 export const LIGHTTHEME_LABEL_COLOR = '#1b4c56';
 export const LIGHTTHEME_TEXT_COLOR = '#023e8a';
 export const LIGHTTHEME_HELPER_COLOR = '#2F3A45';
+export const LIGHTTHEME_PICKERSDAY_COLOR = '#fff';
 
 export const DARKTHEME_BASE_COLOR = `#2F3A45`;
 export const DARKTHEME_TITLE_COLOR = `#fcd433`;
