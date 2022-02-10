@@ -1,7 +1,6 @@
 import Tooltip from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
 
-import { MEDICATION_TYPES } from '../../constants/picklistValues';
 import pillStyles from './Pill.module.scss';
 
 const typeToClass = {
@@ -14,19 +13,19 @@ const typeToClass = {
 };
 
 const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) => {
-  // TODO: const noTimeExpDate = `${expirationDate.getFullYear()}/${expirationDate.getMonth() + 1}/${expirationDate.getDate()}`;
+  const noTimeExpDate = `${expirationDate.getFullYear()}/${expirationDate.getMonth() + 1}/${expirationDate.getDate()}`;
   if (showExpirationDate) {
     return (
-      <Tooltip title={`${typeOfMedication} / ${expirationDate}`}>
+      <Tooltip title={`${typeOfMedication} / ${noTimeExpDate}`}>
         <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]}`}>
           {name}
-          <div className={pillStyles.expiration}>Exp. date: {expirationDate}</div>
+          <div className={pillStyles.expiration}>Exp. date: {noTimeExpDate}</div>
         </div>
       </Tooltip>
     );
   }
   return (
-    <Tooltip title={`${typeOfMedication} / ${expirationDate}`}>
+    <Tooltip title={`${typeOfMedication} / ${noTimeExpDate}`}>
       <div>
         <div className={`${pillStyles.pill} ${typeToClass[typeOfMedication]} ${pillStyles.hide}`}>{name}</div>
       </div>
@@ -37,7 +36,6 @@ const Pill = ({ typeOfMedication, name, showExpirationDate, expirationDate }) =>
 export default Pill;
 
 Pill.propTypes = {
-  typeOfMedication: PropTypes.oneOf(MEDICATION_TYPES).isRequired,
   name: PropTypes.string.isRequired,
   showExpirationDate: PropTypes.bool.isRequired,
   expirationDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,

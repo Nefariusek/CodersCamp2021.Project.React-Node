@@ -19,10 +19,10 @@ const ExpiringDrugs = ({ drugsNumber }) => {
               <Pill
                 className="soonExpiring"
                 key={drug.name}
-                typeOfMedication={drug.category}
+                typeOfMedication={drug.type}
                 name={drug.name}
                 showExpirationDate
-                expirationDate={drug.getExpirationDate()}
+                expirationDate={drug.expirationDate}
               />
               {drug.daysUntilExpiration() < 0 ? (
                 <p>EXPIRED</p>
