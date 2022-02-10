@@ -1,0 +1,102 @@
+$calendar-height: 100vh;
+$calendar-width: 100vw;
+
+.calendar-page .MuiPickerStaticWrapper-root {
+  height: $calendar-height;
+  width: $calendar-width;
+}
+
+.calendar-page .MuiPickerStaticWrapper-root > div > div {
+  height: $calendar-height;
+  max-height: 100vh;
+  width: $calendar-width;
+}
+
+.calendar-page .MuiCalendarPicker-root {
+  height: $calendar-height;
+  max-height: 100vh;
+  width: $calendar-width;
+}
+
+.calendar-page .MuiCalendarPicker-root > div:first-of-type {
+  justify-content: center;
+  max-height: 10vh;
+  gap: 10px;
+}
+
+.calendar-page .MuiCalendarPicker-root > div:first-of-type > div:first-of-type {
+  max-height: 10vh;
+  margin-right: 0;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.calendar-page .PrivatePickersFadeTransitionGroup-root > div {
+  font-size: 7vmin;
+}
+
+.calendar-page .PrivatePickersSlideTransition-root {
+  position: static;
+}
+
+.calendar-page .PrivatePickersSlideTransition-root > * {
+  position: static;
+  background-color: #fcd433;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5vmin;
+}
+
+.calendar-page .monthly-calendar .MuiTypography-root {
+  height: 10vh;
+  width: 10vw;
+  color: #059ac8;
+  font-weight: bold;
+  font-size: 3vmin;
+  margin: 1vmin;
+}
+
+.calendar-page .MuiPickersDay-dayWithMargin {
+  height: 10vh;
+  width: 10vw;
+  border-radius: 2vmin;
+  font-size: 2vmin;
+  background-color: #b89a22;
+  margin: 1vmin;
+}
+
+.calendar-page .MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #023e8a !important;
+}
+
+.calendar-page .MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #023e8a !important;
+}
+
+.calendar-page .MuiPickersDay-today:not(.Mui-selected) {
+  border: 2px solid #023e8a !important;
+}
+
+.calendar-page .monthly-calendar .day-informations {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.calendar-page .monthly-calendar .day-number {
+  margin-top: 1vmin;
+  font-size: 3vmin;
+  font-weight: bold;
+}
+
+.calendar-page .monthly-calendar .day-expiring {
+  font-size: 1.5vmin;
+  font-weight: bold;
+  white-space: pre-wrap;
+  margin: 0;
+  max-height: 7vh;
+  width: 10vw;
+  margin-bottom: 1vmin;
+  color: #ff0000;
+}

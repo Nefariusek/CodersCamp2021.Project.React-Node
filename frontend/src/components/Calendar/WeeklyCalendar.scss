@@ -1,0 +1,89 @@
+.calendar-page .week-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2vmin;
+}
+
+.calendar-page .week-settings {
+  display: flex;
+  justify-content: center;
+  gap: 2vmin;
+  align-items: center;
+}
+
+.calendar-page .week-settings .MuiFormControl-root.MuiTextField-root {
+  background-color: #fcd433 !important;
+  border: 3px solid #102a71 !important;
+  border-radius: 45px !important;
+  color: #102a71 !important;
+  font-weight: 700 !important;
+  margin: 2vmin;
+}
+
+.calendar-page .week-settings .MuiOutlinedInput-notchedOutline {
+  border: 0;
+}
+
+.calendar-page .week-settings .MuiInputBase-input-MuiOutlinedInput-input {
+  color: #102a71;
+  font-weight: 700;
+  text-align: center;
+}
+
+.calendar-page .day-names {
+  width: 90vw;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.calendar-page .day-names .day-name {
+  width: 10vw;
+  text-align: center;
+  height: fit-content;
+  font-size: 4vmin;
+}
+
+.calendar-page .week-calendar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fcd433;
+  width: 90vw;
+  height: 60vh;
+  border-radius: 2vmin;
+}
+
+.calendar-page .week-calendar .week-day {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  background-color: #b89a22;
+  width: 10vw;
+  margin: 2vmin;
+  border-radius: 2vmin;
+}
+
+.calendar-page .week-calendar .day-informations {
+  display: flex;
+  flex-direction: column;
+  gap: 3vmin;
+}
+
+.calendar-page .week-calendar .day-number {
+  font-size: 3vmin;
+  font-weight: bold;
+  text-justify: center;
+  text-align: center;
+}
+
+.calendar-page .week-calendar .day-expiring {
+  font-size: 2.5vmin;
+  text-align: center;
+  font-weight: bold;
+  white-space: pre-wrap;
+  margin: 0;
+  width: 8vw;
+  color: #ff0000;
+}

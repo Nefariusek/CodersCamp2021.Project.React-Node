@@ -1,0 +1,19 @@
+import {
+  DROPS_MED_TYPE,
+  INHALER_MED_TYPE,
+  INJECTION_MED_TYPE,
+  PATCHES_MED_TYPE,
+  PILL_MED_TYPE,
+  SYRUP_MED_TYPE,
+} from './medTypes';
+
+export const DAYTIMES = ['Morning', 'Noon', 'Evening'];
+
+export const MEDICATION_TYPES = [
+  PILL_MED_TYPE,
+  DROPS_MED_TYPE,
+  SYRUP_MED_TYPE,
+  INJECTION_MED_TYPE,
+  INHALER_MED_TYPE,
+  PATCHES_MED_TYPE,
+];

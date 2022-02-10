@@ -1,0 +1,92 @@
+.user-hub-container {
+  position: relative;
+
+  .nav-list {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-self: flex-start;
+  }
+
+  .day-time {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-right: 2vw;
+    margin-bottom: 4vh;
+    margin-top: 1vh;
+  }
+
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .home-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .title h2 {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 6rem;
+      margin-bottom: 0;
+      margin-top: 20%;
+    }
+
+    .title h4 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      margin-top: 0;
+      letter-spacing: 0.2rem;
+      width: 100%;
+    }
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 830px) {
+  .user-hub-container {
+    .home-container {
+      display: block !important;
+    }
+
+    .day-time {
+      margin: 0 2vw;
+    }
+
+    .calendar-container {
+      position: static;
+      margin-right: 3px;
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end !important;
+      margin-left: 6vw;
+    }
+
+    .title h2 {
+      font-size: 4rem !important;
+      margin-right: 2vw !important;
+      margin-top: 0;
+    }
+
+    .title h4 {
+      font-size: 1.5rem !important;
+      width: 60% !important;
+    }
+    .nav-list {
+      margin: 2vh 0 !important;
+      align-self: center !important;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.soon-expiring-pop-up {
+  position: absolute;
+  left: 30%;
+  top: 10%;
+  z-index: 99 !important;
+  margin-top: calc(100vh - 85vh - 20px);
+  overflow: auto;
+}
+
+.soon-expiring {
+  width: 300px;
+  height: fit-content;
+  background-color: #fcd433;
+  border: solid 4px #023e8a;
+  border-radius: 50px;
+  padding: 15px;
+  text-align: center;
+
+  Button {
+    color: #023e8a;
+  }
+
+  &-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    button {
+      min-width: 40px !important;
+      padding: 0 7px;
+      color: #023e8a;
+      font-weight: 700;
+      font-size: large;
+    }
+
+    &-header {
+      color: #023e8a;
+      font-weight: 700 !important;
+    }
+  }
+
+  &-drugs-list {
+    .soon-expiring-medication {
+      div {
+        animation: blinker 2s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+        height: fit-content !important;
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+      p {
+        color: rgb(230, 22, 22);
+        margin-block-start: 0.5em;
+        font-weight: 900;
+        margin-block-end: 1.5em;
+        font-size: 1.5rem;
+      }
+    }
+    .not-soon-expiring-medication {
+      margin-bottom: 30px;
+      div {
+        height: fit-content !important;
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+      p {
+        color: rgb(230, 22, 22);
+        margin-block-start: 0.5em;
+        font-weight: 700;
+        margin-block-end: 1.5em;
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 580px) {
+  .soon-expiring-pop-up {
+    position: absolute;
+    left: 15%;
+    top: 10%;
+    z-index: 99 !important;
+    margin-top: calc(100vh - 85vh - 20px);
+    overflow: auto;
+  }
+}

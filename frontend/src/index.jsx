@@ -1,14 +1,23 @@
-import './sass/styles.scss';
+import 'typeface-roboto';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter } from 'react-router-dom';
 
+import { DarkThemeProvider } from './components/DarkThemeContext/DarkThemeContext';
+import { LoginProvider } from './components/LoginContext/LoginContext';
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HashRouter>
+      <DarkThemeProvider>
+        <LoginProvider>
+          <App />
+        </LoginProvider>
+      </DarkThemeProvider>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
