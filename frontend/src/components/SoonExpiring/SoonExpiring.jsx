@@ -22,7 +22,7 @@ const ExpiringDrugs = ({ drugsNumber }) => {
                 typeOfMedication={drug.type}
                 name={drug.name}
                 showExpirationDate
-                expirationDate={drug.expirationDate}
+                expirationDate={drug.getExpirationDate()}
               />
               {drug.daysUntilExpiration() < 0 ? (
                 <p>EXPIRED</p>

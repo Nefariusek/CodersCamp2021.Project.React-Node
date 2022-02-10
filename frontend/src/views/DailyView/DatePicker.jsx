@@ -36,7 +36,7 @@ const DatePicker = () => {
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <Stack spacing={1}>
           <DesktopDatePicker
-            label="Choose Day"
+            label=""
             openTo="day"
             views={['year', 'day', 'month']}
             value={datePickerValue}
