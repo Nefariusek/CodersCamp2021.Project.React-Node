@@ -1,11 +1,14 @@
-const useDeleteData = (url) => {
-  let deleteStatus = true;
-  (async function sendDeleteRequest() {
-    await fetch(`${url}`, { method: 'DELETE' }).catch((error) => {
-      deleteStatus = false;
-      console.log(error);
-    });
-  })();
+const useDeleteData = async (url) => {
+  const deleteStatus = {
+    statusCode: 0,
+    isLoading: true,
+    errorMessage: '',
+  };
+  await fetch(`${url}`, { method: 'DELETE' }).then((response) => {
+    deleteStatus.statusCode = response.status;
+    deleteStatus.isLoading = false;
+    deleteStatus.errorMessage = response.statusText;
+  });
   return deleteStatus;
 };
 
