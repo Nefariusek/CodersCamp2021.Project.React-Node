@@ -5,11 +5,6 @@ const usePutData = async (url, requestBody) => {
     errorMessage: '',
     requestBody: {},
   };
-  const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(requestBody),
-  };
   await fetch(`${url}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -19,7 +14,6 @@ const usePutData = async (url, requestBody) => {
       putStatus.statusCode = response.status;
       putStatus.isLoading = false;
       putStatus.errorMessage = response.statusText;
-      putStatus.requestBody = requestOptions.body;
     })
     .catch((error) => {
       throw error;
