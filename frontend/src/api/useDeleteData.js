@@ -1,15 +1,28 @@
+import { useEffect, useState } from 'react';
+
 const useDeleteData = async (url) => {
-  const deleteStatus = {
-    statusCode: 0,
-    isLoading: true,
-    errorMessage: '',
-  };
-  await fetch(`${url}`, { method: 'DELETE' }).then((response) => {
-    deleteStatus.statusCode = response.status;
-    deleteStatus.isLoading = false;
-    deleteStatus.errorMessage = response.statusText;
-  });
-  return deleteStatus;
+  const [status, setStatus] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    (async function sendDeleteRequest() {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${url}`, { method: 'DELETE' });
+        setStatus(response.status);
+        if (!response.ok) {
+          const err = new Error(response.statusText);
+          throw err;
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [url]);
+  return { status, error, isLoading };
 };
 
 export default useDeleteData;
