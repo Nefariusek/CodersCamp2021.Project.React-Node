@@ -1,24 +1,30 @@
+import { useEffect, useState } from 'react';
+
 const usePutData = async (url, requestBody) => {
-  const putStatus = {
-    statusCode: 0,
-    isLoading: true,
-    errorMessage: '',
-    requestBody: {},
-  };
-  await fetch(`${url}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(requestBody),
-  })
-    .then((response) => {
-      putStatus.statusCode = response.status;
-      putStatus.isLoading = false;
-      putStatus.errorMessage = response.statusText;
-    })
-    .catch((error) => {
-      throw error;
-    });
-  return putStatus;
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function putData() {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${url}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody),
+        });
+        setData(response);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    putData();
+  }, [url, requestBody]);
+
+  return { data, error, isLoading };
 };
 
 export default usePutData;
