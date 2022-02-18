@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+// must give requestBody as a state variable
+// ex.
+// const [requestBody, setRequestBody] = useState({ test: 'test' });
+// const { data, error, isLoading } = usePutData('/randomUrl', requestBody);
+
 const usePutData = async (url, requestBody) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
