@@ -1,11 +1,17 @@
 import compression from 'compression';
 import express from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
 
 import env from './constants/env.js';
 import routes from './routes/index.js';
+import { getCorsOptions } from './config/components/cors.js';
 
 const app = express();
+
+//setup CORS
+const corsOptions = getCorsOptions();
+app.use(cors(corsOptions));
 
 // set security HTTP headers
 app.use(helmet());
