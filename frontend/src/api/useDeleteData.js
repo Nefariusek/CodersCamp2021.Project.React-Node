@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useDeleteData = (url) => {
-  const [status, setStatus] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,7 +10,7 @@ const useDeleteData = (url) => {
       try {
         setIsLoading(true);
         const response = await fetch(`${url}`, { method: 'DELETE' });
-        setStatus(response.status);
+        setIsSuccess(response.ok);
         if (!response.ok) {
           const err = new Error(response.statusText);
           throw err;
@@ -22,7 +22,8 @@ const useDeleteData = (url) => {
       }
     })();
   }, [url]);
-  return { status, error, isLoading };
+
+  return { isSuccess, error, isLoading };
 };
 
 export default useDeleteData;
