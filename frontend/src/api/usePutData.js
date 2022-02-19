@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
-// must give requestBody as a state variable
-// ex.
-// const [requestBody, setRequestBody] = useState({ test: 'test' });
-// const { data, error, isLoading } = usePutData('/randomUrl', requestBody);
-
+/**
+ * Custom hook updating data.
+ * @param {string} url - adress of request
+ * @param {state} requestBody - body od request made by user
+ * @returns { string object bool }
+ */
 const usePutData = async (url, requestBody) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
