@@ -32,6 +32,7 @@ const MonthlyCalendar = () => {
 
   return (
     <div className="monthly-calendar">
+      <p>This view is available on bigger devices.</p>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
           views={['day']}

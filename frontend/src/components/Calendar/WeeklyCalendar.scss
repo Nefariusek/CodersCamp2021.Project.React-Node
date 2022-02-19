@@ -47,11 +47,12 @@
 }
 
 .calendar-page .week-calendar {
+  padding: 0 10px;
   display: flex;
   justify-content: space-around;
   background-color: #fcd433;
-  width: 90vw;
-  height: 60vh;
+  width: 95vw;
+  height: 90% !important;
   border-radius: 2vmin;
 }
 
@@ -60,15 +61,16 @@
   align-items: start;
   justify-content: center;
   background-color: #b89a22;
-  width: 10vw;
-  margin: 2vmin;
+  width: 185px !important;
+  margin: 2vmin 0;
   border-radius: 2vmin;
 }
 
 .calendar-page .week-calendar .day-informations {
   display: flex;
   flex-direction: column;
-  gap: 3vmin;
+  gap: 5px;
+  align-items: center;
 }
 
 .calendar-page .week-calendar .day-number {
@@ -76,6 +78,10 @@
   font-weight: bold;
   text-justify: center;
   text-align: center;
+}
+
+.calendar-page .week-calendar .day-informations .day-name {
+  display: none;
 }
 
 .calendar-page .week-calendar .day-expiring {
@@ -86,4 +92,26 @@
   margin: 0;
   width: 8vw;
   color: #ff0000;
+}
+
+@media (max-width: 1400px) {
+  .calendar-page .week-calendar {
+    margin-top: 10px;
+    gap: 3px;
+    flex-wrap: wrap;
+    height: fit-content !important;
+  }
+
+  .calendar-page .day-names {
+    display: none;
+  }
+
+  .calendar-page .week-calendar .week-day {
+    height: 200px;
+    min-height: fit-content;
+  }
+
+  .calendar-page .week-calendar .day-informations .day-name {
+    display: inline-block;
+  }
 }
