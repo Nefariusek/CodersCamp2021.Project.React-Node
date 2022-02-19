@@ -10,7 +10,7 @@ export function getCorsOptions() {
 }
 
 function getOrigin(origin, callback) {
-  if (origin || whitelist.includes(origin)) {
+  if (whitelist.includes(origin) || !origin) {
     callback(null, true);
   } else {
     callback(new Error('Not allowed by CORS'));
