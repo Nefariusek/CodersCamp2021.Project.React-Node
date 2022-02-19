@@ -11,11 +11,13 @@
   .drug-box-container {
     display: flex;
     justify-content: center;
+    min-height: fit-content;
   }
 
   .drug-box {
     background-color: #fcd433;
     width: 95vw;
+
     height: 55vh;
     margin-top: 2vh;
   }
@@ -24,6 +26,10 @@
     background-color: #b89a22 !important;
     width: 33%;
     height: 90%;
+
+    h6 {
+      padding-top: 10px;
+    }
   }
 
   .button-add-drug {
@@ -83,5 +89,28 @@
   .time-of-day {
     font-weight: 400 !important;
     font-size: 0.8rem !important;
+  }
+
+  .drug-box {
+    flex-direction: column;
+    align-items: center;
+    min-height: fit-content;
+    height: fit-content !important;
+
+    .drug-box-compartment {
+      width: 90%;
+      display: block;
+      height: max-content;
+      margin: 20px;
+
+      div {
+        margin: 10px auto;
+      }
+
+      h6 {
+        font-weight: 900 !important;
+        font-size: Large !important;
+      }
+    }
   }
 }

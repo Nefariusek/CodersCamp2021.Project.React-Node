@@ -47,6 +47,9 @@ $calendar-width: 100vw;
   padding: 5px;
   border-radius: 5vmin;
 }
+.calendar-page .monthly-calendar p {
+  display: none;
+}
 
 .calendar-page .monthly-calendar .MuiTypography-root {
   height: 10vh;
@@ -99,4 +102,14 @@ $calendar-width: 100vw;
   width: 10vw;
   margin-bottom: 1vmin;
   color: #ff0000;
+}
+@media (max-width: 950px) {
+  .calendar-page .monthly-calendar div {
+    display: none;
+  }
+
+  .calendar-page .monthly-calendar p {
+    display: block;
+    text-align: center;
+  }
 }
