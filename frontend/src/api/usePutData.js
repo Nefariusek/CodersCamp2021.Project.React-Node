@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 
+import { DEFAULT_HEADERS, REST_METHOD_PUT } from '../constants/restResources';
+
 /**
  * Custom hook updating data.
- * @param {string} url - adress of request
- * @param {state} requestBody - body od request made by user
- * @returns { string object bool }
+ * @param {string} url - address of request eg. 'http:localhost:8080/api/'
+ * @param {Object} requestBody - body od request made by user, store this object in a state of component
+ * @returns { Object string boolean }
  */
 const usePutData = async (url, requestBody) => {
   const [data, setData] = useState(null);
@@ -16,13 +18,17 @@ const usePutData = async (url, requestBody) => {
       try {
         setIsLoading(true);
         const response = await fetch(`${url}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          method: REST_METHOD_PUT,
+          headers: DEFAULT_HEADERS,
           body: JSON.stringify(requestBody),
         });
-        setData(response);
+        if (response.ok) {
+          response.json();
+          setData(response);
+        }
       } catch (err) {
-        setError(err);
+        console.error(err);
+        setError('An error occured.');
       } finally {
         setIsLoading(false);
       }
