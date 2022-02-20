@@ -8,7 +8,7 @@ const profileSchema = new mongoose.Schema({
   registerDate: { type: Date, required: true, max: Date.now },
   onlineDate: { type: Date, required: true, max: Date.now },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  medicationsList: [String],
+  medicationList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Medication' }],
 });
 
 const Profile = mongoose.model('Profile', profileSchema);
