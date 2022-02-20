@@ -1,0 +1,46 @@
+.settings-page {
+  text-align: center;
+  .header-h2 {
+    margin: 20px;
+    font-weight: 900;
+  }
+  .MuiOutlinedInput-root {
+    background-color: #fcd433 !important;
+    border: 3px solid #102a71 !important;
+    border-radius: 45px !important;
+    color: #102a71 !important;
+    font-weight: 700 !important;
+    margin: 2vmin;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border: 0;
+  }
+
+  .settings-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .theme-settings {
+      display: flex;
+      align-items: center;
+    }
+    .length-settings {
+      display: flex;
+      align-items: center;
+    }
+  }
+  @media (max-width: 850px) {
+    .theme-settings {
+      display: flex;
+      flex-direction: column;
+    }
+    .length-settings {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
