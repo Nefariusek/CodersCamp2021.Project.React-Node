@@ -18,6 +18,9 @@ import {
   PATCHES_ICON,
 } from '../constants/MedicationCategory/medsIcons';
 
+const COLORS = [PILLS_COLOR, SYRUP_COLOR, INHALER_COLOR, INJECTION_COLOR, DROPS_COLOR, PATCHES_COLOR];
+const ICONS = [PILLS_ICON, SYRUP_ICON, INHALER_ICON, INJECTION_ICON, DROPS_ICON, PATCHES_ICON];
+
 const { Schema } = mongoose;
 
 const medicationCategorySchema = new Schema({
@@ -25,12 +28,12 @@ const medicationCategorySchema = new Schema({
   unit: { type: String, enum: [VOLUME_UNIT, QUANTITY_UNIT], default: QUANTITY_UNIT },
   color: {
     type: String,
-    enum: [PILLS_COLOR, SYRUP_COLOR, INHALER_COLOR, INJECTION_COLOR, DROPS_COLOR, PATCHES_COLOR],
+    enum: COLORS,
     default: PILLS_COLOR,
   },
   icon: {
     type: String,
-    enum: [PILLS_ICON, SYRUP_ICON, INHALER_ICON, INJECTION_ICON, DROPS_ICON, PATCHES_ICON],
+    enum: ICONS,
     default: PILLS_ICON,
   },
 });
@@ -41,8 +44,8 @@ export const medicationCategoryValidator = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().alphanum().min(3).max(30),
     unit: Joi.string().valid(VOLUME_UNIT, QUANTITY_UNIT),
-    color: Joi.string().valid(PILLS_COLOR, SYRUP_COLOR, INHALER_COLOR, INJECTION_COLOR, DROPS_COLOR, PATCHES_COLOR),
-    icon: Joi.string().valid(PILLS_ICON, SYRUP_ICON, INHALER_ICON, INJECTION_ICON, DROPS_ICON, PATCHES_ICON),
+    color: Joi.string().valid(...COLORS),
+    icon: Joi.string().valid(...ICONS),
   });
   const { error } = schema.validate(req.body);
   if (error) {

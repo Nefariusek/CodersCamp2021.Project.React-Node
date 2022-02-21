@@ -32,7 +32,7 @@ describe('MedicationCategory model', () => {
   });
 });
 
-escribe('Joi validator for medication category model', () => {
+describe('Joi validator for medication category model', () => {
   beforeEach(() => {
     err = undefined;
     testRequestBody = {
