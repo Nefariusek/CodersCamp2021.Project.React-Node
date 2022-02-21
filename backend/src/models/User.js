@@ -1,5 +1,12 @@
 import mongoose from 'mongoose';
 
+const RegExpressions = {
+  USERNAME: /^[a-zA-Z0-9]+$/,
+  EMAIL:
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+  PASSWORD: /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
+};
+
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -8,7 +15,7 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       maxlength: 16,
       unique: true,
-      match: /^[a-zA-Z0-9]+$/,
+      match: RegExpressions.USERNAME,
       required: true,
       index: true,
     },
@@ -17,8 +24,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      match:
-        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+      match: RegExpressions.EMAIL,
       required: true,
       index: true,
     },
@@ -27,7 +33,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       minlength: 8,
       maxlength: 16,
-      match: /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
+      match: RegExpressions.PASSWORD,
       required: true,
     },
     profileRef: {
