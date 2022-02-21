@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Joi from 'joi';
 import {
   PILLS_COLOR,
   SYRUP_COLOR,
@@ -35,5 +36,19 @@ const medicationCategorySchema = new Schema({
 });
 
 const MedicationCategory = mongoose.model('MedicationCategory', MedicationCategorySchema);
+
+export const medicationCategoryValidator = (req, res, next) => {
+  const schema = Joi.object({
+    name: Joi.string().alphanum().min(3).max(30),
+    unit: Joi.string().valid(VOLUME_UNIT, QUANTITY_UNIT),
+    color: Joi.string().valid(PILLS_COLOR, SYRUP_COLOR, INHALER_COLOR, INJECTION_COLOR, DROPS_COLOR, PATCHES_COLOR),
+    icon: Joi.string().valid(PILLS_ICON, SYRUP_ICON, INHALER_ICON, INJECTION_ICON, DROPS_ICON, PATCHES_ICON),
+  });
+  const { error } = schema.validate(req.body);
+  if (error) {
+    return next(new Error(error));
+  }
+  return next();
+};
 
 export default MedicationCategory;
