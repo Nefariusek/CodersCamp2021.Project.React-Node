@@ -7,12 +7,16 @@ const settingsSchema = new mongoose.Schema({
   soonExpiringFilterLength: { type: Number, enum: [3, 5, 7], default: 3 },
 });
 
-settingsSchema.methods.joiValidate = (requestBody) => {
+export const settingsValidator = (req, res, next) => {
   const schema = Joi.object({
     appTheme: Joi.string().valid(LIGHT_THEME, DARK_THEME),
     soonExpiringFilterLength: Joi.number().valid(3, 5, 7),
   });
-  return schema.validate(requestBody);
+  const { error } = schema.validate(req.body);
+  if (error) {
+    throw new Error(error);
+  }
+  return next();
 };
 
 const Settings = mongoose.model('Settings', settingsSchema);
