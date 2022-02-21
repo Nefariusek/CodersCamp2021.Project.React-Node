@@ -21,7 +21,7 @@ const { Schema } = mongoose;
 
 const medicationCategorySchema = new Schema({
   name: String,
-  unit: { type: String, enum: [VOLUME_UNIT, QUANTITY_UNIT], default: 'pcs' },
+  unit: { type: String, enum: [VOLUME_UNIT, QUANTITY_UNIT], default: QUANTITY_UNIT },
   color: {
     type: String,
     enum: [PILLS_COLOR, SYRUP_COLOR, INHALER_COLOR, INJECTION_COLOR, DROPS_COLOR, PATCHES_COLOR],
