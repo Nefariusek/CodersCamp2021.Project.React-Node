@@ -14,7 +14,7 @@ export const settingsValidator = (req, res, next) => {
   });
   const { error } = schema.validate(req.body);
   if (error) {
-    throw new Error(error);
+    return next(new Error(error));
   }
   return next();
 };

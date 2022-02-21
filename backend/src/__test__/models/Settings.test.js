@@ -3,6 +3,8 @@ import { LIGHT_THEME, DARK_THEME } from '../../constants/themes';
 
 let testSettings;
 let testRequestBody;
+let res;
+let err;
 
 describe('Settings model', () => {
   beforeEach(() => {
@@ -34,6 +36,7 @@ describe('Settings model', () => {
 
 describe('Joi validator for settings model', () => {
   beforeEach(() => {
+    err = undefined;
     testRequestBody = {
       body: {
         appTheme: undefined,
@@ -43,16 +46,21 @@ describe('Joi validator for settings model', () => {
   });
 
   it('Joi validator accepts allowed data', () => {
-    let res;
     testRequestBody.body.appTheme = DARK_THEME;
     testRequestBody.body.soonExpiringFilterLength = 7;
-    expect(() => settingsValidator(testRequestBody, res, () => {})).not.toThrow();
+    settingsValidator(testRequestBody, res, (e) => {
+      err = e;
+    });
+    expect(err).toBeUndefined();
   });
 
   it('Joi validator doesnt allow wrong values', () => {
     let res;
     testRequestBody.body.appTheme = 'wrongAppTheme';
     testRequestBody.body.soonExpiringFilterLength = 4;
-    expect(() => settingsValidator(testRequestBody, res, () => {})).toThrow();
+    settingsValidator(testRequestBody, res, (e) => {
+      err = e;
+    });
+    expect(err).not.toBeUndefined();
   });
 });
