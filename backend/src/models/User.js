@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const RegExpressions = {
   USERNAME: /^[a-zA-Z0-9]+$/,
@@ -7,16 +8,29 @@ const RegExpressions = {
   PASSWORD: /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
 };
 
+const RequiredMessages = {
+  USERNAME: 'Username is required',
+  EMAIL: 'Email is required',
+  PASSWORD: 'Password is required',
+};
+
+const NotMatchMessages = {
+  USERNAME: 'Username must have only letters and digits',
+  EMAIL: 'Email is invalid',
+  PASSWORD: 'Password must include at least one uppercase letter, number and special character',
+};
+
 const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
       trim: true,
-      minlength: 6,
-      maxlength: 16,
+      minlength: [6, '{PATH} must have at least {MINLENGTH} characters, {VALUE} is too short'],
+      maxlength: [16, '{PATH} can have maximum {MAXLENGTH} characters, {VALUE} is too long'],
       unique: true,
-      match: RegExpressions.USERNAME,
-      required: true,
+      uniqueCaseInsensitive: true,
+      match: [RegExpressions.USERNAME, NotMatchMessages.USERNAME],
+      required: [true, RequiredMessages.USERNAME],
       index: true,
     },
     email: {
@@ -24,17 +38,17 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      match: RegExpressions.EMAIL,
-      required: true,
+      match: [RegExpressions.EMAIL, NotMatchMessages.EMAIL],
+      required: [true, RequiredMessages.EMAIL],
       index: true,
     },
     password: {
       type: String,
       trim: true,
-      minlength: 8,
-      maxlength: 16,
-      match: RegExpressions.PASSWORD,
-      required: true,
+      minlength: [8, '{PATH} must have at least {MINLENGTH} characters, {VALUE} is too short'],
+      maxlength: [16, '{PATH} can have maximum {MAXLENGTH} characters, {VALUE} is too long'],
+      match: [RegExpressions.PASSWORD, NotMatchMessages.PASSWORD],
+      required: [true, RequiredMessages.PASSWORD],
     },
     profileRef: {
       type: mongoose.SchemaTypes.ObjectId,
@@ -54,6 +68,8 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+userSchema.plugin(uniqueValidator, { message: '{PATH} {VALUE} is already taken' });
 
 const User = mongoose.model('User', userSchema);
 
