@@ -34,6 +34,6 @@ const medicationCategorySchema = new Schema({
   },
 });
 
-const MedicationCategory = mongoose.model('MedicationCategory', MedicationCategorySchema);
+const MedicationCategory = mongoose.model('MedicationCategory', medicationCategorySchema);
 
 export default MedicationCategory;
