@@ -3,17 +3,20 @@ import './SettingsPage.scss';
 import { FormControl, MenuItem, Select, Typography } from '@mui/material';
 import { useState } from 'react';
 
+import getSettings from '../../api/settings/getSettings';
+import saveSettings from '../../api/settings/saveSettings';
+
 const SettingsPage = () => {
-  const [defaultTheme, setDefaultTheme] = useState('light');
-  const [defaultLength, setDefaultLength] = useState('three');
+  const [appTheme, setAppTheme] = useState(getSettings().appTheme);
+  const [soonExpiringFilterLength, setSoonExpiringFilterLength] = useState(getSettings().soonExpiringFilterLength);
 
   const handleThemeChange = (e) => {
-    setDefaultTheme(e.target.value);
-    // save
+    setAppTheme(e.target.value);
+    saveSettings(e.target.value, soonExpiringFilterLength);
   };
   const handleLengthChange = (e) => {
-    setDefaultLength(e.target.value);
-    // save
+    setSoonExpiringFilterLength(e.target.value);
+    saveSettings(appTheme, e.target.value);
   };
   return (
     <div className="settings-page">
@@ -29,7 +32,7 @@ const SettingsPage = () => {
             <Select
               id="select-theme"
               displayEmpty
-              value={defaultTheme}
+              value={appTheme}
               onChange={handleThemeChange}
               inputProps={{ 'aria-label': 'Without label' }}
             >
@@ -46,13 +49,13 @@ const SettingsPage = () => {
             <Select
               id="select-soon-expiring-length"
               displayEmpty
-              value={defaultLength}
+              value={soonExpiringFilterLength}
               onChange={handleLengthChange}
               inputProps={{ 'aria-label': 'Without label' }}
             >
-              <MenuItem value="three">Three</MenuItem>
-              <MenuItem value="five">Five</MenuItem>
-              <MenuItem value="seven">Seven</MenuItem>
+              <MenuItem value={3}>Three</MenuItem>
+              <MenuItem value={5}>Five</MenuItem>
+              <MenuItem value={7}>Seven</MenuItem>
             </Select>
           </FormControl>
         </div>
