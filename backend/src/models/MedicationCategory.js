@@ -38,7 +38,7 @@ const medicationCategorySchema = new Schema({
   },
 });
 
-const MedicationCategory = mongoose.model('MedicationCategory', MedicationCategorySchema);
+const MedicationCategory = mongoose.model('MedicationCategory', medicationCategorySchema);
 
 export const medicationCategoryValidator = (req, res, next) => {
   const schema = Joi.object({
