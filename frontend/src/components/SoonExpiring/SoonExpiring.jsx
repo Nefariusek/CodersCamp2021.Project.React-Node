@@ -1,6 +1,6 @@
 import './SoonExpiring.scss';
 
-import { Button, ButtonGroup, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useState } from 'react';
 
 import getSettings from '../../api/settings/getSettings';
