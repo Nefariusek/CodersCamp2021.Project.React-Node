@@ -55,11 +55,4 @@ userSchema.plugin(uniqueValidator, { message: '{PATH} {VALUE} is already taken' 
 
 const User = mongoose.model('User', userSchema);
 
-// const exampleUser = new User({
-//   username: 'AidKitMan',
-//   email: 'aidkitman@gmail.com',
-//   password: '5!E@c#r$e%1',
-//   profileRef: new mongoose.Types.ObjectId(),
-// });
-
 export default User;
