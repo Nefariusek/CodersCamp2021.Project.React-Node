@@ -3,6 +3,7 @@ import './SoonExpiring.scss';
 import { Button, ButtonGroup, Typography } from '@mui/material';
 import { useState } from 'react';
 
+import getSettings from '../../api/settings/getSettings';
 import drugs from '../../mock/drugs';
 import Pill from '../Pill/Pill';
 
@@ -39,8 +40,7 @@ const ExpiringDrugs = ({ drugsNumber }) => {
 };
 
 const SoonExpiring = ({ handleClose }) => {
-  const [drugsNumber, setDrugsNumber] = useState(5);
-
+  const drugsNumber = getSettings().soonExpiringFilterLength;
   return (
     <div className="soon-expiring">
       <div className="soon-expiring-close">
@@ -51,11 +51,6 @@ const SoonExpiring = ({ handleClose }) => {
           X
         </Button>
       </div>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-        <Button onClick={() => setDrugsNumber(3)}>THREE</Button>
-        <Button onClick={() => setDrugsNumber(5)}>FIVE</Button>
-        <Button onClick={() => setDrugsNumber(7)}>SEVEN</Button>
-      </ButtonGroup>
       <ExpiringDrugs drugsNumber={drugsNumber} />
     </div>
   );

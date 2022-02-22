@@ -5,14 +5,18 @@ import { useState } from 'react';
 
 import getSettings from '../../api/settings/getSettings';
 import saveSettings from '../../api/settings/saveSettings';
+import { useDarkTheme, useThemeUpdate } from '../../components/DarkThemeContext/DarkThemeContext';
 
 const SettingsPage = () => {
   const [appTheme, setAppTheme] = useState(getSettings().appTheme);
   const [soonExpiringFilterLength, setSoonExpiringFilterLength] = useState(getSettings().soonExpiringFilterLength);
+  const currentTheme = useDarkTheme();
+  const toggleTheme = useThemeUpdate();
 
   const handleThemeChange = (e) => {
     setAppTheme(e.target.value);
     saveSettings(e.target.value, soonExpiringFilterLength);
+    if ((e.target.value === 'dark' && !currentTheme) || (e.target.value === 'light' && currentTheme)) toggleTheme();
   };
   const handleLengthChange = (e) => {
     setSoonExpiringFilterLength(e.target.value);
