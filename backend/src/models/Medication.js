@@ -20,6 +20,9 @@ export const medicationValidator = (req, res, next) => {
     dosage: Joi.string().min(2).required(),
     category: Joi.string().valid(...MEDICATION_CATEGORIES),
     expirationDate: Joi.date().required(),
+    profile: Joi.string().meta({
+      _mongoose: { type: 'ObjectId', ref: 'Profile' },
+    }),
   });
   const { error } = schema.validate(req.body);
   if (error) {
