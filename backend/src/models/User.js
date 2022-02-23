@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import { RegExpressions, RequiredMessages, NotMatchMessages } from '../constants/validations.js';
+import Joi from 'joi-oid';
 
 const userSchema = new mongoose.Schema(
   {
@@ -51,7 +52,33 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-userSchema.plugin(uniqueValidator, { message: '{PATH} {VALUE} is already taken' });
+userSchema.plugin(uniqueValidator, { message: '{PATH} {VALUE} already exists' });
+
+const userJoiSchema = Joi.object({
+  username: Joi.string().trim().min(6).max(16).alphanum().required().messages({
+    'string.alphanum': NotMatchMessages.USERNAME,
+    'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
+    'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value} is too long',
+    'any.required': RequiredMessages.USERNAME,
+  }),
+  email: Joi.string().trim().lowercase().email().required().messages({
+    'string.email': NotMatchMessages.EMAIL,
+    'any.required': RequiredMessages.EMAIL,
+  }),
+  password: Joi.string().trim().min(8).max(16).pattern(new RegExp(RegExpressions.PASSWORD)).required().messages({
+    'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
+    'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value} is too long',
+    'string.pattern.base': NotMatchMessages.PASSWORD,
+    'any.required': RequiredMessages.PASSWORD,
+  }),
+  profileRef: Joi.objectId(),
+  isAdmin: Joi.boolean().default(false).messages({
+    'boolean.base': '{{#label} must be a true or false',
+  }),
+  isVerified: Joi.boolean().default(false).messages({
+    'boolean.base': '{{#label} must be a true or false',
+  }),
+});
 
 const User = mongoose.model('User', userSchema);
 
