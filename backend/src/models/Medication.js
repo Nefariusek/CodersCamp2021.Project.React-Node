@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import Joi from 'joi';
 
+import { mockObjectId } from '../constants/mocks';
+
 const medicationSchema = new mongoose.Schema({
   nameOfMedication: { type: String, required: true, minlength: 2, maxlength: 64 },
   quantity: { type: Number, required: true, min: 1 },
@@ -17,9 +19,9 @@ export const medicationValidator = (req, res, next) => {
     quantity: Joi.number().min(1).required(),
     addDate: Joi.date(),
     dosage: Joi.string().min(2).required(),
-    category: Joi.string().pattern(new RegExp('^[0-9a-fA-F]{24}$')),
+    category: Joi.string().pattern(mockObjectId),
     expirationDate: Joi.date().required(),
-    profile: Joi.string().pattern(new RegExp('^[0-9a-fA-F]{24}$')),
+    profile: Joi.string().pattern(mockObjectId),
   });
   const { error } = schema.validate(req.body);
   if (error) {
