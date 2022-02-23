@@ -51,7 +51,7 @@ describe('Joi validator for medication category model', () => {
     testRequestBody.body.color = SYRUP_COLOR;
     testRequestBody.body.icon = SYRUP_ICON;
 
-    settingsValidator(testRequestBody, res, (e) => {
+    medicationCategoryValidator(testRequestBody, res, (e) => {
       err = e;
     });
     expect(err).toBeUndefined();
@@ -64,7 +64,7 @@ describe('Joi validator for medication category model', () => {
     testRequestBody.body.color = 'salmon';
     testRequestBody.body.icon = 'not a valid icon';
 
-    settingsValidator(testRequestBody, res, (e) => {
+    medicationCategoryValidator(testRequestBody, res, (e) => {
       err = e;
     });
     expect(err).not.toBeUndefined();
