@@ -80,6 +80,14 @@ const userJoiSchema = Joi.object({
   }),
 });
 
+export const userValidator = (req, res, next) => {
+  const { error } = userJoiSchema.validate(req.body);
+  if (error) {
+    return next(new Error(error));
+  }
+  return next();
+};
+
 const User = mongoose.model('User', userSchema);
 
 export default User;
