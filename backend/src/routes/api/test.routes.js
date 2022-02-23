@@ -8,9 +8,6 @@ const testEndpoint = (router) => {
     res.status(StatusCodes.OK).send();
     console.log('delete request!');
   });
-  router.get('/error', (_req, res) => {
-    res.statusCode(404);
-  });
 };
 
 export default testEndpoint;
