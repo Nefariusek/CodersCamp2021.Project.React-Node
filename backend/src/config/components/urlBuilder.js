@@ -1,18 +1,35 @@
 import env from '../../constants/env';
 
+const getValueByEnviroment = () => {
+  const enviroment = env.NODE_ENV;
+  const config = {};
+
+  config.username = env[`DB_USER_${enviroment}`];
+  config.password = env[`DB_PASS_${enviroment}`];
+  config.host = env[`DB_HOST_${enviroment}`];
+  config.port = env[`DB_PORT_${enviroment}`];
+  config.name = env[`DB_NAME_${enviroment}`];
+
+  return config;
+};
+
 const urlBuilder = () => {
-  let url = 'mongodb://';
-  switch (env.NODE_ENV) {
-    case 'production':
-      url += env.DB_USER + ':' + env.DB_PASS + '@' + env.DB_HOST + ':' + env.DB_PORT + '/' + env.DB_NAME;
-      break;
-    case 'development':
-      url += env.DB_USER + ':' + env.DB_PASS + '@' + env.DB_HOST_DEV + ':' + env.DB_PORT_DEV + '/' + env.DB_NAME_DEV;
-      break;
-    case 'test':
-      url += env.DB_USER + ':' + env.DB_PASS + '@' + env.DB_HOST_TEST + ':' + env.DB_PORT_TEST + '/' + env.DB_NAME_TEST;
-      break;
-  }
+  const config = getValueByEnviroment();
+
+  const url =
+    config.username && config.password
+      ? 'mongodb://' +
+        config.username +
+        ':' +
+        config.password +
+        '@' +
+        config.host +
+        ':' +
+        config.port +
+        '/' +
+        config.name
+      : 'mongodb://' + config.host + ':' + config.port + '/' + config.name;
+
   return url;
 };
 
