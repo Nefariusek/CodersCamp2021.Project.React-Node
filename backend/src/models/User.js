@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
-import { RegExpressions, RequiredMessages, NotMatchMessages } from '../constants/validations.js';
-import Joi from 'joi-oid';
+import { RegExpressions, RequiredMessages, NotMatchMessages, isValidObjectId } from '../constants/validations.js';
+import Joi from 'joi';
 
 const userSchema = new mongoose.Schema(
   {
@@ -71,7 +71,9 @@ const userJoiSchema = Joi.object({
     'string.pattern.base': NotMatchMessages.PASSWORD,
     'any.required': RequiredMessages.PASSWORD,
   }),
-  profileRef: Joi.objectId(),
+  profileRef: Joi.custom(isValidObjectId).messages({
+    objectId: `{{#label}} ${NotMatchMessages.OBJECTID}`,
+  }),
   isAdmin: Joi.boolean().default(false).messages({
     'boolean.base': '{{#label} must be a true or false',
   }),
