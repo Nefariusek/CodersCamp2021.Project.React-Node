@@ -1,4 +1,4 @@
-import env from '../../constants/env';
+import env from '../../constants/env.js';
 
 const getValueByEnviroment = () => {
   const enviroment = env.NODE_ENV;
