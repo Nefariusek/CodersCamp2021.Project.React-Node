@@ -20,7 +20,6 @@ mongoose.connect(env.MONGODB_URL, dbConfig).then(() => {
 
 if (env.NODE_ENV === 'development') {
   connection.dropDatabase();
-  console.log('dropDatabaseDone');
   initializeData();
 }
 
