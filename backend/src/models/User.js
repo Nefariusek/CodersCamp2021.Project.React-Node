@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
-import { RegExpressions, RequiredMessages, NotMatchMessages, isValidObjectId } from '../constants/validations.js';
+import { RegExpressions, RequiredMessages, NotMatchMessages } from '../constants/validations.js';
+import { isValidObjectId } from '../common/validations.js';
 import Joi from 'joi';
 
 const userSchema = new mongoose.Schema(
