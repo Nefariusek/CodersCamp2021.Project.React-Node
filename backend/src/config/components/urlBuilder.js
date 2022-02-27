@@ -13,7 +13,7 @@ const getValueByEnviroment = () => {
   return config;
 };
 
-const urlBuilder = () => {
+const getConnectionUrl = () => {
   const config = getValueByEnviroment();
 
   const url =
@@ -33,4 +33,4 @@ const urlBuilder = () => {
   return url;
 };
 
-export default urlBuilder;
+export default getConnectionUrl;
