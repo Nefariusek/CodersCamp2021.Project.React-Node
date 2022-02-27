@@ -1,29 +1,43 @@
 import { useEffect, useState } from 'react';
 
-const useDeleteData = (url) => {
-  const [isSuccess, setIsSuccess] = useState(false);
+import { DEFAULT_HEADERS, REST_METHOD_POST } from '../constants/restResources';
+
+/**
+ * Custom hook updating data.
+ * @param {string} url - address of request eg. 'http:localhost:8080/api/'
+ * @param {Object} requestBody - body od request made by user, store this object in a state of component
+ * @returns { Object string boolean }
+ */
+
+const usePostData = async (url, requestBody) => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    (async function sendDeleteRequest() {
+    async function postData() {
       try {
         setIsLoading(true);
-        const response = await fetch(`${url}`, { method: 'DELETE' });
-        setIsSuccess(response.ok);
-        if (!response.ok) {
-          const err = new Error(response.statusText);
-          throw err;
+        const response = await fetch(`${url}`, {
+          method: REST_METHOD_POST,
+          headers: DEFAULT_HEADERS,
+          body: JSON.stringify(requestBody),
+        });
+        if (response.ok) {
+          response.json();
+          setData(response);
         }
       } catch (err) {
-        setError(err.message);
+        console.error(err);
+        setError('An error occured.');
       } finally {
         setIsLoading(false);
       }
-    })();
-  }, [url]);
+    }
+    postData();
+  }, [url, requestBody]);
 
-  return { isSuccess, error, isLoading };
+  return { data, error, isLoading };
 };
 
-export default useDeleteData;
+export default usePostData;
