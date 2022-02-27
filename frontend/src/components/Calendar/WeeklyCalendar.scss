@@ -33,14 +33,15 @@
 }
 
 .calendar-page .day-names {
-  width: 90vw;
+  width: 95vw;
+  padding: 0 10px;
   display: flex;
   justify-content: space-around;
   font-weight: bold;
 }
 
 .calendar-page .day-names .day-name {
-  width: 10vw;
+  width: 185px;
   text-align: center;
   height: fit-content;
   font-size: 4vmin;
@@ -52,7 +53,7 @@
   justify-content: space-around;
   background-color: #fcd433;
   width: 95vw;
-  height: 90% !important;
+  height: 55vh;
   border-radius: 2vmin;
 }
 
