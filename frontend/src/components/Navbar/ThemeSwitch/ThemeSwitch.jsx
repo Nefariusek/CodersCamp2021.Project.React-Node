@@ -89,7 +89,6 @@ const ThemeSwitch = (props) => {
     disabled,
     focusVisible,
   };
-
   return (
     <SwitchRoot className={clsx(stateClasses)}>
       <SwitchTrack>

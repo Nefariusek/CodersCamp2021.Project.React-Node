@@ -25,7 +25,7 @@ import {
   PATH_TO_SETTINGS,
   PATH_TO_USER_HOMEPAGE,
 } from '../../constants/paths';
-import { useThemeUpdate } from '../DarkThemeContext/DarkThemeContext';
+import { useDarkTheme, useThemeUpdate } from '../DarkThemeContext/DarkThemeContext';
 import LoginContext from '../LoginContext/LoginContext';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
@@ -122,7 +122,7 @@ const Navbar = () => {
   const tools = (
     <Stack direction="row" alignItems="center">
       <ThemeSwitch
-        defaultUnChecked
+        checked={useDarkTheme()}
         onChange={() => {
           toggleTheme();
         }}
