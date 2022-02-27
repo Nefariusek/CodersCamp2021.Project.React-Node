@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-
+import pkg from 'mongoose';
+const { connection } = pkg;
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
@@ -17,7 +18,11 @@ mongoose.connect(env.MONGODB_URL, dbConfig).then(() => {
   });
 });
 
-initializeData();
+if (env.NODE_ENV === 'production') {
+  connection.dropDatabase();
+  console.log('dropDatabaseDone');
+  initializeData();
+}
 
 const exitHandler = () => {
   if (server) {
