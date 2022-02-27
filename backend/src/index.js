@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
+import initializeData from './config/components/dataInitializer.js';
 
 const dbConfig = env.NODE_ENV === 'production' ? {} : { dbName: 'local-project-db' };
 
@@ -15,6 +16,8 @@ mongoose.connect(env.MONGODB_URL, dbConfig).then(() => {
     logger.info(`Listening to port ${env.PORT}`);
   });
 });
+
+initializeData();
 
 const exitHandler = () => {
   if (server) {
