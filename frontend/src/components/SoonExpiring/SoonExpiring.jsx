@@ -1,10 +1,11 @@
 import './SoonExpiring.scss';
 
-import { Button, Typography } from '@mui/material';
+import { Button, Modal, Typography } from '@mui/material';
 import { useState } from 'react';
 
 import getSettings from '../../api/settings/getSettings';
 import drugs from '../../mock/drugs';
+import buttonStyles from '../Button/button.module.scss';
 import Pill from '../Pill/Pill';
 
 drugs.sort((a, b) => (a.daysUntilExpiration() > b.daysUntilExpiration() ? 1 : -1));
@@ -58,12 +59,20 @@ const SoonExpiring = ({ handleClose }) => {
 
 const SoonExpiringPopUp = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const handleClose = () => setIsOpen(false);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return <div className="soon-expiring-pop-up"> {isOpen && <SoonExpiring handleClose={togglePopup} />}</div>;
+  return (
+    <div className="soon-expiring-pop-up">
+      <Modal open={isOpen} aria-labelledby="soon-expiring-modal">
+        <div className="soon-expiring-pop-up">
+          <SoonExpiring handleClose={handleClose} />
+          <Button variant="contained" className={buttonStyles.Button} onClick={handleClose}>
+            UNDERSTOOD
+          </Button>
+        </div>
+      </Modal>
+    </div>
+  );
 };
 
 export default SoonExpiringPopUp;
