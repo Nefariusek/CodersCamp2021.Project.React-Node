@@ -3,12 +3,13 @@ import mongoose from 'mongoose';
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
+import getConnectionUrl from './config/components/urlBuilder.js';
 
-const dbConfig = env.NODE_ENV === 'production' ? {} : { dbName: 'local-project-db' };
+const dbConfig = env.NODE_ENV === 'PROD' ? {} : { dbName: env[`DB_NAME_${env.NODE_ENV}`] };
 
 let server;
 
-mongoose.connect(env.MONGODB_URL, dbConfig).then(() => {
+mongoose.connect(getConnectionUrl(), dbConfig).then(() => {
   logger.info('Connected to MongoDB');
 
   server = app.listen(env.PORT, () => {
