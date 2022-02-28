@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
 import env from '../../constants/env.js';
 import logger from './logger.js';
+import getConnectionUrl from './urlBuilder.js';
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(env.MONGODB_URL, {
+    const conn = await mongoose.connect(getConnectionUrl(), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      dbName: env[`DB_NAME_${env.NODE_ENV}`],
     });
 
     logger.info(`MongoDB connected: ${conn.connection.host}`);
