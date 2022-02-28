@@ -1,19 +1,13 @@
-import mongoose from 'mongoose';
-
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
+import connectDB from './config/components/connectDB.js';
 
-const dbConfig = env.NODE_ENV === 'production' ? {} : { dbName: 'local-project-db' };
+//Connect to DB
+connectDB();
 
-let server;
-
-mongoose.connect(env.MONGODB_URL, dbConfig).then(() => {
-  logger.info('Connected to MongoDB');
-
-  server = app.listen(env.PORT, () => {
-    logger.info(`Listening to port ${env.PORT}`);
-  });
+const server = app.listen(env.PORT, () => {
+  logger.info(`Listening to port ${env.PORT}`);
 });
 
 const exitHandler = () => {
