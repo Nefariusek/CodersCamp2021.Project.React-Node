@@ -3,7 +3,6 @@ import env from './constants/env.js';
 import logger from './config/components/logger.js';
 import connectDB from './config/components/connectDB.js';
 
-//Connect to DB
 connectDB();
 
 const server = app.listen(env.PORT, () => {
