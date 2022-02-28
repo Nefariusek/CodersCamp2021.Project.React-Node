@@ -3,7 +3,7 @@ import env from '../../constants/env.js';
 import logger from './logger.js';
 import getConnectionUrl from './urlBuilder.js';
 
-const connectDB = async () => {
+const connectDataBase = async () => {
   try {
     const conn = await mongoose.connect(getConnectionUrl(), {
       useNewUrlParser: true,
@@ -17,4 +17,4 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB;
+export default connectDataBase;

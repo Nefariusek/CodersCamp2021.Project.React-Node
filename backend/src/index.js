@@ -1,9 +1,9 @@
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
-import connectDB from './config/components/connectDB.js';
+import connectDataBase from './config/components/connectDB.js';
 
-connectDB();
+connectDataBase();
 
 const server = app.listen(env.PORT, () => {
   logger.info(`Listening to port ${env.PORT}`);
