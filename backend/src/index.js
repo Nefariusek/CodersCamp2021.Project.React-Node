@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 import pkg from 'mongoose';
-const { connection } = pkg;
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
 import initializeData from './config/components/dataInitializer.js';
 
 const dbConfig = env.NODE_ENV === 'production' ? {} : { dbName: 'local-project-db' };
+const { connection } = pkg;
 
 let server;
 

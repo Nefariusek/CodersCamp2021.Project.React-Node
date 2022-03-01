@@ -1,7 +1,7 @@
 import models from './models.js';
 
-const MedicationCategory = models[1];
-const Profile = models[2];
+const MedicationCategory = models.medicationCategory;
+const Profile = models.profile;
 
 const exampleDate = new Date(1995, 11, 17);
 const exampleDate2 = new Date(2021, 11, 17);
