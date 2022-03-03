@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import Joi from 'joi';
 
-import { mockObjectId } from '../constants/mocks';
+import { mockObjectId } from '../constants/mocks.js';
 
 const medicationSchema = new mongoose.Schema({
   nameOfMedication: { type: String, required: true, minlength: 2, maxlength: 64 },
