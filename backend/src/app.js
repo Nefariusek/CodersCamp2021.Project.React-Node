@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // serving client files in production
-if (env.NODE_ENV === 'production') {
+if (env.NODE_ENV === 'PROD') {
   app.use(express.static('public'));
 }
 

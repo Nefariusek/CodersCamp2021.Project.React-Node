@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import TestUser from '../../models/User';
+import TestUser, { userValidator } from '../../models/User';
 import { RegExpressions } from '../../constants/validations';
 
-describe('User model test', () => {
+describe('User model', () => {
   let testUser;
 
   beforeEach(() => {
@@ -36,5 +36,66 @@ describe('User model test', () => {
   it('User by default is not admin and is not verified', () => {
     expect(testUser.isAdmin).toBe(false);
     expect(testUser.isVerified).toBe(false);
+  });
+});
+
+describe('Joi validator for User model', () => {
+  let testRequest;
+  let res;
+  let error;
+
+  beforeEach(() => {
+    testRequest = {
+      body: {},
+    };
+    res = undefined;
+    error = undefined;
+  });
+
+  describe('Joi validator accepts valid data', () => {
+    it('All data valid', () => {
+      testRequest.body.username = 'AidKitMan';
+      testRequest.body.email = 'aidkitman@gmail.com';
+      testRequest.body.password = '5!E@c#r$e%1';
+      testRequest.body.profileRef = new mongoose.Types.ObjectId();
+      userValidator(testRequest, res, (err) => {
+        error = err;
+      });
+      expect(error).toBeUndefined();
+    });
+  });
+
+  describe('Joi validator rejects invalid data', () => {
+    afterEach(() => {
+      userValidator(testRequest, res, (err) => {
+        error = err;
+      });
+      expect(error).not.toBeUndefined();
+    });
+
+    it('Rejects invalid username', () => {
+      testRequest.body.username = 'Someone$';
+      testRequest.body.email = 'aidkitman@gmail.com';
+      testRequest.body.password = '5!E@c#r$e%1';
+      testRequest.body.profileRef = new mongoose.Types.ObjectId();
+    });
+    it('Rejects invalid email', () => {
+      testRequest.body.username = 'AidKitMan';
+      testRequest.body.email = 'aidkitman@gmail';
+      testRequest.body.password = '5!E@c#r$e%1';
+      testRequest.body.profileRef = new mongoose.Types.ObjectId();
+    });
+    it('Rejects invalid password', () => {
+      testRequest.body.username = 'AidKitMan';
+      testRequest.body.email = 'aidkitman@gmail.com';
+      testRequest.body.password = 'secret123';
+      testRequest.body.profileRef = new mongoose.Types.ObjectId();
+    });
+    it('Rejects invalid profile reference', () => {
+      testRequest.body.username = 'AidKitMan';
+      testRequest.body.email = 'aidkitman@gmail.com';
+      testRequest.body.password = '5!E@c#r$e%1';
+      testRequest.body.profileRef = '100';
+    });
   });
 });
