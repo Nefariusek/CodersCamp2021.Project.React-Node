@@ -14,7 +14,11 @@ const userPatchEndpoint = (router) => {
       res.user_patch.password = req.body.password;
     }
     try {
-      const updatedUser = await User.updateOne({ _id: req.params.id }, { $set: res.user_patch }, { upsert: true });
+      const updatedUser = await User.updateOne(
+        { _id: req.params.id },
+        { $set: res.user_patch },
+        { upsert: true, runValidators: true },
+      );
       res.status(StatusCodes.OK).json(updatedUser);
     } catch (err) {
       res.status(StatusCodes.BAD_REQUEST).json({ message: err.message });
