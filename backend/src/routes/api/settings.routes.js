@@ -1,19 +1,16 @@
 import { StatusCodes } from 'http-status-codes';
-import Profile from '../../models/Profile';
+import Profile from '../../models/Profile.js';
+import Settings from '../../models/Settings.js';
 
 const settingsEndpoint = (router) => {
-  router.get('/settings/:id', getProfile, (_req, res) => {
-    res.status(StatusCodes.OK).send(res.settings);
+  router.get('/settings/:id', async (req, res) => {
+    const profile = await Profile.findById(req.params.id);
+    if (!profile) {
+      return res.status(StatusCodes.NOT_FOUND).send();
+    }
+    const settings = await Settings.findById(profile.settings);
+    res.status(StatusCodes.OK).json(settings);
   });
 };
-
-async function getProfile(req, res, next) {
-  const profile = await Profile.findById(req.params.id);
-  if (!profile) {
-    return res.status(StatusCodes.NOT_FOUND).send();
-  }
-  res.settings = profile.settings;
-  next();
-}
 
 export default settingsEndpoint;
