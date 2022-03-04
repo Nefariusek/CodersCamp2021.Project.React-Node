@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import Joi from 'joi';
-import { LIGHT_THEME, DARK_THEME } from '../constants/themes';
+import { LIGHT_THEME, DARK_THEME } from '../constants/themes.js';
 
 const themes = [LIGHT_THEME, DARK_THEME];
 const possibleLengths = [3, 5, 7];
