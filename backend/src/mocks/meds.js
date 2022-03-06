@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const meds = [
+const medications = [
   {
     nameOfMedication: 'Xanax',
     quantity: 4,
@@ -19,4 +19,4 @@ const meds = [
   },
 ];
 
-export default meds;
+export default medications;
