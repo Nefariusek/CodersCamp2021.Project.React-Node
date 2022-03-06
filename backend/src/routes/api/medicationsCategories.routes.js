@@ -1,4 +1,4 @@
-import MedicationCategory from '../../../models/MedicationCategory';
+import MedicationCategory from '../../models/MedicationCategory';
 import { StatusCodes } from 'http-status-codes';
 import ExpressError from '../../../middlewares/ExpressError';
 
