@@ -21,7 +21,7 @@ mongoose.connect(getConnectionUrl(), dbConfig).then(() => {
   });
 });
 
-if (env.NODE_ENV === 'development') {
+if (env.NODE_ENV === 'DEV') {
   connection.dropDatabase();
   initializeData();
 }
