@@ -1,7 +1,9 @@
 import Profile from '../../models/Profile.js';
+import { profileValidator } from '../../models/Profile.js';
 
 const patchProfileEndpoint = async (router) => {
-  router.patch('/profile/:id', (req, res) => {
+  router.patch('/profile/:id', profileValidator, (req, res) => {
+    console.log(req.body);
     Profile.findByIdAndUpdate(req.params.id, req.body, { new: true })
       .then((profile) => {
         if (!profile) {
