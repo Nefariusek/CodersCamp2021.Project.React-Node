@@ -18,3 +18,5 @@ const meds = [
     profile: new mongoose.Types.ObjectId(),
   },
 ];
+
+export default meds;
