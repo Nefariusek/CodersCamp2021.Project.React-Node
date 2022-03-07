@@ -1,6 +1,6 @@
-import MedicationCategory from '../../models/MedicationCategory';
+import MedicationCategory from '../../models/MedicationCategory.js';
 import { StatusCodes } from 'http-status-codes';
-import ExpressError from '../../../middlewares/ExpressError';
+import ExpressError from '../../middlewares/ExpressError.js';
 
 const MedicationCategoryRoutes = (router) => {
   router.get('/categories', getAllMedicationCategories);
