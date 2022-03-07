@@ -1,18 +1,18 @@
-import Medication from '../../models/Medication';
+import Medication from '../../models/Medication.js';
 
-import ExpressError from '../../../middlewares/ExpressError';
+import ExpressError from '../../middlewares/ExpressError.js';
 
 const MedicationRoutes = (router) => {
   router.get('/me/meds', getAllMedications);
 };
 
-async function getAllMedications(req, res, next) {
+async function getAllMedications(_req, res, next) {
   try {
     const medications = await Medication.find({});
     if (!medications) {
       throw new ExpressError('No medication found', 404);
     }
-    res.status(StatusCodes.OK).send({ medication });
+    res.status(200).send({ medications });
   } catch (err) {
     next(err);
   }
