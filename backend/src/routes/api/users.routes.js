@@ -1,7 +1,8 @@
 import { StatusCodes } from 'http-status-codes';
 import User, { userValidator } from '../../models/User.js';
+import ExpressError from '../../middlewares/ExpressError.js';
 
-const userPatchEndpoint = (router) => {
+const userEndpoint = (router) => {
   router.patch('/users/:id', getUser, userValidator, patchUser);
 
   async function getUser(req, res, next) {
@@ -9,17 +10,17 @@ const userPatchEndpoint = (router) => {
     try {
       user = await User.findById(req.params.id);
       if (user == null) {
-        return res.status(StatusCodes.NOT_FOUND).json({ message: "Can't find a user" });
+        throw new ExpressError("Can't find a user", StatusCodes.NOT_FOUND);
       }
     } catch (err) {
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
+      next(err);
     }
 
     res.user = user;
     next();
   }
 
-  async function patchUser(req, res) {
+  async function patchUser(req, res, next) {
     try {
       const updatedUser = await User.updateOne(
         { _id: req.params.id },
@@ -28,9 +29,9 @@ const userPatchEndpoint = (router) => {
       );
       res.status(StatusCodes.OK).json(updatedUser);
     } catch (err) {
-      res.status(StatusCodes.BAD_REQUEST).json({ message: err.message });
+      next(err);
     }
   }
 };
 
-export default userPatchEndpoint;
+export default userEndpoint;
