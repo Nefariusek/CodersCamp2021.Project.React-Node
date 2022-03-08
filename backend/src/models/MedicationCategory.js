@@ -7,8 +7,8 @@ import {
   INJECTION_COLOR,
   DROPS_COLOR,
   PATCHES_COLOR,
-} from '../constants/MedicationCategory/pillColors';
-import { QUANTITY_UNIT, VOLUME_UNIT } from '../constants/MedicationCategory/medsUnits';
+} from '../constants/MedicationCategory/pillColors.js';
+import { QUANTITY_UNIT, VOLUME_UNIT } from '../constants/MedicationCategory/medsUnits.js';
 import {
   PILLS_ICON,
   SYRUP_ICON,
@@ -16,7 +16,7 @@ import {
   INJECTION_ICON,
   DROPS_ICON,
   PATCHES_ICON,
-} from '../constants/MedicationCategory/medsIcons';
+} from '../constants/MedicationCategory/medsIcons.js';
 import {
   DROPS_MED_TYPE,
   INHALER_MED_TYPE,
@@ -24,7 +24,7 @@ import {
   PATCHES_MED_TYPE,
   PILL_MED_TYPE,
   SYRUP_MED_TYPE,
-} from '../constants/MedicationCategory/medTypes';
+} from '../constants/MedicationCategory/medTypes.js';
 const COLORS = [PILLS_COLOR, SYRUP_COLOR, INHALER_COLOR, INJECTION_COLOR, DROPS_COLOR, PATCHES_COLOR];
 const ICONS = [PILLS_ICON, SYRUP_ICON, INHALER_ICON, INJECTION_ICON, DROPS_ICON, PATCHES_ICON];
 const UNITS = [QUANTITY_UNIT, VOLUME_UNIT];
