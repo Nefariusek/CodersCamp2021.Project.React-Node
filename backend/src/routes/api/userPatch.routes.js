@@ -20,20 +20,10 @@ const userPatchEndpoint = (router) => {
   }
 
   async function patchUser(req, res) {
-    res.user_patch = {};
-    if (req.body.username != null) {
-      res.user_patch.username = req.body.username;
-    }
-    if (req.body.email != null) {
-      res.user_patch.email = req.body.email;
-    }
-    if (req.body.password != null) {
-      res.user_patch.password = req.body.password;
-    }
     try {
       const updatedUser = await User.updateOne(
         { _id: req.params.id },
-        { $set: res.user_patch },
+        { $set: req.body },
         { upsert: true, runValidators: true },
       );
       res.status(StatusCodes.OK).json(updatedUser);

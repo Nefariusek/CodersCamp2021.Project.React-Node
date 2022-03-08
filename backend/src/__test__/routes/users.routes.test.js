@@ -19,9 +19,7 @@ describe('User endpoint test suite', () => {
 
   it('PATCH user', async () => {
     const userData = {
-      username: 'TestRouteUser2',
       email: 'TestRouteUser2@gmail.com',
-      password: '5!E@c#r$e%12',
     };
     const user = await mongoose.model('User').findOne({ username: MOCK_USERS[0].username });
     const id = user._id;
@@ -42,7 +40,7 @@ describe('User endpoint test suite', () => {
 
   afterAll(async () => {
     try {
-      const patchedUser = await mongoose.model('User').findOne({ username: 'TestRouteUser2' }).deleteOne();
+      const patchedUser = await mongoose.model('User').findOne({ username: 'TestRouteUser' }).deleteOne();
       await mongoose.connection.close();
     } catch (err) {
       console.log(err);
