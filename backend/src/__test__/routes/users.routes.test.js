@@ -41,8 +41,6 @@ describe('User endpoint test suite', () => {
     request(app)
       .post('/api/users')
       .send(userData)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
       .expect(StatusCodes.CONFLICT)
       .end(function (err, res) {
         if (err) return done(err);

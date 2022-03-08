@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { StatusCodes } from 'http-status-codes';
 import User, { userValidator } from '../../models/User.js';
 import Profile from '../../models/Profile.js';
+import ExpressError from '../../middlewares/ExpressError.js';
 
 export const INITIAL_PROFILE = {
   age: 0,
@@ -11,14 +12,14 @@ export const INITIAL_PROFILE = {
   onlineDate: new Date(),
 };
 
-const userPostEndpoint = (router) => {
+const userEndpoint = (router) => {
   router.post('/users', userValidator, postUser);
 
-  async function postUser(req, res) {
+  async function postUser(req, res, next) {
     try {
       const existingUser = await User.findOne({ username: req.body.username });
       if (existingUser) {
-        return res.status(StatusCodes.CONFLICT).json({ message: 'User already exists' });
+        throw new ExpressError('User already exists', StatusCodes.CONFLICT);
       }
 
       const user = new User({
@@ -41,9 +42,9 @@ const userPostEndpoint = (router) => {
 
       res.status(StatusCodes.CREATED).json(savedUserWithProfileRef);
     } catch (err) {
-      res.status(StatusCodes.BAD_REQUEST).json({ message: err.message });
+      next(err);
     }
   }
 };
 
-export default userPostEndpoint;
+export default userEndpoint;
