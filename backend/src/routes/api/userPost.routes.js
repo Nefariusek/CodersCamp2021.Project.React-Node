@@ -12,7 +12,9 @@ export const INITIAL_PROFILE = {
 };
 
 const userPostEndpoint = (router) => {
-  router.post('/users', userValidator, async (req, res) => {
+  router.post('/users', userValidator, postUser);
+
+  async function postUser(req, res) {
     const existingUser = await User.findOne({ username: req.body.username });
     if (existingUser) {
       return res.status(StatusCodes.CONFLICT).json({ message: 'User already exists' });
@@ -41,7 +43,7 @@ const userPostEndpoint = (router) => {
     } catch (err) {
       res.status(StatusCodes.BAD_REQUEST).json({ message: err.message });
     }
-  });
+  }
 };
 
 export default userPostEndpoint;
