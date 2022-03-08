@@ -1,15 +1,14 @@
 import { StatusCodes } from 'http-status-codes';
 import mongoose from 'mongoose';
 import request from 'supertest';
-import getConnectionUrl from '../../config/components/urlBuilder.js';
+import connectDataBase from '../../config/components/connectDB.js';
 
 import app from '../../app.js';
 
 describe('User endpoint test suite', () => {
   beforeAll(async () => {
     try {
-      const url = getConnectionUrl();
-      await mongoose.connect(url, { useNewUrlParser: true });
+      connectDataBase();
     } catch (err) {
       console.log(err);
     }

@@ -37,7 +37,6 @@ const userSchema = new mongoose.Schema(
     profileRef: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Profile',
-      required: true,
     },
     isAdmin: {
       type: Boolean,
