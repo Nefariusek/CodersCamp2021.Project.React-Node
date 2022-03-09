@@ -50,7 +50,7 @@ describe('User endpoint test suite', () => {
 
   afterAll(async () => {
     try {
-      const patchedUser = await mongoose.model('User').findOne({ username: MOCK_USERS[0].username }).deleteOne();
+      await mongoose.model('User').findOne({ username: MOCK_USERS[0].username }).deleteOne();
       await mongoose.connection.close();
     } catch (err) {
       console.log(err);

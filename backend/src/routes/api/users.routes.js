@@ -1,24 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
 import User, { userValidator } from '../../models/User.js';
-import ExpressError from '../../middlewares/ExpressError.js';
+import getUserById from '../../middlewares/userMiddlewares.js';
 
-const userEndpoint = (router) => {
-  router.patch('/users/:id', getUser, userValidator, patchUser);
-
-  async function getUser(req, res, next) {
-    let user;
-    try {
-      user = await User.findById(req.params.id);
-      if (user == null) {
-        throw new ExpressError("Can't find a user", StatusCodes.NOT_FOUND);
-      }
-    } catch (err) {
-      next(err);
-    }
-
-    res.user = user;
-    next();
-  }
+const UserRoutes = (router) => {
+  router.patch('/users/:id', getUserById, userValidator, patchUser);
 
   async function patchUser(req, res, next) {
     try {
@@ -34,4 +19,4 @@ const userEndpoint = (router) => {
   }
 };
 
-export default userEndpoint;
+export default UserRoutes;
