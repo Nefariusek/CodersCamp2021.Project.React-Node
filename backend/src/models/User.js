@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Profile',
     },
+    settingsRef: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Settings',
+    },
     isAdmin: {
       type: Boolean,
       required: true,
@@ -73,9 +77,8 @@ const userJoiSchema = Joi.object({
     'string.pattern.base': NotMatchMessages.PASSWORD,
     'any.required': RequiredMessages.PASSWORD,
   }),
-  profileRef: Joi.custom(isValidObjectId).messages({
-    objectId: `{{#label}} ${NotMatchMessages.OBJECTID}`,
-  }),
+  profileRef: Joi.custom(isValidObjectId),
+  settingsRef: Joi.custom(isValidObjectId),
   isAdmin: Joi.boolean().default(false).messages({
     'boolean.base': '{{#label} must be a true or false',
   }),

@@ -1,14 +1,21 @@
 import User from '../models/User.js';
 import Profile from '../models/Profile.js';
+import Settings from '../models/Settings.js';
+import { LIGHT_THEME } from '../constants/themes.js';
 import { StatusCodes } from 'http-status-codes';
 import ExpressError from './ExpressError.js';
 
-export const INITIAL_PROFILE = {
+const INITIAL_PROFILE = {
   age: 0,
   firstName: 'Your first name',
   lastName: 'Your last name',
   registerDate: new Date(),
   onlineDate: new Date(),
+};
+
+const INITIAL_SETTINGS = {
+  appTheme: LIGHT_THEME,
+  soonExpiringFilterLength: 3,
 };
 
 export async function postUser(req, res, next) {
@@ -39,10 +46,15 @@ async function registerNewUser(userData) {
   });
   const savedProfile = await profile.save();
 
-  const savedUserWithProfileRef = await User.updateOne(
+  const settings = new Settings({
+    ...INITIAL_SETTINGS,
+  });
+  const savedSettings = await settings.save();
+
+  const savedUserWithReferences = await User.updateOne(
     { username: userData.username },
-    { $set: { profileRef: savedProfile._id } },
+    { $set: { profileRef: savedProfile._id, settingsRef: savedSettings._id } },
   );
 
-  return savedUserWithProfileRef;
+  return savedUserWithReferences;
 }

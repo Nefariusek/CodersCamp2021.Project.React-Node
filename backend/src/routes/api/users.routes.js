@@ -1,8 +1,8 @@
 import { postUser } from '../../middlewares/userMiddlewares.js';
 import { userValidator } from '../../models/User.js';
 
-const UserRoutes = (router) => {
+const userRoutes = (router) => {
   router.post('/users', userValidator, postUser);
 };
 
-export default UserRoutes;
+export default userRoutes;

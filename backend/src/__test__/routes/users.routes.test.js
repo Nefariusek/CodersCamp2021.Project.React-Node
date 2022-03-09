@@ -51,9 +51,9 @@ describe('User endpoint test suite', () => {
   afterAll(async () => {
     try {
       const user = await mongoose.model('User').findOne({ username: 'TestRouteUser' });
-      const id = user._id;
-      await mongoose.model('Profile').find({ user: id }).deleteOne();
-      await mongoose.model('User').find({ _id: id }).deleteOne();
+      await mongoose.model('Profile').find({ _id: user.profileRef }).deleteOne();
+      await mongoose.model('Settings').find({ _id: user.settingsRef }).deleteOne();
+      await user.deleteOne();
       await mongoose.connection.close();
     } catch (err) {
       console.log(err);
