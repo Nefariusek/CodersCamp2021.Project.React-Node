@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { StatusCodes } from 'http-status-codes';
 import User, { userValidator } from '../../models/User.js';
 import Profile from '../../models/Profile.js';
@@ -12,7 +11,7 @@ export const INITIAL_PROFILE = {
   onlineDate: new Date(),
 };
 
-const userEndpoint = (router) => {
+const UserRoutes = (router) => {
   router.post('/users', userValidator, postUser);
 
   async function postUser(req, res, next) {
@@ -47,4 +46,4 @@ const userEndpoint = (router) => {
   }
 };
 
-export default userEndpoint;
+export default UserRoutes;
