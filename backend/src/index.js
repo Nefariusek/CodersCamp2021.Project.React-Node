@@ -1,3 +1,4 @@
+
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
@@ -13,7 +14,7 @@ const server = app.listen(env.PORT, () => {
   logger.info(`Listening to port ${env.PORT}`);
 });
 
-if (env.NODE_ENV === 'development') {
+if (env.NODE_ENV === 'DEV') {
   connection.dropDatabase();
   initializeData();
 }
