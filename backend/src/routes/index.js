@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import testEndpoint from './api/test.routes.js';
-import patchProfileEndpoint from './api/patchProfile.js';
+import profileRoutes from './api/profileRoutes.js';
 
 const router = Router();
 
 testEndpoint(router);
-patchProfileEndpoint(router);
+profileRoutes(router);
 
 export default router;
