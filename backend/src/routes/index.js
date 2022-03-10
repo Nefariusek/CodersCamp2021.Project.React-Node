@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import testEndpoint from './api/test.routes.js';
-import userRoutes from './api/profileRoutes.js';
+import profileRoutes from './api/profileRoutes.js';
 
 const router = Router();
 
 testEndpoint(router);
-userRoutes(router);
+profileRoutes(router);
 
 export default router;

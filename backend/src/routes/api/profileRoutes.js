@@ -1,23 +1,22 @@
 import { StatusCodes } from 'http-status-codes';
 import Profile from '../../models/Profile.js';
 
-const userRoutes = async (router) => {
-  router.get('/users/:id', getUser);
+const profileRoutes = async (router) => {
+  router.get('/profiles/:id', getUserProfile);
 };
 
-const getUser = async (req, res, next) => {
+const getUserProfile = async (req, res, next) => {
   try {
     const userId = req.params.id;
     const currentProfile = await Profile.findById(userId);
     if (currentProfile) {
       res.status(StatusCodes.OK).send(currentProfile);
     } else {
-      res.status(StatusCodes.BAD_REQUEST).send('User not found.');
+      throw new Error('User not found');
     }
   } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).send('Something went wrong.');
-    throw error;
+    next(error);
   }
 };
 
-export default userRoutes;
+export default profileRoutes;
