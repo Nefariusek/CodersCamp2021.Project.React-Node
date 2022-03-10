@@ -8,10 +8,10 @@ import {
   USER_USER,
 } from '../../constants/mockData.js';
 
-const Medication = models[0];
-const Profile = models[2];
-const Settings = models[3];
-const User = models[4];
+const Medication = models.medication;
+const Profile = models.profile;
+const Settings = models.settings;
+const User = models.user;
 
 export default function initializeData() {
   console.log('Initializing mock data...');

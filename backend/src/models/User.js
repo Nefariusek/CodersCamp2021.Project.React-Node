@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import { RegExpressions, RequiredMessages, NotMatchMessages } from '../constants/validations.js';
+import { isValidObjectId } from '../common/validations.js';
+import Joi from 'joi';
+import { StatusCodes } from 'http-status-codes';
+import ExpressError from '../middlewares/ExpressError.js';
 
 const userSchema = new mongoose.Schema(
   {
@@ -51,7 +55,60 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-userSchema.plugin(uniqueValidator, { message: '{PATH} {VALUE} is already taken' });
+userSchema.plugin(uniqueValidator, { message: '{VALUE} already exists' });
+
+const userJoiSchema = Joi.object({
+  username: Joi.string()
+    .trim()
+    .min(6)
+    .max(16)
+    .alphanum()
+    .when(Joi.ref('$requestType'), { is: 'PATCH', then: Joi.optional(), otherwise: Joi.required() })
+    .messages({
+      'string.alphanum': NotMatchMessages.USERNAME,
+      'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
+      'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value}} is too long',
+      'any.required': RequiredMessages.USERNAME,
+    }),
+  email: Joi.string()
+    .trim()
+    .lowercase()
+    .email()
+    .when(Joi.ref('$requestType'), { is: 'PATCH', then: Joi.optional(), otherwise: Joi.required() })
+    .messages({
+      'string.email': NotMatchMessages.EMAIL,
+      'any.required': RequiredMessages.EMAIL,
+    }),
+  password: Joi.string()
+    .trim()
+    .min(8)
+    .max(16)
+    .pattern(new RegExp(RegExpressions.PASSWORD))
+    .when(Joi.ref('$requestType'), { is: 'PATCH', then: Joi.optional(), otherwise: Joi.required() })
+    .messages({
+      'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
+      'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value}} is too long',
+      'string.pattern.base': NotMatchMessages.PASSWORD,
+      'any.required': RequiredMessages.PASSWORD,
+    }),
+  profileRef: Joi.custom(isValidObjectId).messages({
+    objectId: `{{#label}} ${NotMatchMessages.OBJECTID}`,
+  }),
+  isAdmin: Joi.boolean().default(false).messages({
+    'boolean.base': '{{#label} must be a true or false',
+  }),
+  isVerified: Joi.boolean().default(false).messages({
+    'boolean.base': '{{#label} must be a true or false',
+  }),
+});
+
+export const userValidator = (req, res, next) => {
+  const { error } = userJoiSchema.validate(req.body, { context: { requestType: req.method } });
+  if (error) {
+    return next(new ExpressError(error.message, StatusCodes.BAD_REQUEST));
+  }
+  return next();
+};
 
 const User = mongoose.model('User', userSchema);
 

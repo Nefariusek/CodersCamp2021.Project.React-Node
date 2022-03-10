@@ -4,6 +4,12 @@ import Profile from '../models/Profile.js';
 import Settings from '../models/Settings.js';
 import User from '../models/User.js';
 
-var models = [Medication, MedicationCategory, Profile, Settings, User];
+const models = {
+  medication: Medication,
+  medicationCategory: MedicationCategory,
+  profile: Profile,
+  settings: Settings,
+  user: User,
+};
 
 export default models;

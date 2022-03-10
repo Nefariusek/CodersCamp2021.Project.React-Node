@@ -1,6 +1,6 @@
 @keyframes blinker {
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
@@ -53,13 +53,13 @@
   &-drugs-list {
     .soon-expiring-medication {
       div {
-        animation: blinker 2s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
         height: fit-content !important;
-        color: rgb(255, 255, 255);
+        color: #023e8a;
         font-weight: 700;
         font-size: 1.5rem;
       }
       p {
+        animation: blinker 2s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
         color: rgb(230, 22, 22);
         margin-block-start: 0.5em;
         font-weight: 900;

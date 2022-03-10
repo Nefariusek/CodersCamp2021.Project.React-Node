@@ -6,6 +6,7 @@ import cors from 'cors';
 import env from './constants/env.js';
 import routes from './routes/index.js';
 import { getCorsOptions } from './config/components/cors.js';
+import ExpressError from './middlewares/ExpressError.js';
 
 const app = express();
 
@@ -32,5 +33,13 @@ app.use(compression());
 console.log('test');
 // api routes
 app.use('/api', routes);
+// non valid routes
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found', 404));
+});
+app.use((err, _req, res, _next) => {
+  const { statusCode = 500, message = 'something went wrong' } = err;
+  res.status(statusCode).send(message);
+});
 
 export default app;
