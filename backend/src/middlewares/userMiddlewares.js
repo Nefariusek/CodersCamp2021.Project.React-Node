@@ -1,5 +1,6 @@
 import User from '../models/User.js';
 import Profile from '../models/Profile.js';
+import Settings from '../models/Settings.js';
 import { StatusCodes } from 'http-status-codes';
 import ExpressError from './ExpressError.js';
 
@@ -33,7 +34,8 @@ export async function getAllUsers(req, res, next) {
 
 export async function deleteUser(req, res, next) {
   try {
-    await Profile.find({ user: res.user._id }).deleteOne();
+    await Profile.find({ _id: res.user.profileRef }).deleteOne();
+    await Settings.find({ _id: res.user.settingsRef }).deleteOne();
     await res.user.deleteOne();
     res.status(StatusCodes.OK).json({ message: 'User deleted' });
   } catch (err) {
