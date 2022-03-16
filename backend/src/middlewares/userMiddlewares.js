@@ -18,6 +18,19 @@ const INITIAL_SETTINGS = {
   soonExpiringFilterLength: 3,
 };
 
+export async function getOneUser(req, res) {
+  res.status(StatusCodes.OK).json(res.user);
+}
+
+export async function getAllUsers(req, res, next) {
+  try {
+    const users = await User.find();
+    res.status(StatusCodes.OK).json(users);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function postUser(req, res, next) {
   try {
     const newUser = await registerNewUser(req.body);
@@ -34,6 +47,32 @@ export async function patchUser(req, res, next) {
   } catch (err) {
     next(err);
   }
+}
+
+export async function deleteUser(req, res, next) {
+  try {
+    await Profile.find({ _id: res.user.profileRef }).deleteOne();
+    await Settings.find({ _id: res.user.settingsRef }).deleteOne();
+    await res.user.deleteOne();
+    res.status(StatusCodes.OK).json({ message: 'User deleted' });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getUserById(req, res, next) {
+  let user;
+  try {
+    user = await User.findById(req.params.id);
+    if (user == null) {
+      throw new ExpressError("Can't find a user", StatusCodes.NOT_FOUND);
+    }
+  } catch (err) {
+    next(err);
+  }
+
+  res.user = user;
+  next();
 }
 
 async function registerNewUser(userData) {
@@ -66,19 +105,4 @@ async function registerNewUser(userData) {
   );
 
   return savedUserWithReferences;
-}
-
-export async function getUserById(req, res, next) {
-  let user;
-  try {
-    user = await User.findById(req.params.id);
-    if (user == null) {
-      throw new ExpressError("Can't find a user", StatusCodes.NOT_FOUND);
-    }
-  } catch (err) {
-    next(err);
-  }
-
-  res.user = user;
-  next();
 }
