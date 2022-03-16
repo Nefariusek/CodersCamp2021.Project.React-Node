@@ -21,16 +21,32 @@ async function getAllMedications(_req, res, next) {
 }
 
 async function postMedication(req, res, next) {
-  const { nameOfMedication, quantity, addDate, dosage, expirationDate } = req.body;
+  try {
+    const newMedication = await addNewMedication(req.body);
+    res.status(StatusCodes.CREATED).json(newMedication);
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function addNewMedication(req, _res, _next) {
+  const { nameOfMedication, quantity, addDate, dosage, category, expirationDate, profile } = req.body;
+  const existingMedication = await Medication.findOne({ nameOfMedication: nameOfMedication });
+
+  if (existingMedication) {
+    throw new ExpressError('Medication already in database', StatusCodes.CONFLICT);
+  }
+
   const medication = new Medication({
     nameOfMedication,
     quantity,
     addDate,
     dosage,
+    category,
     expirationDate,
+    profile,
   });
   await medication.save();
-  res.status(StatusCodes.OK).json(medication);
 }
 
 export default MedicationRoutes;
