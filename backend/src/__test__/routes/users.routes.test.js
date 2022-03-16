@@ -16,6 +16,40 @@ describe('User endpoint test suite', () => {
     }
   });
 
+  it('POST user creates a user with valid data', function (done) {
+    const userData = {
+      username: 'TestRouteUser',
+      email: 'TestRouteUser@gmail.com',
+      password: '5!E@c#r$e%1',
+    };
+    request(app)
+      .post('/api/users')
+      .send(userData)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(StatusCodes.CREATED)
+      .end(function (err, res) {
+        if (err) return done(err);
+        return done();
+      });
+  });
+
+  it("POST user doesn't create user when user already exists", function (done) {
+    const userData = {
+      username: 'TestRouteUser',
+      email: 'TestRouteUser2@gmail.com',
+      password: '5!E@c#r$e%1',
+    };
+    request(app)
+      .post('/api/users')
+      .send(userData)
+      .expect(StatusCodes.CONFLICT)
+      .end(function (err, res) {
+        if (err) return done(err);
+        return done();
+      });
+  });
+
   it('PATCH user', async () => {
     const userData = {
       email: 'TestRouteUser2@gmail.com',
@@ -50,7 +84,12 @@ describe('User endpoint test suite', () => {
 
   afterAll(async () => {
     try {
+      const user = await mongoose.model('User').findOne({ username: 'TestRouteUser' });
+      await mongoose.model('Profile').find({ _id: user.profileRef }).deleteOne();
+      await mongoose.model('Settings').find({ _id: user.settingsRef }).deleteOne();
+      await user.deleteOne();
       await mongoose.model('User').findOne({ username: MOCK_USERS[0].username }).deleteOne();
+
       await mongoose.connection.close();
     } catch (err) {
       console.log(err);
