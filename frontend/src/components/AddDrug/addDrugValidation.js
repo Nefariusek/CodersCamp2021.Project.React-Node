@@ -7,6 +7,9 @@ const ErrorMessages = {
     ALLOWED_DATE: 'Expiration date is earlier than today.',
     NOT_VALID_DATE: 'Expiration date is not valid date.',
   },
+  dosage: {
+    EMPTY: "Dosage can't be empty.",
+  },
   daytime: {
     EMPTY: "Daytime can't be empty.",
   },
@@ -26,6 +29,9 @@ export const validateInput = (name, value) => {
     case 'drugPackages':
       break;
     case 'description':
+      break;
+    case 'dosage':
+      result = validateDosage(value);
       break;
     case 'expirationDate':
       result = validateExpirationDate(value);
@@ -61,6 +67,11 @@ const validateExpirationDate = (value) => {
     }
   }
 
+  return errorText;
+};
+
+const validateDosage = (value) => {
+  const errorText = value.trim() !== '' ? '' : ErrorMessages.dosage.EMPTY;
   return errorText;
 };
 

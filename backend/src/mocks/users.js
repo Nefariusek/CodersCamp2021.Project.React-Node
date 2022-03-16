@@ -33,4 +33,4 @@ const MOCK_USERS = [
   },
 ];
 
-export default mockUsers;
+export default MOCK_USERS;
