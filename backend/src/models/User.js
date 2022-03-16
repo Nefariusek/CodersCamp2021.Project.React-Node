@@ -61,22 +61,39 @@ const userSchema = new mongoose.Schema(
 userSchema.plugin(uniqueValidator, { message: '{VALUE} already exists' });
 
 const userJoiSchema = Joi.object({
-  username: Joi.string().trim().min(6).max(16).alphanum().required().messages({
-    'string.alphanum': NotMatchMessages.USERNAME,
-    'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
-    'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value}} is too long',
-    'any.required': RequiredMessages.USERNAME,
-  }),
-  email: Joi.string().trim().lowercase().email().required().messages({
-    'string.email': NotMatchMessages.EMAIL,
-    'any.required': RequiredMessages.EMAIL,
-  }),
-  password: Joi.string().trim().min(8).max(16).pattern(new RegExp(RegExpressions.PASSWORD)).required().messages({
-    'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
-    'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value}} is too long',
-    'string.pattern.base': NotMatchMessages.PASSWORD,
-    'any.required': RequiredMessages.PASSWORD,
-  }),
+  username: Joi.string()
+    .trim()
+    .min(6)
+    .max(16)
+    .alphanum()
+    .when(Joi.ref('$requestType'), { is: 'PATCH', then: Joi.optional(), otherwise: Joi.required() })
+    .messages({
+      'string.alphanum': NotMatchMessages.USERNAME,
+      'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
+      'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value}} is too long',
+      'any.required': RequiredMessages.USERNAME,
+    }),
+  email: Joi.string()
+    .trim()
+    .lowercase()
+    .email()
+    .when(Joi.ref('$requestType'), { is: 'PATCH', then: Joi.optional(), otherwise: Joi.required() })
+    .messages({
+      'string.email': NotMatchMessages.EMAIL,
+      'any.required': RequiredMessages.EMAIL,
+    }),
+  password: Joi.string()
+    .trim()
+    .min(8)
+    .max(16)
+    .pattern(new RegExp(RegExpressions.PASSWORD))
+    .when(Joi.ref('$requestType'), { is: 'PATCH', then: Joi.optional(), otherwise: Joi.required() })
+    .messages({
+      'string.min': '{{#label}} must have at least {{#limit}} characters, {{#value}} is too short',
+      'string.max': '{{#label}} can have maximum {{#limit}} characters, {{#value}} is too long',
+      'string.pattern.base': NotMatchMessages.PASSWORD,
+      'any.required': RequiredMessages.PASSWORD,
+    }),
   profileRef: Joi.custom(isValidObjectId),
   settingsRef: Joi.custom(isValidObjectId),
   isAdmin: Joi.boolean().default(false).messages({
@@ -88,7 +105,7 @@ const userJoiSchema = Joi.object({
 });
 
 export const userValidator = (req, res, next) => {
-  const { error } = userJoiSchema.validate(req.body);
+  const { error } = userJoiSchema.validate(req.body, { context: { requestType: req.method } });
   if (error) {
     return next(new ExpressError(error.message, StatusCodes.BAD_REQUEST));
   }
