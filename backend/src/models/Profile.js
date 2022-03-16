@@ -17,11 +17,11 @@ const Profile = mongoose.model('Profile', profileSchema);
 export const profileValidator = (req, res, next) => {
   const schema = Joi.object({
     age: Joi.number().positive().precision(0).less(120),
-    firstName: Joi.string().alphanum().lowercase().required(),
-    lastName: Joi.string().alphanum().lowercase().required(),
+    firstName: Joi.string().alphanum().lowercase(),
+    lastName: Joi.string().alphanum().lowercase(),
     userBio: Joi.string().alphanum().max(180),
-    registerDate: Joi.date().max('now').required(),
-    onlineDate: Joi.date().max('now').required(),
+    registerDate: Joi.date().max('now'),
+    onlineDate: Joi.date().max('now'),
     user: Joi.ref('$User'),
     medicationList: Joi.ref('$Medication'),
   });

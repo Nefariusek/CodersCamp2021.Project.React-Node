@@ -23,8 +23,8 @@ const schema = Joi.object().keys({
   DB_PORT_DEV: Joi.string().required(),
   DB_NAME_DEV: Joi.string().required(),
 
-  DB_USER_TEST: Joi.string().required(),
-  DB_PASS_TEST: Joi.string().required(),
+  DB_USER_TEST: Joi.string().allow(''),
+  DB_PASS_TEST: Joi.string().allow(''),
   DB_HOST_TEST: Joi.string().required(),
   DB_PORT_TEST: Joi.string().required(),
   DB_NAME_TEST: Joi.string().required(),
