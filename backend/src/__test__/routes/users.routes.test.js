@@ -97,10 +97,14 @@ describe('User endpoint test suite', () => {
     await request(app).patch(`/api/users/${id}`).send(userData).expect(StatusCodes.NOT_FOUND);
   });
 
-  it('DELETE user', async () => {
-    const user = await mongoose.model('User').findOne({ username: MOCK_USERS[0].username });
+  it('DELETE user removes not only the user, but also its profile and settings', async () => {
+    const user = await mongoose.model('User').findOne({ username: 'TestRouteUser' });
     const id = user._id;
     await request(app).delete(`/api/users/${id}`).expect(StatusCodes.OK);
+    const userProfile = await mongoose.model('Profile').findOne({ _id: user.profileRef });
+    const userSettings = await mongoose.model('Settings').findOne({ _id: user.settingsRef });
+    expect(userProfile).toBeNull();
+    expect(userSettings).toBeNull();
   });
 
   it('DELETE non existing user fails', async () => {
