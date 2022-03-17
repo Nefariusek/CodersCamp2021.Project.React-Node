@@ -9,7 +9,7 @@ const settingsEndpoint = (router) => {
       return res.status(StatusCodes.NOT_FOUND).send();
     }
     const settings = await Settings.findById(profile.settings);
-    res.status(StatusCodes.OK).json(settings);
+    res.status(StatusCodes.OK).send(settings);
   });
 };
 
