@@ -11,6 +11,7 @@ describe('User model', () => {
       email: 'aidkitman@gmail.com',
       password: '5!E@c#r$e%1',
       profileRef: new mongoose.Types.ObjectId('507f191e810c19729de860ea'),
+      settingsRef: new mongoose.Types.ObjectId('5b0ff0619fbec620008d2414'),
     });
   });
 
@@ -58,6 +59,16 @@ describe('Joi validator for User model', () => {
       testRequest.body.email = 'aidkitman@gmail.com';
       testRequest.body.password = '5!E@c#r$e%1';
       testRequest.body.profileRef = new mongoose.Types.ObjectId();
+      testRequest.body.settingsRef = new mongoose.Types.ObjectId();
+      userValidator(testRequest, res, (err) => {
+        error = err;
+      });
+      expect(error).toBeUndefined();
+    });
+
+    it('All data valid when patch method', () => {
+      testRequest.body.email = 'aidkitmanNew@gmail.com';
+      testRequest.method = 'PATCH';
       userValidator(testRequest, res, (err) => {
         error = err;
       });
@@ -78,24 +89,28 @@ describe('Joi validator for User model', () => {
       testRequest.body.email = 'aidkitman@gmail.com';
       testRequest.body.password = '5!E@c#r$e%1';
       testRequest.body.profileRef = new mongoose.Types.ObjectId();
+      testRequest.body.settingsRef = new mongoose.Types.ObjectId();
     });
     it('Rejects invalid email', () => {
       testRequest.body.username = 'AidKitMan';
       testRequest.body.email = 'aidkitman@gmail';
       testRequest.body.password = '5!E@c#r$e%1';
       testRequest.body.profileRef = new mongoose.Types.ObjectId();
+      testRequest.body.settingsRef = new mongoose.Types.ObjectId();
     });
     it('Rejects invalid password', () => {
       testRequest.body.username = 'AidKitMan';
       testRequest.body.email = 'aidkitman@gmail.com';
       testRequest.body.password = 'secret123';
       testRequest.body.profileRef = new mongoose.Types.ObjectId();
+      testRequest.body.settingsRef = new mongoose.Types.ObjectId();
     });
     it('Rejects invalid profile reference', () => {
       testRequest.body.username = 'AidKitMan';
       testRequest.body.email = 'aidkitman@gmail.com';
       testRequest.body.password = '5!E@c#r$e%1';
       testRequest.body.profileRef = '100';
+      testRequest.body.settingsRef = new mongoose.Types.ObjectId();
     });
   });
 });

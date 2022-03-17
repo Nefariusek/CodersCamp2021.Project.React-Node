@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
-import { PILLS_IMAGE_PATH } from '../../constants/images';
+import { AID_KIT_IMAGE_PATH, PILLS_IMAGE_PATH } from '../../constants/images';
 import {
   DROPS_MED_TYPE,
   INHALER_MED_TYPE,
@@ -31,12 +31,12 @@ import { validateInput } from './addDrugValidation';
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
 const mappedMedTypes = new Map();
-mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs' });
-mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml' });
-mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml' });
-mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml' });
-mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs' });
-mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs' });
+mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs', imagePath: PILLS_IMAGE_PATH });
+mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml', imagePath: PILLS_IMAGE_PATH });
+mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml', imagePath: PILLS_IMAGE_PATH });
+mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml', imagePath: AID_KIT_IMAGE_PATH });
+mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs', imagePath: AID_KIT_IMAGE_PATH });
+mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs', imagePath: AID_KIT_IMAGE_PATH });
 
 const initialFormState = {
   drugName: '',
@@ -45,6 +45,7 @@ const initialFormState = {
   drugPackages: 0,
   description: '',
   expirationDate: new Date(),
+  dosage: '',
   daytime: [DAYTIMES[0]],
 };
 
@@ -89,15 +90,14 @@ const AddDrugForm = ({ onClose, addDrug }) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
-    const dosage = Math.floor(Math.random() * 9) + 1; // TODO: change in 2nd part of project
-    const defaultImage = PILLS_IMAGE_PATH; // TODO: change in 2nd part of project
+    const defaultImage = mappedMedTypes.get(formValues.drugType).imagePath;
 
     if (isFormValid) {
       const drug = new Medication(
         formValues.drugName,
         formValues.expirationDate,
         formValues.drugType,
-        dosage,
+        formValues.dosage,
         formValues.drugQuantity,
         formValues.description,
         defaultImage,
@@ -151,7 +151,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
           marginTop: 4,
         }}
       >
-        <Grid container spacing={2} mb={5}>
+        <Grid container spacing={2} mb={2}>
           <Grid item xs={12}>
             <TextField
               label="DRUG NAME"
@@ -280,7 +280,25 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="DOSAGE"
+              name="dosage"
+              id="dosage"
+              variant="filled"
+              required
+              fullWidth
+              color="secondary"
+              value={formValues.dosage}
+              onChange={handleInput('dosage')}
+              onBlur={handleInput('dosage')}
+              error={!!formErrors.dosage}
+              helperText={formErrors.dosage ? formErrors.dosage : ''}
+              FormHelperTextProps={{ style: styles.helper }}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
             <FormControl required fullWidth>
               <InputLabel id="daytime-select-label" className={classes.label} shrink color="label">
                 DAYTIME
@@ -313,14 +331,14 @@ const AddDrugForm = ({ onClose, addDrug }) => {
           </Grid>
         </Grid>
         <Grid container justifyContent="space-between" align="center">
-          <Grid item xs={12} md={4} mb={2}>
-            <Button variant="contained" color="secondary" className={classes.button} onClick={onClose}>
-              Cancel
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={4} mb={2}>
+          <Grid item xs={12} sm={6} md={4} mb={2}>
             <Button type="submit" variant="contained" color="secondary" className={classes.button}>
               Add drug
+            </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} mb={2}>
+            <Button variant="contained" color="secondary" className={classes.button} onClick={onClose}>
+              Cancel
             </Button>
           </Grid>
         </Grid>
