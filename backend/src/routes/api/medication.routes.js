@@ -5,6 +5,7 @@ import ExpressError from '../../middlewares/ExpressError.js';
 const MedicationRoutes = (router) => {
   router.get('/me/meds', getAllMedications);
   router.post('/me/meds', medicationValidator, postMedication);
+  router.delete('me/meds/:id', deleteMedication);
 };
 
 async function getAllMedications(_req, res, next) {
@@ -47,6 +48,15 @@ async function addNewMedication(req, _res, _next) {
     profile,
   });
   await medication.save();
+}
+
+export async function deleteMedication(req, res, next) {
+  try {
+    const medication = await Medication.findByIdAndDelete(req.params.id);
+    res.status(StatusCodes.OK).json({ message: 'Medication delted' });
+  } catch (err) {
+    next(err);
+  }
 }
 
 export default MedicationRoutes;
