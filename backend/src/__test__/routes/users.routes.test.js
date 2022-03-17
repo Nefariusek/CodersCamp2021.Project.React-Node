@@ -50,6 +50,21 @@ describe('User endpoint test suite', () => {
       });
   });
 
+  it('GET all users', async () => {
+    await request(app).get('/api/users').expect(StatusCodes.OK);
+  });
+
+  it('GET selected user', async () => {
+    const user = await mongoose.model('User').findOne({ username: MOCK_USERS[0].username });
+    const id = user._id;
+    await request(app).get(`/api/users/${id}`).expect(StatusCodes.OK);
+  });
+
+  it('GET non existing user fails', async () => {
+    const id = '507f191e810c19729de860ea';
+    await request(app).get(`/api/users/${id}`).expect(StatusCodes.NOT_FOUND);
+  });
+
   it('PATCH user', async () => {
     const userData = {
       email: 'TestRouteUser2@gmail.com',
@@ -82,12 +97,29 @@ describe('User endpoint test suite', () => {
     await request(app).patch(`/api/users/${id}`).send(userData).expect(StatusCodes.NOT_FOUND);
   });
 
+  it('DELETE user removes not only the user, but also its profile and settings', async () => {
+    const user = await mongoose.model('User').findOne({ username: 'TestRouteUser' });
+    const id = user._id;
+    await request(app).delete(`/api/users/${id}`).expect(StatusCodes.OK);
+    const userProfile = await mongoose.model('Profile').findOne({ _id: user.profileRef });
+    const userSettings = await mongoose.model('Settings').findOne({ _id: user.settingsRef });
+    expect(userProfile).toBeNull();
+    expect(userSettings).toBeNull();
+  });
+
+  it('DELETE non existing user fails', async () => {
+    const id = '507f191e810c19729de860ea';
+    await request(app).delete(`/api/users/${id}`).expect(StatusCodes.NOT_FOUND);
+  });
+
   afterAll(async () => {
     try {
       const user = await mongoose.model('User').findOne({ username: 'TestRouteUser' });
-      await mongoose.model('Profile').find({ _id: user.profileRef }).deleteOne();
-      await mongoose.model('Settings').find({ _id: user.settingsRef }).deleteOne();
-      await user.deleteOne();
+      if (user) {
+        await mongoose.model('Profile').find({ _id: user.profileRef }).deleteOne();
+        await mongoose.model('Settings').find({ _id: user.settingsRef }).deleteOne();
+        await user.deleteOne();
+      }
       await mongoose.model('User').findOne({ username: MOCK_USERS[0].username }).deleteOne();
 
       await mongoose.connection.close();

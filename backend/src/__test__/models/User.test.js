@@ -74,15 +74,6 @@ describe('Joi validator for User model', () => {
       });
       expect(error).toBeUndefined();
     });
-
-    it('All data valid when patch method', () => {
-      testRequest.body.email = 'aidkitmanNew@gmail.com';
-      testRequest.method = 'PATCH';
-      userValidator(testRequest, res, (err) => {
-        error = err;
-      });
-      expect(error).toBeUndefined();
-    });
   });
 
   describe('Joi validator rejects invalid data', () => {
