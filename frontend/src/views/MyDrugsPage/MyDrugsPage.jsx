@@ -5,6 +5,7 @@ import { Button, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 import buttonStyles from '../../components/Button/Button.module.scss';
+import UpdateDrugModal from '../../components/UpdateDrug/UpdateDrugModal';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
 import drugs from '../../mock/drugs';
 
@@ -14,6 +15,10 @@ const initialImageSource = AID_KIT_IMAGE_PATH;
 const MyDrugsPage = () => {
   const [description, setDescription] = useState(initialDescription);
   const [photoSource, setPhotoSource] = useState(initialImageSource);
+
+  const updateDrug = (drug) => {
+    console.log(drug);
+  };
 
   const showDescription = (selectedDrug) => {
     const foundDrug = drugs.find(({ name }) => name.toUpperCase() === selectedDrug.target.innerText);
@@ -47,6 +52,7 @@ const MyDrugsPage = () => {
             {description}
           </Typography>
           <img className="drug-description-image" src={photoSource} alt="Medication" width="250" />
+          <UpdateDrugModal updateDrug={updateDrug} />
         </div>
       </div>
     </div>
