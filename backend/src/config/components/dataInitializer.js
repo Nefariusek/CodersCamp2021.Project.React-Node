@@ -7,7 +7,9 @@ import {
   USER_PROFILE,
   USER_USER,
 } from '../../constants/mockData.js';
+import MOCK_MEDICATION_CATEGORIES from '../../mocks/medicationCategories.js';
 
+const MedicationCategory = models.medicationCategory;
 const Medication = models.medication;
 const Profile = models.profile;
 const Settings = models.settings;
@@ -22,6 +24,11 @@ export default function initializeData() {
   const medication2 = new Medication(MEDICATION2);
   const userProfile = new Profile(USER_PROFILE);
   const user = new User(USER_USER);
+
+  MOCK_MEDICATION_CATEGORIES.forEach((item) => {
+    const medicationCategory = new MedicationCategory(item);
+    medicationCategory.save();
+  });
 
   adminProfile.user = admin;
   userProfile.medicationList = [medication1, medication2];

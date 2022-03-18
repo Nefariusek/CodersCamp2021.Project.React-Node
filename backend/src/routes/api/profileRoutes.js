@@ -14,7 +14,7 @@ const patchUserProfile = async (req, res, next) => {
       throw new Error('Profile not found');
     } else {
       res.status(StatusCodes.OK).send(currentProfile);
-      }
+    }
   } catch (error) {
     next(error);
   }

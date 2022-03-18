@@ -6,7 +6,6 @@ dotenv.config();
 if (process.env.NODE_ENV === 'test') {
   process.env.NODE_ENV = 'TEST';
 }
-
 const schema = Joi.object().keys({
   NODE_ENV: Joi.string().valid('PROD', 'DEV', 'TEST').required(),
   PORT: Joi.number().required(),
@@ -31,11 +30,9 @@ const schema = Joi.object().keys({
 });
 
 const { value: envVars, error } = schema.validate(process.env, { stripUnknown: true, convert: true });
-
 if (error) {
   throw new Error(`Config validation error: ${error.message}`);
 }
-
 const env = {
   NODE_ENV: envVars.NODE_ENV,
   PORT: envVars.PORT,
