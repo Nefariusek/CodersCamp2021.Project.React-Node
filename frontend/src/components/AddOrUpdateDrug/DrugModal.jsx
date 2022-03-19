@@ -6,9 +6,7 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
-import AddDrugForm from './AddDrugForm';
-
-const MAIN_TITLE = 'Add drug';
+import DrugForm from './DrugForm';
 
 const modalStyle = {
   position: 'absolute',
@@ -26,7 +24,7 @@ const modalStyle = {
   mt: 3,
 };
 
-const AddDrugModal = ({ addDrug }) => {
+const DrugModal = ({ drugAction, actionName = 'Add' }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,13 +43,13 @@ const AddDrugModal = ({ addDrug }) => {
           borderRadius: 15,
         }}
       >
-        {MAIN_TITLE}
+        {actionName} drug
       </Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="add-drug-title"
-        aria-describedby="add-drug-form"
+        aria-labelledby="drug-action-title"
+        aria-describedby="drug-action-form"
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -62,17 +60,17 @@ const AddDrugModal = ({ addDrug }) => {
         <Fade in={open}>
           <Box sx={modalStyle}>
             <Typography
-              id="add-drug-title"
+              id="drug-action-title"
               variant="h4"
               component="h2"
               color="title.main"
               align="center"
               fontWeight="bold"
             >
-              {MAIN_TITLE.toUpperCase()}
+              {actionName.toUpperCase()} DRUG
             </Typography>
-            <Box id="add-drug-form">
-              <AddDrugForm onClose={handleClose} addDrug={addDrug} />
+            <Box id="drug-action-form">
+              <DrugForm onClose={handleClose} drugAction={drugAction} actionName={actionName} />
             </Box>
           </Box>
         </Fade>
@@ -81,4 +79,4 @@ const AddDrugModal = ({ addDrug }) => {
   );
 };
 
-export default AddDrugModal;
+export default DrugModal;

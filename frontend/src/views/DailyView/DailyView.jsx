@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-import AddDrugModal from '../../components/AddDrug/AddDrugModal';
+import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import Pill from '../../components/Pill/Pill';
 import { DAYTIMES } from '../../constants/picklistValues';
 import drugs from '../../mock/drugs';
@@ -53,7 +53,7 @@ const DailyDrugs = () => {
         </div>
       </div>
       <div className="button-add-drug">
-        <AddDrugModal addDrug={addDrug} />
+        <DrugModal drugAction={addDrug} />
       </div>
     </div>
   );
