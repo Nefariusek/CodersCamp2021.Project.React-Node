@@ -1,17 +1,17 @@
 import { StatusCodes } from 'http-status-codes';
 import Medication from '../models/Medication.js';
+import ExpressError from '../../middlewares/ExpressError';
 
-async function patchMedication(req, res, next) {
+async function deleteMedication(req, res, next) {
   try {
-    const currentMedication = await Medication.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!currentMedication) {
-      throw new Error('Medication not found');
-    } else {
-      res.status(StatusCodes.OK).send(currentMedication);
+    const deletedMed = await Medication.findByIdAndDelete(req.params.id);
+    if (!deletedMed) {
+      throw new ExpressError('No medication found', 404);
     }
-  } catch (error) {
-    next(error);
+    res.status(StatusCodes.OK).json({ message: 'Medication deleted' });
+  } catch (err) {
+    next(err);
   }
 }
 
-export { patchMedication };
+export { deleteMedication };
