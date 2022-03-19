@@ -2,10 +2,11 @@ import './MyDrugsPage.scss';
 import '../../components/Pill/Pill.module.scss';
 
 import { Button, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
+import usePutData from '../../api/usePutData';
+import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import buttonStyles from '../../components/Button/Button.module.scss';
-import UpdateDrugModal from '../../components/UpdateDrug/UpdateDrugModal';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
 import drugs from '../../mock/drugs';
 
@@ -15,12 +16,34 @@ const initialImageSource = AID_KIT_IMAGE_PATH;
 const MyDrugsPage = () => {
   const [description, setDescription] = useState(initialDescription);
   const [photoSource, setPhotoSource] = useState(initialImageSource);
+  const [descriptionShown, setDescriptionShown] = useState(false);
+  const [selected, setSelected] = useState(null);
 
-  const updateDrug = (drug) => {
-    console.log(drug);
+  const ShowUpdateButton = memo(({ isDescription }) => {
+    console.log(isDescription);
+    if (isDescription) {
+      return <DrugModal drugAction={useUpdateDrug} actionName="Update" />;
+    }
+    return <div />;
+  });
+
+  const useUpdateDrug = () => {
+    const drugName = selected;
+    const data = usePutData('http://localhost:8080/api/medications/6235e46a9b538e44086277c0', {
+      nameOfMedication: 'nowaNazwa',
+      quantity: 10,
+      addDate: '2021-12-16T23:00:00.000Z',
+      dosage: 'codziennie',
+      category: '6235e46a9b538e44086277ba',
+      expirationDate: '2020-01-02',
+    });
+    console.log(drugName);
+    return data;
   };
 
   const showDescription = (selectedDrug) => {
+    console.log(selectedDrug.target.innerText);
+    setSelected(selectedDrug.target.innerText);
     const foundDrug = drugs.find(({ name }) => name.toUpperCase() === selectedDrug.target.innerText);
     const readyDescription = `NAME: ${foundDrug.name}, TYPE: ${
       foundDrug.type
@@ -29,6 +52,7 @@ const MyDrugsPage = () => {
     } (${foundDrug.daytime}) \n QUANTITY: ${foundDrug.quantity}`;
     setDescription(readyDescription);
     setPhotoSource(foundDrug.img);
+    setDescriptionShown(true);
   };
 
   return (
@@ -52,7 +76,7 @@ const MyDrugsPage = () => {
             {description}
           </Typography>
           <img className="drug-description-image" src={photoSource} alt="Medication" width="250" />
-          <UpdateDrugModal updateDrug={updateDrug} />
+          <ShowUpdateButton isDescription={descriptionShown} />
         </div>
       </div>
     </div>
