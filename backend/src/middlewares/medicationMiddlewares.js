@@ -19,11 +19,12 @@ export { patchMedication };
 
 async function deleteMedication(req, res, next) {
   try {
-    const deletedMed = await Medication.findByIdAndDelete(req.params.id);
-    if (!deletedMed) {
+    const deletedMedication = await Medication.findByIdAndDelete(req.params.id);
+    if (!deletedMedication) {
       throw new ExpressError('No medication found', 404);
+    } else {
+      res.status(StatusCodes.OK).json({ message: 'Medication deleted' });
     }
-    res.status(StatusCodes.OK).json({ message: 'Medication deleted' });
   } catch (err) {
     next(err);
   }
