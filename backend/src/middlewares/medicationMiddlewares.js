@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import Medication from '../models/Medication.js';
-import ExpressError from '../../middlewares/ExpressError';
+import ExpressError from '../middlewares/ExpressError';
 
 async function patchMedication(req, res, next) {
   try {
@@ -31,3 +31,34 @@ async function deleteMedication(req, res, next) {
 }
 
 export { deleteMedication };
+
+async function postMedication(req, res, next) {
+  try {
+    const newMedication = await addNewMedication(req.body);
+    res.status(StatusCodes.CREATED).json(newMedication);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export { postMedication };
+
+async function addNewMedication(medicationData) {
+  const existingMedication = await Medication.findOne({ nameOfMedication: medicationData.nameOfMedication });
+
+  if (existingMedication) {
+    throw new ExpressError('Medication already in database', StatusCodes.CONFLICT);
+  }
+
+  const medication = new Medication({
+    nameOfMedication: medicationData.nameOfMedication,
+    quantity: medicationData.quantity,
+    addDate: medicationData.addDate,
+    dosage: medicationData.dosage,
+    category: medicationData.category,
+    expirationDate: medicationData.expirationDate,
+    profile: medicationData.profile,
+  });
+  await medication.save();
+  res.status(StatusCodes.OK).json(medication);
+}

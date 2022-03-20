@@ -106,3 +106,24 @@ async function registerNewUser(userData) {
 
   return savedUserWithReferences;
 }
+
+async function addNewMedication(req, _res, _next) {
+  const { nameOfMedication, quantity, addDate, dosage, category, expirationDate, profile } = req.body;
+  const existingMedication = await Medication.findOne({ nameOfMedication: nameOfMedication });
+
+  if (existingMedication) {
+    throw new ExpressError('Medication already in database', StatusCodes.CONFLICT);
+  }
+
+  const medication = new Medication({
+    nameOfMedication: req.body.nameOfMedication,
+    quantity,
+    addDate,
+    dosage,
+    category,
+    expirationDate,
+    profile,
+  });
+  await medication.save();
+  res.status(StatusCodes.OK).json(medication);
+}
