@@ -26,7 +26,7 @@ import {
 } from '../../constants/medTypes';
 import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
-import { validateInput } from './addDrugValidation';
+import { validateInput } from './drugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
 
@@ -81,12 +81,12 @@ const dateFormat = {
   dayFirst: 'dd/MM/yyyy',
 };
 
-const AddDrugForm = ({ onClose, addDrug }) => {
+const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
   const classes = useStyles();
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
-  const handleAddDrugSubmit = (e) => {
+  const handleDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
@@ -103,7 +103,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
         defaultImage,
         formValues.daytime,
       );
-      addDrug(drug);
+      drugAction(drug);
       onClose();
     }
   };
@@ -143,7 +143,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
       <Box
         component="form"
         noValidate
-        onSubmit={handleAddDrugSubmit}
+        onSubmit={handleDrugSubmit}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -333,7 +333,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
         <Grid container justifyContent="space-between" align="center">
           <Grid item xs={12} sm={6} md={4} mb={2}>
             <Button type="submit" variant="contained" color="secondary" className={classes.button}>
-              Add drug
+              {actionName} drug
             </Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4} mb={2}>
@@ -347,4 +347,4 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   );
 };
 
-export default AddDrugForm;
+export default DrugForm;

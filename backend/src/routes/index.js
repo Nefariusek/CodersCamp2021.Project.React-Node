@@ -1,15 +1,17 @@
 import { Router } from 'express';
 
 import testEndpoint from './api/test.routes.js';
-import MedicationRoutes from './api/medication.routes.js';
+import MedicationCategoryRoutes from './api/medicationCategories.routes.js';
 import profileRoutes from './api/profileRoutes.js';
 import userRoutes from './api/users.routes.js';
+import medicationRoutes from './api/medicationRoutes.js';
 
 const router = Router();
 
 testEndpoint(router);
+MedicationCategoryRoutes(router);
 profileRoutes(router);
 userRoutes(router);
-MedicationRoutes(router);
+medicationRoutes(router);
 
 export default router;
