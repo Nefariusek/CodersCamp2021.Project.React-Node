@@ -1,4 +1,5 @@
 import Profile from '../../models/Profile.js';
+import Medication from '../../models/Medication.js';
 import { profileValidator } from '../../models/Profile.js';
 import { StatusCodes } from 'http-status-codes';
 import ExpressError from '../../middlewares/ExpressError.js';
@@ -38,16 +39,17 @@ const getUserProfile = async (req, res, next) => {
 
 async function getUsersMedications(req, res, next) {
   try {
-    const userId = req.params.id;
-    const currentProfile = await Profile.findById(userId);
+    const currentProfile = await Profile.findById(req.params.id);
     if (!currentProfile) {
-      return new ExpressError('User not found', 404);
+      throw new ExpressError('User not found', 404);
     }
-    const currentProfileMedications = await currentProfile.populate('medicationList');
-    if (!currentProfileMedications) {
-      return new ExpressError('No medication found', 404);
+    const currentProfileMedications = currentProfile.medicationList;
+    if (currentProfileMedications.length < 0) {
+      throw new ExpressError('No medication found', 404);
+    } else {
+      const currentProfileMedicationList = await Medication.findById(currentProfileMedications[0]._id);
+      res.status(StatusCodes.OK).send(currentProfileMedicationList);
     }
-    res.status(StatusCodes.OK).send(currentProfileMedications);
   } catch (error) {
     next(error);
   }
