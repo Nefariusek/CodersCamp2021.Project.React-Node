@@ -51,9 +51,10 @@ function makeIcon(type) {
 /**
  * Popup modal for application messages.
  * @param {string} message - message
- * @param {string} [type=info] - message type which determines the title and icon of the popup
- * @param { Object } modalState - object that contains modal state (isModalOpen) and method to change this state (setIsModalOpen())
+ * @param {string} [type=info] - message type which determines the title and icon of the popup (if type is 'info', 'error', 'warning' or 'success' then the appropriate icon will appear)
+ * @param {Object} modalState - object that contains boolean modal state (isModalOpen) and method to change this state (setIsModalOpen())
  */
+
 const PopupModal = ({ message, type = 'info', modalState }) => {
   return (
     <div>
