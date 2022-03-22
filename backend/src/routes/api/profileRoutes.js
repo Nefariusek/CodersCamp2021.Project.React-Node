@@ -43,13 +43,10 @@ async function getUsersMedications(req, res, next) {
     if (!currentProfile) {
       throw new ExpressError('User not found', 404);
     }
-    const currentProfileMedications = currentProfile.medicationList;
-    if (currentProfileMedications.length < 0) {
-      throw new ExpressError('No medication found', 404);
-    } else {
-      const currentProfileMedicationList = await Medication.findById(currentProfileMedications[0]._id);
-      res.status(StatusCodes.OK).send(currentProfileMedicationList);
-    }
+
+    const currentProfileMedicationList = await Medication.find({ _id: { $in: currentProfile.medicationList } });
+
+    res.status(StatusCodes.OK).send(currentProfileMedicationList);
   } catch (error) {
     next(error);
   }
