@@ -9,7 +9,9 @@ import { makeStyles } from '@mui/styles';
 import React, { useReducer } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import postData from '../../../api/postData';
 import { PATH_TO_LOGIN } from '../../../constants/paths';
+import { BASE_URL } from '../../../constants/restResources';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
 
 const styles = {
@@ -54,12 +56,22 @@ const formReducer = (prevState, action) => {
   }
 };
 
+const getUserData = (formState) => {
+  const userData = {};
+  Object.entries(formState)
+    .filter(([key]) => key !== 'isFormValid' && key !== 'confirmedPassword')
+    .forEach(([key, value]) => {
+      userData[key] = value.value;
+    });
+  return userData;
+};
+
 const SignUp = () => {
   const classes = useStyles();
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
-
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let isFormValid = true;
     for (const name of Object.keys(formState)) {
@@ -85,8 +97,16 @@ const SignUp = () => {
     }
 
     if (isFormValid) {
-      alert('Sign up successful!');
-      navigate(PATH_TO_LOGIN, { replace: true });
+      const userData = getUserData(formState);
+
+      const { error } = await postData(`${BASE_URL}api/users/`, userData);
+
+      if (error) {
+        alert(error.message);
+      } else {
+        alert('Sign up successful!');
+        navigate(PATH_TO_LOGIN, { replace: true });
+      }
     }
   };
 
