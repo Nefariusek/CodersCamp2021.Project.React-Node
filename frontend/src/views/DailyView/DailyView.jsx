@@ -4,9 +4,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
+import postData from '../../api/postData';
 import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import Pill from '../../components/Pill/Pill';
 import { DAYTIMES } from '../../constants/picklistValues';
+import { BASE_URL } from '../../constants/restResources';
 import drugs from '../../mock/drugs';
 import DatePicker from './DatePicker';
 
@@ -14,8 +16,11 @@ const TITLE = `DAILY DRUGS`;
 const DailyDrugs = () => {
   const [drugList, setDrugList] = React.useState(drugs);
 
-  const addDrug = (drug) => {
-    setDrugList([...drugList, drug]);
+  const addDrug = async (drug) => {
+    const { data, error } = await postData(`${BASE_URL}/api/medications`);
+    if (!error) {
+      setDrugList([...drugList, drug]);
+    }
   };
 
   return (
