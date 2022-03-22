@@ -1,34 +1,19 @@
 import './MyDrugsPage.scss';
 import '../../components/Pill/Pill.module.scss';
 
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
 
 import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import buttonStyles from '../../components/Button/Button.module.scss';
+import PopupModal from '../../components/PopupModal/PopupModal';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
-import drugs from '../../mock/drugs';
+import { DEFAULT_HEADERS, REST_METHOD_PATCH } from '../../constants/restResources';
 import { URL } from '../../constants/url';
-import { REST_METHOD_PATCH, DEFAULT_HEADERS } from '../../constants/restResources';
+import drugs from '../../mock/drugs';
 
 const initialDescription = 'CHOOSE A DRUG TO SHOW THE DESCRIPTION';
 const initialImageSource = AID_KIT_IMAGE_PATH;
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90vw',
-  maxWidth: '700px',
-  minHeight: '450px',
-  bgcolor: 'background.default',
-  border: '2px solid #000',
-  borderRadius: '20px',
-  boxShadow: 24,
-  p: 4,
-  mt: 3,
-};
 
 const MyDrugsPage = () => {
   const [description, setDescription] = useState(initialDescription);
@@ -36,8 +21,6 @@ const MyDrugsPage = () => {
   const [drugSelected, setDrugSelected] = useState(null);
   const [open, setOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-
-  const handleClose = () => setOpen(false);
 
   const ShowUpdateButton = memo(({ isDescription }) => {
     if (isDescription !== initialDescription) {
@@ -75,6 +58,9 @@ const MyDrugsPage = () => {
       if (response.ok) {
         response.json();
         alert('Medication updated!');
+      } else {
+        setErrorMsg('Medication was not updated.');
+        setOpen(true);
       }
     } catch (err) {
       console.error(err);
@@ -94,27 +80,16 @@ const MyDrugsPage = () => {
     setDescription(readyDescription);
     setPhotoSource(foundDrug.img);
   };
-
+  const modalStateobj = {
+    isModalOpen: open,
+    setIsModalOpen: setOpen,
+  };
   return (
     <div className="my-drugs-page">
       <Typography className="header-h2" variant="h2" color="title.main">
         YOUR DRUGS
       </Typography>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h3" component="h2" align="center">
-            Error occured!
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 6 }} align="center">
-            {errorMsg}
-          </Typography>
-        </Box>
-      </Modal>
+      <PopupModal message={errorMsg} type="error" modalState={obj} />
       <div className="drugs-container">
         <div className="drugs-list">
           {drugs.map(({ name }) => (
