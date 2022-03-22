@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import Medication from '../models/Medication.js';
-import ExpressError from '../../middlewares/ExpressError';
+import ExpressError from './ExpressError.js';
 
 async function patchMedication(req, res, next) {
   try {
