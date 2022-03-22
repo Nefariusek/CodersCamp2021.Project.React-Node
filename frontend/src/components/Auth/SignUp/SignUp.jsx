@@ -5,13 +5,16 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import postData from '../../../api/postData';
 import { PATH_TO_LOGIN } from '../../../constants/paths';
 import { BASE_URL } from '../../../constants/restResources';
+import ModalContext from '../../ModalContext/ModalContext';
+import PopupModal from '../../PopupModal/PopupModal';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
 
 const styles = {
@@ -39,6 +42,11 @@ const initialFormState = {
     errorText: '',
   },
   isFormValid: false,
+};
+
+const MESSAGES = {
+  success: 'Sign up successful!',
+  error: 'An error has occurred',
 };
 
 const formReducer = (prevState, action) => {
@@ -69,6 +77,9 @@ const getUserData = (formState) => {
 const SignUp = () => {
   const classes = useStyles();
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
+  const [apiMessage, setApiMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const modalState = useContext(ModalContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -102,10 +113,14 @@ const SignUp = () => {
       const { error } = await postData(`${BASE_URL}api/users/`, userData);
 
       if (error) {
-        alert(error.message);
+        setApiMessage(error.message || MESSAGES.error);
+        modalState.setIsModalOpen(true);
       } else {
-        alert('Sign up successful!');
-        navigate(PATH_TO_LOGIN, { replace: true });
+        setSuccessMessage(MESSAGES.success);
+
+        setTimeout(() => {
+          navigate(PATH_TO_LOGIN, { replace: true });
+        }, 1000);
       }
     }
   };
@@ -214,6 +229,12 @@ const SignUp = () => {
                 handleInputBlur(e, formState, dispatch);
               }}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="p" component="p" align="center">
+              {successMessage}
+            </Typography>
+            <PopupModal message={apiMessage} type="error" modalState={modalState} />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" mb={2}>
