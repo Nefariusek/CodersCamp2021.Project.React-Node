@@ -80,16 +80,17 @@ const MyDrugsPage = () => {
     setDescription(readyDescription);
     setPhotoSource(foundDrug.img);
   };
-  const modalStateobj = {
+  const modalStateObject = {
     isModalOpen: open,
     setIsModalOpen: setOpen,
   };
+
   return (
     <div className="my-drugs-page">
       <Typography className="header-h2" variant="h2" color="title.main">
         YOUR DRUGS
       </Typography>
-      <PopupModal message={errorMsg} type="error" modalState={obj} />
+      <PopupModal message={errorMsg} type="error" modalState={modalStateObject} />
       <div className="drugs-container">
         <div className="drugs-list">
           {drugs.map(({ name }) => (
