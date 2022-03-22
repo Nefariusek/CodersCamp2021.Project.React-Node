@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import Medication from '../models/Medication.js';
-import ExpressError from '../middlewares/ExpressError.js';
+import ExpressError from './ExpressError.js';
 
 async function patchMedication(req, res, next) {
   try {
@@ -31,3 +31,25 @@ async function deleteMedication(req, res, next) {
 }
 
 export { deleteMedication };
+
+async function postMedication(req, res, next) {
+  try {
+    const existingMedication = await Medication.findOne({
+      profile: req.body.profile,
+      nameOfMedication: req.body.nameOfMedication,
+    });
+    if (existingMedication) {
+      throw new ExpressError('Medication already in your aidkit', StatusCodes.CONFLICT);
+    } else {
+      const medication = new Medication({
+        ...req.body,
+      });
+      const addedMedication = await medication.save();
+      res.status(StatusCodes.OK).send(addedMedication);
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
+export { postMedication };

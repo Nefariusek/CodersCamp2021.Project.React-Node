@@ -31,8 +31,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       trim: true,
-      minlength: [8, '{PATH} must have at least {MINLENGTH} characters, {VALUE} is too short'],
-      maxlength: [16, '{PATH} can have maximum {MAXLENGTH} characters, {VALUE} is too long'],
       match: [RegExpressions.PASSWORD, NotMatchMessages.PASSWORD],
       required: [true, RequiredMessages.PASSWORD],
     },
