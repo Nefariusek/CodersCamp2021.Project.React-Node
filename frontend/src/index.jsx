@@ -6,6 +6,7 @@ import { HashRouter } from 'react-router-dom';
 
 import { DarkThemeProvider } from './components/DarkThemeContext/DarkThemeContext';
 import { LoginProvider } from './components/LoginContext/LoginContext';
+import { ModalProvider } from './components/ModalContext/ModalContext';
 import reportWebVitals from './reportWebVitals';
 import App from './views/App/App';
 
@@ -14,7 +15,9 @@ ReactDOM.render(
     <HashRouter>
       <DarkThemeProvider>
         <LoginProvider>
-          <App />
+          <ModalProvider>
+            <App />
+          </ModalProvider>
         </LoginProvider>
       </DarkThemeProvider>
     </HashRouter>
