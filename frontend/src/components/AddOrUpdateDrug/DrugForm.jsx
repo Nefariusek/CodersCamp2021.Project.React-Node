@@ -13,7 +13,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { AID_KIT_IMAGE_PATH, PILLS_IMAGE_PATH } from '../../constants/images';
 import {
@@ -26,6 +26,7 @@ import {
 } from '../../constants/medTypes';
 import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
+import LoginContext from '../LoginContext/LoginContext';
 import { validateInput } from './drugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
@@ -86,11 +87,14 @@ const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
+  const { medicationCategories } = useContext(LoginContext);
+
   const handleDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
 
-    const defaultImage = mappedMedTypes.get(formValues.drugType).imagePath;
+    // const defaultImage = mappedMedTypes.get(formValues.drugType).imagePath;
+    const defaultImage = medicationCategories.length ? medicationCategories[0].icon : '';
 
     if (isFormValid) {
       const drug = new Medication(
