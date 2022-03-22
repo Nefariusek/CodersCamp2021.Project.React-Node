@@ -5,7 +5,7 @@ const date = new Date();
 
 const drugs = [
   new Medication(
-    '623743fd45963b3666773ee0',
+    '6239ab2255c4bc6c40a9a960',
     'Xanax',
     new Date(2023, 0, 1),
     'pills',

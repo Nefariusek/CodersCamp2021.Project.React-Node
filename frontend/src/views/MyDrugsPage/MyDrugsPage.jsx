@@ -8,6 +8,8 @@ import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
 import drugs from '../../mock/drugs';
+import { URL } from '../../constants/url';
+import { REST_METHOD_PATCH, DEFAULT_HEADERS } from '../../constants/restResources';
 
 const initialDescription = 'CHOOSE A DRUG TO SHOW THE DESCRIPTION';
 const initialImageSource = AID_KIT_IMAGE_PATH;
@@ -47,8 +49,8 @@ const MyDrugsPage = () => {
   // At this moment works only if one of mock medications has the same id as any in the collection, because there is no functionality for getting all the user's medications.
   async function patchMedication(drug) {
     const drugName = drugSelected;
-    var id;
-    var updatedDrug;
+    let id;
+    let updatedDrug;
     drugs.forEach((medication) => {
       if (medication.name.toUpperCase() === drugName) {
         updatedDrug = medication;
@@ -65,9 +67,9 @@ const MyDrugsPage = () => {
       expirationDate: drug.expirationDate,
     };
     try {
-      const response = await fetch(`http://localhost:8080/api/medications/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch(`${URL}api/medications/${id}`, {
+        method: REST_METHOD_PATCH,
+        headers: DEFAULT_HEADERS,
         body: JSON.stringify(requestBody),
       });
       if (response.ok) {
