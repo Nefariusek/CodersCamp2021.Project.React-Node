@@ -39,13 +39,13 @@ async function postMedication(req, res, next) {
       nameOfMedication: req.body.nameOfMedication,
     });
     if (existingMedication) {
-      return new ExpressError('Medication already in your aidkit', StatusCodes.CONFLICT);
+      throw new ExpressError('Medication already in your aidkit', StatusCodes.CONFLICT);
     } else {
       const medication = new Medication({
         ...req.body,
       });
       const addedMedication = await medication.save();
-      return addedMedication;
+      res.status(StatusCodes.OK).send(addedMedication);
     }
   } catch (err) {
     next(err);
