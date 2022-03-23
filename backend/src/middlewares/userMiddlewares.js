@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Profile from '../models/Profile.js';
 import Settings from '../models/Settings.js';
@@ -127,9 +128,20 @@ export async function loginUser(req, res, next) {
       throw new ExpressError(invalid, StatusCodes.UNAUTHORIZED);
     }
 
-    const token = {};
+    const token = createAccessToken(user);
     res.status(StatusCodes.OK).send(token);
   } catch (err) {
     next(err);
   }
 }
+
+const createAccessToken = (user) => {
+  const expiresIn = '10m';
+  const signedToken = jwt.sign({ id: user._id }, `${process.env.ACCESS_TOKEN_SECRET}`, {
+    expiresIn: expiresIn,
+  });
+  return {
+    token: 'Bearer ' + signedToken,
+    expires: expiresIn,
+  };
+};

@@ -37,6 +37,7 @@ const LoginPage = () => {
       const userData = { username, password };
 
       const { data, error } = await postData(`${BASE_URL}api/users/login`, userData);
+      userData.token = data;
 
       if (error) {
         alert('error');
