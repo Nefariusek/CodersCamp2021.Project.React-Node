@@ -68,7 +68,6 @@ const DailyDrugs = () => {
       </div>
       <div className="button-add-drug">
         <DrugModal drugAction={addDrug} />
-        {/* <PopupModal message={message} type="error" modalState={modalState} /> */}
       </div>
     </div>
   );
