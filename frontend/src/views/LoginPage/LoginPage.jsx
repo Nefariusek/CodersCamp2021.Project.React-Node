@@ -47,14 +47,13 @@ const LoginPage = () => {
       const userData = { username, password };
 
       const { data, error } = await postData(`${BASE_URL}api/users/login`, userData);
-      userData.token = data;
 
       if (error) {
         setApiMessage(error.message || MESSAGES.error);
         modalState.setIsModalOpen(true);
       } else {
         auth.setLoginStatus(true);
-        auth.setUserData(userData);
+        auth.setUserData(data);
         setSuccessMessage(MESSAGES.success);
 
         setTimeout(() => {

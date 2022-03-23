@@ -118,7 +118,7 @@ export async function loginUser(req, res, next) {
 
   const invalid = 'Invalid username or password';
   try {
-    const user = await User.findOne({ username: req.body.username }).select('username password').exec();
+    const user = await User.findOne({ username: req.body.username }).lean().exec();
     if (!user) {
       throw new ExpressError(invalid, StatusCodes.UNAUTHORIZED);
     }
@@ -129,7 +129,9 @@ export async function loginUser(req, res, next) {
     }
 
     const token = createAccessToken(user);
-    res.status(StatusCodes.OK).send(token);
+    user.token = token;
+
+    res.status(StatusCodes.OK).send(user);
   } catch (err) {
     next(err);
   }
