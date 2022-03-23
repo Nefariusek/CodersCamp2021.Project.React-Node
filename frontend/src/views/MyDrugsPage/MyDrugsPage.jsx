@@ -4,23 +4,36 @@ import '../../components/Pill/Pill.module.scss';
 import { Button, Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
 
+import useGet from '../../api/useGet';
 import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import PopupModal from '../../components/PopupModal/PopupModal';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { DEFAULT_HEADERS, REST_METHOD_PATCH } from '../../constants/restResources';
 import { URL } from '../../constants/url';
-import drugs from '../../mock/drugs';
 
 const initialDescription = 'CHOOSE A DRUG TO SHOW THE DESCRIPTION';
 const initialImageSource = AID_KIT_IMAGE_PATH;
+const USER_ID = '623aeb38d2b6280754ba0bb1';
 
 const MyDrugsPage = () => {
+  const medications = useGet(`${URL}api/profiles/${USER_ID}/meds`).data;
   const [description, setDescription] = useState(initialDescription);
   const [photoSource, setPhotoSource] = useState(initialImageSource);
   const [drugSelected, setDrugSelected] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  const errorModalStateObject = {
+    isModalOpen: isErrorOpen,
+    setIsModalOpen: setIsErrorOpen,
+  };
+
+  const msgModalStateObject = {
+    isModalOpen: isMsgModalOpen,
+    setIsModalOpen: setIsMsgModalOpen,
+  };
 
   const ShowUpdateButton = memo(({ isDescription }) => {
     if (isDescription !== initialDescription) {
@@ -29,25 +42,41 @@ const MyDrugsPage = () => {
     return <div />;
   });
 
-  // At this moment works only if one of mock medications has the same id as any in the collection, because there is no functionality for getting all the user's medications.
+  const MedicationButtons = memo(({ meds }) => {
+    if (meds === null) {
+      return <div className="drugs-list" />;
+    }
+    return (
+      <div className="drugs-list">
+        {meds.map(({ nameOfMedication }) => (
+          <Button onClick={showDescription} key={nameOfMedication} variant="contained" className={buttonStyles.Button}>
+            {nameOfMedication}
+          </Button>
+        ))}
+      </div>
+    );
+  });
+
   async function patchMedication(drug) {
     const drugName = drugSelected;
     let id;
     let updatedDrug;
-    drugs.forEach((medication) => {
-      if (medication.name.toUpperCase() === drugName) {
+    medications.forEach((medication) => {
+      if (medication.nameOfMedication.toUpperCase() === drugName) {
+        console.log(medication);
         updatedDrug = medication;
-        id = medication.id;
+        id = medication._id;
+        console.log(id);
       }
     });
     drug.id = id;
-    drug.addDate = updatedDrug.addDate;
+    console.log(drug);
     const requestBody = {
       nameOfMedication: drug.name,
       quantity: drug.quantity,
-      addDate: drug.addDate,
       dosage: drug.dosage,
       expirationDate: drug.expirationDate,
+      description: drug.description,
     };
     try {
       const response = await fetch(`${URL}api/medications/${id}`, {
@@ -57,32 +86,28 @@ const MyDrugsPage = () => {
       });
       if (response.ok) {
         response.json();
-        alert('Medication updated!');
+        setIsMsgModalOpen(true);
       } else {
         setErrorMsg('Medication was not updated.');
-        setOpen(true);
+        setIsErrorOpen(true);
       }
     } catch (err) {
       console.error(err);
       setErrorMsg(err.toString());
-      setOpen(true);
+      setIsErrorOpen(true);
     }
   }
 
   const showDescription = (selectedDrug) => {
     setDrugSelected(selectedDrug.target.innerText);
-    const foundDrug = drugs.find(({ name }) => name.toUpperCase() === selectedDrug.target.innerText);
-    const readyDescription = `NAME: ${foundDrug.name}, TYPE: ${
-      foundDrug.type
-    } \n EXPIRATION DATE: ${foundDrug.getExpirationDate()} \n INFO: ${foundDrug.description} \n DOSAGE: ${
-      foundDrug.dosage
-    } (${foundDrug.daytime}) \n QUANTITY: ${foundDrug.quantity}`;
+    const foundDrug = medications.find(
+      ({ nameOfMedication }) => nameOfMedication.toUpperCase() === selectedDrug.target.innerText,
+    );
+    const readyDescription = `NAME: ${foundDrug.nameOfMedication} \n EXPIRATION DATE: ${foundDrug.expirationDate.substr(
+      0,
+      10,
+    )} \n DESCRIPTION: ${foundDrug.description} \n DOSAGE: ${foundDrug.dosage} \n QUANTITY: ${foundDrug.quantity}`;
     setDescription(readyDescription);
-    setPhotoSource(foundDrug.img);
-  };
-  const modalStateObject = {
-    isModalOpen: open,
-    setIsModalOpen: setOpen,
   };
 
   return (
@@ -90,15 +115,10 @@ const MyDrugsPage = () => {
       <Typography className="header-h2" variant="h2" color="title.main">
         YOUR DRUGS
       </Typography>
-      <PopupModal message={errorMsg} type="error" modalState={modalStateObject} />
+      <PopupModal message={errorMsg} type="error" modalState={errorModalStateObject} />
+      <PopupModal message="Medication updated!" type="success" modalState={msgModalStateObject} />
       <div className="drugs-container">
-        <div className="drugs-list">
-          {drugs.map(({ name }) => (
-            <Button onClick={showDescription} key={name} variant="contained" className={buttonStyles.Button}>
-              {name}
-            </Button>
-          ))}
-        </div>
+        <MedicationButtons meds={medications} />
         <div className="drug-description">
           <Typography className="drug-description-header" variant="h4" color="title.light">
             DRUG DESCRIPTION
