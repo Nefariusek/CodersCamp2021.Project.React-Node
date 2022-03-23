@@ -17,12 +17,12 @@ const ExpiringDrugs = ({ drugsNumber }) => {
       {drugsSorted.map((drug, index) => {
         if (index < drugsNumber && drug.daysUntilExpiration() < 30) {
           return (
-            <div key={drug.name} className="soon-expiring-medication">
+            <div key={drug.nameOfMedication} className="soon-expiring-medication">
               <Pill
                 className="soonExpiring"
-                key={drug.name}
+                key={drug.nameOfMedication}
                 typeOfMedication={drug.type}
-                name={drug.name}
+                name={drug.nameOfMedication}
                 showExpirationDate
                 expirationDate={drug.getExpirationDate()}
               />

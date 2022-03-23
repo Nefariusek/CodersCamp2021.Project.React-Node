@@ -2,13 +2,11 @@ import './DailyView.scss';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import React, { useContext } from 'react';
+import React from 'react';
 
 import postData from '../../api/postData';
 import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
-import ModalContext from '../../components/ModalContext/ModalContext';
 import Pill from '../../components/Pill/Pill';
-import PopupModal from '../../components/PopupModal/PopupModal';
 import { DAYTIMES } from '../../constants/picklistValues';
 import { BASE_URL } from '../../constants/restResources';
 import drugs from '../../mock/drugs';
@@ -18,29 +16,21 @@ const TITLE = `DAILY DRUGS`;
 
 const DailyDrugs = () => {
   const [drugList, setDrugList] = React.useState(drugs);
-  const modalState = useContext(ModalContext);
-  mess;
 
   const addDrug = async (drug) => {
-    const { data, error } = await postData(`${BASE_URL}/api/medications`, drug);
+    const { data, error } = await postData(`${BASE_URL}api/medications`, {
+      nameOfMedication: drug.nameOfMedication,
+      quantity: drug.quantity,
+      addDate: drug.addDate,
+      dosage: drug.dosage,
+      category: drug.type,
+      expirationDate: drug.expirationDate,
+      description: drug.description,
+    });
     if (!error) {
       setDrugList([...drugList, drug]);
-      modalState.setIsModalOpen(true);
-      message = 'cool';
-    } else {
-      modalState.setIsModalOpen(true);
-      message = 'buba';
     }
-    return message;
   };
-  // const addDrug = async (drug) => {
-  //   const { data, error } = await postData(`${BASE_URL}/api/medications`, drug);
-  //   if (!error) {
-  //     setDrugList([...drugList, drug]);
-  //   }
-
-  //   return error;
-  // };
 
   return (
     <div className="daily-view-container">
@@ -64,9 +54,9 @@ const DailyDrugs = () => {
                   .filter((drug) => drug.daytime.includes(daytime))
                   .map((drug) => (
                     <Pill
-                      key={`${drug.name}_${drug.expirationDate}`}
+                      key={`${drug.nameOfMedication}_${drug.expirationDate}`}
                       typeOfMedication={drug.type}
-                      name={drug.name}
+                      name={drug.nameOfMedication}
                       showExpirationDate={false}
                       expirationDate={drug.expirationDate}
                     />
@@ -78,7 +68,7 @@ const DailyDrugs = () => {
       </div>
       <div className="button-add-drug">
         <DrugModal drugAction={addDrug} />
-        <PopupModal message={message} type="error" modalState={modalState} />
+        {/* <PopupModal message={message} type="error" modalState={modalState} /> */}
       </div>
     </div>
   );

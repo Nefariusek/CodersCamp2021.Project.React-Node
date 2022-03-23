@@ -74,7 +74,7 @@ const MyDrugsPage = () => {
     drug.id = id;
     console.log(drug);
     const requestBody = {
-      nameOfMedication: drug.name,
+      nameOfMedication: drug.nameOfMedication,
       quantity: drug.quantity,
       dosage: drug.dosage,
       expirationDate: drug.expirationDate,
