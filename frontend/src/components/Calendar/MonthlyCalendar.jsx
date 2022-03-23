@@ -13,7 +13,7 @@ const renderDayData = (date, selectedDates, pickersDayProps) => {
   let expNames = '';
   drugs.forEach((drug) => {
     if (drug.expirationDate.getTime() === date.getTime()) {
-      expNames = `${expNames}${drug.name}\n`;
+      expNames = `${expNames}${drug.nameOfMedication}\n`;
     }
   });
 

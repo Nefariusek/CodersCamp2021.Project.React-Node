@@ -21,7 +21,7 @@ const renderDaysInWeek = (date) => {
     let expNames = '';
     drugs.forEach((drug) => {
       if (drug.expirationDate.getTime() === tmpDate.getTime()) {
-        expNames = `${expNames}${drug.name}\n`;
+        expNames = `${expNames}${drug.nameOfMedication}\n`;
       }
     });
     week.push(

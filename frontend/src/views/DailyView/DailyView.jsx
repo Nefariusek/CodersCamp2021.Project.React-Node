@@ -4,18 +4,32 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
+import postData from '../../api/postData';
 import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import Pill from '../../components/Pill/Pill';
 import { DAYTIMES } from '../../constants/picklistValues';
+import { BASE_URL } from '../../constants/restResources';
 import drugs from '../../mock/drugs';
 import DatePicker from './DatePicker';
 
 const TITLE = `DAILY DRUGS`;
+
 const DailyDrugs = () => {
   const [drugList, setDrugList] = React.useState(drugs);
 
-  const addDrug = (drug) => {
-    setDrugList([...drugList, drug]);
+  const addDrug = async (drug) => {
+    const { data, error } = await postData(`${BASE_URL}api/medications`, {
+      nameOfMedication: drug.nameOfMedication,
+      quantity: drug.quantity,
+      addDate: drug.addDate,
+      dosage: drug.dosage,
+      category: drug.type,
+      expirationDate: drug.expirationDate,
+      description: drug.description,
+    });
+    if (!error) {
+      setDrugList([...drugList, drug]);
+    }
   };
 
   return (
@@ -40,9 +54,9 @@ const DailyDrugs = () => {
                   .filter((drug) => drug.daytime.includes(daytime))
                   .map((drug) => (
                     <Pill
-                      key={`${drug.name}_${drug.expirationDate}`}
+                      key={`${drug.nameOfMedication}_${drug.expirationDate}`}
                       typeOfMedication={drug.type}
-                      name={drug.name}
+                      name={drug.nameOfMedication}
                       showExpirationDate={false}
                       expirationDate={drug.expirationDate}
                     />
