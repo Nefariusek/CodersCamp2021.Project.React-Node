@@ -1,26 +1,40 @@
 import './SettingsPage.scss';
 
 import { FormControl, MenuItem, Select, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import getSettings from '../../api/settings/getSettings';
-import saveSettings from '../../api/settings/saveSettings';
+import usePatchData from '../../api/usePatchData';
 import { useDarkTheme, useThemeUpdate } from '../../components/DarkThemeContext/DarkThemeContext';
+import SettingsContext from '../../components/SettingsContext/SettingsContext';
+import { BASE_URL } from '../../constants/restResources';
+import Settings from '../../model/Settings';
+
+const id = '623b1a3b7c640d439d4184bd'; // to be replaced by profile id
 
 const SettingsPage = () => {
-  const [appTheme, setAppTheme] = useState(getSettings().appTheme);
-  const [soonExpiringFilterLength, setSoonExpiringFilterLength] = useState(getSettings().soonExpiringFilterLength);
+  const { settings, setSettings } = useContext(SettingsContext);
+  const [appTheme, setAppTheme] = useState(settings.appTheme);
+  const [soonExpiringFilterLength, setSoonExpiringFilterLength] = useState(settings.soonExpiringFilterLength);
   const currentTheme = useDarkTheme();
   const toggleTheme = useThemeUpdate();
+  const { isSuccess, error, isLoading } = usePatchData(`${BASE_URL}api/settings/${id}`, settings);
+  useEffect(() => {
+    if (!isLoading && isSuccess) {
+      alert('Settings updated successfully!');
+    }
+    if (!isLoading && error) {
+      alert(`Error occured: ${error}`);
+    }
+  }, [isSuccess, error, isLoading]);
 
   const handleThemeChange = (e) => {
     setAppTheme(e.target.value);
-    saveSettings(e.target.value, soonExpiringFilterLength);
+    setSettings(new Settings(e.target.value, soonExpiringFilterLength));
     if ((e.target.value === 'dark' && !currentTheme) || (e.target.value === 'light' && currentTheme)) toggleTheme();
   };
   const handleLengthChange = (e) => {
     setSoonExpiringFilterLength(e.target.value);
-    saveSettings(appTheme, e.target.value);
+    setSettings(new Settings(appTheme, e.target.value));
   };
   return (
     <div className="settings-page">
