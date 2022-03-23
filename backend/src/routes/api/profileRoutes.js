@@ -1,10 +1,13 @@
 import Profile from '../../models/Profile.js';
+import Medication from '../../models/Medication.js';
 import { profileValidator } from '../../models/Profile.js';
 import { StatusCodes } from 'http-status-codes';
+import ExpressError from '../../middlewares/ExpressError.js';
 
 const profileRoutes = async (router) => {
   router.patch('/profiles/:id', profileValidator, patchUserProfile);
   router.get('/profiles/:id', getUserProfile);
+  router.get('/profiles/:id/meds', getUsersMedications);
 };
 
 const patchUserProfile = async (req, res, next) => {
@@ -33,5 +36,20 @@ const getUserProfile = async (req, res, next) => {
     next(error);
   }
 };
+
+async function getUsersMedications(req, res, next) {
+  try {
+    const currentProfile = await Profile.findById(req.params.id);
+    if (!currentProfile) {
+      throw new ExpressError('User not found', 404);
+    }
+
+    const currentProfileMedicationList = await Medication.find({ _id: { $in: currentProfile.medicationList } });
+
+    res.status(StatusCodes.OK).send(currentProfileMedicationList);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export default profileRoutes;

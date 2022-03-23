@@ -7,24 +7,6 @@ const exampleDate = new Date(1995, 11, 17);
 const exampleDate2 = new Date(2021, 11, 17);
 const exampleDate3 = new Date(2022, 11, 17);
 
-export const ADMIN_PROFILE = {
-  age: 25,
-  firstName: 'exampleName',
-  lastName: 'exampleLastName',
-  registerDate: exampleDate,
-  onlineDate: exampleDate2,
-  medictionList: [],
-};
-
-const adminProfile = new Profile(ADMIN_PROFILE);
-export const ADMIN_USER = {
-  username: 'exampleName',
-  email: 'exapleEmail@gmail.com',
-  password: 'examplePswd!123',
-  isAdmin: true,
-  profileRef: adminProfile,
-  isVerified: true,
-};
 const MEDICATION_CATEGORY1 = {
   name: 'patches',
   unit: 'pcs',
@@ -49,6 +31,7 @@ export const MEDICATION1 = {
   dosage: 'When needed',
   category: medicationCategory1,
   expirationDate: exampleDate3,
+  description: 'Used on your eye',
 };
 export const MEDICATION2 = {
   nameOfMedication: 'XANAX',
@@ -57,13 +40,35 @@ export const MEDICATION2 = {
   dosage: 'Once in a while',
   category: medicationCategory2,
   expirationDate: exampleDate3,
+  description: 'All you need is love',
 };
+
+export const ADMIN_PROFILE = {
+  age: 25,
+  firstName: 'exampleName',
+  lastName: 'exampleLastName',
+  registerDate: exampleDate,
+  onlineDate: exampleDate2,
+  medictionList: [MEDICATION1, MEDICATION2],
+};
+
+const adminProfile = new Profile(ADMIN_PROFILE);
+export const ADMIN_USER = {
+  username: 'exampleName',
+  email: 'exapleEmail@gmail.com',
+  password: 'examplePswd!123',
+  isAdmin: true,
+  profileRef: adminProfile,
+  isVerified: true,
+};
+
 export const USER_PROFILE = {
   age: 25,
   firstName: 'exampleName1',
   lastName: 'exampleLastName1',
   registerDate: exampleDate,
   onlineDate: exampleDate2,
+  medicationList: [MEDICATION1],
 };
 
 const userProfile = new Profile(USER_PROFILE);

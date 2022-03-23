@@ -31,8 +31,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       trim: true,
-      minlength: [8, '{PATH} must have at least {MINLENGTH} characters, {VALUE} is too short'],
-      maxlength: [16, '{PATH} can have maximum {MAXLENGTH} characters, {VALUE} is too long'],
       match: [RegExpressions.PASSWORD, NotMatchMessages.PASSWORD],
       required: [true, RequiredMessages.PASSWORD],
     },
@@ -97,10 +95,10 @@ const userJoiSchema = Joi.object({
   profileRef: Joi.custom(isValidObjectId),
   settingsRef: Joi.custom(isValidObjectId),
   isAdmin: Joi.boolean().default(false).messages({
-    'boolean.base': '{{#label} must be a true or false',
+    'boolean.base': '{{#label}} must be a true or false',
   }),
   isVerified: Joi.boolean().default(false).messages({
-    'boolean.base': '{{#label} must be a true or false',
+    'boolean.base': '{{#label}} must be a true or false',
   }),
 });
 

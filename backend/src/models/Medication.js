@@ -11,6 +11,7 @@ const medicationSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'MedicationCategory' },
   expirationDate: { type: Date, required: true },
   profile: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
+  description: { type: String, maxlength: 128 },
 });
 
 export const medicationValidator = (req, res, next) => {
@@ -22,6 +23,7 @@ export const medicationValidator = (req, res, next) => {
     category: Joi.string().pattern(mockObjectId),
     expirationDate: Joi.date().required(),
     profile: Joi.string().pattern(mockObjectId),
+    description: Joi.string().max(128),
   });
   const { error } = schema.validate(req.body);
   if (error) {

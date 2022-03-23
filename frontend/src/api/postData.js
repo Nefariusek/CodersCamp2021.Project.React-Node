@@ -4,7 +4,7 @@ import { DEFAULT_HEADERS, REST_METHOD_POST } from '../constants/restResources';
  * Post data function.
  * @param {string} url - request url (e.g. 'http:localhost:8080/api/users')
  * @param {Object} requestBody - request body
- * @returns { data: Object, error: Object } - object that contains response data and response error
+ * @returns {{ data: Object, error: Object }} - object that contains response data and response error
  */
 
 const postData = async (url, requestBody) => {
