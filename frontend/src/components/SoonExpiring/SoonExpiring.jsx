@@ -1,12 +1,12 @@
 import './SoonExpiring.scss';
 
 import { Button, Modal, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
-import getSettings from '../../api/settings/getSettings';
 import drugs from '../../mock/drugs';
 import buttonStyles from '../Button/button.module.scss';
 import Pill from '../Pill/Pill';
+import SettingsContext from '../SettingsContext/SettingsContext';
 
 drugs.sort((a, b) => (a.daysUntilExpiration() > b.daysUntilExpiration() ? 1 : -1));
 
@@ -41,7 +41,8 @@ const ExpiringDrugs = ({ drugsNumber }) => {
 };
 
 const SoonExpiring = ({ handleClose }) => {
-  const drugsNumber = getSettings().soonExpiringFilterLength;
+  const { settings, setSettings } = useContext(SettingsContext);
+  const drugsNumber = settings.soonExpiringFilterLength;
   return (
     <div className="soon-expiring">
       <div className="soon-expiring-close">

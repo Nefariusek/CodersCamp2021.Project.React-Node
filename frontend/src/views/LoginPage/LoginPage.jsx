@@ -5,12 +5,15 @@ import Button from '@mui/material/Button';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import getSettings from '../../api/getSettings';
 import loginValidation from '../../api/loginValidation';
 import postData from '../../api/postData';
 import buttonStyles from '../../components/Button/Button.module.scss';
+import { useDarkTheme, useThemeUpdate } from '../../components/DarkThemeContext/DarkThemeContext';
 import LoginContext from '../../components/LoginContext/LoginContext';
 import ModalContext from '../../components/ModalContext/ModalContext';
 import PopupModal from '../../components/PopupModal/PopupModal';
+import SettingsContext from '../../components/SettingsContext/SettingsContext';
 import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
@@ -29,6 +32,9 @@ const LoginPage = () => {
   const [apiMessage, setApiMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  const currentTheme = useDarkTheme();
+  const toggleTheme = useThemeUpdate();
+  const { settings, setSettings } = useContext(SettingsContext);
   const auth = useContext(LoginContext);
   const modalState = useContext(ModalContext);
   const navigate = useNavigate();
@@ -55,6 +61,10 @@ const LoginPage = () => {
         auth.setLoginStatus(true);
         auth.setUserData(data);
         setSuccessMessage(MESSAGES.success);
+
+        setSettings(await getSettings(`${BASE_URL}api/settings/${data.profileRef}`));
+        if ((settings.appTheme === 'dark' && !currentTheme) || (settings.appTheme === 'light' && currentTheme))
+          toggleTheme();
 
         setTimeout(() => {
           navigate(PATH_TO_USER_HOMEPAGE, { replace: true });

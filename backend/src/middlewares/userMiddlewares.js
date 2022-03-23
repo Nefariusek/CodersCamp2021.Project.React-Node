@@ -92,16 +92,17 @@ async function registerNewUser(userData) {
   });
   const savedUser = await user.save();
 
-  const profile = new Profile({
-    ...INITIAL_PROFILE,
-    user: savedUser._id,
-  });
-  const savedProfile = await profile.save();
-
   const settings = new Settings({
     ...INITIAL_SETTINGS,
   });
   const savedSettings = await settings.save();
+
+  const profile = new Profile({
+    ...INITIAL_PROFILE,
+    user: savedUser._id,
+    settings: savedSettings._id,
+  });
+  const savedProfile = await profile.save();
 
   const savedUserWithReferences = await User.updateOne(
     { username: userData.username },

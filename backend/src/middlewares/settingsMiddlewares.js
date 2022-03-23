@@ -4,11 +4,11 @@ import Settings from '../models/Settings.js';
 import ExpressError from './ExpressError.js';
 
 export async function getSettings(req, res, next) {
-  const profile = getProfileById(req.params.id, next);
+  const profile = await getProfileById(req.params.id, next);
   try {
     const settings = await Settings.findById(profile.settings);
-    if (!profile) {
-      throw new ExpressError("Can't find profile", StatusCodes.NOT_FOUND);
+    if (!settings) {
+      throw new ExpressError("Can't find settings", StatusCodes.NOT_FOUND);
     }
     res.status(StatusCodes.OK).send(settings);
   } catch (err) {
@@ -17,7 +17,7 @@ export async function getSettings(req, res, next) {
 }
 
 export async function patchSettings(req, res, next) {
-  const profile = getProfileById(req.params.id, next);
+  const profile = await getProfileById(req.params.id, next);
   try {
     const settings = await Settings.findByIdAndUpdate(profile.settings, req.body, { new: true });
     if (!settings) {
@@ -35,6 +35,7 @@ const getProfileById = async (id, next) => {
     if (!profile) {
       throw new ExpressError("Can't find profile", StatusCodes.NOT_FOUND);
     }
+    return profile;
   } catch (err) {
     return next(err);
   }
