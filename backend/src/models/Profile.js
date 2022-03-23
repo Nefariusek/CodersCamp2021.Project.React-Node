@@ -10,6 +10,7 @@ const profileSchema = new mongoose.Schema({
   onlineDate: { type: Date, default: Date.now, required: true, max: Date.now },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   medicationList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Medication' }],
+  settings: { type: mongoose.Schema.Types.ObjectId, ref: 'Settings' },
 });
 
 const Profile = mongoose.model('Profile', profileSchema);
@@ -24,6 +25,7 @@ export const profileValidator = (req, res, next) => {
     onlineDate: Joi.date().max('now'),
     user: Joi.ref('$User'),
     medicationList: Joi.ref('$Medication'),
+    settings: Joi.ref('$Settings'),
   });
   const { error } = schema.validate(req.body);
   if (error) {

@@ -107,6 +107,7 @@ const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
 
     if (isFormValid) {
       const drug = new Medication(
+        'id',
         formValues.drugName,
         formValues.expirationDate,
         formValues.drugType,
