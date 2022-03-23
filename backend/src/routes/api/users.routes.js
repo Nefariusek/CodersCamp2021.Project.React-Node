@@ -5,6 +5,7 @@ import {
   postUser,
   patchUser,
   deleteUser,
+  loginUser,
 } from '../../middlewares/userMiddlewares.js';
 import { userValidator } from '../../models/User.js';
 
@@ -18,6 +19,8 @@ const userRoutes = (router) => {
   router.patch('/users/:id', getUserById, userValidator, patchUser);
 
   router.delete('/users/:id', getUserById, deleteUser);
+
+  router.post('/users/login', loginUser);
 };
 
 export default userRoutes;

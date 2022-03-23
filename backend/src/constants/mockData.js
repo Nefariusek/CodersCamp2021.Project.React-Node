@@ -31,6 +31,7 @@ export const MEDICATION1 = {
   dosage: 'When needed',
   category: medicationCategory1,
   expirationDate: exampleDate3,
+  description: 'Used on your eye',
 };
 export const MEDICATION2 = {
   nameOfMedication: 'XANAX',
@@ -39,6 +40,7 @@ export const MEDICATION2 = {
   dosage: 'Once in a while',
   category: medicationCategory2,
   expirationDate: exampleDate3,
+  description: 'All you need is love',
 };
 
 export const ADMIN_PROFILE = {

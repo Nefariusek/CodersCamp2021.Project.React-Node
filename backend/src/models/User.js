@@ -95,10 +95,10 @@ const userJoiSchema = Joi.object({
   profileRef: Joi.custom(isValidObjectId),
   settingsRef: Joi.custom(isValidObjectId),
   isAdmin: Joi.boolean().default(false).messages({
-    'boolean.base': '{{#label} must be a true or false',
+    'boolean.base': '{{#label}} must be a true or false',
   }),
   isVerified: Joi.boolean().default(false).messages({
-    'boolean.base': '{{#label} must be a true or false',
+    'boolean.base': '{{#label}} must be a true or false',
   }),
 });
 
