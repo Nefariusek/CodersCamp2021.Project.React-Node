@@ -5,25 +5,25 @@ import { useContext, useEffect, useState } from 'react';
 
 import usePatchData from '../../api/usePatchData';
 import { useDarkTheme, useThemeUpdate } from '../../components/DarkThemeContext/DarkThemeContext';
+import LoginContext from '../../components/LoginContext/LoginContext';
 import SettingsContext from '../../components/SettingsContext/SettingsContext';
 import { BASE_URL } from '../../constants/restResources';
 import Settings from '../../model/Settings';
 
-const id = '623b1a3b7c640d439d4184bd'; // to be replaced by profile id
-
 const SettingsPage = () => {
   const { settings, setSettings } = useContext(SettingsContext);
+  const auth = useContext(LoginContext);
   const [appTheme, setAppTheme] = useState(settings.appTheme);
   const [soonExpiringFilterLength, setSoonExpiringFilterLength] = useState(settings.soonExpiringFilterLength);
   const currentTheme = useDarkTheme();
   const toggleTheme = useThemeUpdate();
-  const { isSuccess, error, isLoading } = usePatchData(`${BASE_URL}api/settings/${id}`, settings);
+  const { isSuccess, error, isLoading } = usePatchData(`${BASE_URL}api/settings/${auth.userData.profileRef}`, settings);
   useEffect(() => {
     if (!isLoading && isSuccess) {
       alert('Settings updated successfully!');
     }
     if (!isLoading && error) {
-      alert(`Error occured: ${error}`);
+      alert(`Error occurred: ${error}`);
     }
   }, [isSuccess, error, isLoading]);
 
