@@ -2,11 +2,12 @@ import './MyDrugsPage.scss';
 import '../../components/Pill/Pill.module.scss';
 
 import { Button, Typography } from '@mui/material';
-import React, { memo, useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
 
 import useGet from '../../api/useGet';
 import DrugModal from '../../components/AddOrUpdateDrug/DrugModal';
 import buttonStyles from '../../components/Button/Button.module.scss';
+import LoginContext from '../../components/LoginContext/LoginContext';
 import PopupModal from '../../components/PopupModal/PopupModal';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { DEFAULT_HEADERS, REST_METHOD_PATCH } from '../../constants/restResources';
@@ -14,16 +15,19 @@ import { URL } from '../../constants/url';
 
 const initialDescription = 'CHOOSE A DRUG TO SHOW THE DESCRIPTION';
 const initialImageSource = AID_KIT_IMAGE_PATH;
-const USER_ID = '623aeb38d2b6280754ba0bb1';
 
 const MyDrugsPage = () => {
-  const medications = useGet(`${URL}api/profiles/${USER_ID}/meds`).data;
+  const auth = useContext(LoginContext);
+  const USER_ID = auth.userData.profileRef;
   const [description, setDescription] = useState(initialDescription);
   const [photoSource, setPhotoSource] = useState(initialImageSource);
   const [drugSelected, setDrugSelected] = useState(null);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const medications = useGet(`${URL}api/profiles/${USER_ID}/meds`).data;
+  console.log(USER_ID);
+  console.log(medications);
 
   const errorModalStateObject = {
     isModalOpen: isErrorOpen,
