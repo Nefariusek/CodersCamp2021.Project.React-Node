@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import Profile from '../models/Profile.js';
 import Settings from '../models/Settings.js';
@@ -81,10 +82,12 @@ async function registerNewUser(userData) {
     throw new ExpressError('User already exists', StatusCodes.CONFLICT);
   }
 
+  const hashedPassword = await bcrypt.hash(userData.password, 10);
+
   const user = new User({
     username: userData.username,
     email: userData.email,
-    password: userData.password,
+    password: hashedPassword,
   });
   const savedUser = await user.save();
 
