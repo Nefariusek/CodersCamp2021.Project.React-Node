@@ -9,18 +9,28 @@ import loginValidation from '../../api/loginValidation';
 import postData from '../../api/postData';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import LoginContext from '../../components/LoginContext/LoginContext';
+import ModalContext from '../../components/ModalContext/ModalContext';
+import PopupModal from '../../components/PopupModal/PopupModal';
 import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
 import { BASE_URL } from '../../constants/restResources';
+
+const MESSAGES = {
+  success: 'Sign in successful!',
+  error: 'An error has occurred',
+};
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [apiMessage, setApiMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const auth = useContext(LoginContext);
+  const modalState = useContext(ModalContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -40,10 +50,13 @@ const LoginPage = () => {
       userData.token = data;
 
       if (error) {
-        alert('error');
+        setApiMessage(error.message || MESSAGES.error);
+        modalState.setIsModalOpen(true);
       } else {
         auth.setLoginStatus(true);
         auth.setUserData(userData);
+        setSuccessMessage(MESSAGES.success);
+
         setTimeout(() => {
           navigate(PATH_TO_USER_HOMEPAGE, { replace: true });
         }, 1000);
@@ -84,6 +97,12 @@ const LoginPage = () => {
               width: '80%',
             }}
           />
+
+          <Typography variant="p" component="p" align="center">
+            {successMessage}
+          </Typography>
+          <PopupModal message={apiMessage} type="error" modalState={modalState} />
+
           <Button type="submit" variant="contained" className={buttonStyles.Button}>
             Log In
           </Button>
