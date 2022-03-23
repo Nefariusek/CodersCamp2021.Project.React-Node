@@ -77,7 +77,7 @@ const LoginPage = () => {
           <TextField
             id="username-input"
             onChange={(e) => setUsername(e.target.value)}
-            label="USERNAMEL"
+            label="USERNAME"
             variant="filled"
             color="secondary"
             error={usernameError}
