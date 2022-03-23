@@ -37,13 +37,12 @@ const LoginPage = () => {
       const userData = { username, password };
 
       const { data, error } = await postData(`${BASE_URL}api/users/login`, userData);
-      console.log(data);
-      console.log(error);
 
       if (error) {
         alert('error');
       } else {
         auth.setLoginStatus(true);
+        auth.setUserData(userData);
         setTimeout(() => {
           navigate(PATH_TO_USER_HOMEPAGE, { replace: true });
         }, 1000);

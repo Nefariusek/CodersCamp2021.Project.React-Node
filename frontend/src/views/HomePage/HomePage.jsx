@@ -2,13 +2,14 @@ import './HomePage.scss';
 import 'typeface-roboto';
 
 import { Button, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import buttonStyles from '../../components/Button/button.module.scss';
 import Calendar from '../../components/Calendar/Calendar';
 import Clock from '../../components/Clock/Clock';
 import DateDisplay from '../../components/Date/Date';
+import LoginContext from '../../components/LoginContext/LoginContext';
 import SoonExpiringPopUp from '../../components/SoonExpiring/SoonExpiring';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_CREDITS, PATH_TO_DAILY_DRUGS, PATH_TO_LEXICON, PATH_TO_SETTINGS } from '../../constants/paths';
@@ -33,10 +34,15 @@ const ButtonsUserHub = () => {
 };
 
 const HomePage = () => {
+  const auth = useContext(LoginContext);
+
   return (
     <div className="user-hub-container">
       <SoonExpiringPopUp />
       <div className="day-time">
+        <Typography variant="h4" color="title.light" fontWeight="bold">
+          Hello {auth.userData.username}
+        </Typography>
         <Clock />
         <DateDisplay />
       </div>
