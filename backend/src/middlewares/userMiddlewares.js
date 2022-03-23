@@ -109,3 +109,27 @@ async function registerNewUser(userData) {
 
   return savedUserWithReferences;
 }
+
+export async function loginUser(req, res, next) {
+  if (!req.body.username || !req.body.password) {
+    throw new ExpressError('Username username and password', StatusCodes.BAD_REQUEST);
+  }
+
+  const invalid = 'Invalid username or password';
+  try {
+    const user = await User.findOne({ username: req.body.username }).select('username password').exec();
+    if (!user) {
+      throw new ExpressError(invalid, StatusCodes.UNAUTHORIZED);
+    }
+
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) {
+      throw new ExpressError(invalid, StatusCodes.UNAUTHORIZED);
+    }
+
+    const token = {};
+    res.status(StatusCodes.OK).send(token);
+  } catch (err) {
+    next(err);
+  }
+}

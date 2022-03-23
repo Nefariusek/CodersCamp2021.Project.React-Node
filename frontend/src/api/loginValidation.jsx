@@ -1,18 +1,12 @@
-const loginValidation = (username, password, setUsernameError, setPasswordError, setLoginStatus) => {
+const loginValidation = (username, password, setUsernameError, setPasswordError) => {
   setUsernameError(false);
   setPasswordError(false);
-  setLoginStatus(false);
 
-  if (username && password) {
-    setLoginStatus(true);
-    alert('Login is successful');
-  } else {
-    if (!username) {
-      setUsernameError(true);
-    }
-    if (!password) {
-      setPasswordError(true);
-    }
+  if (!username) {
+    setUsernameError(true);
+  }
+  if (!password) {
+    setPasswordError(true);
   }
 };
 

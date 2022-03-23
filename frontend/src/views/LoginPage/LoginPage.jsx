@@ -3,14 +3,16 @@ import './LoginPage.scss';
 import { TextField, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useContext, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import loginValidation from '../../api/loginValidation';
+import postData from '../../api/postData';
 import buttonStyles from '../../components/Button/Button.module.scss';
 import LoginContext from '../../components/LoginContext/LoginContext';
 import { AID_KIT_IMAGE_ALT, AID_KIT_IMAGE_PATH } from '../../constants/images';
 import { APP_NAME, APP_SUBTITLE } from '../../constants/labels';
 import { PATH_TO_REGISTER, PATH_TO_USER_HOMEPAGE } from '../../constants/paths';
+import { BASE_URL } from '../../constants/restResources';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -19,15 +21,36 @@ const LoginPage = () => {
   const [passwordError, setPasswordError] = useState(false);
 
   const auth = useContext(LoginContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    loginValidation(username, password, setUsernameError, setPasswordError, auth.setLoginStatus);
+
+    let isFormValid = false;
+    loginValidation(username, password, setUsernameError, setPasswordError);
+
+    if (!(usernameError || passwordError)) {
+      isFormValid = true;
+    }
+
+    if (isFormValid) {
+      const userData = { username, password };
+
+      const { data, error } = await postData(`${BASE_URL}api/users/login`, userData);
+      console.log(data);
+      console.log(error);
+
+      if (error) {
+        alert('error');
+      } else {
+        auth.setLoginStatus(true);
+        setTimeout(() => {
+          navigate(PATH_TO_USER_HOMEPAGE, { replace: true });
+        }, 1000);
+      }
+    }
   };
 
-  if (auth.loginStatus) {
-    return <Navigate to={PATH_TO_USER_HOMEPAGE} />;
-  }
   return (
     <div className="login-page">
       <div className="login-container">
@@ -41,7 +64,7 @@ const LoginPage = () => {
           <TextField
             id="username-input"
             onChange={(e) => setUsername(e.target.value)}
-            label="USERNAME OR E-MAIL"
+            label="USERNAMEL"
             variant="filled"
             color="secondary"
             error={usernameError}
