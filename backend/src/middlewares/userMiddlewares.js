@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Profile from '../models/Profile.js';
 import Settings from '../models/Settings.js';
@@ -109,3 +110,40 @@ async function registerNewUser(userData) {
 
   return savedUserWithReferences;
 }
+
+export async function loginUser(req, res, next) {
+  if (!req.body.username || !req.body.password) {
+    throw new ExpressError('Username username and password', StatusCodes.BAD_REQUEST);
+  }
+
+  const invalid = 'Invalid username or password';
+  try {
+    const user = await User.findOne({ username: req.body.username }).lean().exec();
+    if (!user) {
+      throw new ExpressError(invalid, StatusCodes.UNAUTHORIZED);
+    }
+
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) {
+      throw new ExpressError(invalid, StatusCodes.UNAUTHORIZED);
+    }
+
+    const token = createAccessToken(user);
+    user.token = token;
+
+    res.status(StatusCodes.OK).send(user);
+  } catch (err) {
+    next(err);
+  }
+}
+
+const createAccessToken = (user) => {
+  const expiresIn = '10m';
+  const signedToken = jwt.sign({ id: user._id }, `${process.env.ACCESS_TOKEN_SECRET}`, {
+    expiresIn: expiresIn,
+  });
+  return {
+    token: 'Bearer ' + signedToken,
+    expires: expiresIn,
+  };
+};
