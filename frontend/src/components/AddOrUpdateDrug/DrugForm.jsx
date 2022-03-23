@@ -15,40 +15,12 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useContext, useState } from 'react';
 
-/* import { AID_KIT_IMAGE_PATH, PILLS_IMAGE_PATH } from '../../constants/images';
-import {
-  DROPS_MED_TYPE,
-  INHALER_MED_TYPE,
-  INJECTION_MED_TYPE,
-  PATCHES_MED_TYPE,
-  PILL_MED_TYPE,
-  SYRUP_MED_TYPE,
-} from '../../constants/medTypes'; */
 import { DAYTIMES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
 import LoginContext from '../LoginContext/LoginContext';
 import { validateInput } from './drugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
-
-/* const mappedMedTypes = new Map();
-mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs', imagePath: PILLS_IMAGE_PATH });
-mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml', imagePath: PILLS_IMAGE_PATH });
-mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml', imagePath: PILLS_IMAGE_PATH });
-mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml', imagePath: AID_KIT_IMAGE_PATH });
-mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs', imagePath: AID_KIT_IMAGE_PATH });
-mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs', imagePath: AID_KIT_IMAGE_PATH }); */
-
-/* const initialFormState = {
-  drugName: '',
-  drugType: PILL_MED_TYPE,
-  drugQuantity: mappedMedTypes.get(PILL_MED_TYPE).quantity[0],
-  drugPackages: 0,
-  description: '',
-  expirationDate: new Date(),
-  dosage: '',
-  daytime: [DAYTIMES[0]],
-}; */
 
 const styles = {
   helper: {
