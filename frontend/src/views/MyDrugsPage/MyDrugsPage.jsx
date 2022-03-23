@@ -26,8 +26,6 @@ const MyDrugsPage = () => {
   const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const medications = useGet(`${URL}api/profiles/${USER_ID}/meds`).data;
-  console.log(USER_ID);
-  console.log(medications);
 
   const errorModalStateObject = {
     isModalOpen: isErrorOpen,
