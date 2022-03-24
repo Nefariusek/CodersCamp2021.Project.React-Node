@@ -10,8 +10,7 @@ import buttonStyles from '../../components/Button/Button.module.scss';
 import LoginContext from '../../components/LoginContext/LoginContext';
 import PopupModal from '../../components/PopupModal/PopupModal';
 import { AID_KIT_IMAGE_PATH } from '../../constants/images';
-import { DEFAULT_HEADERS, REST_METHOD_PATCH } from '../../constants/restResources';
-import { URL } from '../../constants/url';
+import { BASE_URL, DEFAULT_HEADERS, REST_METHOD_PATCH } from '../../constants/restResources';
 
 const initialDescription = 'CHOOSE A DRUG TO SHOW THE DESCRIPTION';
 const initialImageSource = AID_KIT_IMAGE_PATH;
@@ -25,7 +24,7 @@ const MyDrugsPage = () => {
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const medications = useGet(`${URL}api/profiles/${USER_ID}/meds`).data;
+  const medications = useGet(`${BASE_URL}api/profiles/${USER_ID}/meds`).data;
 
   const errorModalStateObject = {
     isModalOpen: isErrorOpen,

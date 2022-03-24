@@ -16,7 +16,7 @@ const testDrug = new Medication(
 
 test('Medication class has all atributes', () => {
   expect(testDrug.id).toBe('12345678910');
-  expect(testDrug.name).toBe('testName');
+  expect(testDrug.nameOfMedication).toBe('testName');
   expect(testDrug.expirationDate).toStrictEqual(new Date(2022, 2, 10));
   expect(testDrug.type).toBe('testCategory');
   expect(testDrug.dosage).toBe(1);
