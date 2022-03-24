@@ -20,7 +20,7 @@ export const medicationValidator = (req, res, next) => {
     quantity: Joi.number().min(1).required(),
     addDate: Joi.date(),
     dosage: Joi.string().min(2).required(),
-    category: Joi.string().pattern(mockObjectId),
+    category: Joi.string(),
     expirationDate: Joi.date().required(),
     profile: Joi.string().pattern(mockObjectId),
     description: Joi.string().max(128),
