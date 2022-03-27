@@ -13,40 +13,14 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
-import { PILLS_IMAGE_PATH } from '../../constants/images';
-import {
-  DROPS_MED_TYPE,
-  INHALER_MED_TYPE,
-  INJECTION_MED_TYPE,
-  PATCHES_MED_TYPE,
-  PILL_MED_TYPE,
-  SYRUP_MED_TYPE,
-} from '../../constants/medTypes';
-import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
+import { DAYTIMES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
-import { validateInput } from './addDrugValidation';
+import LoginContext from '../LoginContext/LoginContext';
+import { validateInput } from './drugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
-
-const mappedMedTypes = new Map();
-mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs' });
-mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml' });
-mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml' });
-mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml' });
-mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs' });
-mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs' });
-
-const initialFormState = {
-  drugName: '',
-  drugType: PILL_MED_TYPE,
-  drugQuantity: mappedMedTypes.get(PILL_MED_TYPE).quantity[0],
-  drugPackages: 0,
-  description: '',
-  expirationDate: new Date(),
-  daytime: [DAYTIMES[0]],
-};
 
 const styles = {
   helper: {
@@ -80,30 +54,42 @@ const dateFormat = {
   dayFirst: 'dd/MM/yyyy',
 };
 
-const AddDrugForm = ({ onClose, addDrug }) => {
+const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
   const classes = useStyles();
+
+  const { medicationCategories } = useContext(LoginContext);
+
+  const initialFormState = {
+    drugName: '',
+    drugType: medicationCategories[0].name,
+    drugQuantity: medicationCategories[0].possibleQuantity[0],
+    drugPackages: 0,
+    description: '',
+    expirationDate: new Date(),
+    dosage: '',
+    daytime: [DAYTIMES[0]],
+  };
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
-  const handleAddDrugSubmit = (e) => {
+  const handleDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
-
-    const dosage = Math.floor(Math.random() * 9) + 1; // TODO: change in 2nd part of project
-    const defaultImage = PILLS_IMAGE_PATH; // TODO: change in 2nd part of project
+    const defaultImage = medicationCategories.length ? medicationCategories[0].icon : '';
 
     if (isFormValid) {
       const drug = new Medication(
+        'id',
         formValues.drugName,
         formValues.expirationDate,
         formValues.drugType,
-        dosage,
+        formValues.dosage,
         formValues.drugQuantity,
         formValues.description,
         defaultImage,
         formValues.daytime,
       );
-      addDrug(drug);
+      drugAction(drug);
       onClose();
     }
   };
@@ -115,7 +101,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
       setFormValues({
         ...formValues,
         drugType: e.target.value,
-        drugQuantity: mappedMedTypes.get(e.target.value).quantity[0],
+        drugQuantity: medicationCategories.find((q) => e.target.value === q._id).possibleQuantity[0],
       });
     } else {
       if (name === 'expirationDate') {
@@ -138,12 +124,14 @@ const AddDrugForm = ({ onClose, addDrug }) => {
     });
   };
 
+  // const currentCategory = medicationCategories.find((category) => category._id === formValues.drugType);
+
   return (
     <Container maxWidth="md">
       <Box
         component="form"
         noValidate
-        onSubmit={handleAddDrugSubmit}
+        onSubmit={handleDrugSubmit}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -151,7 +139,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
           marginTop: 4,
         }}
       >
-        <Grid container spacing={2} mb={5}>
+        <Grid container spacing={2} mb={2}>
           <Grid item xs={12}>
             <TextField
               label="DRUG NAME"
@@ -187,9 +175,9 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 onChange={handleInput('drugType')}
                 onBlur={handleInput('drugType')}
               >
-                {MEDICATION_TYPES.map((type) => (
-                  <MenuItem key={type} value={type}>
-                    {type}
+                {medicationCategories.map((medicationCategory) => (
+                  <MenuItem key={medicationCategory._id} value={medicationCategory.name}>
+                    {medicationCategory.name}
                   </MenuItem>
                 ))}
               </Select>
@@ -212,11 +200,13 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 onChange={handleInput('drugQuantity')}
                 onBlur={handleInput('drugQuantity')}
               >
-                {mappedMedTypes.get(formValues.drugType).quantity.map((q) => (
-                  <MenuItem key={q} value={q}>
-                    {q} {mappedMedTypes.get(formValues.drugType).unit}
-                  </MenuItem>
-                ))}
+                {medicationCategories
+                  .find((category) => category.name === formValues.drugType)
+                  ?.possibleQuantity.map((q) => (
+                    <MenuItem key={q} value={q}>
+                      {q} {medicationCategories.find((category) => category.name === formValues.drugType).unit}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </Grid>
@@ -280,7 +270,25 @@ const AddDrugForm = ({ onClose, addDrug }) => {
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="DOSAGE"
+              name="dosage"
+              id="dosage"
+              variant="filled"
+              required
+              fullWidth
+              color="secondary"
+              value={formValues.dosage}
+              onChange={handleInput('dosage')}
+              onBlur={handleInput('dosage')}
+              error={!!formErrors.dosage}
+              helperText={formErrors.dosage ? formErrors.dosage : ''}
+              FormHelperTextProps={{ style: styles.helper }}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
             <FormControl required fullWidth>
               <InputLabel id="daytime-select-label" className={classes.label} shrink color="label">
                 DAYTIME
@@ -313,14 +321,14 @@ const AddDrugForm = ({ onClose, addDrug }) => {
           </Grid>
         </Grid>
         <Grid container justifyContent="space-between" align="center">
-          <Grid item xs={12} md={4} mb={2}>
-            <Button variant="contained" color="secondary" className={classes.button} onClick={onClose}>
-              Cancel
+          <Grid item xs={12} sm={6} md={4} mb={2}>
+            <Button type="submit" variant="contained" color="secondary" className={classes.button}>
+              {actionName} drug
             </Button>
           </Grid>
-          <Grid item xs={12} md={4} mb={2}>
-            <Button type="submit" variant="contained" color="secondary" className={classes.button}>
-              Add drug
+          <Grid item xs={12} sm={6} md={4} mb={2}>
+            <Button variant="contained" color="secondary" className={classes.button} onClick={onClose}>
+              Cancel
             </Button>
           </Grid>
         </Grid>
@@ -329,4 +337,4 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   );
 };
 
-export default AddDrugForm;
+export default DrugForm;

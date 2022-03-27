@@ -1,6 +1,8 @@
 import Medication from '../../model/Medication';
 
+const nowDate = new Date();
 const testDrug = new Medication(
+  '12345678910',
   'testName',
   new Date(2022, 2, 10),
   'testCategory',
@@ -9,10 +11,12 @@ const testDrug = new Medication(
   'testDescription',
   'testImage',
   ['Noon'],
+  nowDate,
 );
 
 test('Medication class has all atributes', () => {
-  expect(testDrug.name).toBe('testName');
+  expect(testDrug.id).toBe('12345678910');
+  expect(testDrug.nameOfMedication).toBe('testName');
   expect(testDrug.expirationDate).toStrictEqual(new Date(2022, 2, 10));
   expect(testDrug.type).toBe('testCategory');
   expect(testDrug.dosage).toBe(1);
@@ -20,6 +24,7 @@ test('Medication class has all atributes', () => {
   expect(testDrug.description).toBe('testDescription');
   expect(testDrug.img).toBe('testImage');
   expect(testDrug.daytime).toEqual(['Noon']);
+  expect(testDrug.addDate).toEqual(nowDate);
 });
 
 test('getExpirationDate method returns date in dd.mm.yyyy format', () => {

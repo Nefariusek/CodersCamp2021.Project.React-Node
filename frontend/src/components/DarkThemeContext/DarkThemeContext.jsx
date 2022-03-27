@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 
+import SettingsContext from '../SettingsContext/SettingsContext';
+
 const DarkThemeContext = React.createContext();
 const ThemeUpdateContext = React.createContext();
 
@@ -12,7 +14,8 @@ export const useThemeUpdate = () => {
 };
 
 export const DarkThemeProvider = ({ children }) => {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const { settings, setSettings } = useContext(SettingsContext);
+  const [darkTheme, setDarkTheme] = useState(settings.appTheme === 'dark');
 
   const toggleTheme = () => {
     setDarkTheme((prevDarkTheme) => !prevDarkTheme);

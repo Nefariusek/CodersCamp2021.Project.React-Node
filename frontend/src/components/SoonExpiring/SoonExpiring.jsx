@@ -1,10 +1,12 @@
 import './SoonExpiring.scss';
 
-import { Button, ButtonGroup, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Button, Modal, Typography } from '@mui/material';
+import { useContext, useState } from 'react';
 
 import drugs from '../../mock/drugs';
+import buttonStyles from '../Button/button.module.scss';
 import Pill from '../Pill/Pill';
+import SettingsContext from '../SettingsContext/SettingsContext';
 
 drugs.sort((a, b) => (a.daysUntilExpiration() > b.daysUntilExpiration() ? 1 : -1));
 
@@ -15,12 +17,12 @@ const ExpiringDrugs = ({ drugsNumber }) => {
       {drugsSorted.map((drug, index) => {
         if (index < drugsNumber && drug.daysUntilExpiration() < 30) {
           return (
-            <div key={drug.name} className="soon-expiring-medication">
+            <div key={drug.nameOfMedication} className="soon-expiring-medication">
               <Pill
                 className="soonExpiring"
-                key={drug.name}
+                key={drug.nameOfMedication}
                 typeOfMedication={drug.type}
-                name={drug.name}
+                name={drug.nameOfMedication}
                 showExpirationDate
                 expirationDate={drug.getExpirationDate()}
               />
@@ -39,8 +41,8 @@ const ExpiringDrugs = ({ drugsNumber }) => {
 };
 
 const SoonExpiring = ({ handleClose }) => {
-  const [drugsNumber, setDrugsNumber] = useState(5);
-
+  const { settings, setSettings } = useContext(SettingsContext);
+  const drugsNumber = settings.soonExpiringFilterLength;
   return (
     <div className="soon-expiring">
       <div className="soon-expiring-close">
@@ -51,11 +53,6 @@ const SoonExpiring = ({ handleClose }) => {
           X
         </Button>
       </div>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-        <Button onClick={() => setDrugsNumber(3)}>THREE</Button>
-        <Button onClick={() => setDrugsNumber(5)}>FIVE</Button>
-        <Button onClick={() => setDrugsNumber(7)}>SEVEN</Button>
-      </ButtonGroup>
       <ExpiringDrugs drugsNumber={drugsNumber} />
     </div>
   );
@@ -63,12 +60,20 @@ const SoonExpiring = ({ handleClose }) => {
 
 const SoonExpiringPopUp = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const handleClose = () => setIsOpen(false);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return <div className="soon-expiring-pop-up"> {isOpen && <SoonExpiring handleClose={togglePopup} />}</div>;
+  return (
+    <div className="soon-expiring-pop-up">
+      <Modal open={isOpen} aria-labelledby="soon-expiring-modal">
+        <div className="soon-expiring-pop-up">
+          <SoonExpiring handleClose={handleClose} />
+          <Button variant="contained" className={buttonStyles.Button} onClick={handleClose}>
+            UNDERSTOOD
+          </Button>
+        </div>
+      </Modal>
+    </div>
+  );
 };
 
 export default SoonExpiringPopUp;

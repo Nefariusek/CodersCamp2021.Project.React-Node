@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 import drugs from '../../mock/drugs';
 
+const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 const renderDaysInWeek = (date) => {
   const start = startOfWeek(date, { weekStartsOn: 0 });
   let i = 0;
@@ -20,7 +21,7 @@ const renderDaysInWeek = (date) => {
     let expNames = '';
     drugs.forEach((drug) => {
       if (drug.expirationDate.getTime() === tmpDate.getTime()) {
-        expNames = `${expNames}${drug.name}\n`;
+        expNames = `${expNames}${drug.nameOfMedication}\n`;
       }
     });
     week.push(
@@ -29,6 +30,11 @@ const renderDaysInWeek = (date) => {
           <Typography className="day-number" color="datetime.weekDayFont">
             {tmpDate.getDate()}
           </Typography>
+          <div className="day-information-name" key={`day${dayNames[i]}`}>
+            <Typography className="day-name" color="datetime.weekDayFont">
+              {dayNames[i]}
+            </Typography>
+          </div>
           <div className="day-expiring">{expNames}</div>
         </div>
       </div>,
@@ -40,7 +46,6 @@ const renderDaysInWeek = (date) => {
 };
 
 const renderDayNames = () => {
-  const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   return dayNames.map((dayName) => (
     <Typography className="day-name" color="title.light" fontWeight="bold" key={`${dayName}`}>
       {dayName}

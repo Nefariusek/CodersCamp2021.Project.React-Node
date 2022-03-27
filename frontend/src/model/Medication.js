@@ -1,8 +1,9 @@
 const MILISEC_TO_DAY = 1000 * 60 * 60 * 24;
 
 export default class Medication {
-  constructor(name, expirationDate, type, dosage, quantity, description, imgSource, daytime) {
-    this.name = name;
+  constructor(id, nameOfMedication, expirationDate, type, dosage, quantity, description, imgSource, daytime, addDate) {
+    this.id = id;
+    this.nameOfMedication = nameOfMedication;
     this.expirationDate = expirationDate;
     this.description = description;
     this.type = type;
@@ -10,6 +11,7 @@ export default class Medication {
     this.quantity = quantity;
     this.img = imgSource;
     this.daytime = daytime;
+    this.addDate = addDate;
   }
 
   getExpirationDate() {

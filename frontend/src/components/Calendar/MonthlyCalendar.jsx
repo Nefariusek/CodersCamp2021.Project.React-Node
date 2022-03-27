@@ -13,7 +13,7 @@ const renderDayData = (date, selectedDates, pickersDayProps) => {
   let expNames = '';
   drugs.forEach((drug) => {
     if (drug.expirationDate.getTime() === date.getTime()) {
-      expNames = `${expNames}${drug.name}\n`;
+      expNames = `${expNames}${drug.nameOfMedication}\n`;
     }
   });
 
@@ -32,6 +32,7 @@ const MonthlyCalendar = () => {
 
   return (
     <div className="monthly-calendar">
+      <p>This view is available on bigger devices.</p>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
           views={['day']}

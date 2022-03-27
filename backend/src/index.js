@@ -1,20 +1,22 @@
-import mongoose from 'mongoose';
-
 import app from './app.js';
 import env from './constants/env.js';
 import logger from './config/components/logger.js';
+import connectDataBase from './config/components/connectDB.js';
+import pkg from 'mongoose';
+import initializeData from './config/components/dataInitializer.js';
 
-const dbConfig = env.NODE_ENV === 'production' ? {} : { dbName: 'local-project-db' };
+connectDataBase();
 
-let server;
+const { connection } = pkg;
 
-mongoose.connect(env.MONGODB_URL, dbConfig).then(() => {
-  logger.info('Connected to MongoDB');
-
-  server = app.listen(env.PORT, () => {
-    logger.info(`Listening to port ${env.PORT}`);
-  });
+const server = app.listen(env.PORT, () => {
+  logger.info(`Listening to port ${env.PORT}`);
 });
+
+if (env.NODE_ENV === 'DEV') {
+  connection.dropDatabase();
+  initializeData();
+}
 
 const exitHandler = () => {
   if (server) {

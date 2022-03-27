@@ -27,6 +27,7 @@ import HomePage from '../HomePage/HomePage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import MyDrugsPage from '../MyDrugsPage/MyDrugsPage';
+import SettingsPage from '../SettingsPage/SettingsPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 
 const paths = [
@@ -37,8 +38,8 @@ const paths = [
   { url: PATH_TO_LOGIN, element: <LoginPage /> },
   { url: PATH_TO_REGISTER, element: <SignUpPage /> },
   { url: PATH_TO_USER_HOMEPAGE, element: <HomePage /> },
-  { url: PATH_TO_SETTINGS, element: <p>Settings</p> },
-  { url: PATH_TO_MY_DRUGS, element: <MyDrugsPage /> },
+  { url: PATH_TO_SETTINGS, element: <PrivatePath site={<SettingsPage />} /> },
+  { url: PATH_TO_MY_DRUGS, element: <PrivatePath site={<MyDrugsPage />} /> },
 ];
 
 const App = () => {
