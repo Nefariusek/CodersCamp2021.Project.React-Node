@@ -41,6 +41,7 @@ const { Schema } = mongoose;
 const medicationCategorySchema = new Schema({
   name: { type: String, enum: MEDICATION_CATEGORIES, default: PILL_MED_TYPE, required: true },
   unit: { type: String, enum: UNITS, default: QUANTITY_UNIT, required: true },
+  possibleQuantity: { type: Array, required: true },
   color: {
     type: String,
     enum: COLORS,
@@ -63,6 +64,7 @@ export const medicationCategoryValidator = (req, res, next) => {
     unit: Joi.string()
       .valid(...UNITS)
       .required(),
+    possibleQuantity: Joi.array().items(Joi.number()),
     color: Joi.string()
       .valid(...COLORS)
       .required(),

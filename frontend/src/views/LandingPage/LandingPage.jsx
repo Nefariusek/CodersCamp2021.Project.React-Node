@@ -27,16 +27,19 @@ const routes = [
     url: PATH_TO_LOGIN,
     label: 'Login',
     icon: <LoginIcon className="landing-page-icon" />,
+    routeClasses: `${buttonStyles.Button}`,
   },
   {
     url: PATH_TO_REGISTER,
     label: 'Register',
     icon: <HowToRegIcon className="landing-page-icon" />,
+    routeClasses: `${buttonStyles.Button}`,
   },
   {
     url: PATH_TO_CREDITS,
     label: 'Credits',
     icon: <GroupIcon className="landing-page-icon" />,
+    routeClasses: `${buttonStyles.Button} secondary-btn`,
   },
 ];
 
@@ -66,7 +69,7 @@ const LandingPage = () => {
           </Grid>
 
           <Grid item container xs={12} my={3} alignItems="center" justifyContent="center">
-            <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={2}>
+            <Stack component="nav" direction={{ xs: 'column', md: 'row' }} spacing={4}>
               {routes.map((route) => (
                 <Button
                   key={route.label}
@@ -75,8 +78,8 @@ const LandingPage = () => {
                   to={route.url}
                   className={
                     route.label === 'Register' && isLastSlide
-                      ? `${buttonStyles.Button} call-to-action`
-                      : buttonStyles.Button
+                      ? `${route.routeClasses} call-to-action`
+                      : route.routeClasses
                   }
                 >
                   {route.icon} {route.label}

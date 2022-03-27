@@ -5,11 +5,16 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import postData from '../../../api/postData';
 import { PATH_TO_LOGIN } from '../../../constants/paths';
+import { BASE_URL } from '../../../constants/restResources';
+import ModalContext from '../../ModalContext/ModalContext';
+import PopupModal from '../../PopupModal/PopupModal';
 import { handleInputBlur, handleInputChange, UPDATE_FORM_STATE, validateInput } from './signUpValidation';
 
 const styles = {
@@ -39,6 +44,11 @@ const initialFormState = {
   isFormValid: false,
 };
 
+const MESSAGES = {
+  success: 'Sign up successful!',
+  error: 'An error has occurred',
+};
+
 const formReducer = (prevState, action) => {
   const { name, value, visited, hasError, errorText, isFormValid } = action.payload;
   switch (action.type) {
@@ -54,12 +64,25 @@ const formReducer = (prevState, action) => {
   }
 };
 
+const getUserData = (formState) => {
+  const userData = {};
+  Object.entries(formState)
+    .filter(([key]) => key !== 'isFormValid' && key !== 'confirmedPassword')
+    .forEach(([key, value]) => {
+      userData[key] = value.value;
+    });
+  return userData;
+};
+
 const SignUp = () => {
   const classes = useStyles();
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
-
+  const [apiMessage, setApiMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const modalState = useContext(ModalContext);
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let isFormValid = true;
     for (const name of Object.keys(formState)) {
@@ -85,8 +108,20 @@ const SignUp = () => {
     }
 
     if (isFormValid) {
-      alert('Sign up successful!');
-      navigate(PATH_TO_LOGIN, { replace: true });
+      const userData = getUserData(formState);
+
+      const { error } = await postData(`${BASE_URL}api/users/`, userData);
+
+      if (error) {
+        setApiMessage(error.message || MESSAGES.error);
+        modalState.setIsModalOpen(true);
+      } else {
+        setSuccessMessage(MESSAGES.success);
+
+        setTimeout(() => {
+          navigate(PATH_TO_LOGIN, { replace: true });
+        }, 1000);
+      }
     }
   };
 
@@ -194,6 +229,12 @@ const SignUp = () => {
                 handleInputBlur(e, formState, dispatch);
               }}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="p" component="p" align="center">
+              {successMessage}
+            </Typography>
+            <PopupModal message={apiMessage} type="error" modalState={modalState} />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" mb={2}>

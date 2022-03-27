@@ -13,41 +13,14 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
-import { AID_KIT_IMAGE_PATH, PILLS_IMAGE_PATH } from '../../constants/images';
-import {
-  DROPS_MED_TYPE,
-  INHALER_MED_TYPE,
-  INJECTION_MED_TYPE,
-  PATCHES_MED_TYPE,
-  PILL_MED_TYPE,
-  SYRUP_MED_TYPE,
-} from '../../constants/medTypes';
-import { DAYTIMES, MEDICATION_TYPES } from '../../constants/picklistValues';
+import { DAYTIMES } from '../../constants/picklistValues';
 import Medication from '../../model/Medication';
-import { validateInput } from './addDrugValidation';
+import LoginContext from '../LoginContext/LoginContext';
+import { validateInput } from './drugValidation';
 
 const DAYTIME_HELPER_TEXT = 'Multiple daytime choice possible.';
-
-const mappedMedTypes = new Map();
-mappedMedTypes.set(PILL_MED_TYPE, { quantity: [30, 60, 90], unit: 'pcs', imagePath: PILLS_IMAGE_PATH });
-mappedMedTypes.set(DROPS_MED_TYPE, { quantity: [10, 15, 20], unit: 'ml', imagePath: PILLS_IMAGE_PATH });
-mappedMedTypes.set(SYRUP_MED_TYPE, { quantity: [100, 150, 200], unit: 'ml', imagePath: PILLS_IMAGE_PATH });
-mappedMedTypes.set(INJECTION_MED_TYPE, { quantity: [10, 20], unit: 'ml', imagePath: AID_KIT_IMAGE_PATH });
-mappedMedTypes.set(INHALER_MED_TYPE, { quantity: [1, 2], unit: 'pcs', imagePath: AID_KIT_IMAGE_PATH });
-mappedMedTypes.set(PATCHES_MED_TYPE, { quantity: [8, 12, 24], unit: 'pcs', imagePath: AID_KIT_IMAGE_PATH });
-
-const initialFormState = {
-  drugName: '',
-  drugType: PILL_MED_TYPE,
-  drugQuantity: mappedMedTypes.get(PILL_MED_TYPE).quantity[0],
-  drugPackages: 0,
-  description: '',
-  expirationDate: new Date(),
-  dosage: '',
-  daytime: [DAYTIMES[0]],
-};
 
 const styles = {
   helper: {
@@ -81,19 +54,32 @@ const dateFormat = {
   dayFirst: 'dd/MM/yyyy',
 };
 
-const AddDrugForm = ({ onClose, addDrug }) => {
+const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
   const classes = useStyles();
+
+  const { medicationCategories } = useContext(LoginContext);
+
+  const initialFormState = {
+    drugName: '',
+    drugType: medicationCategories[0].name,
+    drugQuantity: medicationCategories[0].possibleQuantity[0],
+    drugPackages: 0,
+    description: '',
+    expirationDate: new Date(),
+    dosage: '',
+    daytime: [DAYTIMES[0]],
+  };
   const [formValues, setFormValues] = useState(initialFormState);
   const [formErrors, setFormErrors] = useState({});
 
-  const handleAddDrugSubmit = (e) => {
+  const handleDrugSubmit = (e) => {
     e.preventDefault();
     const isFormValid = Object.values(formErrors).every((error) => error === '');
-
-    const defaultImage = mappedMedTypes.get(formValues.drugType).imagePath;
+    const defaultImage = medicationCategories.length ? medicationCategories[0].icon : '';
 
     if (isFormValid) {
       const drug = new Medication(
+        'id',
         formValues.drugName,
         formValues.expirationDate,
         formValues.drugType,
@@ -103,7 +89,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
         defaultImage,
         formValues.daytime,
       );
-      addDrug(drug);
+      drugAction(drug);
       onClose();
     }
   };
@@ -115,7 +101,8 @@ const AddDrugForm = ({ onClose, addDrug }) => {
       setFormValues({
         ...formValues,
         drugType: e.target.value,
-        drugQuantity: mappedMedTypes.get(e.target.value).quantity[0],
+        // drugQuantity: mappedMedTypes.get(e.target.value).quantity[0],
+        drugQuantity: medicationCategories.find((q) => e.target.value === q._id).possibleQuantity[0],
       });
     } else {
       if (name === 'expirationDate') {
@@ -138,12 +125,14 @@ const AddDrugForm = ({ onClose, addDrug }) => {
     });
   };
 
+  // const currentCategory = medicationCategories.find((category) => category._id === formValues.drugType);
+
   return (
     <Container maxWidth="md">
       <Box
         component="form"
         noValidate
-        onSubmit={handleAddDrugSubmit}
+        onSubmit={handleDrugSubmit}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -187,9 +176,9 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 onChange={handleInput('drugType')}
                 onBlur={handleInput('drugType')}
               >
-                {MEDICATION_TYPES.map((type) => (
-                  <MenuItem key={type} value={type}>
-                    {type}
+                {medicationCategories.map((medicationCategory) => (
+                  <MenuItem key={medicationCategory._id} value={medicationCategory._id}>
+                    {medicationCategory.name}
                   </MenuItem>
                 ))}
               </Select>
@@ -212,11 +201,13 @@ const AddDrugForm = ({ onClose, addDrug }) => {
                 onChange={handleInput('drugQuantity')}
                 onBlur={handleInput('drugQuantity')}
               >
-                {mappedMedTypes.get(formValues.drugType).quantity.map((q) => (
-                  <MenuItem key={q} value={q}>
-                    {q} {mappedMedTypes.get(formValues.drugType).unit}
-                  </MenuItem>
-                ))}
+                {medicationCategories
+                  .find((category) => category._id === formValues.drugType)
+                  ?.possibleQuantity.map((q) => (
+                    <MenuItem key={q} value={q}>
+                      {q} {medicationCategories.find((category) => category._id === formValues.drugType).unit}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </Grid>
@@ -333,7 +324,7 @@ const AddDrugForm = ({ onClose, addDrug }) => {
         <Grid container justifyContent="space-between" align="center">
           <Grid item xs={12} sm={6} md={4} mb={2}>
             <Button type="submit" variant="contained" color="secondary" className={classes.button}>
-              Add drug
+              {actionName} drug
             </Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4} mb={2}>
@@ -347,4 +338,4 @@ const AddDrugForm = ({ onClose, addDrug }) => {
   );
 };
 
-export default AddDrugForm;
+export default DrugForm;
