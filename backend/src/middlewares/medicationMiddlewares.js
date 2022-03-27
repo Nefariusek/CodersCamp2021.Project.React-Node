@@ -41,9 +41,14 @@ async function postMedication(req, res, next) {
     if (existingMedication) {
       throw new ExpressError('Medication already in your aidkit', StatusCodes.CONFLICT);
     } else {
+      const category = await Medication.findOne({
+        name: req.body.category,
+      });
+
       const medication = new Medication({
         ...req.body,
       });
+      medication.category = category._id;
       const addedMedication = await medication.save();
       res.status(StatusCodes.OK).send(addedMedication);
     }

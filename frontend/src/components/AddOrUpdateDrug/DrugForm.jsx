@@ -101,7 +101,6 @@ const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
       setFormValues({
         ...formValues,
         drugType: e.target.value,
-        // drugQuantity: mappedMedTypes.get(e.target.value).quantity[0],
         drugQuantity: medicationCategories.find((q) => e.target.value === q._id).possibleQuantity[0],
       });
     } else {
@@ -177,7 +176,7 @@ const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
                 onBlur={handleInput('drugType')}
               >
                 {medicationCategories.map((medicationCategory) => (
-                  <MenuItem key={medicationCategory._id} value={medicationCategory._id}>
+                  <MenuItem key={medicationCategory._id} value={medicationCategory.name}>
                     {medicationCategory.name}
                   </MenuItem>
                 ))}
@@ -202,10 +201,10 @@ const DrugForm = ({ onClose, drugAction, actionName = 'Add' }) => {
                 onBlur={handleInput('drugQuantity')}
               >
                 {medicationCategories
-                  .find((category) => category._id === formValues.drugType)
+                  .find((category) => category.name === formValues.drugType)
                   ?.possibleQuantity.map((q) => (
                     <MenuItem key={q} value={q}>
-                      {q} {medicationCategories.find((category) => category._id === formValues.drugType).unit}
+                      {q} {medicationCategories.find((category) => category.name === formValues.drugType).unit}
                     </MenuItem>
                   ))}
               </Select>
