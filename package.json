@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "husky install",
     "pre-commit": "lint-staged",
-    "start": "cd backend && npm run install && node ./src/index.js",
+    "start": "cd backend && npm run start",
     "test": "cd frontend && npm run test && cd ../backend && npm run test"
   },
   "author": "",
